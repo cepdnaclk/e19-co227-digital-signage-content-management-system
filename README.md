@@ -50,7 +50,7 @@ The **Digital Signage CMS** is not just a project; it's a gateway to the extraor
 
 ## Our Ensemble of Technology 🎭
 
-- Frontend: HTML, CSS, and JavaScript (Vue.js for dynamic enchantments)
+- Frontend: PHP, for dynamic enchantments
 - Backend: PHP, the conductor of the orchestra
 - Database: MySQL, the keeper of our chronicles
 
@@ -63,11 +63,10 @@ The **Digital Signage CMS** is not just a project; it's a gateway to the extraor
 
 ## Applause for the Visionaries 🙌
 
-- [Your Name](Your GitHub Profile)
+- [Your Names](Your GitHub Profiles)
 
 ## Encore with Freedom 🎉
 
-This project is gifted under the wings of the [MIT License](LICENSE).
 
 ---
 
