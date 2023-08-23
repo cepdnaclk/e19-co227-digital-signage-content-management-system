@@ -3,13 +3,13 @@ layout: home
 permalink: index.html
 
 # Please update this with your repository name and title
-repository-name: eYY-XXX-project-template
-title:
+repository-name: e19-co227-digital-signage-content-management-system
+title: Digital Signage Content Management System
 ---
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# Project Title
+# Digital Signage Content Management System
 
 ---
 
@@ -20,9 +20,10 @@ This is a sample image, to show how to add images to your page. To learn more op
  -->
 
 ## Team
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
+-  E/19/090, Dissanayke D.M.I.G., [email](mailto:e19090@eng.pdn.ac.lk)
+-  E/19/309, Rambukwella H.M.W.K.G., [email](mailto:e19309@eng.pdn.ac.lk)
+-  E/19/436, Wickramasingha G.T.G., [email](mailto:e19436@eng.pdn.ac.lk)
+-  E/19/446, Wijerathna I.M.K.D.I., [email](mailto:e19446@eng.pdn.ac.lk)
 
 ## Table of Contents
 1. [Introduction](#introduction)
