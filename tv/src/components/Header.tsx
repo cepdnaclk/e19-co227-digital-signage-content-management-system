@@ -1,15 +1,17 @@
-
+import React from 'react';
 import './header.css'; 
+import uoplogo from '../assets/UOPLogo.svg';
+import itclogo from '../assets/ITCenterLogo.svg';
 
 function Header() {
   return (
-    <header className="header"> {/* Use the 'header' class */}
+    <header className="header">
       <div className="university-info">
-        <img src="../assets/UOPLogo.svg" alt="University Logo" className="logo" />
+        <img src={uoplogo} alt="University Logo" className="logo" />
         University of Peradeniya
       </div>
       <div className="it-center-logo">
-        <img src="../assets/ITCenterLogo.svg" alt="ITCenter Logo" className="logo" />
+        <img src={itclogo} alt="IT Center Logo" className="logo" />
       </div>
     </header>
   );

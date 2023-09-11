@@ -1,0 +1,27 @@
+/* Sidebar.css */
+nav {
+    color: black;
+    /* padding: 20%; */
+    hight:74.44%;
+    width:22.57%;
+    margin-left: 5%;
+
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 10%;
+  }
+  
+  nav li {
+    margin-bottom: 1%;
+    cursor: pointer;
+    font-weight: bold;
+
+  }
+  
+  nav li:hover {
+    background-color: #9D170E;
+    border-radius: 5px;
+  }
+  

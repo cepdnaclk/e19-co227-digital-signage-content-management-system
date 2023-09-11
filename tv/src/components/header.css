@@ -1,10 +1,10 @@
 /* header.css */
 .header {
+    
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: #333; /* Replace with your desired background color */
-    color: white;
+    color: black;
   }
   
   /* Style for the university name */
@@ -14,7 +14,7 @@
   }
   
   /* Style for logos */
-  header img {
+  .logo{
     height: 40px; /* Adjust the logo height as needed */
     margin-right: 10px;
   }

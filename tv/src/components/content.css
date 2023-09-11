@@ -1,0 +1,33 @@
+/* Content.css */
+
+/* Container for the content component */
+.content {
+    margin: 20px;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    flex-direction: column;
+  }
+  
+  /* Style for content components */
+  .content-component {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 80%; /* Adjust the width as needed */
+    background-color: #fff; /* Adjust the background color as needed */
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  }
+  
+  /* Show the selected content component */
+  .content-component.active {
+    display: block;
+  }
+  
+  /* Style for content headers */
+  .content-header {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
