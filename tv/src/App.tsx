@@ -11,6 +11,7 @@ function App() {
     backgroundImage: `url(${bg})`, // Set the background image
     backgroundSize: 'cover', 
     backgroundRepeat: 'no-repeat', // Prevent repeating of the image
+    backgroundPosition: 'center center'
   };
 
   return (

@@ -27,7 +27,9 @@
   
   /* Style for content headers */
   .content-header {
-    font-size: 24px;
+
+    font-family: 'Raleway', sans-serif;  
+    font-size: 89px;
     margin-bottom: 10px;
   }
   

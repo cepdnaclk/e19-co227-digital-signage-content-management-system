@@ -9,6 +9,7 @@
   
   /* Style for the university name */
   header div:nth-child(1) {
+    font-family: 'Raleway', sans-serif;
     display: flex;
     align-items: center;
   }
