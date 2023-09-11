@@ -6,7 +6,7 @@
 
 ---
 
-## Welcome to the Future of Communication 🌟
+## Welcome to the Future of Public Signage 🌟
 
 The **Digital Signage CMS** is not just a project; it's a gateway to the extraordinary. Prepare to embark on a journey that blurs the lines between static information and vibrant interaction.
 
@@ -49,10 +49,35 @@ The **Digital Signage CMS** is not just a project; it's a gateway to the extraor
 - Securely guard each memory, for they are the stepping stones of progress.
 
 ## Our Ensemble of Technology 🎭
+```
+                       +---------------------+
+                       |   Admin Web Pages   |
+                       +---------------------+
+                       | HTML                |
+                       | CSS                 |
+                       | JavaScript          |
+                       | PHP                 |
+                       +---------------------+
+                                 |
+                                 |
+                                 v
+                       +---------------------+
+                       |   Common Backend    |
+                       +---------------------+
+                       | PHP                 |
+                       | MySQL               |
+                       +---------------------+
+                                 |
+                                 |
+                                 v
+                       +---------------------+
+                       |   Smart TV Display  |
+                       +---------------------+
+                       | React               |
+                       | TypeScript          |
+                       +---------------------+
+```
 
-- Frontend: PHP, for dynamic enchantments
-- Backend: PHP, the conductor of the orchestra
-- Database: MySQL, the keeper of our chronicles
 
 ## Unveil the Curtains 🚪
 
