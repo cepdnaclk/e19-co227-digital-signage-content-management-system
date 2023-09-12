@@ -1,37 +1,27 @@
-/* Content.css */
-
 /* Container for the content component */
 .content {
-    /* margin: 1%; */
-    padding: 10%;
-    width:65.44%;
-    /* height:74.44%; */
-    display: flex;
-    justify-content: right;
-    align-items: right;
-    flex-direction: column;
-  }
-  
-  /* Style for content components */
-  /* .content-component {
-    display: none;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #fff; 
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  }
-   */
-  /* Show the selected content component */
-  /* .content-component.active {
-    display: block;
-  }
-   */
-  /* Style for content headers */
-  /* .content-header {
+  width: 72.44%;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  flex-direction: row;
+  padding: 2%;
+}
 
-    font-family: 'Raleway', sans-serif;  
-    font-size: 26px;
-    margin-bottom: 10px;
-  }
-   */
+/* Card-style container for content */
+.content-card {
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Ensure the card takes up the full width */
+  border-radius: 10px;
+}
+
+/* Style for content headers */
+.content-header {
+  font-family: 'Raleway', sans-serif;
+  font-size: 26px;
+  margin-bottom: 10px;
+}

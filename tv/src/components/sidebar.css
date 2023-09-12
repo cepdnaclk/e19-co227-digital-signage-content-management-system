@@ -1,26 +1,40 @@
 /* Sidebar.css */
 nav {
-    color: black;
-    /* height:74.44%; */
-    width:22.57%;
+  color: black;
+  width: 20.57%;
+  height: 74.44%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 4%;
+  margin-left: 2%;
+}
 
-  }
-  
-  nav ul {
-    list-style: none;
-    padding: 10%;
-  }
-  
-  nav li {
-    margin-bottom: 3%;
-    cursor: pointer;
-    font-family: 'Raleway', sans-serif;
-    padding: 5%;
+nav ul {
+  list-style: none;
+  padding: 0;
+}
 
-  }
-  
-  nav li:hover {
-    background-color: #9D170E;
-    border-radius: 10px;
-  }
-  
+nav li {
+  cursor: pointer;
+  font-family: 'Raleway', sans-serif;
+  padding: 5%;
+  background-color: white;
+  color: black;
+  display: flex; /* To align logo and label horizontally */
+  align-items: center; /* To vertically center the content */
+  transition: background-color 0.1s, color 0.1s;
+  border-radius: 10px;
+}
+
+nav li img {
+  width: 20px; /* Adjust the width of your logos */
+  height: 20px; /* Adjust the height of your logos */
+  margin-right: 10px; /* Add some spacing between the logo and label */
+}
+
+nav li:hover {
+  /* background-color: #f9db08; */
+  background-color: #9d170e;
+  color: white;
+}

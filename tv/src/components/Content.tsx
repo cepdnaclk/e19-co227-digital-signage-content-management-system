@@ -1,3 +1,4 @@
+// Content.tsx
 import React, { FunctionComponent } from 'react';
 import LabSlots from './LabSlots';
 import CourseOfferings from './CourseOfferings';
@@ -30,7 +31,9 @@ const Content: FunctionComponent<ContentProps> = ({ selectedOption }) => {
 
   return (
     <div className="content">
-      {getContentComponent()}
+      <div className="content-card">
+        {getContentComponent()}
+      </div>
     </div>
   );
 };

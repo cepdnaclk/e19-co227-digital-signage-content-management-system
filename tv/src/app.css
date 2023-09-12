@@ -7,10 +7,10 @@
     height: 100vh; /* Use 100vh for full viewport height */
     overflow: hidden; /* Prevents vertical scroll bars */
     margin: 0; /* Remove margin for body or other parent elements */
-    padding: 0%;
+    padding: 0;
   }
 
 .container {
     display: flex;
-    height: 74.44%;
+    height: 90.44%;
   }  

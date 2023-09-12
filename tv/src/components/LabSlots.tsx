@@ -1,19 +1,35 @@
-import React from 'react'
+// LabSlots.tsx
+import React from 'react';
+import './labSlots.css';
 
-export default function LabSlots() {
+const LabSlots: React.FC = () => {
   return (
-    <div>
-        <h1>This is LabSlots</h1>
-        <p>"Lab slots are an integral part of our educational ecosystem, 
-          providing dedicated time and resources for hands-on learning and experimentation. 
-          These carefully scheduled time slots offer students and instructors the opportunity
-          to engage in practical coursework, conduct experiments, and collaborate on projects. 
-          Whether it's a chemistry lab for conducting experiments, a computer lab for coding 
-          and simulations, or a biology lab for hands-on research, lab slots ensure that our 
-          educational institution optimizes its resources to facilitate interactive and immersive 
-          learning experiences. With real-time updates and efficient management, lab slots help us 
-          stay organized, maximize utilization, and foster a dynamic learning environment where 
-          theory meets practice."</p>
+    <div className="lab-slots">
+      <h2>Lab Slots for Today</h2>
+      <div className="lab-slot-table">
+        <div className="lab-slot">
+          <h3>Lab 1</h3>
+          <p>08:00 AM - 10:00 AM</p>
+          <p>Available</p>
+        </div>
+        <div className="lab-slot">
+          <h3>Lab 2</h3>
+          <p>10:30 AM - 12:30 PM</p>
+          <p>Occupied</p>
+        </div>
+        <div className="lab-slot">
+          <h3>CCNA Lab</h3>
+          <p>01:00 PM - 03:00 PM</p>
+          <p>Available</p>
+        </div>
+        <div className="lab-slot">
+          <h3>Seminar Room</h3>
+          <p>03:30 PM - 05:30 PM</p>
+          <p>Available</p>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
+
+export default LabSlots;
