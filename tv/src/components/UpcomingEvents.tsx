@@ -1,9 +1,12 @@
 import React from 'react'
+import './upcomingevents.css'
+import img from '../assets/upcoming-img.png'
 
 export default function UpcomingEvents() {
   return (
-    <div>
-        <h1>This is upcoming events</h1>
+    // temporary img
+    <div className="upcoming-image">
+      <img  src={img}/>
     </div>
   )
 }

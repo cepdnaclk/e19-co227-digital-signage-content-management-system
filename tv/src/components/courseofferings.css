@@ -1,15 +1,12 @@
-   /* labSlots.css */
-
-
-   /* temporary img */
-   .lab-slot-image {
+ /* temporary img */
+ .course-image {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%; 
   }
   
-  .lab-slot-image img {
+  .course-image img {
     max-width: 100%;
     max-height: 100%; 
     border-radius: 10px;

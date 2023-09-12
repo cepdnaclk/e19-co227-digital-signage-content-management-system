@@ -1,9 +1,12 @@
 import React from 'react'
+import './courseofferings.css'
+import img from '../assets/course-img.png'
 
 export default function CourseOfferings() {
   return (
-    <div>
-        <h1>This is Course Offerings</h1>
-    </div>
+     // temporary img
+     <div className="course-image">
+     <img  src={img}/>
+   </div>
   )
 }
