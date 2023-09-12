@@ -1,10 +1,8 @@
 /* Sidebar.css */
 nav {
     color: black;
-    /* padding: 20%; */
-    hight:74.44%;
+    /* height:74.44%; */
     width:22.57%;
-    margin-left: 5%;
 
   }
   
@@ -14,15 +12,15 @@ nav {
   }
   
   nav li {
-    margin-bottom: 1%;
+    margin-bottom: 3%;
     cursor: pointer;
-    font-weight: bold;
     font-family: 'Raleway', sans-serif;
+    padding: 5%;
 
   }
   
   nav li:hover {
     background-color: #9D170E;
-    border-radius: 5px;
+    border-radius: 10px;
   }
   
