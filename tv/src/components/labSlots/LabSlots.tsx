@@ -4,7 +4,7 @@ import "./labSlots.css";
 
 const LabSlots: React.FC = () => {
   return (
-    <div className="container">
+    <div className="labslots">
       <div className="legend">
         <div className="legend-bit"></div>
       </div>

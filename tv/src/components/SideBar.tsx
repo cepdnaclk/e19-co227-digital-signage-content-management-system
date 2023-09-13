@@ -11,7 +11,7 @@ type SideBarProps = {
 };
 
 function Sidebar({ selectedOption, setSelectedOption }: SideBarProps) {
-  const [hoveredOption, setHoveredOption] = useState<string>("");
+  const [hoveredOption, setHoveredOption] = useState<string>(selectedOption);
 
   // Define your options and their corresponding logos
   const options = [
@@ -45,9 +45,10 @@ function Sidebar({ selectedOption, setSelectedOption }: SideBarProps) {
           <li
             key={option.label}
             className={selectedOption === option.label ? "selected" : ""}
-            onMouseEnter={() => setHoveredOption(option.label)} // Change logo on hover
-            onMouseLeave={() => setHoveredOption("")} // Reset logo when mouse leaves
-            onClick={() => setSelectedOption(option.label)}
+            onClick={() => {
+              setSelectedOption(option.label);
+              setHoveredOption(option.label);
+            }}
           >
             <img src={option.logo} alt={`${option.label} Logo`} />
             {option.label}
