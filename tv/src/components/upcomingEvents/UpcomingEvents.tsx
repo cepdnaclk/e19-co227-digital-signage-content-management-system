@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./upcomingevents.css";
 import img1 from "../../assets/upcoming-event-1.jpg";
-import img2 from "../../assets/upcoming-event-2.jpg"; // Add your second image import here
+import img2 from "../../assets/upcoming-event-2.jpg";
+import img3 from "../../assets/upcoming-event-3.jpg";
+import img4 from "../../assets/upcoming-event-4.png"; // Add  images import here
+import img5 from "../../assets/ITCenterLogo.svg";
+
+
 
 export default function UpcomingEvents() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = [img1, img2]; // Add your image paths to this array
+  const images = [img1, img2, img3, img4, img5]; // Add  image paths to this array
 
   useEffect(() => {
     const timer = setTimeout(() => {
