@@ -1,13 +1,64 @@
-.lab-slot-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%; /* This ensures that the image takes up the full height of the card */
-  }
-  
-  .lab-slot-image img {
-    max-width: 100%;
-    max-height: 100%; /* Use max-height instead of height to ensure the image doesn't exceed the card's height */
-    border-radius: 10px;
-  }
-  
+/* labSlots.css */
+.labslots {
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.legend {
+  grid-column: 2/6;
+  font-size: 2.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+}
+
+.legend-bit {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.legend-bit .color-box {
+  height: 3rem;
+  width: 3rem;
+}
+
+.legend-bit.lab1 .color-box {
+  background-color: var(--color-1);
+}
+
+.legend-bit.lab2 .color-box {
+  background-color: var(--color-3);
+}
+
+.legend-bit.lab3 .color-box {
+  background-color: var(--color-4);
+}
+
+.legend-bit.sr .color-box {
+  background-color: var(--color-5);
+}
+
+.date {
+  grid-column: 2/6;
+  padding: 2rem 0;
+  background-color: var(--color-2);
+  margin: 4rem 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 2rem;
+}
+
+.date h3 {
+  font-size: 3.5rem;
+}
+
+.date p {
+  font-size: 2.5rem;
+  margin-top: 1.5rem;
+}
