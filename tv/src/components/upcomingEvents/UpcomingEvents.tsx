@@ -22,11 +22,11 @@ export default function UpcomingEvents() {
   }, [currentImageIndex, images]);
 
   return (
-    <div>
-      <div className="upcoming-events">
-        <img src={images[currentImageIndex]} alt={`Upcoming Event ${currentImageIndex + 1}`} />
-      </div>
+    
+    <div className="upcoming-events">
+      <img src={images[currentImageIndex]} alt={`Upcoming Event ${currentImageIndex + 1}`} />
     </div>
+    
   );
 }
 
