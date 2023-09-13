@@ -1,8 +1,10 @@
 <div align="center">
-    <img src="path/to/your/logo.png" alt="Digital Signage CMS Logo" width="200">
+    <img src="tv\src\assets\UOPLogo.svg" alt="Logo 1" width="200">
+    <img src="tv\src\assets\ITCenterLogo.svg" alt="Logo 2" width="200">
     <h1>Digital Signage Content Management System</h1>
     <p>Empowering Communication, Inspiring Engagement!</p>
 </div>
+
 
 ---
 
