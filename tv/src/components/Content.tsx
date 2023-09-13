@@ -1,11 +1,11 @@
 // Content.tsx
-import React, { FunctionComponent } from 'react';
-import LabSlots from './LabSlots';
-import CourseOfferings from './CourseOfferings';
-import UpcomingEvents from './UpcomingEvents';
-import PreviousEvents from './PreviousEvents';
-import Achievements from './Achievements';
-import './Content.css';
+import React, { FunctionComponent } from "react";
+import LabSlots from "./labSlots/LabSlots";
+import CourseOfferings from "./courseOffering/CourseOfferings";
+import UpcomingEvents from "./upcomingEvents/UpcomingEvents";
+import PreviousEvents from "./previousEvents/PreviousEvents";
+import Achievements from "./achivements/Achievements";
+import "./Content.css";
 
 interface ContentProps {
   selectedOption: string;
@@ -14,15 +14,15 @@ interface ContentProps {
 const Content: FunctionComponent<ContentProps> = ({ selectedOption }) => {
   const getContentComponent = () => {
     switch (selectedOption) {
-      case 'Lab Slots':
+      case "Lab Slots":
         return <LabSlots />;
-      case 'Course Offerings':
+      case "Course Offerings":
         return <CourseOfferings />;
-      case 'Upcoming Events':
+      case "Upcoming Events":
         return <UpcomingEvents />;
-      case 'Previous Events':
+      case "Previous Events":
         return <PreviousEvents />;
-      case 'Achievements':
+      case "Achievements":
         return <Achievements />;
       default:
         return <div>Content not found.</div>;
@@ -31,9 +31,7 @@ const Content: FunctionComponent<ContentProps> = ({ selectedOption }) => {
 
   return (
     <div className="content">
-      <div className="content-card">
-        {getContentComponent()}
-      </div>
+      <div className="content-card">{getContentComponent()}</div>
     </div>
   );
 };
