@@ -1,15 +1,21 @@
 /* courseofferings.css */
 
+/* Make the Course Offerings container full-width and full-height within Content component */
 .course-offerings {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   overflow: hidden;
   background-color: #f2f2f2;
   position: relative;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
 }
 
+/* Set a max-width for the course offering content */
 .course-offering-container {
   max-width: 80%;
   overflow: hidden;
@@ -18,26 +24,36 @@
   /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); */
 }
 
+/* Ensure the course offering image maintains aspect ratio and fills the container */
 .course-offering-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
-  margin:2%;
+  margin: 2%;
 }
 
-/* Ribbon-like bar styles */
-.ribbon-bar {
+/* Add dot indicators for navigation below the image */
+.dot-indicators {
   display: flex;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 0;
+  justify-content: center; /* Center the dot indicators horizontally within the container */
+  position: fixed;
+  bottom: 90px; /* Adjust this value to position the dots slightly below the image */
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px 20px;
-  color: #fff;
-  font-size: 40px;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.active-dot {
+  background-color: #333;
 }
 
 /* Additional styling to fit within the Content component */
@@ -50,5 +66,5 @@
 }
 
 .course-offering-container {
-  height: 95%; 
+  height: 95%;
 }
