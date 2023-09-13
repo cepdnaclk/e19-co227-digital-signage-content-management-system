@@ -1,27 +1,7 @@
 /* Container for the content component */
 .content {
-  width: 72.44%;
-  display: flex;
-  justify-content: right;
-  align-items: right;
-  flex-direction: row;
-  padding: 2%;
-}
-
-/* Card-style container for content */
-.content-card {
-  padding: 20px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Ensure the card takes up the full width */
-  border-radius: 10px;
-}
-
-/* Style for content headers */
-.content-header {
-  font-family: 'Raleway', sans-serif;
-  font-size: 26px;
-  margin-bottom: 10px;
+  width: 73%;
+  box-shadow: 0 0 4rem rgba(0, 0, 0, 0.3);
+  border-radius: 5rem;
+  background-color: white;
 }

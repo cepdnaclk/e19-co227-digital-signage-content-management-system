@@ -5,7 +5,7 @@ import CourseOfferings from "./courseOffering/CourseOfferings";
 import UpcomingEvents from "./upcomingEvents/UpcomingEvents";
 import PreviousEvents from "./previousEvents/PreviousEvents";
 import Achievements from "./achivements/Achievements";
-import "./Content.css";
+import "./content.css";
 
 interface ContentProps {
   selectedOption: string;
@@ -29,11 +29,7 @@ const Content: FunctionComponent<ContentProps> = ({ selectedOption }) => {
     }
   };
 
-  return (
-    <div className="content">
-      <div className="content-card">{getContentComponent()}</div>
-    </div>
-  );
+  return <div className="content">{getContentComponent()}</div>;
 };
 
 export default Content;

@@ -1,23 +1,22 @@
 /* header.css */
-.header {
-    
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    color: black;
-  }
-  
-  /* Style for the university name */
-  header div:nth-child(1) {
-    font-family: 'Raleway', sans-serif;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Style for logos */
-  .logo{
-    height: 40px; /* Adjust the logo height as needed */
-    margin-right: 10px;
-  }
-  
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  padding: 2rem 0;
+}
+
+/* Style for the university name */
+header div:nth-child(1) {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+}
+
+/* Style for logos */
+.logo {
+  height: 100px;
+  margin-right: 20px;
+}

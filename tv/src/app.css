@@ -7,6 +7,17 @@
   --color-5: #790483;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: calc(100% - 10rem);
+  margin: auto;
+}
+
 .App {
   background-image: url("./assets/PublicDisplayBackground.svg");
   background-position: center center;
@@ -16,9 +27,13 @@
   overflow: hidden; /* Prevents vertical scroll bars */
   margin: 0; /* Remove margin for body or other parent elements */
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.container {
+.App > .container {
   display: flex;
-  height: 90.44%;
+  justify-content: space-between;
+  height: 85%;
+  gap: 3rem;
 }
