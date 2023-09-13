@@ -6,15 +6,11 @@ import img from "../../assets/lab-slots-img.png";
 
 const LabSlots: React.FC = () => {
   return (
-    // <div className="labslots">
-    //   <div className="legend">
-    //     <div className="legend-bit"></div>
-    //   </div>
-    //   <div className="date"></div>
-    // </div>
-
-    <div className="lab-slot-image">
-      <img src={img}/>
+    <div className="labslots">
+      <div className="legend">
+        <div className="legend-bit"></div>
+      </div>
+      <div className="date"></div>
     </div>
   );
 };
