@@ -1,6 +1,6 @@
 // LabSlots.tsx
 import React from "react";
-import "./labslots.css";
+import "./labSlots.css";
 
 const LabSlots: React.FC = () => {
   return (
