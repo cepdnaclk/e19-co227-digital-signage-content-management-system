@@ -73,7 +73,7 @@ const LabSlots: React.FC = () => {
       </div>
       <div className="date">
         <h3>Today</h3>
-        <p>27 Aug 2023</p>
+        <p>13 Sep 2023</p>
       </div>
       <div className="timetable">
         {timeSlots.map((slot, index) => (
