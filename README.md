@@ -89,15 +89,13 @@ The **Digital Signage CMS** is not just a project; it's a gateway to a transform
 
 ## Appreciation for the Visionaries 🙌
 
-- [Kalindu](https://github.com/KalinduWijerathna)
-- [Kavishka](https://github.com/Kavishkagaya)
-- [Inesha](https://github.com/inesha21)
-- [Geethal](https://github.com/GeethalWickramasingha)
+**Supervisor**
+- Dr. Upul Jayasinghe [http://www.ce.pdn.ac.lk/upul/](http://www.ce.pdn.ac.lk/upul/)
 
-## Relish in the Ongoing Journey 🎉
+**Meet the Team**
+- Kalindu[GitHub](https://github.com/KalinduWijerathna), [email](e19446@eng.pdn.ac.lk)
+- Kavishka[GitHub](https://github.com/Kavishkagaya), [email](e19309@eng.pdn.ac.lk)
+- Inesha[GitHub](https://github.com/inesha21), [email](e19090@eng.pdn.ac.lk)
+- Geethal[GitHub](https://github.com/GeethalWickramasingha), [email](e19436@eng.pdn.ac.lk)
 
-
----
-
-*For inquiries and acknowledgments, contact [Geethal](e19436@eng.pdn.ac.lk), [Inesha](e19090@eng.pdn.ac.lk), [Kavishka](e19309@eng.pdn.ac.lk), [Kalindu](e19446@eng.pdn.ac.lk)*
-
+(*For inquiries and acknowledgments, feel free to contact us*)
