@@ -29,13 +29,13 @@ const LabSlots: React.FC = () => {
       lab: 1,
       start: "13.30",
       end: "17.00",
-      name: "Agri",
+      name: "CCSIP",
     },
     {
       lab: 2,
       start: "08.00",
       end: "12.00",
-      name: "Vet",
+      name: "Embeded Systems",
     },
     {
       lab: 3,
@@ -47,7 +47,7 @@ const LabSlots: React.FC = () => {
       lab: 4,
       start: "10.00",
       end: "11.00",
-      name: "Agri",
+      name: "Web Development",
     },
   ];
 

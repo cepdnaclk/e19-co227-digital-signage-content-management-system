@@ -41,6 +41,7 @@
   bottom: 90px; /* Adjust this value to position the dots slightly below the image */
   left: 0;
   right: 0;
+  margin-left: 1000px;
 }
 
 .dot {
