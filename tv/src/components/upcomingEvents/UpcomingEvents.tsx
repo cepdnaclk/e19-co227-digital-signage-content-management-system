@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./upcomingevents.css";
-import img1 from "../../assets/upcoming-event-1.jpg";
-import img2 from "../../assets/upcoming-event-2.jpg";
-import img3 from "../../assets/upcoming-event-3.jpg";
-import img4 from "../../assets/upcoming-event-4.png"; // Add  images import here
-import img5 from "../../assets/ITCenterLogo.svg";
+import img1 from "../../assets/upcoming-event-posters/upcoming-event-1.jpg";
+import img2 from "../../assets/upcoming-event-posters/upcoming-event-2.jpg";
+import img3 from "../../assets/upcoming-event-posters/upcoming-event-3.jpg";
+import img4 from "../../assets/upcoming-event-posters/upcoming-event-4.png";
+import img5 from "../../assets/upcoming-event-posters/upcoming-event-5.jpg";  // Add  images import here
+//Test images
 
 
 
