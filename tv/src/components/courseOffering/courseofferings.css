@@ -54,7 +54,7 @@
 }
 
 .active-dot {
-  background-color:  #9d170e;
+  background-color: var(--color-1);
 }
 
 /* Additional styling to fit within the Content component */

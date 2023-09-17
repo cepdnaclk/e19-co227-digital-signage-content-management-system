@@ -1,0 +1,126 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style the header container */
+header {
+    background-color: #9D170E;
+    width: 100%; /* Make the header full width */
+    height: 70px;
+    display: flex;
+    align-items: center;
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    padding: 0 40px;
+}
+
+/* Style the logo container */
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Style the title container */
+.title span {
+    font-size: 1.3rem;
+    margin-left: 10px;
+}
+
+/* Style the menu container */
+.menu {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Push the menu to the right */
+    margin-right: 10px;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    margin-left: 20px;
+
+}
+
+.menu ul li {
+    margin-left: 20px;
+    cursor: pointer;
+    position: relative; /* For pseudo-element */
+}
+
+
+.menu ul li:before {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: transparent; /* Initial transparent line */
+    transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Hover style - Menu name + half underlining */
+.menu ul li:hover:before {
+    width: 50%; /* Underline half of the text */
+    background-color: white;
+}
+
+/* Selected style - Bold menu name + half underlining */
+.menu ul li.selected {
+    font-weight: bold;
+
+}
+
+.menu ul li.selected:before {
+    width: 50%; /* Underline half of the text */
+    background-color: white;
+}
+
+/* Style the profile picture container */
+.profile img {
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/* Style the menu button for smaller screens */
+.menu-button {
+    display: none;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    
+    .menu ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background-color: #9D170E;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu.active ul {
+        display: flex;
+    }
+
+    .menu-button {
+        display: flex;
+        margin-left: auto; /* Push the button to the right */
+    }
+}
