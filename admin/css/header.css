@@ -41,7 +41,6 @@ header {
     list-style: none;
     display: flex;
     margin-left: 20px;
-
 }
 
 .menu ul li {
@@ -49,7 +48,6 @@ header {
     cursor: pointer;
     position: relative; /* For pseudo-element */
 }
-
 
 .menu ul li:before {
     content: "";
@@ -71,7 +69,6 @@ header {
 /* Selected style - Bold menu name + half underlining */
 .menu ul li.selected {
     font-weight: bold;
-
 }
 
 .menu ul li.selected:before {
@@ -100,27 +97,25 @@ header {
     justify-content: center;
 }
 
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-    
-    .menu ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        background-color: #9D170E;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
+/* Style the dropdown menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    margin-top: 10px;
+    top: 100%;
+    left: 0;
+    width: max-content;
+    background-color: #9D170E;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    list-style: none;
+    padding: 10px;
+    margin: 5px;
+    z-index: 0;
+}
 
-    .menu.active ul {
-        display: flex;
-    }
-
-    .menu-button {
-        display: flex;
-        margin-left: auto; /* Push the button to the right */
-    }
+/* Show the dropdown menu on hover */
+.menu ul li:hover .dropdown-menu {
+    display: inline-block;
+    z-index: 1;
 }
