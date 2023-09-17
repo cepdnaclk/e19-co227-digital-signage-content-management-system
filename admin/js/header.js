@@ -25,12 +25,14 @@ dropdownMenu.style.display = "none";
 
 // Add event listener to show the dropdown on hover
 eventsMenuItem.addEventListener("mouseenter", () => {
+    setInterval(() => {
     dropdownMenu.style.display = "block";
+    },500);
 });
 
 // Keep the dropdown visible for a bit longer when leaving the menu item
 eventsMenuItem.addEventListener("mouseleave", () => {
     setTimeout(() => {
         dropdownMenu.style.display = "none";
-    }, 1000); // Adjust the delay time (in milliseconds) as needed
+    }, 500); // Adjust the delay time (in milliseconds) as needed
 });

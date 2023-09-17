@@ -103,14 +103,15 @@ header {
     position: absolute;
     margin-top: 10px;
     top: 100%;
-    left: 0;
+    left: -20px;
     width: max-content;
     background-color: #9D170E;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     list-style: none;
-    padding: 10px;
-    margin: 5px;
+    padding-left: 0px;
+    padding-right: 20px;
+    margin: 7px;
     z-index: 0;
 }
 
@@ -119,3 +120,13 @@ header {
     display: inline-block;
     z-index: 1;
 }
+
+/* Style the dropdown menu items */
+.dropdown-menu li {
+    margin: 10px 0; /* Increase the top and bottom margin to create more gap */
+    color: white;
+}
+
+
+
+
