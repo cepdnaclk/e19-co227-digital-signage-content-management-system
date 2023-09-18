@@ -1,76 +1,68 @@
-/* Reset default margin and padding */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 /* Style the footer container */
 .footer {
-    background-color: #F9DB08;
-    max-width: 1440px; /* Change width to max-width for responsiveness */
-    width: 100%;
-    height: auto; /* Auto height for responsiveness */
-    flex-shrink: 0;
-    display: flex;
-    flex-wrap: wrap; /* Allow columns to wrap to a new line on smaller screens */
-    justify-content: space-between;
-    padding: 40px;
-    color: #9D170E;
-    margin-right: 20px;
+  background-color: var(--color-2);
+  width: 100%;
+  color: var(--color-1);
 }
 
-/* Style footer columns */
-.footer-column {
-    flex: 1;
-    padding: 10px;
-    text-align: left; /* Left-align text in columns */
+.footer .container {
+  display: grid;
+  grid-template-columns: 40% repeat(auto-fill, minmax(250px, 30%));
+  padding: 2rem 0;
+}
+
+.footer-column:nth-child(1) img {
+  height: 8rem;
+  margin-bottom: 1rem;
 }
 
 .footer-column h2 {
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
 }
 
 .footer-column ul {
-    list-style-type: none;
-    padding: 0; /* Remove default padding */
-}
-
-.footer-column ul li {
-    margin-bottom: 5px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-left: 0.5rem;
 }
 
 .footer-column a {
-    text-decoration: none;
-    color: #9D170E;
+  text-decoration: none;
+  color: var(--color-1);
 }
 
 .footer-column a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-/* Style contact info icons */
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.contact {
+  display: grid;
+  grid-template-columns: 0.5rem 1.5rem auto;
+  gap: 5px;
 }
 
-.contact-info > div {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+.contact h2 {
+  grid-column: 1/4;
 }
 
-.contact-info img {
-    width: 24px;
-    height: 24px;
-    margin-right: 5px;
+.contact address {
+  grid-column: 2/4;
 }
 
-.address{
-    padding: 20px;
+.contact .tele-icon {
+  grid-column: 2;
+  margin-top: 3px;
 }
 
+.contact .email-icon {
+  grid-column: 2;
+}
+
+.contact .web-icon {
+  grid-column: 2;
+}
