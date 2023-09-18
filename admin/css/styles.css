@@ -1,0 +1,20 @@
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
+:root {
+  --color-1: #9d170e;
+  --color-2: #f9db08;
+  --color-3: #305fa6;
+  --color-4: #00b007;
+  --color-5: #790483;
+}
+
+.container {
+  width: clamp(300px, 95%, 1440px);
+  margin: auto;
+}

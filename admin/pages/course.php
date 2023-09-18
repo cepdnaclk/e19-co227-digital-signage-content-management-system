@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/card.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <title>Your Page Title</title>
+    <title>IT Center | Courses</title>
 </head>
+
 <body>
-    <?php include('../includes/header.html'); ?>
-    
+    <?php include('../includes/header.php'); ?>
+
     <div class="content">
         <h1>Courses</h1>
         <p>Currently Offered Courses by Us</p>
@@ -53,7 +55,7 @@
                 <h2 class="card-title">CCNA</h2>
                 <p class="card-text">Dr. Magic Perera</p>
             </div>
-           <!-- Card actions with icons -->
+            <!-- Card actions with icons -->
             <div class="card-actions">
                 <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
                 <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
@@ -79,4 +81,5 @@
 
     <?php include('../includes/footer.html'); ?>
 </body>
+
 </html>
