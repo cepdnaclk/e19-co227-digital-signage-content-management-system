@@ -15,6 +15,6 @@
 }
 
 .container {
-  width: clamp(300px, 95%, 1440px);
+  width: clamp(300px, 90%, 1440px);
   margin: auto;
 }
