@@ -19,12 +19,15 @@
         <ul>
           <li>Dashboard</li>
           <li class="selected">Course Offerings</li>
-          <li>Lab Schedule</li>
+          <li >Lab Schedule</li>
           <li>Users</li>
           <li class="dropdown">
             Events & Achievements
             <ul class="dropdown-menu">
-              <li>Upcoming Events</li>
+              <a href="upcomingevents.php">
+                <li >Upcoming Events</li>
+              </a>
+
               <li>Previous Events</li>
               <li>Achievements</li>
             </ul>
