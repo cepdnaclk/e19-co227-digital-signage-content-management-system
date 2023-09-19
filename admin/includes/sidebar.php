@@ -21,7 +21,7 @@
                         <p>Dashboard</p>
                     </div>
                 </a>
-                <a href="" class="link <?php echo $index == 1 ? 'active' : '' ?>">
+                <a href="course.php" class="link <?php echo $index == 1 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="../images/Mortarboard.svg" alt="">
                         <p>Courses</p>
