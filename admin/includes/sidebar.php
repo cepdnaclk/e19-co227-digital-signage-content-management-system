@@ -12,7 +12,7 @@
         <div class="side">
             <div class="logo">
                 <img src="../images/ITCenterLogo.svg" alt="IT Center Logo" />
-                <span>Information Technology Center</span>
+                <span>Information Technology Center CMS</span>
             </div>
             <div class="links">
                 <a href="/" class="link <?php echo $index == 0 ? 'active' : '' ?>">
