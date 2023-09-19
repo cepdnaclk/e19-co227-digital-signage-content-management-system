@@ -33,7 +33,7 @@
                         <div class="card">
                             <!--<img src="../images/upcomingevents/default.png" alt="Add Event Image">-->
                             <div class="card-content">
-                                <a href="neweventupload.php" class="default-button" title="Add New Event"></a>
+                                <a href="addnewevent.php" class="default-button" title="Add New Event"></a>
 
                             </div>
 
