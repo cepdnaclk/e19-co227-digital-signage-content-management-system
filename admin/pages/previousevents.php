@@ -24,8 +24,10 @@
             <main class="previousevents">
                 <div class="container">
                     <div class="title">
-                        <h1>Previous Events</h1>
+                        <h1>Previous Events and Services</h1>
+                        <a href="/pages/addnewevent.php"><img src="../images/Add_round.svg" alt=""> Add Event</a>
                     </div>
+                    
                     <div class="card-container">
 
                         <!-- Card 1 -->
@@ -35,7 +37,7 @@
                                 <h2 class="card-title">Certificate Award Ceremony of the SITSEP- Staff IT Skills Development Programme- 2022 - level 1</h2>
                                 <!-- <p>Certificate Award Ceremony of the SITSEP- Staff IT Skills Development Programme- 2022 � level 1, first batch was held on January 2nd</p> -->
                                 <!-- <p class="card-venue">Seminar Room</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p> -->
+                                <p class="card-duration">From 2023/09/10<br>To 2023/09/21 </p> -->
                             </div>
                             <!-- Card actions with icons -->
                             <div class="card-actions">
