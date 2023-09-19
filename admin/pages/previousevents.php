@@ -35,7 +35,7 @@
                                 <h2 class="card-title">Certificate Award Ceremony of the SITSEP- Staff IT Skills Development Programme- 2022 - level 1</h2>
                                 <!-- <p>Certificate Award Ceremony of the SITSEP- Staff IT Skills Development Programme- 2022 � level 1, first batch was held on January 2nd</p> -->
                                 <!-- <p class="card-venue">Seminar Room</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p> -->
+                                <p class="card-duration">From 2023/09/10<br>To 2023/09/21 </p> -->
                             </div>
                             <!-- Card actions with icons -->
                             <div class="card-actions">
