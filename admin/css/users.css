@@ -1,0 +1,64 @@
+/*  user management styles */
+.users .user-roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.users .user-role {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    width: calc(33.33% - 20px);
+    transition: transform 0.2s;
+}
+
+.users .user-role:hover {
+    transform: translateY(-5px);
+}
+
+.users .user-icon {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: var(--color-2);
+}
+
+.users .user-icon img {
+    width: 100%;
+    height: auto;
+}
+
+.users .user-details {
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.users .user-details h3 {
+    font-size: 1.2rem;
+    color: var(--color-text-1);
+}
+
+.users .user-details p {
+    font-size: 1rem;
+    color: var(--color-text-2);
+}
+
+.users .user-count {
+    font-size: 1.5rem;
+    color: var(--color-1);
+    margin-left: 20px;
+}
+
+.container p{
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.container h1{
+    margin: 10px;
+}
