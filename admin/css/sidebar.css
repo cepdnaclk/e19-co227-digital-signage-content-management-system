@@ -58,7 +58,7 @@
   width: 25px;
   height: 25px;
   object-fit: contain;
-  filter: invert();
+  filter: invert() brightness(2);
 }
 
 .side .links a.link {
@@ -66,61 +66,16 @@
   font-size: 1rem;
 }
 
-.side .links .link ul {
+.side .links .link + ul {
   display: none;
 }
 
-.side .links .link.active ul {
+.side .links .link.active + ul {
   display: flex;
   flex-direction: column;
   padding-left: 3rem;
   width: 100%;
   margin: 1rem 0;
   gap: 1rem;
-}
-
-
-.dropdown-container {
-  position: relative;
-}
-
-.dropdown-toggle {
-  cursor: pointer;
-}
-
-.dropdown-menu {
-  list-style: none; 
-  margin-left: 50px;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-1-shade);
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.dropdown-container:hover .dropdown-menu {
-  display: flex;
-}
-
-/* Dropdown menu items */
-.dropdown-container .dropdown-menu li {
-  padding: 5px;
-  margin-right: 20px;
-  transition: background-color 0.3s;
-}
-
-.dropdown-menu li:hover{
-  border-radius: 4px;
-  display: flex;
-  margin-right: 20px;
-  padding: 5px;
-  background-color: #f9dd0852;
-}
-
-.labslots-opt{
-  margin-top: 80px;
+  color: white;
 }

@@ -23,25 +23,11 @@
             ?>
             <main class="upcomingevents">
                 <div class="container">
-                    <h1>Upcoming Events</h1>
-
-
+                    <div class="title">
+                        <h1>Upcoming Events</h1>
+                        <a href=""><img src="../images/Add_round.svg" alt=""> Add Event</a>
+                    </div>
                     <div class="card-container">
-
-
-                        <!--Default card-->
-                        <div class="card">
-                            <!--<img src="../images/upcomingevents/default.png" alt="Add Event Image">-->
-                            <div class="card-content">
-                                <a href="addnewevent.php" class="default-button" title="Add New Event"></a>
-
-                            </div>
-
-
-                        </div>
-
-
-
                         <!-- Card 1 -->
                         <div class="card">
                             <img src="../images/upcoming-event-posters/upcoming-event-1.jpg" alt="Add Event Image">

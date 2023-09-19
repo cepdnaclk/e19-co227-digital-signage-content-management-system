@@ -33,31 +33,25 @@
                         <p>Users</p>
                     </div>
                 </a>
-                
-                <div class="dropdown-container">
-                    <a href="#" class="link dropdown-toggle">
+                <div>
+                    <a href="/pages/upcomingevents.php" class="link <?php echo $index == 3 ? 'active' : '' ?>">
                         <div class="link-main">
                             <img src="../images/Star.svg" alt="">
                             <p>Events & Achievements</p>
                         </div>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul>
                         <li><a href="/pages/upcomingevents.php" class="link <?php echo $index == 3 ? 'active' : '' ?>">Upcoming Events</a></li>
                         <li><a href="/pages/previousevents.php" class="link <?php echo $index == 3 ? 'active' : '' ?>">Previous Events</a></li>
                         <li><a href="/pages/achievements.php" class="link <?php echo $index == 3 ? 'active' : '' ?>">Achievements</a></li>
                     </ul>
                 </div>
-
-
-                
-                <div class="labslots-opt">
                 <a href="/pages/labslots.php" class="link <?php echo $index == 4 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="../images/calendar.svg" alt="">
                         <p>Lab Allocations</p>
                     </div>
                 </a>
-            </div>
             </div>
         </div>
     <?php } ?>
