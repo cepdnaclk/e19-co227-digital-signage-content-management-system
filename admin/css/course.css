@@ -1,3 +1,6 @@
+/* Course.css */
+
+/* Course Page */
 .course {
   padding-top: 1.5rem;
 }
@@ -10,91 +13,68 @@
   font-weight: 300;
 }
 
-/* Style the card container */
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 20%));
-  gap: 2rem;
-  margin: 2rem 0;
+/* Table Container */
+.table-container {
+  width: 80%;
+  margin: 30px auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
-/* Style the card */
-.card {
+/* Courses Table */
+.courses-table {
   width: 100%;
-  height: 100%;
-  border-radius: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s;
-  border: 1px solid #ddd;
-  cursor: pointer;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-/* Hover effect for the card */
-.card:hover {
-  transform: translateY(-5px);
+.courses-table th,
+.courses-table td {
+  padding: 10px;
+  text-align: left;
 }
 
-/* Style the card image */
-.card img {
-  width: 100%;
-  height: 50%;
-  object-fit: cover;
+.courses-table th {
+  background-color: var(--color-3);
+  color: white;
 }
 
-/* Style the card content */
-.card-content {
-  padding: 1rem 20px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+.courses-table tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-.card-title {
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-.card-text {
-  font-size: 0.85rem;
-  font-weight: 600 !important;
-  color: var(--color-1);
-}
-
-/* Style the card actions (buttons) */
-.card-actions {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 10px 20px;
-  background: #f0f0f0;
-}
-
-.edit-button,
-.delete-button {
-  padding: 8px 16px;
+/* Edit Button */
+.edit-button {
+  background-color: var(--color-1);
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 5px 10px;
   cursor: pointer;
   font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: 0.5s all ease;
 }
 
-.edit-button {
+.edit-button:hover {
+  background-color: #7B120C;
+  transition: background-color 0.3s;
+}
+
+/* Add Course Button */
+.add-course {
+  text-align: center;
+}
+
+.add-button {
   background-color: var(--color-4);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.delete-button {
-  background-color: var(--color-1);
-}
-
-.edit-button:hover,
-.delete-button:hover {
-  filter: brightness(1.2);
+.add-button:hover {
+  background-color: #1e7e34;
+  transition: background-color 0.3s;
 }

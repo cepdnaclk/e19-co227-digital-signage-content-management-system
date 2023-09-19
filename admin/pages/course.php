@@ -4,77 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/course.css">
+    <link rel="stylesheet" href="../css/course.css"> <!-- Add your custom CSS file here -->
     <title>IT Center | Courses</title>
 </head>
 
 <body>
     <?php include('../includes/header.php'); ?>
+    
 
     <main class="course">
         <div class="container">
             <h1>Courses</h1>
             <p>Currently Offered Courses by Us</p>
 
-            <div class="card-container">
-                <!-- Card 1 -->
-                <div class="card">
-                    <img src="../images/ccna.png" alt="Card Image 1">
-                    <div class="card-content">
-                        <h2 class="card-title">CCNA</h2>
-                        <p class="card-text">Dr. Kumaratunga Munidasa</p>
-                    </div>
-                    <!-- Card actions with icons -->
-                    <div class="card-actions">
-                        <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                        <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                    </div>
-
+            <div class="table-container">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-left">Course</th>
+                                <th class="text-left">Description</th>
+                                <th class="text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Sample Rows -->
+                            <tr>
+                                <td class="text-left">CCNA 200-301</td>
+                                <td class="text-left">Cisco Certified Network Associate</td>
+                                <td class="text-center">
+                                    <button class="btn btn-primary">Edit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Sample Course</td>
+                                <td class="text-left">Sample Description</td>
+                                <td class="text-center">
+                                    <button class="btn btn-primary">Edit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Another Course</td>
+                                <td class="text-left">Another Description</td>
+                                <td class="text-center">
+                                    <button class="btn btn-primary">Edit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Yet Another Course</td>
+                                <td class="text-left">Yet Another Description</td>
+                                <td class="text-center">
+                                    <button class="btn btn-primary">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
-                <!-- Card 2 -->
-                <div class="card">
-                    <img src="../images/ccna.png" alt="Card Image 2">
-                    <div class="card-content">
-                        <h2 class="card-title">CCNA</h2>
-                        <p class="card-text">Dr. Don Don</p>
-                    </div>
-                    <!-- Card actions with icons -->
-                    <div class="card-actions">
-                        <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                        <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                    </div>
-
-                </div>
-
-                <!-- Card 3 -->
-                <div class="card">
-                    <img src="../images/ccna.png" alt="Card Image 3">
-                    <div class="card-content">
-                        <h2 class="card-title">CCNA</h2>
-                        <p class="card-text">Dr. Magic Perera</p>
-                    </div>
-                    <!-- Card actions with icons -->
-                    <div class="card-actions">
-                        <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                        <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                    </div>
-
-                </div>
-
-                <!-- Card 4 -->
-                <div class="card">
-                    <img src="../images/ccna.png" alt="Card Image 4">
-                    <div class="card-content">
-                        <h2 class="card-title">CCNA</h2>
-                        <p class="card-text">Dr. A.B. de Great</p>
-                    </div>
-                    <!-- Card actions with icons -->
-                    <div class="card-actions">
-                        <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                        <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                    </div>
-
+                <div class="add-course text-center">
+                    <button class="btn btn-success">Add New Course</button>
                 </div>
             </div>
         </div>
