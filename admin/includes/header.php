@@ -16,7 +16,7 @@
     <div class="profile">
       <div class="img">F</div>
       <h5>FirstName LastName</h5>
-      <p>Course Cordinator</p>
+      <p>Admin</p>
     </div>
   </header>
   <script src="../js/header.js"></script>
