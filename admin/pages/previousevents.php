@@ -23,24 +23,11 @@
             ?>
             <main class="previousevents">
                 <div class="container">
-                    <h1>Previous Events</h1>
-
-
+                    <div class="title">
+                        <h1>Previous Events</h1>
+                        <a href="/pages/addnewevent.php"><img src="../images/Add_round.svg" alt=""> Add Event</a>
+                    </div>
                     <div class="card-container">
-
-
-                        <!--Default card-->
-                        <div class="card">
-                            <!--<img src="../images/previousevents/default.png" alt="Add Event Image">-->
-                            <div class="card-content">
-                                <a href="addnewevent.php" class="default-button" title="Add New Event"></a>
-
-                            </div>
-
-
-                        </div>
-
-
 
                         <!-- Card 1 -->
                         <div class="card">
@@ -65,7 +52,7 @@
                             <div class="card-content">
                                 <h2 class="card-title">SITSEP- Staff IT Skills Development Programme- 2022</h2>
                                 <!-- <p>The Department of Veterinary Pathobiology, Faculty of Veterinary Medicine and Animal Science, organized the ICGEB workshop on "Genomic Approaches in Understanding Vector-Borne Parasites".</p> -->
-                                <!-- <p class="card-venue">Seminar Room</p> --> 
+                                <!-- <p class="card-venue">Seminar Room</p> -->
                                 <!-- <p><br>Display Duration</p>
                                 <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p> -->
                             </div>

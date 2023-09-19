@@ -1,119 +1,131 @@
 .previousevents {
-    padding-top: 1.5rem;
-  }
-  
-  .previousevents h1 {
-    font-weight: 600;
-  }
-  
-  
-  /* Style the card container */
-  .card-container {
-    display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 20%));
-    row-gap: 5rem;
-    column-gap: 5rem;
-    margin: 2rem 0;
-    
-  }
-  
+  padding-top: 1.5rem;
+}
 
-  /* Style the card */
-  .card {
-    width: 300px;
-    height: 450px;
-    border-radius: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s;
-    border: 1px solid #ddd;
-    cursor: pointer;
+.previousevents .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.previousevents h1 {
+  font-weight: 600;
+  font-size: 1.7rem;
+}
 
-  }
-  
-  /* Hover effect for the card */
-  .card:hover {
-    transform: translateY(-5px);
-  }
-  
-  /* Style the card image */
-  .card img {
-    padding: 5%;
-    width: auto;
-    height: 50%;
-    object-fit:scale-down;
-  }
-  
-  /* Style the card content */
-  .card-content {
-    padding: 1rem 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .card-title {
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
-  
-  .card-text {
-    font-size: 0.85rem;
-    font-weight: 600 !important;
-    color: var(--color-1);
-  }
-  
-  /* Style the card actions (buttons) */
-  .card-actions {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 10px 20px;
-    background: #f0f0f0;
-  }
-  
-  .edit-button,
-  .delete-button {
-    padding: 8px 16px;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: 0.5s all ease;
-  }
-  .default-button {
-    cursor:pointer;
-    display:flex;
-    align-items: center;
-    border-color: #ffffff;
-    height: 100%;
-    width: 100%;
-    background:rgb(255, 255, 255) url('../images/add.png') ;
-    background-size:100%;
-    background-position-x: center;
-    background-position-y: center;
-    background-repeat: no-repeat;
-    
-    
-    
-  }
-  .edit-button {
-    background-color: var(--color-4);
-  }
-  
-  .delete-button {
-    background-color: var(--color-1);
-  }
-  
-  .edit-button:hover,
-  .delete-button:hover {
-    filter: brightness(1.2);
-  }
-  
+.previousevents .title a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-4);
+  color: white;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.previousevents .title a img {
+  filter: invert() brightness(2);
+}
+
+/* Style the card container */
+.previousevents .card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* Style the card */
+.previousevents .card {
+  width: 100%;
+  height: 450px;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+/* Hover effect for the card */
+.previousevents .card:hover {
+  transform: translateY(-5px);
+}
+
+/* Style the card image */
+.previousevents .card img {
+  padding: 5%;
+  width: auto;
+  height: 50%;
+  object-fit: scale-down;
+}
+
+/* Style the card content */
+.previousevents .card-content {
+  padding: 1rem 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.previousevents .card-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.previousevents .card-text {
+  font-size: 0.85rem;
+  font-weight: 600 !important;
+  color: var(--color-1);
+}
+
+/* Style the card actions (buttons) */
+.previousevents .card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 10px 20px;
+  background: #f0f0f0;
+}
+
+.previousevents .edit-button,
+.previousevents .delete-button {
+  padding: 8px 16px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: 0.5s all ease;
+}
+.previousevents .default-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-color: #ffffff;
+  height: 100%;
+  width: 100%;
+  background: rgb(255, 255, 255) url("../images/add.png");
+  background-size: 100%;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+}
+.previousevents .edit-button {
+  background-color: var(--color-4);
+}
+
+.previousevents .delete-button {
+  background-color: var(--color-1);
+}
+
+.previousevents .edit-button:hover,
+.previousevents .delete-button:hover {
+  filter: brightness(1.2);
+}
