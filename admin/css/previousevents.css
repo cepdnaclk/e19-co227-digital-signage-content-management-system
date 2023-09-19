@@ -1,19 +1,19 @@
-.upcomingevents {
+.previousevents {
   padding-top: 1.5rem;
 }
 
-.upcomingevents .title {
+.previousevents .title {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.upcomingevents h1 {
+.previousevents h1 {
   font-weight: 600;
   font-size: 1.7rem;
 }
 
-.upcomingevents .title a {
+.previousevents .title a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -24,12 +24,12 @@
   border-radius: 5px;
 }
 
-.upcomingevents .title a img {
+.previousevents .title a img {
   filter: invert() brightness(2);
 }
 
 /* Style the card container */
-.upcomingevents .card-container {
+.previousevents .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 2rem;
@@ -37,7 +37,7 @@
 }
 
 /* Style the card */
-.upcomingevents .card {
+.previousevents .card {
   width: 100%;
   height: 450px;
   border-radius: 1.5rem;
@@ -51,12 +51,12 @@
 }
 
 /* Hover effect for the card */
-.upcomingevents .card:hover {
+.previousevents .card:hover {
   transform: translateY(-5px);
 }
 
 /* Style the card image */
-.upcomingevents .card img {
+.previousevents .card img {
   padding: 5%;
   width: auto;
   height: 50%;
@@ -64,26 +64,26 @@
 }
 
 /* Style the card content */
-.upcomingevents .card-content {
+.previousevents .card-content {
   padding: 1rem 20px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
-.upcomingevents .card-title {
+.previousevents .card-title {
   font-size: 1.2rem;
   font-weight: 500;
 }
 
-.upcomingevents .card-text {
+.previousevents .card-text {
   font-size: 0.85rem;
   font-weight: 600 !important;
   color: var(--color-1);
 }
 
 /* Style the card actions (buttons) */
-.upcomingevents .card-actions {
+.previousevents .card-actions {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
@@ -91,8 +91,8 @@
   background: #f0f0f0;
 }
 
-.upcomingevents .edit-button,
-.upcomingevents .delete-button {
+.previousevents .edit-button,
+.previousevents .delete-button {
   padding: 8px 16px;
   color: white;
   border: none;
@@ -104,16 +104,28 @@
   gap: 0.5rem;
   transition: 0.5s all ease;
 }
-
-.upcomingevents .edit-button {
+.previousevents .default-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-color: #ffffff;
+  height: 100%;
+  width: 100%;
+  background: rgb(255, 255, 255) url("../images/add.png");
+  background-size: 100%;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+}
+.previousevents .edit-button {
   background-color: var(--color-4);
 }
 
-.upcomingevents .delete-button {
+.previousevents .delete-button {
   background-color: var(--color-1);
 }
 
-.upcomingevents .edit-button:hover,
-.upcomingevents .delete-button:hover {
+.previousevents .edit-button:hover,
+.previousevents .delete-button:hover {
   filter: brightness(1.2);
 }

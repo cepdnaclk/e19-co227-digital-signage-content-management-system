@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/upcomingevents.css">
-    <title>IT Center | UpcomingEvents</title>
+    <link rel="stylesheet" href="../css/previousevents.css">
+    <title>IT Center | PreviousEvents</title>
 </head>
 
 <body>
@@ -21,22 +21,22 @@
             <?php
             include_once(APP_ROOT . "/includes/header.php");
             ?>
-            <main class="upcomingevents">
+            <main class="previousevents">
                 <div class="container">
                     <div class="title">
-                        <h1>Upcoming Events</h1>
+                        <h1>Previous Events</h1>
                         <a href="/pages/addnewevent.php"><img src="../images/Add_round.svg" alt=""> Add Event</a>
                     </div>
                     <div class="card-container">
+
                         <!-- Card 1 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-1.jpg" alt="Add Event Image">
+                            <img src="../images/previous-event-posters/image-1.png" alt="Add Event Image">
                             <div class="card-content">
-                                <h2 class="card-title">Event1</h2>
-                                <p class="card-date">2023/09/20 at 9.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
+                                <h2 class="card-title">Certificate Award Ceremony of the SITSEP- Staff IT Skills Development Programme- 2022 - level 1</h2>
+                                <!-- <p>Certificate Award Ceremony of the SITSEP- Staff IT Skills Development Programme- 2022 � level 1, first batch was held on January 2nd</p> -->
+                                <!-- <p class="card-venue">Seminar Room</p>
+                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p> -->
                             </div>
                             <!-- Card actions with icons -->
                             <div class="card-actions">
@@ -48,13 +48,13 @@
 
                         <!-- Card 2 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-2.jpg" alt="Add Event Image">
+                            <img src="../images/previous-event-posters/image-2.png" alt="Add Event Image">
                             <div class="card-content">
-                                <h2 class="card-title">Event2</h2>
-                                <p class="card-date">2023/09/21 at 11.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
+                                <h2 class="card-title">SITSEP- Staff IT Skills Development Programme- 2022</h2>
+                                <!-- <p>The Department of Veterinary Pathobiology, Faculty of Veterinary Medicine and Animal Science, organized the ICGEB workshop on "Genomic Approaches in Understanding Vector-Borne Parasites".</p> -->
+                                <!-- <p class="card-venue">Seminar Room</p> -->
+                                <!-- <p><br>Display Duration</p>
+                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p> -->
                             </div>
                             <!-- Card actions with icons -->
                             <div class="card-actions">
@@ -66,13 +66,14 @@
 
                         <!-- Card 3 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-3.jpg" alt="Add Event Image">
+                            <img src="../images/previous-event-posters/image-3.png" alt="Add Event Image">
                             <div class="card-content">
-                                <h2 class="card-title">Event3</h2>
-                                <p class="card-date">2023/09/22 at 9.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
+                                <h2 class="card-title">The poster presentation of the final projects of the staff IT development program, level 3</h2>
+                                <!-- <p>The Department of Veterinary Pathobiology, Faculty of Veterinary Medicine and Animal Science, organized the ICGEB workshop on "Genomic Approaches in Understanding Vector-Borne Parasites".</p> -->
+                                <!-- <p class="card-date">2023/09/22 at 9.00 a.m</p>
+                                <p class="card-venue">Seminar Room</p> -->
+                                <!-- <p><br>Display Duration</p>
+                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p> -->
                             </div>
                             <!-- Card actions with icons -->
                             <div class="card-actions">
@@ -84,13 +85,13 @@
 
                         <!-- Card 4 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-3.jpg" alt="Add Event Image">
+                            <img src="../images/previous-event-posters/image-4.png" alt="Add Event Image">
                             <div class="card-content">
-                                <h2 class="card-title">Event 4</h2>
-                                <p class="card-date">2023/09/23 at 3 p.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
+                                <h2 class="card-title">SITSEP- Staff IT Skills Development Programme- 2022 - Batch 2</h2>
+                                <!-- <p>Information Technology Center stated a training programme for the second batch of the SITSEP programme on 2022 August 16</p> -->
+                                <!-- <p class="card-date">2023/09/23 at 3 p.m</p>
+                                <p class="card-venue">Seminar Room</p> -->
+                                <!-- <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p> -->
                             </div>
                             <!-- Card actions with icons -->
                             <div class="card-actions">

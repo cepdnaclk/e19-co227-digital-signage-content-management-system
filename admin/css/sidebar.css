@@ -58,7 +58,7 @@
   width: 25px;
   height: 25px;
   object-fit: contain;
-  filter: invert();
+  filter: invert() brightness(2);
 }
 
 .side .links a.link {

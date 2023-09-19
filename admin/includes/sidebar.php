@@ -34,7 +34,7 @@
                     </div>
                 </a>
                 <div>
-                    <a href="/pages/upcomingevents.php" class="link <?php echo $index == 3 ? 'active' : '' ?>">
+                    <a href="/pages/eventsandachivements.php" class="link <?php echo $index == 3 ? 'active' : '' ?>">
                         <div class="link-main">
                             <img src="../images/Star.svg" alt="">
                             <p>Events & Achievements</p>
