@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/course.css"> <!-- Add your custom CSS file here -->
+    <link rel="stylesheet" href="../css/course.css"> 
     <title>IT Center | Courses</title>
 </head>
 
 <body>
     <?php include('../includes/header.php'); ?>
-    
 
     <main class="course">
         <div class="container">
