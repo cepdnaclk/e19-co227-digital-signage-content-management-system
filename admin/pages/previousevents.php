@@ -25,7 +25,6 @@
                 <div class="container">
                     <div class="title">
                         <h1>Previous Events</h1>
-                        <a href="/pages/addnewevent.php"><img src="../images/Add_round.svg" alt=""> Add Event</a>
                     </div>
                     <div class="card-container">
 
