@@ -44,6 +44,12 @@
                         <li>Achievements</li>
                     </ul>
                 </a>
+                <a href="" class="link <?php echo $index == 4 ? 'active' : '' ?>">
+                    <div class="link-main">
+                        <img src="../images/calendar.svg" alt="">
+                        <p>Lab Allocations</p>
+                    </div>
+                </a>
             </div>
         </div>
     <?php } ?>
