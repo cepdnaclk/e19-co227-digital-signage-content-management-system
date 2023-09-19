@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-09-19T05:41:42.780Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="SSLviyshEhL4cojNyj8K" version="21.6.8" type="device">
+<mxfile host="app.diagrams.net" modified="2023-09-19T10:43:46.310Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="W4NteJfajqJPobKlLi3u" version="21.6.8" type="device">
   <diagram name="Page-1" id="WdfEwW_wiIB1Sr5ALR1Y">
-    <mxGraphModel dx="1843" dy="763" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="890" dy="368" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -28,7 +28,7 @@
         <mxCell id="tXX5Dl9M7kj_Wj1Wl5B1-12" value="c_id" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="35" y="160" width="120" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="tXX5Dl9M7kj_Wj1Wl5B1-13" value="course_code" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="tXX5Dl9M7kj_Wj1Wl5B1-13" value="c_code" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="155" y="160" width="120" height="30" as="geometry" />
         </mxCell>
         <mxCell id="tXX5Dl9M7kj_Wj1Wl5B1-15" value="starting_date" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -109,7 +109,7 @@
         <mxCell id="tXX5Dl9M7kj_Wj1Wl5B1-34" value="c_id" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="41" y="270" width="120" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="tXX5Dl9M7kj_Wj1Wl5B1-35" value="course_name" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="tXX5Dl9M7kj_Wj1Wl5B1-35" value="c_name" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="161" y="270" width="120" height="30" as="geometry" />
         </mxCell>
         <mxCell id="tXX5Dl9M7kj_Wj1Wl5B1-39" value="COURSE" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
