@@ -8,17 +8,15 @@
 
 <body>
   <header>
-    <div class="container">
-      <div class="menu">
-        <ul>
-          <li><a href="">Support</a></li>
-        </ul>
-      </div>
-      <div class="profile">
-        <div class="img">F</div>
-        <h5>FirstName LastName</h5>
-        <p>Course Cordinator</p>
-      </div>
+    <div class="menu">
+      <ul>
+        <li><a href="">Support</a></li>
+      </ul>
+    </div>
+    <div class="profile">
+      <div class="img">F</div>
+      <h5>FirstName LastName</h5>
+      <p>Course Cordinator</p>
     </div>
   </header>
   <script src="../js/header.js"></script>
