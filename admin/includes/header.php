@@ -1,4 +1,4 @@
-<?php include "../includes/header_core.php" ?>
+<?php include APP_ROOT . "/includes/header_core.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,31 +9,15 @@
 <body>
   <header>
     <div class="container">
-      <div class="logo">
-        <img src="../images/ITCenterLogo.svg" alt="IT Center Logo" />
-      </div>
-      <div class="title">
-        <span>Information Technology Center - CMS</span>
-      </div>
       <div class="menu">
         <ul>
-          <li>Dashboard</li>
-          <li class="selected">Course Offerings</li>
-          <li>Lab Schedule</li>
-          <li>Users</li>
-          <li class="dropdown">
-            Events & Achievements
-            <ul class="dropdown-menu">
-              <li>Upcoming Events</li>
-              <li>Previous Events</li>
-              <li>Achievements</li>
-            </ul>
-          </li>
+          <li><a href="">Support</a></li>
         </ul>
-        <div class="menu-button"></div>
       </div>
       <div class="profile">
-        <img src="../images/sample-pro-pic.png" alt="Profile Picture" />
+        <div class="img">F</div>
+        <h5>FirstName LastName</h5>
+        <p>Course Cordinator</p>
       </div>
     </div>
   </header>
