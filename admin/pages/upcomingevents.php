@@ -84,7 +84,7 @@
 
                         <!-- Card 4 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-3.jpg" alt="Add Event Image">
+                            <img src="../images/upcoming-event-posters/upcoming-event-4.png" alt="Add Event Image">
                             <div class="card-content">
                                 <h2 class="card-title">Event 4</h2>
                                 <p class="card-date">2023/09/23 at 3 p.m</p>
