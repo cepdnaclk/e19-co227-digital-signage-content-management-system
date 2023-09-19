@@ -11,7 +11,7 @@
 }
 
 .widget {
-    background-color: #ffffff;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -39,9 +39,9 @@
 }
 
 /* Style alternate rows for a dashboard-like feeling */
-.widget:nth-child(odd) {
-    background-color: var(--color-2); /* Light gray background for even rows */
-}
+/* .widget:nth-child(odd) {
+    background-color: var(--color-2); 
+} */
 
 .widget-buttons {
     display: flex;
@@ -68,7 +68,7 @@
 
 /* Add styles for the elegant widget */
 .elegant-widget {
-    background-color: #f2f2f2;
+    background-color: var(--color-2);
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
