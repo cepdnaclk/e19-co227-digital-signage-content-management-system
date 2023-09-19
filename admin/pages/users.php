@@ -30,7 +30,7 @@
                     <div class="user-roles">
                         <div class="user-role">
                             <div class="user-icon">
-                                <img src="../images/superadmin.png" alt="Superadmin Icon">
+                                <img src="../images/superadmin.svg" alt="Superadmin Icon">
                             </div>
                             <div class="user-details">
                                 <h3>Super-Admin</h3>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="user-role">
                             <div class="user-icon">
-                                <img src="../images/admin.png" alt="Admin Icon">
+                                <img src="../images/admin.svg" alt="Admin Icon">
                             </div>
                             <div class="user-details">
                                 <h3>Admin</h3>
@@ -50,7 +50,7 @@
                         </div>
                         <div class="user-role">
                             <div class="user-icon">
-                                <img src="../images/coordinator.png" alt="Coordinator Icon">
+                                <img src="../images/coordinator.svg" alt="Coordinator Icon">
                             </div>
                             <div class="user-details">
                                 <h3>Course Coordinator</h3>
