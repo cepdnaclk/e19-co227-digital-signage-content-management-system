@@ -1,100 +1,104 @@
-.course {
-  padding-top: 1.5rem;
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.course h1 {
-  font-weight: 600;
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
 }
 
-.course p {
-  font-weight: 300;
+/* Container styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-/* Style the card container */
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 20%));
-  gap: 2rem;
-  margin: 2rem 0;
+/* Header styles */
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
-/* Style the card */
-.card {
-  width: 100%;
-  height: 100%;
-  border-radius: 1.5rem;
-  display: flex;
-  flex-direction: column;
+p{
+  margin-bottom: 20px;
+}
+
+/* Table styles */
+.table-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s;
-  border: 1px solid #ddd;
-  cursor: pointer;
 }
 
-/* Hover effect for the card */
-.card:hover {
-  transform: translateY(-5px);
+.table-responsive {
+  overflow-x: auto;
 }
 
-/* Style the card image */
-.card img {
+.table {
   width: 100%;
-  height: 50%;
-  object-fit: cover;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-/* Style the card content */
-.card-content {
-  padding: 1rem 20px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+/* Table header styles */
+.table th {
+  background-color:#305fa6 ;
+  color: #fff;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px 20px;
 }
 
-.card-title {
-  font-size: 1.2rem;
-  font-weight: 500;
+/* Table row styles */
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-.card-text {
-  font-size: 0.85rem;
-  font-weight: 600 !important;
-  color: var(--color-1);
-}
-
-/* Style the card actions (buttons) */
-.card-actions {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
+/* Table cell styles */
+.table td {
   padding: 10px 20px;
-  background: #f0f0f0;
 }
 
-.edit-button,
-.delete-button {
-  padding: 8px 16px;
-  color: white;
+/* Action button styles */
+.btn {
+  background-color: #00b007;
+  color: #fff;
   border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #9d170e;
+}
+
+/* Add course button styles */
+.add-course {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Add course button styles */
+.add-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: 0.5s all ease;
+  transition: background-color 0.3s;
 }
 
-.edit-button {
-  background-color: var(--color-4);
-}
-
-.delete-button {
-  background-color: var(--color-1);
-}
-
-.edit-button:hover,
-.delete-button:hover {
-  filter: brightness(1.2);
+.add-button:hover {
+  background-color: #1e7e34;
 }
