@@ -3,14 +3,10 @@ header {
   color: var(--color-text-1);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.146);
   position: fixed;
-  width: 100%;
   left: 0;
   top: 0;
   z-index: 10;
   background-color: white;
-}
-
-header .container {
   display: flex;
   align-items: center;
   height: 4rem;

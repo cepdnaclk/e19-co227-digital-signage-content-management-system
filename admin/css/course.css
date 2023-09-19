@@ -24,8 +24,6 @@ h1 {
   margin-bottom: 10px;
 }
 
-
-
 /* Table styles */
 .table-container {
   margin-top: 15px;
@@ -47,7 +45,7 @@ h1 {
 
 /* Table header styles */
 .table th {
-  background-color:var(--color-1);
+  background-color: #305fa6;
   color: #fff;
   font-weight: bold;
   text-align: left;

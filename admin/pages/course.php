@@ -13,7 +13,8 @@
     <div class="flex-box">
         <div class="left">
             <?php
-            include_once(APP_ROOT . "/includes/sidebar.php")
+            include_once(APP_ROOT . "/includes/sidebar.php");
+            sidebar(1);
             ?>
         </div>
         <div class="right">
@@ -21,9 +22,9 @@
             include_once(APP_ROOT . "/includes/header.php");
             ?>
             <main class="course">
-        <div class="container">
-            <h1>Courses</h1>
-            <p>Currently Offered Courses by Us</p>
+                <div class="container">
+                    <h1>Courses</h1>
+                    <p>Currently Offered Courses by Us</p>
 
             <div class="table-container">
                 <div class="table-responsive">
@@ -45,22 +46,22 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-left">ML 101</td>
-                                <td class="text-left">Introduction to Machine Learing</td>
+                                <td class="text-left">Sample Course</td>
+                                <td class="text-left">Sample Description</td>
                                 <td class="text-center">
                                     <button class="btn btn-primary">Edit</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-left">IT 201</td>
-                                <td class="text-left">Web Development Basics</td>
+                                <td class="text-left">Another Course</td>
+                                <td class="text-left">Another Description</td>
                                 <td class="text-center">
                                     <button class="btn btn-primary">Edit</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-left">IT 503</td>
-                                <td class="text-left">Advanced Computer Architecture</td>
+                                <td class="text-left">Yet Another Course</td>
+                                <td class="text-left">Yet Another Description</td>
                                 <td class="text-center">
                                     <button class="btn btn-primary">Edit</button>
                                 </td>
