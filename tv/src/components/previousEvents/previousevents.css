@@ -1,15 +1,54 @@
- /* temporary img */
- .prev-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%; 
-  }
-  
-  .prev-image img {
-    width: 100%;
-    height: 100%; 
-    scale: 1.005; 
-    border-radius: 3rem;
-  }
-  
+.accordion {
+  width: 100%;
+  max-width: 4000px; 
+  margin: 200px; 
+  padding: 20px;
+}
+
+.header {
+  font-size: 80px;
+  margin-bottom: 150px;
+  font-weight: 500;
+}
+
+.accordion-item {
+  border: 1px solid #ccc;
+  margin-bottom: 50px;
+  border-radius: 5px;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #ccc;
+}
+
+.accordion-title {
+  font-weight: 600;
+  font-size: 75px;
+  margin: 20px;
+  padding: 20px 0 20px 20px;
+}
+
+.icon {
+  font-size: 150px;
+  padding: 20px 80px;
+}
+
+.icon.open {
+  transform: rotate(45deg);
+}
+
+.accordion-content {
+  font-size: 70px;
+  padding: 10px;
+  display: none;
+  padding: 20px;
+}
+
+.accordion-content.active {
+  display: block;
+}
