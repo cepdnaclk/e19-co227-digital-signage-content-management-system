@@ -7,7 +7,6 @@
 
 /* Body styles */
 body {
-  font-family: Arial, sans-serif;
   background-color: #f8f9fa;
   color: #333;
 }
@@ -27,6 +26,7 @@ h1 {
 
 /* Table styles */
 .table-container {
+  margin-top: 15px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -64,7 +64,7 @@ h1 {
 
 /* Action button styles */
 .btn {
-  background-color: #00b007;
+  background-color: var(--color-4);
   color: #fff;
   border: none;
   padding: 6px 12px;
@@ -74,7 +74,7 @@ h1 {
 }
 
 .btn:hover {
-  background-color: #9d170e;
+  background-color: var(--color-1);
 }
 
 /* Add course button styles */
