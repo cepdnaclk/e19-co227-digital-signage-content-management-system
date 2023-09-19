@@ -29,8 +29,11 @@
 }
 
 .users .user-icon img {
-    width: 100%;
-    height: auto;
+    margin-top: 4px;
+    margin-left: 4px;
+    position: relative;
+    width: 80%;
+    height: 80%;
 }
 
 .users .user-details {
