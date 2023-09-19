@@ -46,22 +46,22 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-left">Sample Course</td>
-                                <td class="text-left">Sample Description</td>
+                                <td class="text-left">IT 201</td>
+                                <td class="text-left">Web Development Basics</td>
                                 <td class="text-center">
                                     <button class="btn btn-primary">Edit</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-left">Another Course</td>
-                                <td class="text-left">Another Description</td>
+                                <td class="text-left">ML 510</td>
+                                <td class="text-left">Advanced Machine Learning</td>
                                 <td class="text-center">
                                     <button class="btn btn-primary">Edit</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-left">Yet Another Course</td>
-                                <td class="text-left">Yet Another Description</td>
+                                <td class="text-left">CP 101</td>
+                                <td class="text-left">Introduction to Computer Hardware</td>
                                 <td class="text-center">
                                     <button class="btn btn-primary">Edit</button>
                                 </td>
