@@ -12,9 +12,16 @@
   --color-3: #305fa6;
   --color-4: #00b007;
   --color-5: #790483;
+  --color-text-1: #333;
+  --color-text-2: #666;
+  --color-shade-1: #681009;
 }
 
 .container {
   width: clamp(300px, 90%, 1440px);
   margin: auto;
+}
+
+a {
+  text-decoration: none;
 }

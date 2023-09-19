@@ -1,0 +1,11 @@
+.flex-box {
+  display: flex;
+}
+
+.left {
+  width: 300px;
+}
+
+.right {
+  width: calc(100% - 300px);
+}

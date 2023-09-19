@@ -1,8 +1,10 @@
 /* Style the header container */
 header {
-  background-color: var(--color-1);
-  width: 100%; /* Make the header full width */
-  color: white;
+  color: var(--color-text-1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.146);
+  position: fixed;
+  width: 100%;
+  left: 0;
 }
 
 header .container {
@@ -10,17 +12,9 @@ header .container {
   align-items: center;
   height: 4rem;
   gap: 0.5rem;
-}
-
-/* Style the logo container */
-.logo img {
-  height: 40px;
-}
-
-/* Style the title container */
-.title span {
-  font-size: 1.1rem;
-  font-weight: 500;
+  width: 100%;
+  padding: 0 1rem;
+  z-index: 10;
 }
 
 /* Style the menu cntainer */
@@ -43,6 +37,10 @@ header .container {
   font-size: 1rem;
 }
 
+.menu ul li a {
+  color: var(--color-text-1);
+}
+
 .menu ul li:before {
   content: "";
   position: absolute;
@@ -57,7 +55,7 @@ header .container {
 /* Hover style - Menu name + half underlining */
 .menu ul li:hover:before {
   width: 30px; /* Underline half of the text */
-  background-color: white;
+  background-color: var(--color-text-1);
 }
 
 /* Selected style - Bold menu name + half underlining */
@@ -71,52 +69,35 @@ header .container {
 }
 
 /* Style the profile picture container */
-.profile img {
-  height: 30px;
-  border-radius: 50%;
-  margin-right: 10px;
-  margin-left: 10px;
+.profile {
+  margin-left: 2rem;
+  display: grid;
+  grid-template-columns: 40px auto;
+  gap: 0.25rem 0.5rem;
+  align-items: center;
 }
 
-/* Style the menu button for smaller screens */
-.menu-button {
-  display: none;
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  cursor: pointer;
-  border-radius: 50%;
-  display: none;
+.profile h5 {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.profile p {
+  grid-column: 2;
+  font-size: 0.8rem;
+  color: var(--color-text-2);
+}
+
+.profile .img {
+  display: flex;
+  font-size: 25px;
   align-items: center;
   justify-content: center;
-}
-
-/* Style the dropdown menu */
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  margin-top: 10px;
-  top: 100%;
-  left: -20px;
-  width: max-content;
-  background-color: #9d170e;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  list-style: none;
-  padding-left: 0px;
-  padding-right: 20px;
-  margin: 7px;
-  z-index: 0;
-}
-
-/* Show the dropdown menu on hover */
-.menu ul li:hover .dropdown-menu {
-  display: inline-block;
-  z-index: 1;
-}
-
-/* Style the dropdown menu items */
-.dropdown-menu li {
-  margin: 10px 0; /* Increase the top and bottom margin to create more gap */
-  color: white;
+  font-weight: 500;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  grid-row: 1/3;
+  border: 2px solid var(--color-1);
+  color: var(--color-1);
 }
