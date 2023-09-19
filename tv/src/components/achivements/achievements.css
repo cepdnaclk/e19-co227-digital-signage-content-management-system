@@ -1,15 +1,57 @@
- /* temporary img */
- .achievements-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%; 
-  }
-  
-  .achievements-image img {
-    width: 100%;
-    height: 100%; 
-    border-radius: 10px;
-    scale: 1.05;
-  }
-  
+.slider-container {
+  margin: 500px 250px; 
+  width: 89%; 
+  overflow: hidden; 
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease; /* Add a transition for smooth sliding */
+  justify-content: space-between; /* Add space between cards */
+}
+
+.custom-card-wrapper {
+  flex-basis: calc(50% - 25px); 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.custom-card-image {
+  width: 1830px; 
+  height: auto; /* Preserve the aspect ratio */
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 20px;
+}
+
+/* Add margin to the right of each card */
+.custom-card-wrapper:not(:last-child) {
+  margin-right: 20px;
+}
+
+.custom-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+
+.custom-card-title {
+  font-size: 70px; 
+  margin: 0;
+}
+
+.custom-card-button {
+  padding: 20px;
+  background-color: #9d170e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 40px; 
+  margin-right: 10px;
+}
+
+.custom-card-button:hover {
+  background-color: #9d170e;
+}
