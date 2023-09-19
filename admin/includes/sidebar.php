@@ -15,19 +15,19 @@
                 <span>Information Technology Center</span>
             </div>
             <div class="links">
-                <a href="" class="link <?php echo $index == 0 ? 'active' : '' ?>">
+                <a href="/" class="link <?php echo $index == 0 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="../images/darhboard_alt.svg" alt="">
                         <p>Dashboard</p>
                     </div>
                 </a>
-                <a href="course.php" class="link <?php echo $index == 1 ? 'active' : '' ?>">
+                <a href="pages/course.php" class="link <?php echo $index == 1 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="../images/Mortarboard.svg" alt="">
                         <p>Courses</p>
                     </div>
                 </a>
-                <a href="" class="link <?php echo $index == 2 ? 'active' : '' ?>">
+                <a href="pages/users.php" class="link <?php echo $index == 2 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="../images/User_alt.svg" alt="">
                         <p>Users</p>
@@ -44,7 +44,7 @@
                         <li>Achievements</li>
                     </ul>
                 </a>
-                <a href="" class="link <?php echo $index == 4 ? 'active' : '' ?>">
+                <a href="pages/labslots.php" class="link <?php echo $index == 6 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="../images/calendar.svg" alt="">
                         <p>Lab Allocations</p>

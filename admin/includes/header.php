@@ -10,7 +10,7 @@
   <header>
     <div class="menu">
       <ul>
-        <li><a href="">Support</a></li>
+        <li><a href="">Contact & Support</a></li>
       </ul>
     </div>
     <div class="profile">
