@@ -21,30 +21,37 @@
                         <p>Dashboard</p>
                     </div>
                 </a>
-                <a href="pages/course.php" class="link <?php echo $index == 1 ? 'active' : '' ?>">
+                <a href="/pages/course.php" class="link <?php echo $index == 1 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="../images/Mortarboard.svg" alt="">
                         <p>Courses</p>
                     </div>
                 </a>
-                <a href="pages/users.php" class="link <?php echo $index == 2 ? 'active' : '' ?>">
+                <a href="/pages/users.php" class="link <?php echo $index == 2 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="../images/User_alt.svg" alt="">
                         <p>Users</p>
                     </div>
                 </a>
-                <a href="" class="link <?php echo $index == 3 ? 'active' : '' ?>">
+                
+                <div class="dropdown-container">
+                <a href="#" class="link">
                     <div class="link-main">
                         <img src="../images/Star.svg" alt="">
                         <p>Events & Achievements</p>
                     </div>
-                    <ul class="dropdown-menu">
-                        <li>Upcoming Events</li>
-                        <li>Previous Events</li>
-                        <li>Achievements</li>
-                    </ul>
                 </a>
-                <a href="pages/labslots.php" class="link <?php echo $index == 6 ? 'active' : '' ?>">
+                <ul class="dropdown-menu">
+                    <li><a href="/pages/upcomingevents.php" class="link <?php echo $index == 3 ? 'active' : '' ?>">Upcoming Events</a></li>
+                    <li><a href="/pages/previousevents.php" class="link <?php echo $index == 4 ? 'active' : '' ?>">Previous Events</a></li>
+                    <li><a href="/pages/achievements.php" class="link <?php echo $index == 5 ? 'active' : '' ?>">Achievements</a></li>
+                </ul>
+                </div>
+
+
+                
+                
+                <a href="/pages/labslots.php" class="link <?php echo $index == 6 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="../images/calendar.svg" alt="">
                         <p>Lab Allocations</p>
