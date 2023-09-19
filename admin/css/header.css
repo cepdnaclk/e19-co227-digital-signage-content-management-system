@@ -5,6 +5,9 @@ header {
   position: fixed;
   width: 100%;
   left: 0;
+  top: 0;
+  z-index: 10;
+  background-color: white;
 }
 
 header .container {
@@ -14,7 +17,6 @@ header .container {
   gap: 0.5rem;
   width: 100%;
   padding: 0 1rem;
-  z-index: 10;
 }
 
 /* Style the menu cntainer */
