@@ -23,58 +23,60 @@
             ?>
             <main class="course">
                 <div class="container">
-                    <h1>Courses</h1>
-                    <p>Currently Offered Courses by Us</p>
+                    <div class="title">
+                        <div>
+                            <h1>Courses</h1>
+                            <p>Currently Offered Courses by Us</p>
+                        </div>
+                        <a href="" class="btn btn-success"><img src="../images/Add_round.svg" alt=""> Add New Course</a>
+                    </div>
 
-            <div class="table-container">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="text-left">Course</th>
-                                <th class="text-left">Description</th>
-                                <th class="text-center"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Sample Rows -->
-                            <tr>
-                                <td class="text-left">CCNA 200-301</td>
-                                <td class="text-left">Cisco Certified Network Associate</td>
-                                <td class="text-center">
-                                    <button class="btn btn-primary">Edit</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">IT 201</td>
-                                <td class="text-left">Web Development Basics</td>
-                                <td class="text-center">
-                                    <button class="btn btn-primary">Edit</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">ML 510</td>
-                                <td class="text-left">Advanced Machine Learning</td>
-                                <td class="text-center">
-                                    <button class="btn btn-primary">Edit</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">CP 101</td>
-                                <td class="text-left">Introduction to Computer Hardware</td>
-                                <td class="text-center">
-                                    <button class="btn btn-primary">Edit</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-container">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">Course</th>
+                                        <th class="text-left">Description</th>
+                                        <th class="text-center"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Sample Rows -->
+                                    <tr>
+                                        <td class="text-left">CCNA 200-301</td>
+                                        <td class="text-left">Cisco Certified Network Associate</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary">Edit</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">IT 201</td>
+                                        <td class="text-left">Web Development Basics</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary">Edit</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">ML 510</td>
+                                        <td class="text-left">Advanced Machine Learning</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary">Edit</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">CP 101</td>
+                                        <td class="text-left">Introduction to Computer Hardware</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary">Edit</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="add-course text-center">
-                    <button class="btn btn-success">Add New Course</button>
-                </div>
-            </div>
-        </div>
-    </main>
+            </main>
         </div>
     </div>
 </body>
