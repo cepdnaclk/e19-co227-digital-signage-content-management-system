@@ -1,0 +1,123 @@
+/* Style the dashboard content */
+.dashboard-content {
+    padding: 20px;
+}
+
+/* Style dashboard widgets */
+.dashboard-widgets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns as needed */
+    gap: 20px;
+}
+
+.widget {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer; /* Add pointer cursor to indicate interactivity */
+}
+
+.widget:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.widget h2 {
+    color: #9d170e; /* Red color */
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: bold; /* Make widget titles bold */
+}
+
+.widget p {
+    color: #555; /* Slightly darker text color */
+    font-size: 1rem;
+    margin-bottom: 10px;
+    line-height: 1.4; /* Improve text readability with increased line height */
+}
+
+/* Style alternate rows for a dashboard-like feeling */
+.widget:nth-child(odd) {
+    background-color: var(--color-2); /* Light gray background for even rows */
+}
+
+.widget-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.preview-button,
+.manage-button {
+    background-color: var(--color-5);
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.preview-button:hover,
+.manage-button:hover {
+    background-color: var(--color-4);
+}
+
+/* Add styles for the elegant widget */
+.elegant-widget {
+    background-color: #f2f2f2;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    padding: 30px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.elegant-widget:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.elegant-widget h2 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.elegant-widget p {
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.elegant-widget .widget-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* Style buttons as needed */
+.elegant-widget .preview-button,
+.elegant-widget .manage-button {
+    background-color: #9d170e;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.elegant-widget .preview-button:hover,
+.elegant-widget .manage-button:hover {
+    background-color: var(--color-4);
+}
+

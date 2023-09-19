@@ -33,7 +33,7 @@
                                 <img src="../images/superadmin.svg" alt="Superadmin Icon">
                             </div>
                             <div class="user-details">
-                                <h3>Superadmin</h3>
+                                <h3>Super-Admin</h3>
                                 <p>Director of IT Center</p>
                             </div>
                             <div class="user-count">1</div>
