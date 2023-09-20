@@ -15,18 +15,41 @@
 }
 
 .labslots h1 {
-  margin: 5px;
+  margin-bottom: 5px;
   font-weight: 600;
   font-size: 1.7rem;
 }
 
 .labslots p {
   font-size: 0.9rem;
-  margin-bottom: 5px;
+  margin-bottom: 1.5rem;
 }
 
-.labslots h2 {
-  margin-top: 2rem;
+.labslots .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.labslots .title h2 {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.labslots .title a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-4);
+  color: white;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.labslots .title a img {
+  filter: invert() brightness(2);
 }
 
 /* Table styles */
@@ -35,7 +58,7 @@
   border-collapse: collapse;
   border-spacing: 0;
   margin-top: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 4rem;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
