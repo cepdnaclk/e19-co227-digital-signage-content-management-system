@@ -16,7 +16,7 @@
 
 .container {
   width: calc(100% - 10rem);
-  margin: auto;
+  margin: 0 auto;
 }
 
 .App {
@@ -35,6 +35,6 @@
 .App > .container {
   display: flex;
   justify-content: space-between;
-  height: 85%;
+  height: 80%;
   gap: 3rem;
 }

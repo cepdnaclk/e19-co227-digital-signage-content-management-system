@@ -68,7 +68,7 @@
 
 /* Add styles for the elegant widget */
 .elegant-widget {
-    background-color: var(--color-2);
+    background-color: #ECD1CF;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;

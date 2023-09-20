@@ -23,10 +23,14 @@
             ?>
             <main class="ccna">
                 <div class="container">
-                    <h1>CCNA Course Offerings</h1>
-                    <p>Cisco Certified Network Associate</p>
-                    <a href="" class="btn btn-success"><img src="../images/Add_round.svg" alt=""> Add CCNA Course-Offering</a>
-
+                    <div class="title">
+                        <div>
+                            <h1>CCNA Course Offerings</h1>
+                            <p>Cisco Certified Network Associate</p>
+                        </div>
+                        <a href="" class="btn btn-success"><img src="../images/Add_round.svg" alt=""> Add CCNA
+                            Course-Offering</a>
+                    </div>
                     <div class="card-container">
                         <!-- Card 1 -->
                         <div class="card">
