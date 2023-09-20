@@ -25,12 +25,12 @@
                 <div class="container">
                     <div class="title">
                         <div>
-                            <h1>CCNA Course Offerings</h1>
+                            <h1><a href="/pages/course.php">Courses > </a>CCNA Course Offerings</h1>
                             <p>Cisco Certified Network Associate</p>
                         </div>
-                        <a href="" class="btn btn-success"><img src="../images/Add_round.svg" alt=""> Add CCNA
-                            Course-Offering</a>
+                        <a href="" class="btn btn-success"><img src="../images/Add_round.svg" alt=""> Add CCNA Course-Offering</a>
                     </div>
+
                     <div class="card-container">
                         <!-- Card 1 -->
                         <div class="card">

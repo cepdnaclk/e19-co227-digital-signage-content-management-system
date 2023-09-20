@@ -5,36 +5,6 @@
   min-height: calc(100vh - 4rem);
   padding: 2rem 0;
 }
-
-.course .title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.course h1 {
-  font-weight: 600;
-  font-size: 1.7rem;
-}
-
-.course .title p {
-  font-size: 0.9rem;
-}
-
-.course .title a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--color-4);
-  color: white;
-  font-weight: 500;
-  border-radius: 5px;
-}
-
-.course .title a img {
-  filter: invert() brightness(2);
-}
 /* Table styles */
 .course .table-container {
   margin-top: 15px;
@@ -73,7 +43,6 @@
   padding: 10px 20px;
 }
 
-
 /* Action button styles */
 .course .btn {
   background-color: var(--color-4);
@@ -110,4 +79,3 @@
 .course .add-button:hover {
   background-color: #1e7e34;
 }
-

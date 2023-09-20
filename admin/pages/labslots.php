@@ -27,7 +27,12 @@
                     <p>Currently preserved labs and labs available for booking</p>
 
                     <!-- Lab 1 Table -->
-                    <h2>Lab 1</h2>
+                    <div class="title">
+                        <div class="title">
+                            <h2>Lab 1</h2>
+                            <a href="/pages/addnewlabslot.php"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
+                        </div>
+                    </div>
                     <table class="lab-table">
                         <thead>
                             <tr>
@@ -61,7 +66,12 @@
                     </table>
 
                     <!-- Lab 2 Table -->
-                    <h2>Lab 2</h2>
+                    <div class="title">
+                        <div class="title">
+                            <h2>Lab 2</h2>
+                            <a href="/pages/addnewlabslot.php"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
+                        </div>
+                    </div>
                     <table class="lab-table">
                         <thead>
                             <tr>
@@ -95,7 +105,12 @@
                     </table>
 
                     <!-- CCNA Lab Table -->
-                    <h2>CCNA Lab</h2>
+                    <div class="title">
+                        <div class="title">
+                            <h2>CCNA Lab</h2>
+                            <a href="/pages/addnewlabslot.php"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
+                        </div>
+                    </div>
                     <table class="lab-table">
                         <thead>
                             <tr>
@@ -129,7 +144,12 @@
                     </table>
 
                     <!-- Seminar Room Table -->
-                    <h2>Seminar Room</h2>
+                    <div class="title">
+                        <div class="title">
+                            <h2>Seminar Room</h2>
+                            <a href="/pages/addnewlabslot.php"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
+                        </div>
+                    </div>
                     <table class="lab-table">
                         <thead>
                             <tr>
