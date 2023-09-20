@@ -17,6 +17,10 @@ header div:nth-child(1) {
 
 /* Style for logos */
 .logo {
-  height: 100px;
+  height: 130px;
   margin-right: 20px;
+}
+
+.university-info h1{
+  font-size: 3rem;
 }

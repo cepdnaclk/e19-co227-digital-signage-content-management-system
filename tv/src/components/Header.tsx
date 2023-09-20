@@ -9,7 +9,7 @@ function Header() {
       <div className="container">
         <div className="university-info">
           <img src={uoplogo} alt="University Logo" className="logo" />
-          University of Peradeniya
+          <h1>University of Peradeniya</h1>
         </div>
         <div className="it-center-logo">
           <img src={itclogo} alt="IT Center Logo" className="logo" />

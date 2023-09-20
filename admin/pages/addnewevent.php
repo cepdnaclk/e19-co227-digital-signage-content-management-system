@@ -24,23 +24,23 @@
                 <h2>Add New Event</h2>
                 <div class="form-container">
                     <form action="" method="POST" enctype="multipart/form-data">
-                        <label for="image">Select an Image:</label>
-                        <input type="file" name="image" id="image" required>
+                        <label for="e_img">Select an Image:</label>
+                        <input type="file" name="e_img" id="e_img" required>
                         <br><br>
-                        <label for="event_date">Date:</label>
-                        <input type="date" name="date" id="date">
+                        <label for="e_date">Date:</label>
+                        <input type="date" name="e_date" id="e_date">
                         <br><br>
-                        <label for="event_time">Time:</label>
-                        <input type="time" name="time" id="time">
+                        <label for="e_time">Time:</label>
+                        <input type="time" name="e_time" id="e_time">
                         <br><br>
-                        <label for="venue">Venue:</label>
-                        <input type="text" name="venue" id="venue">
+                        <label for="e_venue">Venue:</label>
+                        <input type="text" name="e_venue" id="e_venue">
                         <br><br>
-                        <label for="display_duration_from">Display from:</label>
-                        <input type="date" name="from" id="from" required>
+                        <label for="display_from">Display from:</label>
+                        <input type="date" name="display_from" id="display_from" required>
                         <br><br>
-                        <label for="display_duration_to">Display to:</label>
-                        <input type="date" name="to" id="to" required>
+                        <label for="display_to">Display to:</label>
+                        <input type="date" name="display_to" id="display_to" required>
                         <br><br>
                         <input type="submit" value="Upload">
                     </form>
