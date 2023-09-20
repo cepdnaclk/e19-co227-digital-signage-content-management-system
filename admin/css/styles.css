@@ -50,6 +50,9 @@ a {
   font-weight: 600;
   font-size: 1.7rem;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .title h1 a {
@@ -59,6 +62,7 @@ a {
   opacity: 0.7;
   font-weight: 400;
   padding: 0;
+  font-size: 1.3rem;
 }
 
 .title h1 a:hover {

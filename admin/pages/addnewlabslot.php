@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/labslots.css">
+    <link rel="stylesheet" href="../css/addlabslot.css">
     <title>IT Center | Lab Allocations</title>
 </head>
 
@@ -21,8 +21,15 @@
             <?php
             include_once(APP_ROOT . "/includes/header.php");
             ?>
-            <main class="labslots">
-
+            <main class="addlabslots">
+                <div class="container">
+                    <div class="title">
+                        <div>
+                            <h1><a href="">Lab Allocation ></a>Add a Lab slot</h1>
+                            <p>Create a labslot for a course</p>
+                        </div>
+                    </div>
+                </div>
             </main>
         </div>
     </div>
