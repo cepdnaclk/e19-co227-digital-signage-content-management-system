@@ -1,5 +1,5 @@
 .slider-container {
-  margin: 500px 250px; 
+  margin: 500px 150px; 
   width: 89%; 
   overflow: hidden; 
 }
@@ -17,7 +17,7 @@
 }
 
 .custom-card-image {
-  width: 1830px; 
+  width: 1030px; 
   height: auto; /* Preserve the aspect ratio */
   object-fit: cover;
   border-radius: 5px 5px 0 0;
