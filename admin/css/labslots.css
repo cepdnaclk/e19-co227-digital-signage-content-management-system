@@ -25,33 +25,6 @@
   margin-bottom: 1.5rem;
 }
 
-.labslots .title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.labslots .title h2 {
-  font-weight: 600;
-  font-size: 1.4rem;
-}
-
-.labslots .title a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--color-4);
-  color: white;
-  font-weight: 500;
-  border-radius: 5px;
-}
-
-.labslots .title a img {
-  filter: invert() brightness(2);
-}
-
 /* Table styles */
 .labslots .lab-table {
   width: 100%;

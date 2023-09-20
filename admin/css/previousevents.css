@@ -2,32 +2,6 @@
   padding-top: 1.5rem;
 }
 
-.previousevents .title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.previousevents h1 {
-  font-weight: 600;
-  font-size: 1.7rem;
-}
-
-.previousevents .title a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--color-4);
-  color: white;
-  font-weight: 500;
-  border-radius: 5px;
-}
-
-.previousevents .title a img {
-  filter: invert() brightness(2);
-}
-
 /* Style the card container */
 .previousevents .card-container {
   display: grid;
