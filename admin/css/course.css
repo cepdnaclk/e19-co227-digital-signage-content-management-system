@@ -73,6 +73,7 @@
   padding: 10px 20px;
 }
 
+
 /* Action button styles */
 .course .btn {
   background-color: var(--color-4);
@@ -109,3 +110,4 @@
 .course .add-button:hover {
   background-color: #1e7e34;
 }
+
