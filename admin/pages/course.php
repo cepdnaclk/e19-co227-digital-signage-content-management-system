@@ -27,8 +27,7 @@
                         <div>
                             <h1>Courses</h1>
                             <p>Currently Offered Courses by Us</p>
-                            <a href="/pages/addnewevent.php"><img src="../images/Add_round.svg" alt=""> Add Course</a>
-
+                            
                         </div>
                         <a href="" class="btn btn-success"><img src="../images/Add_round.svg" alt=""> Add New Course</a>
                     </div>
