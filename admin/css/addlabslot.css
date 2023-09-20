@@ -1,3 +1,44 @@
 .addlabslots {
   padding: 2rem 0;
 }
+
+.addlabslots .options {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 300px;
+  width: calc(100% - 300px);
+  background: white;
+  gap: 1rem;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.13);
+}
+
+.addlabslots .options .option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addlabslots .options .option select,
+.addlabslots .options .option input:not([type="checkbox"]) {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  border-radius: 5px;
+  width: 180px;
+}
+
+.addlabslots .options button {
+  padding: 0.5rem 1rem;
+  background: var(--color-4);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-weight: 600;
+}
