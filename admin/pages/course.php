@@ -27,6 +27,7 @@
                         <div>
                             <h1>Courses</h1>
                             <p>Currently Offered Courses by Us</p>
+                            
                         </div>
                         <a href="" class="btn btn-success"><img src="../images/Add_round.svg" alt=""> Add New Course</a>
                     </div>
@@ -47,28 +48,37 @@
                                         <td class="text-left">CCNA 200-301</td>
                                         <td class="text-left">Cisco Certified Network Associate</td>
                                         <td class="text-center">
-                                            <button class="btn btn-primary">Edit</button>
+                                            <button class="btn btn-primary">Edit</button>&emsp;
+                                            <a href="/pages/ccna.php"><button class="btn btn-primary btn-manage">Manage</button></a>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-left">IT 201</td>
                                         <td class="text-left">Web Development Basics</td>
                                         <td class="text-center">
-                                            <button class="btn btn-primary">Edit</button>
+                                            <button class="btn btn-primary">Edit</button>&emsp;
+                                            <button class="btn btn-primary">Manage</button>
+
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-left">ML 510</td>
                                         <td class="text-left">Advanced Machine Learning</td>
                                         <td class="text-center">
-                                            <button class="btn btn-primary">Edit</button>
+                                            <button class="btn btn-primary">Edit</button>&emsp;
+                                            <button class="btn btn-primary">Manage</button>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-left">CP 101</td>
                                         <td class="text-left">Introduction to Computer Hardware</td>
                                         <td class="text-center">
-                                            <button class="btn btn-primary">Edit</button>
+                                            <button class="btn btn-primary">Edit</button>&emsp;
+                                            <button class="btn btn-primary">Manage</button>
+
                                         </td>
                                     </tr>
                                 </tbody>
