@@ -184,7 +184,7 @@
                     </div>
                     <div class="title">
                         <h1>Achivements</h1>
-                        <a href="../pages/achivements.php">See All</a>
+                        <a href="../pages/achievements.php">See All</a>
                     </div>
                     <div class="card-container">
                         <!-- Card 1 -->
