@@ -128,3 +128,58 @@ CREATE TABLE IF NOT EXISTS `previous_event` (
 ALTER TABLE `previous_event`
 ADD CONSTRAINT `fk_admin_id` FOREIGN KEY (`added_by`) REFERENCES `user`(`u_id`); 
 -- --------------------------------------------------------
+
+
+INSERT INTO `user` (`user_name`, `email`, `password`, `contact`, `clearense`) VALUES
+    ('John Doe', 'john@example.com', 'hashed_password_1', '1234567890', 'Clearance1'),
+    ('Jane Smith', 'jane@example.com', 'hashed_password_2', '9876543210', 'Clearance2'),
+    ('Alice Johnson', 'alice@example.com', 'hashed_password_3', '5555555555', 'Clearance3'),
+    ('Bob Williams', 'bob@example.com', 'hashed_password_4', '9999999999', 'Clearance4');
+
+
+INSERT INTO `facility` (`f_name`) VALUES
+    ('Seminar Room'),
+    ('Classroom A'),
+    ('Classroom B'),
+    ('Auditorium');
+
+
+INSERT INTO `course` (`c_name`, `details`) VALUES
+    ('Introduction to Programming', 'Basic programming concepts and techniques.'),
+    ('Web Development', 'Building web applications using HTML, CSS, and JavaScript.'),
+    ('Database Management', 'Database design and SQL.'),
+    ('Networking Fundamentals', 'Basics of computer networking.');
+
+
+INSERT INTO `course_offering` (`c_code`, `c_id`, `coordinator_id`, `starting date`, `display_info`) VALUES
+    ('COURSE01', 1, 1, '2023-08-15', 'Course details for August 2023'),
+    ('COURSE02', 2, 2, '2022-12-10', 'Course details for December 2022'),
+    ('COURSE03', 3, 3, '2023-09-05', 'Course details for September 2023'),
+    ('COURSE04', 4, 4, '2023-10-01', 'Course details for October 2023');
+
+
+INSERT INTO `timetable` (`c_code`, `f_id`, `lec_day`, `lec_time`) VALUES
+    ('COURSE01', 1, 'Monday', '09:00:00'),
+    ('COURSE01', 2, 'Wednesday', '11:00:00'),
+    ('COURSE02', 3, 'Tuesday', '14:00:00'),
+    ('COURSE03', 4, 'Thursday', '10:00:00');
+
+INSERT INTO `upcoming_event` (`e_name`, `e_date`, `e_time`, `e_venue`, `e_img`, `display_from`, `display_to`, `added_by`) VALUES
+    ('Event 1', '2023-09-20', '09:00:00', 'Seminar Room', 'event1.jpg', '2023-09-10', '2023-09-22', 1),
+    ('Event 2', '2023-09-21', '11:00:00', 'Auditorium', 'event2.jpg', '2023-09-12', '2023-09-24', 2),
+    ('Event 3', '2023-09-22', '09:00:00', 'Classroom A', 'event3.jpg', '2023-09-14', '2023-09-26', 3),
+    ('Event 4', '2023-09-23', '15:00:00', 'Seminar Room', 'event4.jpg', '2023-09-16', '2023-09-28', 4);
+
+
+INSERT INTO `achievement` (`a_name`, `a_img`, `display_from`, `display_to`, `added_by`) VALUES
+    ('Achievement 1', 'achievement1.jpg', '2023-07-01', '2023-07-15', 1),
+    ('Achievement 2', 'achievement2.jpg', '2023-08-01',x '2023-08-15', 2),
+    ('Achievement 3', 'achievement3.jpg', '2023-09-01', '2023-09-15', 3),
+    ('Achievement 4', 'achievement4.jpg', '2023-10-01', '2023-10-15', 4);
+
+
+INSERT INTO `previous_event` (`p_name`, `p_img`, `display_from`, `display_to`, `added_by`) VALUES
+    ('Previous Event 1', 'prev_event1.jpg', '2022-12-01', '2022-12-15', 1),
+    ('Previous Event 2', 'prev_event2.jpg', '2022-11-01', '2022-11-15', 2),
+    ('Previous Event 3', 'prev_event3.jpg', '2022-10-01', '2022-10-15', 3),
+    ('Previous Event 4', 'prev_event4.jpg', '2022-09-01', '2022-09-15', 4);
