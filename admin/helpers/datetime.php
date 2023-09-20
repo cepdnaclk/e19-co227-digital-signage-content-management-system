@@ -11,11 +11,11 @@ function getWeekDates(string $inputDate): array
 
     // Calculate the start date of the week (Sunday)
     $startDate = clone $date;
-    $startDate->sub(new DateInterval('P' . $dayOfWeek . 'D'));
+    $startDate->sub(new DateInterval('P' . ($dayOfWeek - 1) . 'D'));
 
     // Calculate the end date of the week (Saturday)
     $endDate = clone $date;
-    $endDate->add(new DateInterval('P' . (6 - $dayOfWeek) . 'D'));
+    $endDate->add(new DateInterval('P' . (7 - $dayOfWeek) . 'D'));
 
     // Output the dates of the week
     for ($i = 0; $i <= 6; $i++) {

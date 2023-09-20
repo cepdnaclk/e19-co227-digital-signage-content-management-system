@@ -34,20 +34,11 @@ $dates = getWeekDates($today)
                 <div class="container">
                     <div class="title">
                         <div>
-                            <h1><a href="">Lab Allocation ></a>Add a Lab slot</h1>
+                            <h1><a href="/pages/labslots.php">Lab Allocation ></a>Add a Lab slot : <?= isset($_GET['lab']) ? $_GET['lab'] : '' ?></h1>
                             <p>Create a labslot for a course</p>
                         </div>
                     </div>
                     <div class="options">
-                        <div class="option">
-                            <select name="" id="">
-                                <option value="">Select the lab</option>
-                                <option value="">Lab 1</option>
-                                <option value="">Lab 2</option>
-                                <option value="">CCNA Lab</option>
-                                <option value="">Seminar Room</option>
-                            </select>
-                        </div>
                         <div class="option">
                             <select name="" id="">
                                 <option value="">Select the Course</option>
@@ -72,14 +63,31 @@ $dates = getWeekDates($today)
                         <button class="add">CREATE SLOT</button>
                     </div>
                     <div class="timetable">
+                        <div class="time">
+                            <div class="time-caption">
+                                <h3>Time</h3>
+                            </div>
+                            <?php
+                            $startTime = new DateTime("08.00");
+                            $endTime = new DateTime("17.00");
+
+                            while ($startTime < $endTime) {
+                            ?>
+                                <div class="time-slot">
+                                    <p><?= $startTime->format('h:i') . " - " . $startTime->modify("+1 hour")->format('h:i') ?></p>
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
                         <?php foreach ($dates as $index => $date) { ?>
                             <div class="day">
                                 <div class="date">
                                     <?php
                                     $day = new DateTime($date);
                                     ?>
-                                    <h3><?= $day->format('l') ?></h3>
-                                    <p><?= $day->format("Y/m/d") ?></p>
+                                    <p><?= $day->format('l') ?></p>
+                                    <h3><?= $day->format("Y/m/d") ?></h3>
                                 </div>
                             </div>
                         <?php } ?>
