@@ -1,14 +1,15 @@
 .accordion {
   width: 100%;
-  max-width: 2000px; 
+  max-width: 2500px; 
   margin: 100px; 
-  padding: 20px;
+  padding: 10px;
 }
 
 .header {
-  font-size: 50px;
-  margin-bottom: 50px;
+  font-size: 60px;
+  margin-bottom: 75px;
   font-weight: 500;
+  margin-left: 10px;
 }
 
 .accordion-item {
@@ -34,7 +35,7 @@
 }
 
 .icon {
-  font-size: 150px;
+  font-size: 100px;
   padding: 20px 80px;
 }
 
