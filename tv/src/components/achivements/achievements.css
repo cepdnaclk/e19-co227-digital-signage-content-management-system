@@ -1,57 +1,87 @@
-.slider-container {
-  margin: 500px 150px; 
-  width: 89%; 
-  overflow: hidden; 
-}
+/* achievements.css */
 
-.slider {
-  display: flex;
-  transition: transform 0.5s ease; /* Add a transition for smooth sliding */
-  justify-content: space-between; /* Add space between cards */
-}
-
-.custom-card-wrapper {
-  flex-basis: calc(50% - 25px); 
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.custom-card-image {
-  width: 1030px; 
-  height: auto; /* Preserve the aspect ratio */
-  object-fit: cover;
-  border-radius: 5px 5px 0 0;
-  margin-bottom: 20px;
-}
-
-/* Add margin to the right of each card */
-.custom-card-wrapper:not(:last-child) {
-  margin-right: 20px;
-}
-
-.custom-card-header {
+.achievements-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20px;
+  height: 1000px; /* Adjust the height as needed */
+  margin-top: 350px;
 }
 
-.custom-card-title {
-  font-size: 70px; 
-  margin: 0;
+.image-list {
+  width: 30%; /* Adjust the width of the image list */
 }
 
-.custom-card-button {
-  padding: 20px;
-  background-color: #9d170e;
+.image-item {
+  margin-bottom: 5px; /* Adjust the spacing between images */
+  transition: opacity 0.3s ease-in-out;
+  margin-right: 1px;
+  opacity: 0.5;
+}
+
+.image-item.active {
+  opacity: 1;
+}
+
+img {
+  margin-bottom: 10px;
+  margin-left: 100px;
+  max-width: 300px;
+  height: auto;
+  display: block;
+}
+
+.center-image {
+  margin-top: 0px;
+  width: 100%; /* Adjust the width of the center image */
+  position: relative;
+}
+
+.center-image img {
+  max-width: 1600px; /* Increase the max-width to make the center image larger */
+  width: 100%;
+  height: auto;
+  margin-right: 0px;
+  padding-right: 0px;
+  margin-bottom: 0px;
+}
+
+.image-title {
+  background-color: var(--color-1);
+  font-size: 50px; 
+  margin-top: 0px;
   color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 40px; 
-  margin-right: 10px;
+  padding: 15px 100px;
+  text-align: center;
+  width: 89.2%;
+  margin-left: 100px;
+  max-height: 100px;
 }
 
-.custom-card-button:hover {
-  background-color: #9d170e;
+.image-controls button {
+  font-size: 100px; 
+  color: #8A8383;
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 900;
 }
+
+.left {
+  margin-left: 120px;
+  margin-right: 0px;
+}
+
+.right {
+  margin-right: 50px;
+  margin-left: 0px;
+}
+
+.image-controls button:hover {
+  color: #000;
+}
+
+/* .logo-image {
+  background-color: #000;
+} */
