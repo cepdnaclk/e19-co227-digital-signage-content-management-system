@@ -4,9 +4,9 @@
 }
 
 .addlabslots .options {
-  display: flex;
+  display: grid;
   align-items: center;
-  flex-wrap: wrap;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem;
@@ -101,4 +101,30 @@
   background-color: #eee;
   box-shadow: 0 0 0 1000px #eee;
   clip-path: inset(0 -10000px 0 0);
+}
+
+.addlabslots .timetable .day {
+  position: relative;
+}
+
+.addlabslots .timetable .labslot {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--color-3);
+  border-radius: 5px;
+  width: 100%;
+  color: white;
+}
+
+.addlabslots .timetable .labslot h3 {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.addlabslots .timetable .labslot p {
+  font-size: 0.9rem;
 }

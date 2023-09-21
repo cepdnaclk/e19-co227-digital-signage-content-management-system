@@ -1,11 +1,40 @@
 <?php include_once "../config.php" ?>
 <?php include_once "../helpers/datetime.php" ?>
+<?php include_once "../backend/labslots.php" ?>
 
 <?php
 
 $today = date("Y/m/d");
-$dates = getWeekDates($today)
+$dates = getWeekDates($today);
 
+function getLab(string $lab)
+{
+    $labName = '';
+    switch ($lab) {
+        case 'lab1':
+            $labName = "Lab 1";
+            break;
+
+        case 'lab2':
+            $labName = "Lab 2";
+            break;
+
+        case 'ccna':
+            $labName = "CCNA lab";
+            break;
+
+        case 'sr':
+            $labName = "Seminar Room";
+            break;
+
+        default:
+            break;
+    }
+
+    return $labName;
+}
+
+$labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +63,7 @@ $dates = getWeekDates($today)
                 <div class="container">
                     <div class="title">
                         <div>
-                            <h1><a href="/pages/labslots.php">Lab Allocation ></a>Add a Lab slot : <?= isset($_GET['lab']) ? $_GET['lab'] : '' ?></h1>
+                            <h1><a href="/pages/labslots.php">Lab Allocation ></a>Add a Lab slot : <?= isset($_GET['lab']) ? getLab($_GET['lab']) : '' ?></h1>
                             <p>Create a labslot for a course</p>
                         </div>
                     </div>
@@ -54,6 +83,18 @@ $dates = getWeekDates($today)
                         <div class="option">
                             <label for="stime">Select the End time : </label>
                             <input type="time" name="" id="stime" placeholder="">
+                        </div>
+                        <div class="option">
+                            <label for="date">select date </label>
+                            <select name="" id="date">
+                                <option value="">Monday</option>
+                                <option value="">Tuesday</option>
+                                <option value="">Wednesday</option>
+                                <option value="">Thursday</option>
+                                <option value="">Friday</option>
+                                <option value="">Saturday</option>
+                                <option value="">Sunday</option>
+                            </select>
                         </div>
                         <div class="option">
                             <label for="stime">Only this day </label>
@@ -96,6 +137,14 @@ $dates = getWeekDates($today)
             </main>
         </div>
     </div>
+    <script src="/js/labslot.js"></script>
+    <script>
+        <?php
+        foreach ($labslots as $key => $labslot) {
+            echo "labslot( 'labslot$key', {$labslot['date']}, '{$labslot['start']}', '{$labslot['end']}', '{$labslot['course']}');";
+        }
+        ?>
+    </script>
 </body>
 
 </html>

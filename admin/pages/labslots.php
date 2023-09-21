@@ -30,7 +30,7 @@
                     <div class="title">
                         <div class="title">
                             <h2>Lab 1</h2>
-                            <a href="/pages/addnewlabslot.php"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
+                            <a href="/pages/addnewlabslot.php?lab=lab1"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
                         </div>
                     </div>
                     <table class="lab-table">
@@ -69,7 +69,7 @@
                     <div class="title">
                         <div class="title">
                             <h2>Lab 2</h2>
-                            <a href="/pages/addnewlabslot.php"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
+                            <a href="/pages/addnewlabslot.php?lab=lab2"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
                         </div>
                     </div>
                     <table class="lab-table">
@@ -108,7 +108,7 @@
                     <div class="title">
                         <div class="title">
                             <h2>CCNA Lab</h2>
-                            <a href="/pages/addnewlabslot.php"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
+                            <a href="/pages/addnewlabslot.php?lab=ccna"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
                         </div>
                     </div>
                     <table class="lab-table">
@@ -147,7 +147,7 @@
                     <div class="title">
                         <div class="title">
                             <h2>Seminar Room</h2>
-                            <a href="/pages/addnewlabslot.php"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
+                            <a href="/pages/addnewlabslot.php?lab=sr"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
                         </div>
                     </div>
                     <table class="lab-table">

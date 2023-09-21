@@ -1,6 +1,33 @@
 <?php
 include_once "../config.php";
 
+function getLabSlots($lab, $monday, $sunday)
+{
+    global $conn;
+
+    // Prepare the SQL query
+    $stmt = $conn->prepare("SELECT * FROM labslot WHERE lab = ? AND (oneday IS NULL OR (oneday BETWEEN ? AND ?))");
+    $stmt->bind_param('sss', $lab, $monday, $sunday);
+
+    // Execute the prepared statement
+    $stmt->execute();
+
+    // Get the result set
+    $result = $stmt->get_result();
+
+    // Fetch and return the data
+    $labSlots = array();
+    while ($row = $result->fetch_assoc()) {
+        $labSlots[] = $row;
+    }
+
+    // Close the statement
+    $stmt->close();
+
+    return $labSlots;
+}
+
+
 // Function to add a new lab slot
 function addLabSlot($courseCode, $facilityId, $lectureDay, $lectureTime)
 {
@@ -75,4 +102,3 @@ if (isset($_GET["delete"])) {
         header("Location: labslots.php?error=3");
     }
 }
-?>
