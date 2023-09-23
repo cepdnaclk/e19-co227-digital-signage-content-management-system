@@ -32,7 +32,7 @@ function getLabSlotsAll()
     global $conn;
 
     // Prepare the SQL query
-    $stmt = $conn->prepare("SELECT * FROM labslot GROUP BY lab");
+    $stmt = $conn->prepare("SELECT * FROM labslot");
 
     // Execute the prepared statement
     $stmt->execute();
