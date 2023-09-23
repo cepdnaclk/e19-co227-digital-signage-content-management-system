@@ -26,3 +26,9 @@ function getWeekDates(string $inputDate): array
 
     return $dateOfWeek;
 }
+
+function getDatebyIndex(int $index): string
+{
+    $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    return $days[$index];
+}
