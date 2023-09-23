@@ -60,7 +60,7 @@ $labslots = getLabSlotsAll()
                                         <td><?= $slot['course'] ?></td>
                                         <td><?= $slot['course'] ?></td>
                                         <td><?= getDatebyIndex($slot['date']) ?></td>
-                                        <td><?= $slot['start'] . ' - ' . $slot['end'] ?></td>
+                                        <td><?= substr($slot['start'], 0, 5) . ' - ' . substr($slot['end'], 0, 5) ?></td>
                                         <td><a href="#">Edit</a> </td>
                                     </tr>
                                 <?php }; ?>
@@ -95,7 +95,7 @@ $labslots = getLabSlotsAll()
                                         <td><?= $slot['course'] ?></td>
                                         <td><?= $slot['course'] ?></td>
                                         <td><?= getDatebyIndex($slot['date']) ?></td>
-                                        <td><?= $slot['start'] . ' - ' . $slot['end'] ?></td>
+                                        <td><?= substr($slot['start'], 0, 5) . ' - ' . substr($slot['end'], 0, 5) ?></td>
                                         <td><a href="#">Edit</a> </td>
                                     </tr>
                                 <?php }; ?>
@@ -123,22 +123,18 @@ $labslots = getLabSlotsAll()
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>IT101</td>
-                                <td>2023-09-05</td>
-                                <td>2023-12-15</td>
-                                <td>Monday</td>
-                                <td>09:00 AM - 11:00 AM</td>
-                                <td><a href="#">Edit</a> </td>
-                            </tr>
-                            <tr>
-                                <td>IT202</td>
-                                <td>2023-09-10</td>
-                                <td>2023-12-20</td>
-                                <td>Wednesday</td>
-                                <td>02:00 PM - 04:00 PM</td>
-                                <td><a href="#">Edit</a> </td>
-                            </tr>
+                            <?php if (isset($labslots['ccna'])) { ?>
+                                <?php foreach ($labslots['ccna'] as $key => $slot) { ?>
+                                    <tr>
+                                        <td><?= $slot['course'] ?></td>
+                                        <td><?= $slot['course'] ?></td>
+                                        <td><?= $slot['course'] ?></td>
+                                        <td><?= getDatebyIndex($slot['date']) ?></td>
+                                        <td><?= substr($slot['start'], 0, 5) . ' - ' . substr($slot['end'], 0, 5) ?></td>
+                                        <td><a href="#">Edit</a> </td>
+                                    </tr>
+                                <?php }; ?>
+                            <?php } ?>
                             <!-- Add more rows as needed -->
                         </tbody>
                     </table>
@@ -162,22 +158,18 @@ $labslots = getLabSlotsAll()
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>IT101</td>
-                                <td>2023-09-05</td>
-                                <td>2023-12-15</td>
-                                <td>Monday</td>
-                                <td>09:00 AM - 11:00 AM</td>
-                                <td><a href="#">Edit</a> </td>
-                            </tr>
-                            <tr>
-                                <td>IT202</td>
-                                <td>2023-09-10</td>
-                                <td>2023-12-20</td>
-                                <td>Wednesday</td>
-                                <td>02:00 PM - 04:00 PM</td>
-                                <td><a href="#">Edit</a> </td>
-                            </tr>
+                            <?php if (isset($labslots['sr'])) { ?>
+                                <?php foreach ($labslots['sr'] as $key => $slot) { ?>
+                                    <tr>
+                                        <td><?= $slot['course'] ?></td>
+                                        <td><?= $slot['course'] ?></td>
+                                        <td><?= $slot['course'] ?></td>
+                                        <td><?= getDatebyIndex($slot['date']) ?></td>
+                                        <td><?= substr($slot['start'], 0, 5) . ' - ' . substr($slot['end'], 0, 5) ?></td>
+                                        <td><a href="#">Edit</a> </td>
+                                    </tr>
+                                <?php }; ?>
+                            <?php } ?>
                             <!-- Add more rows as needed -->
                         </tbody>
                     </table>
