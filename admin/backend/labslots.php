@@ -27,6 +27,38 @@ function getLabSlots($lab, $monday, $sunday)
     return $labSlots;
 }
 
+function getLabSlotsAll()
+{
+    global $conn;
+
+    // Prepare the SQL query
+    $stmt = $conn->prepare("SELECT * FROM labslot GROUP BY lab");
+
+    // Execute the prepared statement
+    $stmt->execute();
+
+    // Get the result set
+    $result = $stmt->get_result();
+
+    // Fetch and return the data
+    $labSlots = array();
+    while ($row = $result->fetch_assoc()) {
+        $labType = $row['lab'];
+
+        // Create an array for the lab type if it doesn't exist
+        if (!isset($labSlots[$labType])) {
+            $labSlots[$labType] = array();
+        }
+
+        // Add the lab slot information to the lab type array
+        $labSlots[$labType][] = $row;
+    }
+    // Close the statement
+    $stmt->close();
+
+    return $labSlots;
+}
+
 
 // Function to add a new lab slot
 function addLabSlot($courseCode, $facilityId, $lectureDay, $lectureTime)

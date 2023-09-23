@@ -1,4 +1,6 @@
 <?php include_once "../config.php" ?>
+<?php include_once "../backend/labslots.php" ?>
+<?php include_once "../helpers/datetime.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +10,12 @@
     <link rel="stylesheet" href="../css/labslots.css">
     <title>IT Center | Lab Allocations</title>
 </head>
+
+<?php
+
+$labslots = getLabSlotsAll()
+
+?>
 
 <body>
     <div class="flex-box">
@@ -45,22 +53,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>IT101</td>
-                                <td>2023-09-05</td>
-                                <td>2023-12-15</td>
-                                <td>Monday</td>
-                                <td>09:00 AM - 11:00 AM</td>
-                                <td><a href="#">Edit</a> </td>
-                            </tr>
-                            <tr>
-                                <td>IT202</td>
-                                <td>2023-09-10</td>
-                                <td>2023-12-20</td>
-                                <td>Wednesday</td>
-                                <td>02:00 PM - 04:00 PM</td>
-                                <td><a href="#">Edit</a> </td>
-                            </tr>
+                            <?php if (isset($labslots['lab1'])) { ?>
+                                <?php foreach ($labslots['lab1'] as $key => $slot) { ?>
+                                    <tr>
+                                        <td><?= $slot['course'] ?></td>
+                                        <td><?= $slot['course'] ?></td>
+                                        <td><?= $slot['course'] ?></td>
+                                        <td><?= getDatebyIndex($slot['date']) ?></td>
+                                        <td><?= $slot['start'] . ' - ' . $slot['end'] ?></td>
+                                        <td><a href="#">Edit</a> </td>
+                                    </tr>
+                                <?php }; ?>
+                            <?php } ?>
                             <!-- Add more rows as needed -->
                         </tbody>
                     </table>
@@ -84,22 +88,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>IT101</td>
-                                <td>2023-09-05</td>
-                                <td>2023-12-15</td>
-                                <td>Monday</td>
-                                <td>09:00 AM - 11:00 AM</td>
-                                <td><a href="#">Edit</a> </td>
-                            </tr>
-                            <tr>
-                                <td>IT202</td>
-                                <td>2023-09-10</td>
-                                <td>2023-12-20</td>
-                                <td>Wednesday</td>
-                                <td>02:00 PM - 04:00 PM</td>
-                                <td><a href="#">Edit</a> </td>
-                            </tr>
+                            <?php if (isset($labslots['lab2'])) { ?>
+                                <?php foreach ($labslots['lab2'] as $key => $slot) { ?>
+                                    <tr>
+                                        <td><?= $slot['course'] ?></td>
+                                        <td><?= $slot['course'] ?></td>
+                                        <td><?= $slot['course'] ?></td>
+                                        <td><?= getDatebyIndex($slot['date']) ?></td>
+                                        <td><?= $slot['start'] . ' - ' . $slot['end'] ?></td>
+                                        <td><a href="#">Edit</a> </td>
+                                    </tr>
+                                <?php }; ?>
+                            <?php } ?>
                             <!-- Add more rows as needed -->
                         </tbody>
                     </table>
