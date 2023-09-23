@@ -128,3 +128,8 @@
 .addlabslots .timetable .labslot p {
   font-size: 0.9rem;
 }
+
+.addlabslots .timetable .labslot#currentSlot {
+  background-color: var(--color-4);
+  z-index: 5;
+}

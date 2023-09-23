@@ -69,37 +69,36 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
                     </div>
                     <div class="options">
                         <div class="option">
-                            <select name="" id="">
-                                <option value="">Select the Course</option>
-                                <option value="">CCNA</option>
-                                <option value="">IT01</option>
-                                <option value="">IT03</option>
+                            <select name="course" id="course">
+                                <option value="CCNA" selected>CCNA</option>
+                                <option value="IT01">IT01</option>
+                                <option value="IT03">IT03</option>
                             </select>
                         </div>
                         <div class="option">
                             <label for="stime">Select the Start time : </label>
-                            <input type="time" name="" id="stime" placeholder="">
+                            <input type="time" name="stime" id="stime" placeholder="" value="08:00:00">
                         </div>
                         <div class="option">
                             <label for="stime">Select the End time : </label>
-                            <input type="time" name="" id="stime" placeholder="">
+                            <input type="time" name="etime" id="etime" placeholder="" value="10:00:00">
                         </div>
                         <div class="option">
                             <label for="date">select date </label>
-                            <select name="" id="date">
-                                <option value="">Monday</option>
-                                <option value="">Tuesday</option>
-                                <option value="">Wednesday</option>
-                                <option value="">Thursday</option>
-                                <option value="">Friday</option>
-                                <option value="">Saturday</option>
-                                <option value="">Sunday</option>
+                            <select name="date" id="date">
+                                <option value="0" selected>Monday</option>
+                                <option value="1">Tuesday</option>
+                                <option value="2">Wednesday</option>
+                                <option value="3">Thursday</option>
+                                <option value="4">Friday</option>
+                                <option value="5">Saturday</option>
+                                <option value="6">Sunday</option>
                             </select>
                         </div>
                         <div class="option">
-                            <label for="stime">Only this day </label>
-                            <input type="checkbox" name="" id="stime" placeholder="">
-                            <input type="date" name="" id="stime" placeholder="">
+                            <label for="isonedate">Only this day </label>
+                            <input type="checkbox" name="isoneday" id="isonedate" placeholder="">
+                            <input type="date" name="oneday" id="onedate" placeholder="">
                         </div>
                         <button class="add">CREATE SLOT</button>
                     </div>

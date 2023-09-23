@@ -70,19 +70,45 @@ function convertTimeFormat(timeString) {
 
 const labslot = (id, date, start, end, course) => {
   let labSlot = document.getElementById(id);
+  let h3 = document.querySelector(`#${id} h3`);
+  let p = document.querySelector(`#${id} p`);
+
   if (!labSlot) {
     labSlot = document.createElement("div");
-    labSlot.classList.add("labslot");
-    labSlot.id = id;
-    const h3 = document.createElement("h3");
-    h3.textContent = course;
-    const p = document.createElement("p");
-    p.textContent = `${convertTimeFormat(start)} - ${convertTimeFormat(end)}`;
+    h3 = document.createElement("h3");
+    p = document.createElement("p");
     labSlot.appendChild(h3);
     labSlot.appendChild(p);
-    dates[date].appendChild(labSlot);
   }
+
+  labSlot.classList.add("labslot");
+  labSlot.id = id;
+  h3.textContent = course;
+  p.textContent = `${convertTimeFormat(start)} - ${convertTimeFormat(end)}`;
+  dates[date].appendChild(labSlot);
 
   labSlot.style.height = `${calHeight(start, end)}px`;
   labSlot.style.top = `${calTop(start)}px`;
 };
+
+const optionInputs = document.querySelectorAll(".options input");
+const optionSelect = document.querySelectorAll(".options select");
+
+const handleInputs = () => {
+  const date = document.getElementById("date").value;
+  const start = document.getElementById("stime").value;
+  const end = document.getElementById("etime").value;
+  const course = document.getElementById("course").value;
+
+  labslot("currentSlot", date, start, end, course);
+};
+
+optionInputs.forEach((ele) => {
+  ele.addEventListener("change", handleInputs);
+});
+
+optionSelect.forEach((ele) => {
+  ele.addEventListener("change", handleInputs);
+});
+
+handleInputs();
