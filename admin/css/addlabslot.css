@@ -112,7 +112,6 @@
 }
 
 .addlabslots .timetable .labslot {
-  z-index: 4;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,5 +133,4 @@
 
 .addlabslots .timetable .labslot#currentSlot {
   background-color: var(--color-4);
-  z-index: 0; 
 }
