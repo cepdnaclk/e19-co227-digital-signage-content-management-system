@@ -99,38 +99,6 @@ function deleteLabSlot($courseCode, $facilityId)
     }
 }
 
-// Add or edit lab slot based on form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["addLabSlot"])) {
-        $courseCode = $_POST["courseCode"];
-        $facilityId = $_POST["facilityId"];
-        $lectureDay = $_POST["lectureDay"];
-        $lectureTime = $_POST["lectureTime"];
-        if (addLabSlot($courseCode, $facilityId, $lectureDay, $lectureTime)) {
-            header("Location: labslots.php?success=1");
-        } else {
-            header("Location: labslots.php?error=1");
-        }
-    } elseif (isset($_POST["editLabSlot"])) {
-        $courseCode = $_POST["courseCode"];
-        $facilityId = $_POST["facilityId"];
-        $lectureDay = $_POST["lectureDay"];
-        $lectureTime = $_POST["lectureTime"];
-        if (editLabSlot($courseCode, $facilityId, $lectureDay, $lectureTime)) {
-            header("Location: labslots.php?success=2");
-        } else {
-            header("Location: labslots.php?error=2");
-        }
-    }
-}
-
-// Handle lab slot deletion
-if (isset($_GET["delete"])) {
-    $courseCode = $_GET["delete"];
-    $facilityId = $_GET["facilityId"];
-    if (deleteLabSlot($courseCode, $facilityId)) {
-        header("Location: labslots.php?success=3");
-    } else {
-        header("Location: labslots.php?error=3");
-    }
+    echo ($_POST['course']);
 }
