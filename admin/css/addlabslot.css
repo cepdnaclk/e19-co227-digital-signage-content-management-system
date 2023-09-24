@@ -134,5 +134,5 @@
 
 .addlabslots .timetable .labslot#currentSlot {
   background-color: var(--color-4);
-  z-index: 5;
+  z-index: 0;
 }
