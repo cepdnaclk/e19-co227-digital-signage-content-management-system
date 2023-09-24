@@ -61,15 +61,15 @@ function getLabSlotsAll()
 
 
 // Function to add a new lab slot
-function addLabSlot($courseCode, $facilityId, $lectureDay, $lectureTime)
+function addLabSlot($lab, $course, $start, $end, $date, $oneday)
 {
     global $conn;
-    $stmt = $conn->prepare("INSERT INTO timetable (c_code, f_id, lec_day, lec_time) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("siss", $courseCode, $facilityId, $lectureDay, $lectureTime);
+    $stmt = $conn->prepare("INSERT INTO labslot (lab, course, start, end, date, oneday) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssid", $lab, $course, $start, $end, $date, $oneday);
     if ($stmt->execute()) {
         return true;
     } else {
-        return false;
+        return $stmt->error;
     }
 }
 
@@ -100,5 +100,11 @@ function deleteLabSlot($courseCode, $facilityId)
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo ($_POST['course']);
+    if (!isset($_POST['id'])) {
+        $result = addLabSlot($_POST['lab'], $_POST['course'], $_POST['stime'], $_POST['etime'], $_POST['date'], $_POST['onedate']);
+        if ($result === true)
+            header("Location: ../pages/labslots.php?success=1");
+        else
+            header("Location: ../pages/addnewlabslot.php?error=$result&lab={$_POST['lab']}");
+    }
 }
