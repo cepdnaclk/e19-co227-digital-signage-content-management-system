@@ -47,18 +47,24 @@
   color: white;
   border-radius: 5px;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.addlabslots .options button:active {
+  filter: brightness(0.7);
 }
 
 .addlabslots .timetable {
   display: grid;
   grid-template-columns: 100px repeat(7, calc((100% - 100px) / 7));
-  gap: 1px;
+  grid-template-rows: 60px repeat(9, 50px);
   margin-top: 1rem;
   width: 100%;
   height: auto;
   overflow: hidden;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.146);
+  position: relative;
 }
 
 .addlabslots .timetable .time-caption,
@@ -70,6 +76,7 @@
   background-color: var(--color-1);
   height: 60px;
   color: white;
+  outline: 1px solid white;
 }
 
 .addlabslots .timetable .time-caption h3 {
@@ -95,6 +102,7 @@
   justify-content: center;
   text-align: center;
   font-size: 0.8rem;
+  grid-column: 1;
 }
 
 .addlabslots .timetable .time-slot:nth-child(2n) {
@@ -103,12 +111,7 @@
   clip-path: inset(0 -10000px 0 0);
 }
 
-.addlabslots .timetable .day {
-  position: relative;
-}
-
 .addlabslots .timetable .labslot {
-  position: absolute;
   z-index: 4;
   display: flex;
   align-items: center;
