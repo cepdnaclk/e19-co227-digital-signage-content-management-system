@@ -13,7 +13,7 @@
 
 <?php
 
-$labslots = getLabSlotsAll()
+$labslots = getLabSlotsAll();
 
 ?>
 
