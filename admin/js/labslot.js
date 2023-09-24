@@ -1,8 +1,7 @@
-const dates = document.querySelectorAll(".timetable .day");
-const dateCaption = document.querySelectorAll(".timetable .day .date");
-const dateColHeight =
-  dates[0].getBoundingClientRect().height -
-  dateCaption[0].getBoundingClientRect().height;
+const dates = document.querySelectorAll(".timetable");
+const dateCaption = document.querySelectorAll(".timetable .date");
+const captionHeight = dateCaption[0].getBoundingClientRect().height;
+const dateColHeight = dates[0].getBoundingClientRect().height - captionHeight;
 
 const baseStartTime = new Date();
 baseStartTime.setHours(8, 0, 0);
@@ -29,6 +28,22 @@ const calHeight = (start, end) => {
   return (timeDifference / totalTimeSpan) * dateColHeight;
 };
 
+const findGridRow = (start) => {
+  const startTimeParts = start.split(":");
+
+  const startTime = new Date();
+  startTime.setHours(
+    parseInt(startTimeParts[0]),
+    parseInt(startTimeParts[1]),
+    0
+  );
+
+  const timeDifference = startTime - baseStartTime;
+  const totalTimeSpan = baseEndTime - baseStartTime;
+
+  return Math.floor(((timeDifference / totalTimeSpan) * dateColHeight) / 50);
+};
+
 const calTop = (start) => {
   const startTimeParts = start.split(":");
 
@@ -42,10 +57,7 @@ const calTop = (start) => {
   const timeDifference = startTime - baseStartTime;
   const totalTimeSpan = baseEndTime - baseStartTime;
 
-  return (
-    (timeDifference / totalTimeSpan) * dateColHeight +
-    dateCaption[0].getBoundingClientRect().height
-  );
+  return ((timeDifference / totalTimeSpan) * dateColHeight) % 50;
 };
 
 function convertTimeFormat(timeString) {
@@ -68,47 +80,20 @@ function convertTimeFormat(timeString) {
   }
 }
 
-const labslot = (id, date, start, end, course) => {
-  let labSlot = document.getElementById(id);
-  let h3 = document.querySelector(`#${id} h3`);
-  let p = document.querySelector(`#${id} p`);
+const selectedTimeAsDate = (time) => {
+  const [hours, minutes] = time.split(":");
+  const timeAsDate = new Date();
+  timeAsDate.setHours(parseInt(hours), parseInt(minutes), 0, 0);
 
-  if (!labSlot) {
-    labSlot = document.createElement("div");
-    h3 = document.createElement("h3");
-    p = document.createElement("p");
-    labSlot.appendChild(h3);
-    labSlot.appendChild(p);
-  }
-
-  labSlot.classList.add("labslot");
-  labSlot.id = id;
-  h3.textContent = course;
-  p.textContent = `${convertTimeFormat(start)} - ${convertTimeFormat(end)}`;
-  dates[date].appendChild(labSlot);
-
-  labSlot.style.height = `${calHeight(start, end)}px`;
-  labSlot.style.top = `${calTop(start)}px`;
+  return timeAsDate;
 };
 
-const optionInputs = document.querySelectorAll(".options input");
-const optionSelect = document.querySelectorAll(".options select");
+const clipTime = (newTime, lowerBound, upperBound) => {
+  const start = selectedTimeAsDate(lowerBound);
+  const end = selectedTimeAsDate(upperBound);
+  const nowTime = selectedTimeAsDate(newTime);
 
-const handleInputs = () => {
-  const date = document.getElementById("date").value;
-  const start = document.getElementById("stime").value;
-  const end = document.getElementById("etime").value;
-  const course = document.getElementById("course").value;
-
-  labslot("currentSlot", date, start, end, course);
+  if (start > nowTime) return lowerBound;
+  if (end < nowTime) return upperBound;
+  else return newTime;
 };
-
-optionInputs.forEach((ele) => {
-  ele.addEventListener("change", handleInputs);
-});
-
-optionSelect.forEach((ele) => {
-  ele.addEventListener("change", handleInputs);
-});
-
-handleInputs();
