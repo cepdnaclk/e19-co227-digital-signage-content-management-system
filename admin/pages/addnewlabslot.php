@@ -4,7 +4,11 @@
 
 <?php
 
-$today = date("Y-m-d");
+if (isset($_GET['date']))
+    $today = $_GET['date'];
+else
+    $today = date("Y-m-d");
+
 $dates = getWeekDates($today);
 
 function getLab(string $lab)
@@ -76,16 +80,8 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
                             </select>
                         </div>
                         <div class="option">
-                            <label for="stime">Select the Start time : </label>
-                            <input type="time" name="stime" id="stime" v-model="start" @blur="handleStartChange">
-                        </div>
-                        <div class="option">
-                            <label for="stime">Select the End time : </label>
-                            <input type="time" name="etime" id="etime" v-model="end" @blur="handleEndChange">
-                        </div>
-                        <div class="option">
                             <label for="date">select date </label>
-                            <select name="date" id="date" v-model="date" :disabled="isonedate">
+                            <select name="date" id="date" v-model="date" :style="isonedate ? 'pointer-events: none; opacity: 0.8': ''">
                                 <option value="0">Monday</option>
                                 <option value="1">Tuesday</option>
                                 <option value="2">Wednesday</option>
@@ -97,10 +93,20 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
                         </div>
                         <div class="option">
                             <label for="isonedate">Only this day </label>
-                            <input type="checkbox" name="isoneday" id="isonedate" v-model="isonedate">
-                            <input type="date" name="oneday" id="onedate" v-model="onedate" :disabled="!isonedate">
+                            <input type="checkbox" name="isoneday" id="isonedate" v-model="isonedate" @change="handleIsOneDateChange">
+                            <input type="date" name="oneday" id="onedate" v-model="onedate" :disabled="!isonedate" @change="handleOneDateChange" min="<?= date("Y-m-d") ?>">
                         </div>
-                        <button type="submit" class="add">CREATE SLOT</button>
+                        <div class="option">
+                            <label for="stime">Select the Start time : </label>
+                            <input type="time" name="stime" id="stime" v-model="start" @change="handleStartChange" min="08:00:00" max="16:00:00">
+                        </div>
+                        <div class="option">
+                            <label for="stime">Select the End time : </label>
+                            <input type="time" name="etime" id="etime" v-model="end" @change="handleEndChange" min="09:00:00" max="17:00:00">
+                        </div>
+                        <input type="text" name="lab" id="lab" style="display: none;" value="<?= isset($_GET['lab']) ? $_GET['lab'] : '' ?>">
+                        <input type="text" name="updateid" id="updateid" style="display: none;" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>">
+                        <button type="submit" class="add"><?= !isset($_GET['id']) ? 'CREATE SLOT' : 'UPDATE SLOT' ?></button>
                     </form>
                     <div class="timetable">
                         <div class="time-caption">
@@ -129,7 +135,10 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
                         ?>
                         <?php
                         foreach ($labslots as $key => $labslot) {
-                            echo "<lab-slot id='labslot$key' date='{$labslot["date"]}' start='{$labslot["start"]}' end='{$labslot["end"]}' course='{$labslot["course"]}'></lab-slot>";
+                            if (!isset($_GET['id']) || $_GET['id'] != $labslot['slot_id'])
+                                echo "<lab-slot id='labslot$key' date='{$labslot["date"]}' start='{$labslot["start"]}' end='{$labslot["end"]}' course='{$labslot["course"]}'></lab-slot>";
+                            else if (isset($_GET['id']) && $_GET['id'] == $labslot['slot_id'])
+                                $currentSlot = $labslot;
                         }
                         ?>
                         <lab-slot id='currentSlot' :date="date" :start="start" :end="end" :course="course"></lab-slot>
@@ -141,6 +150,11 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
     <script src="/js/labslot.js"></script>
     <script src="https://unpkg.com/vue@3.1.1/dist/vue.global.prod.js"></script>
     <script>
+        <?php
+        if (isset($_GET['error'])) { ?>
+            alert("<?= $_GET['error'] ?>");
+        <?php } ?>
+
         const {
             ref,
             createApp,
@@ -164,7 +178,9 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
                 const top = computed(() => {
                     return calTop(props.start) + "px";
                 });
-                const course = ref(props.course);
+                const course = computed(() => {
+                    return props.course
+                });
                 const timeInterval = computed(() => {
                     return `${props.start.slice(0, 5)} - ${props.end.slice(0, 5)}`;
                 });
@@ -189,18 +205,33 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
 
         const app = createApp({
             setup() {
-                const course = ref("<?= "CCNA" ?>");
-                const start = ref("<?= "08:00" ?>");
-                const end = ref("<?= "10:00" ?>");
-                const date = ref(<?= "0" ?>);
-                const isonedate = ref(<?= "false" ?>);
-                const onedate = ref("<?= date("Y-m-d") ?>");
-
+                <?php if (!isset($_GET['id'])) { ?>
+                    const course = ref("<?= "CCNA" ?>");
+                    const start = ref("<?= "08:00" ?>");
+                    const end = ref("<?= "10:00" ?>");
+                    const date = ref(<?php
+                                        $day = (new DateTime($today))->format('w');
+                                        if ($day == 0)
+                                            echo 6;
+                                        else
+                                            echo $day - 1;
+                                        ?>)
+                    const isonedate = ref(<?= isset($_GET['date']) ? 'true' : 'false' ?>);
+                    const onedate = ref("<?= $today ?>");
+                <?php } else { ?>
+                    const course = ref("<?= $currentSlot['course'] ?>");
+                    const start = ref("<?= $currentSlot['start'] ?>");
+                    const end = ref("<?= $currentSlot['end'] ?>");
+                    const date = ref(<?= $currentSlot['date'] ?>)
+                    const isonedate = ref(<?= $currentSlot['oneday'] != null ? 'true' : 'false' ?>);
+                    const onedate = ref("<?= $currentSlot['oneday'] != null ? $currentSlot['oneday'] : $today ?>");
+                <?php } ?>
                 const timeSlots = computed(() => {
                     const slots = [
                         <?php
                         foreach ($labslots as $key => $labslot) {
-                            echo "{id:'labslot$key', date:'{$labslot["date"]}', start:'{$labslot["start"]}', end:'{$labslot["end"]}', course:'{$labslot["course"]}'},";
+                            if (!isset($_GET['id']) || $_GET['id'] != $labslot['slot_id'])
+                                echo "{id:'labslot$key', date:'{$labslot["date"]}', start:'{$labslot["start"]}', end:'{$labslot["end"]}', course:'{$labslot["course"]}'},";
                         }
                         ?>
                     ]
@@ -292,8 +323,28 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
                 };
 
                 const setFreeSlot = () => {
-                    start.value = freeSlots.value[0].start
-                    end.value = freeSlots.value[0].end
+                    if (freeSlots.value.length) {
+                        start.value = freeSlots.value[0].start
+                        end.value = freeSlots.value[0].end
+                    } else {
+                        date.value += 1
+                        getFreeSlot()
+                        setFreeSlot()
+                    }
+                }
+
+                const handleOneDateChange = () => {
+                    const day = new Date(onedate.value)
+                    const today = new Date()
+                    if (day > today)
+                        window.location = `${window.location.origin}${window.location.pathname}?lab=<?= $_GET['lab'] ?>&date=${day.getFullYear()}-${(day.getMonth() + 1).toString().padStart(2, '0')}-${day.getDate().toString().padStart(2, '0')}`
+                    else
+                        onedate.value = "<?= $today ?>"
+                }
+
+                const handleIsOneDateChange = () => {
+                    if (!isonedate.value)
+                        window.location = `${window.location.origin}${window.location.pathname}?lab=<?= $_GET['lab'] ?>`
                 }
 
                 watch(date, () => {
@@ -303,7 +354,9 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
 
                 onMounted(() => {
                     getFreeSlot()
-                    setFreeSlot()
+                    <?php if (!isset($_GET['id'])) { ?>
+                        setFreeSlot()
+                    <?php } ?>
                 })
 
                 return {
@@ -314,7 +367,9 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
                     isonedate,
                     onedate,
                     handleStartChange,
-                    handleEndChange
+                    handleEndChange,
+                    handleOneDateChange,
+                    handleIsOneDateChange
                 };
             },
         });
