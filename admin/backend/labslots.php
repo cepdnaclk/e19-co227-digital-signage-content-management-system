@@ -1,6 +1,12 @@
 <?php
 include_once "../config.php";
 
+header("Access-Control-Allow-Origin: *");
+// Allow specific HTTP methods (e.g., GET, POST, OPTIONS)
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+// Allow specific HTTP headers in requests
+header("Access-Control-Allow-Headers: Content-Type");
+
 function getLabSlots($lab, $monday, $sunday)
 {
     global $conn;
@@ -32,8 +38,9 @@ function getLabSlotsToday($today)
     global $conn;
 
     // Prepare the SQL query
-    $stmt = $conn->prepare("SELECT * FROM labslot WHERE date = ?");
-    $stmt->bind_param('i', $today);
+    $stmt = $conn->prepare("SELECT * FROM labslot WHERE date = ? OR oneday = ?");
+    $day = date("Y-m-d");
+    $stmt->bind_param('is', $today, $day);
 
     // Execute the prepared statement
     $stmt->execute();
@@ -154,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             header("Location: ../pages/labslots.php?success=1");
         else
             header("Location: ../pages/labslots.php?error=$result");
-    } else {
+    } else if (isset($_GET['today'])) {
         $result = getLabSlotsToday($_GET['today']);
 
         header('Content-Type: application/json');
