@@ -77,6 +77,7 @@
   height: 60px;
   color: white;
   outline: 1px solid white;
+  grid-row: 1;
 }
 
 .addlabslots .timetable .time-caption h3 {

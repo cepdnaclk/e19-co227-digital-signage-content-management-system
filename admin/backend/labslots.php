@@ -61,11 +61,13 @@ function getLabSlotsAll()
 
 
 // Function to add a new lab slot
-function addLabSlot($lab, $course, $start, $end, $date, $oneday)
+function addLabSlot($lab, $course, $start, $end, $date, $isoneday, $oneday)
 {
     global $conn;
     $stmt = $conn->prepare("INSERT INTO labslot (lab, course, start, end, date, oneday) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssid", $lab, $course, $start, $end, $date, $oneday);
+    if (!$isoneday)
+        $oneday = null;
+    $stmt->bind_param("ssssis", $lab, $course, $start, $end, $date, $oneday);
     if ($stmt->execute()) {
         return true;
     } else {
@@ -101,7 +103,7 @@ function deleteLabSlot($courseCode, $facilityId)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST['id'])) {
-        $result = addLabSlot($_POST['lab'], $_POST['course'], $_POST['stime'], $_POST['etime'], $_POST['date'], $_POST['onedate']);
+        $result = addLabSlot($_POST['lab'], $_POST['course'], $_POST['stime'], $_POST['etime'], $_POST['date'], $_POST['isoneday'], $_POST['oneday']);
         if ($result === true)
             header("Location: ../pages/labslots.php?success=1");
         else
