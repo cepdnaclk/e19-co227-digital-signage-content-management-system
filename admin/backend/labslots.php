@@ -27,6 +27,31 @@ function getLabSlots($lab, $monday, $sunday)
     return $labSlots;
 }
 
+function getLabSlotsToday($today)
+{
+    global $conn;
+
+    // Prepare the SQL query
+    $stmt = $conn->prepare("SELECT * FROM labslot WHERE date = ?");
+    $stmt->bind_param('i', $today);
+
+    // Execute the prepared statement
+    $stmt->execute();
+
+    // Get the result set
+    $result = $stmt->get_result();
+
+    // Fetch and return the data
+    $labSlots = array();
+    while ($row = $result->fetch_assoc()) {
+        $labSlots[] = $row;
+    }
+    // Close the statement
+    $stmt->close();
+
+    return $labSlots;
+}
+
 function getLabSlotsAll()
 {
     global $conn;
@@ -129,5 +154,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             header("Location: ../pages/labslots.php?success=1");
         else
             header("Location: ../pages/labslots.php?error=$result");
+    } else {
+        $result = getLabSlotsToday($_GET['today']);
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
     }
 }
