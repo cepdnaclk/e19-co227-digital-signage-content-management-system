@@ -105,7 +105,8 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
                             <input type="time" name="etime" id="etime" v-model="end" @change="handleEndChange" min="09:00:00" max="17:00:00">
                         </div>
                         <input type="text" name="lab" id="lab" style="display: none;" value="<?= isset($_GET['lab']) ? $_GET['lab'] : '' ?>">
-                        <button type="submit" class="add">CREATE SLOT</button>
+                        <input type="text" name="updateid" id="updateid" style="display: none;" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>">
+                        <button type="submit" class="add"><?= !isset($_GET['id']) ? 'CREATE SLOT' : 'UPDATE SLOT' ?></button>
                     </form>
                     <div class="timetable">
                         <div class="time-caption">
@@ -134,7 +135,10 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
                         ?>
                         <?php
                         foreach ($labslots as $key => $labslot) {
-                            echo "<lab-slot id='labslot$key' date='{$labslot["date"]}' start='{$labslot["start"]}' end='{$labslot["end"]}' course='{$labslot["course"]}'></lab-slot>";
+                            if (!isset($_GET['id']) || $_GET['id'] != $labslot['slot_id'])
+                                echo "<lab-slot id='labslot$key' date='{$labslot["date"]}' start='{$labslot["start"]}' end='{$labslot["end"]}' course='{$labslot["course"]}'></lab-slot>";
+                            else if (isset($_GET['id']) && $_GET['id'] == $labslot['slot_id'])
+                                $currentSlot = $labslot;
                         }
                         ?>
                         <lab-slot id='currentSlot' :date="date" :start="start" :end="end" :course="course"></lab-slot>
@@ -201,24 +205,33 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
 
         const app = createApp({
             setup() {
-                const course = ref("<?= "CCNA" ?>");
-                const start = ref("<?= "08:00" ?>");
-                const end = ref("<?= "10:00" ?>");
-                const date = ref(<?php
-                                    $day = (new DateTime($today))->format('w');
-                                    if ($day == 0)
-                                        echo 6;
-                                    else
-                                        echo $day - 1;
-                                    ?>)
-                const isonedate = ref(<?= isset($_GET['date']) ? 'true' : 'false' ?>);
-                const onedate = ref("<?= $today ?>");
-
+                <?php if (!isset($_GET['id'])) { ?>
+                    const course = ref("<?= "CCNA" ?>");
+                    const start = ref("<?= "08:00" ?>");
+                    const end = ref("<?= "10:00" ?>");
+                    const date = ref(<?php
+                                        $day = (new DateTime($today))->format('w');
+                                        if ($day == 0)
+                                            echo 6;
+                                        else
+                                            echo $day - 1;
+                                        ?>)
+                    const isonedate = ref(<?= isset($_GET['date']) ? 'true' : 'false' ?>);
+                    const onedate = ref("<?= $today ?>");
+                <?php } else { ?>
+                    const course = ref("<?= $currentSlot['course'] ?>");
+                    const start = ref("<?= $currentSlot['start'] ?>");
+                    const end = ref("<?= $currentSlot['end'] ?>");
+                    const date = ref(<?= $currentSlot['date'] ?>)
+                    const isonedate = ref(<?= $currentSlot['oneday'] != null ? 'true' : 'false' ?>);
+                    const onedate = ref("<?= $currentSlot['oneday'] != null ? $currentSlot['oneday'] : $today ?>");
+                <?php } ?>
                 const timeSlots = computed(() => {
                     const slots = [
                         <?php
                         foreach ($labslots as $key => $labslot) {
-                            echo "{id:'labslot$key', date:'{$labslot["date"]}', start:'{$labslot["start"]}', end:'{$labslot["end"]}', course:'{$labslot["course"]}'},";
+                            if (!isset($_GET['id']) || $_GET['id'] != $labslot['slot_id'])
+                                echo "{id:'labslot$key', date:'{$labslot["date"]}', start:'{$labslot["start"]}', end:'{$labslot["end"]}', course:'{$labslot["course"]}'},";
                         }
                         ?>
                     ]
@@ -341,7 +354,9 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
 
                 onMounted(() => {
                     getFreeSlot()
-                    setFreeSlot()
+                    <?php if (!isset($_GET['id'])) { ?>
+                        setFreeSlot()
+                    <?php } ?>
                 })
 
                 return {

@@ -75,25 +75,30 @@ function addLabSlot($lab, $course, $start, $end, $date, $isoneday, $oneday)
     }
 }
 
-// Function to edit a lab slot
-function editLabSlot($courseCode, $facilityId, $lectureDay, $lectureTime)
+function editLabSlot($id, $course, $start, $end, $date, $isoneday, $oneday)
 {
     global $conn;
-    $stmt = $conn->prepare("UPDATE timetable SET lec_day=?, lec_time=? WHERE c_code=? AND f_id=?");
-    $stmt->bind_param("sssi", $lectureDay, $lectureTime, $courseCode, $facilityId);
+    if (!$isoneday) {
+        $stmt = $conn->prepare("UPDATE labslot SET course = ?, start = ?, end = ?, date = ?, oneday = NULL WHERE slot_id = ?");
+        $stmt->bind_param("ssssi", $course, $start, $end, $date, $id);
+    } else {
+        $stmt = $conn->prepare("UPDATE labslot SET course = ?, start = ?, end = ?, date = ?, oneday = ? WHERE slot_id = ?");
+        $stmt->bind_param("sssssi", $course, $start, $end, $date, $oneday, $id);
+    }
     if ($stmt->execute()) {
         return true;
     } else {
-        return false;
+        return $stmt->error;
     }
 }
 
+
 // Function to delete a lab slot
-function deleteLabSlot($courseCode, $facilityId)
+function deleteLabSlot($slotID)
 {
     global $conn;
-    $stmt = $conn->prepare("DELETE FROM timetable WHERE c_code=? AND f_id=?");
-    $stmt->bind_param("si", $courseCode, $facilityId);
+    $stmt = $conn->prepare("DELETE FROM labslot WHERE slot_id = ?");
+    $stmt->bind_param("i", $slotID);
     if ($stmt->execute()) {
         return true;
     } else {
@@ -102,11 +107,27 @@ function deleteLabSlot($courseCode, $facilityId)
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!isset($_POST['id'])) {
+    if ($_POST['updateid'] == '') {
         $result = addLabSlot($_POST['lab'], $_POST['course'], $_POST['stime'], $_POST['etime'], $_POST['date'], $_POST['isoneday'], $_POST['oneday']);
         if ($result === true)
             header("Location: ../pages/labslots.php?success=1");
         else
             header("Location: ../pages/addnewlabslot.php?error=$result&lab={$_POST['lab']}");
+    } else {
+        $result = editLabSlot($_POST['updateid'], $_POST['course'], $_POST['stime'], $_POST['etime'], $_POST['date'], $_POST['isoneday'], $_POST['oneday']);
+        if ($result === true)
+            header("Location: ../pages/labslots.php?success=2");
+        else
+            header("Location: ../pages/addnewlabslot.php?error=$result&lab={$_POST['lab']}");
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_GET['delete_id'])) {
+        $result = deleteLabSlot($_GET['delete_id']);
+        if ($result === true)
+            header("Location: ../pages/labslots.php?success=1");
+        else
+            header("Location: ../pages/labslots.php?error=$result");
     }
 }

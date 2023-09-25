@@ -50,6 +50,7 @@ $labslots = getLabSlotsAll();
                                 <th>Lab Day</th>
                                 <th>Lab Time Slot</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,7 +62,8 @@ $labslots = getLabSlotsAll();
                                         <td><?= $slot['course'] ?></td>
                                         <td><?= getDatebyIndex($slot['date']) ?></td>
                                         <td><?= substr($slot['start'], 0, 5) . ' - ' . substr($slot['end'], 0, 5) ?></td>
-                                        <td><a href="#">Edit</a> </td>
+                                        <td><a href="/pages/addnewlabslot.php?id=<?= $slot['slot_id'] ?>&lab=lab1" role="button">Edit</a> </td>
+                                        <td><a href="/backend/labslots.php?delete_id=<?= $slot['slot_id'] ?>" role="button">Delete</a> </td>
                                     </tr>
                                 <?php }; ?>
                             <?php } ?>
@@ -85,6 +87,7 @@ $labslots = getLabSlotsAll();
                                 <th>Lab Day</th>
                                 <th>Lab Time Slot</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -97,6 +100,7 @@ $labslots = getLabSlotsAll();
                                         <td><?= getDatebyIndex($slot['date']) ?></td>
                                         <td><?= substr($slot['start'], 0, 5) . ' - ' . substr($slot['end'], 0, 5) ?></td>
                                         <td><a href="#">Edit</a> </td>
+                                        <td><a href="/backend/labslots.php?delete_id=<?= $slot['slot_id'] ?>" role="button">Delete</a> </td>
                                     </tr>
                                 <?php }; ?>
                             <?php } ?>
@@ -120,6 +124,7 @@ $labslots = getLabSlotsAll();
                                 <th>Lab Day</th>
                                 <th>Lab Time Slot</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -132,6 +137,7 @@ $labslots = getLabSlotsAll();
                                         <td><?= getDatebyIndex($slot['date']) ?></td>
                                         <td><?= substr($slot['start'], 0, 5) . ' - ' . substr($slot['end'], 0, 5) ?></td>
                                         <td><a href="#">Edit</a> </td>
+                                        <td><a href="/backend/labslots.php?delete_id=<?= $slot['slot_id'] ?>" role="button">Delete</a> </td>
                                     </tr>
                                 <?php }; ?>
                             <?php } ?>
@@ -155,6 +161,7 @@ $labslots = getLabSlotsAll();
                                 <th>Lab Day</th>
                                 <th>Lab Time Slot</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -167,6 +174,7 @@ $labslots = getLabSlotsAll();
                                         <td><?= getDatebyIndex($slot['date']) ?></td>
                                         <td><?= substr($slot['start'], 0, 5) . ' - ' . substr($slot['end'], 0, 5) ?></td>
                                         <td><a href="#">Edit</a> </td>
+                                        <td><a href="/backend/labslots.php?delete_id=<?= $slot['slot_id'] ?>" role="button">Delete</a> </td>
                                     </tr>
                                 <?php }; ?>
                             <?php } ?>
