@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./previousevents.css";
 
 export default function PreviousEvents() {
@@ -25,15 +25,22 @@ export default function PreviousEvents() {
     }
   ];
 
-  const [openAccordion, setOpenAccordion] = useState<number | null>(null);
+  const [openAccordion, setOpenAccordion] = useState<number>(0); // Change null to 0
 
   const toggleAccordion = (index: number) => {
-    if (openAccordion === index) {
-      setOpenAccordion(null);
-    } else {
-      setOpenAccordion(index);
-    }
+    setOpenAccordion(index);
   };
+
+  useEffect(() => {
+    const autoToggleAccordion = () => {
+      const nextIndex = (openAccordion + 1) % accordionItems.length;
+      setOpenAccordion(nextIndex);
+    };
+
+    const intervalId = setInterval(autoToggleAccordion, 10000); // Change to 10000 milliseconds (10 seconds)
+
+    return () => clearInterval(intervalId);
+  }, [openAccordion, accordionItems.length]);
 
   return (
     <div className="accordion">
