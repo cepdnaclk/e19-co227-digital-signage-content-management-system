@@ -7,6 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/users.css">
     <title>IT Center | Users</title>
+    
+    <script> //display relevent data on hovering
+       
+        document.addEventListener("DOMContentLoaded", function () {
+            const superAdminRole = document.getElementById("super-admin-role");
+            const adminRole = document.getElementById("admin-role");
+            const coordinatorRole = document.getElementById("coordinator-role");
+            const allUsers = document.querySelector(".all-users");
+
+            superAdminRole.addEventListener("mouseenter", function () {
+            // Hide all user data except Super Admin
+            document.querySelector(".super-admin").style.display = "block";
+            document.querySelector(".admins").style.display = "none";
+            document.querySelector(".coordinators").style.display = "none";
+            });
+
+        adminRole.addEventListener("mouseenter", function () {
+            // Hide all user data except Admins
+            document.querySelector(".super-admin").style.display = "none";
+            document.querySelector(".admins").style.display = "block";
+            document.querySelector(".coordinators").style.display = "none";
+            });
+
+        coordinatorRole.addEventListener("mouseenter", function () {
+            // Hide all user data except Coordinators
+            document.querySelector(".super-admin").style.display = "none";
+            document.querySelector(".admins").style.display = "none";
+            document.querySelector(".coordinators").style.display = "block";
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -28,7 +59,7 @@
 
                     <!-- User Role Icons and Counts -->
                     <div class="user-roles">
-                        <div class="user-role">
+                        <div class="user-role" id="super-admin-role">
                             <div class="user-icon">
                                 <img src="../images/superadmin.svg" alt="Superadmin Icon">
                             </div>
@@ -38,7 +69,7 @@
                             </div>
                             <div class="user-count">1</div>
                         </div>
-                        <div class="user-role">
+                        <div class="user-role" id="admin-role">
                             <div class="user-icon">
                                 <img src="../images/admin.svg" alt="Admin Icon">
                             </div>
@@ -48,7 +79,7 @@
                             </div>
                             <div class="user-count">5</div>
                         </div>
-                        <div class="user-role">
+                        <div class="user-role" id="coordinator-role">
                             <div class="user-icon">
                                 <img src="../images/coordinator.svg" alt="Coordinator Icon">
                             </div>
@@ -59,10 +90,39 @@
                             <div class="user-count">10</div>
                         </div>
                     </div>
+                    <!-- Display all users-->
+                    <div class="all-users">
+                        <div class="super-admin">
+                            <h3>Super Admin</h3>
+                            <p>Fname Lname</p>
+                        </div>
+
+                        <div class="admins">
+                            <h3>Admins</h3>
+                            <ul>
+                                <li>Admin 1</li>
+                                <li>Admin 2</li>
+                                <li>Admin 3</li>
+                            <!-- Add more users as needed -->
+                        </ul>
+                        </div>
+
+                        <div class="coordinators">
+                            <h3>Coordinators</h3>
+                            <ul>
+                                <li>Coordinator 1</li>
+                                <li>Coordinator 2</li>
+                                <li>Coordinator 3</li>
+                            <!-- Add more users as needed -->
+                        </ul>
+                        </div>
+
+                    </div>
                 </div>
             </main>
         </div>
     </div>
+   
 </body>
 
 </html>

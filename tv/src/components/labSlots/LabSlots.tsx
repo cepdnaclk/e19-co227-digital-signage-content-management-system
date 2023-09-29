@@ -1,10 +1,10 @@
-// LabSlots.tsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./labslots.css";
-import "./slot";
 import Slot from "./slot";
+import axios from "axios";
 
 const LabSlots: React.FC = () => {
+  const [data, setData] = useState([]);
   const timeSlots: string[] = [
     "08.00-09.00",
     "09.00-10.00",
@@ -17,39 +17,57 @@ const LabSlots: React.FC = () => {
     "16.00-17.00",
   ];
 
-  type allocation = {
-    lab: number;
-    start: string;
-    end: string;
-    name: string;
+  useEffect(() => {
+    const today = new Date();
+    const dayIndex = today.getDay();
+    const adjustedDayIndex = (dayIndex + 6) % 7;
+
+    axios
+      .get(
+        `http://localhost:8000/backend/labslots.php?today=${adjustedDayIndex}`
+      )
+      .then((res) => {
+        // Assuming the API response is an array
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const labMapping = {
+    lab1: 1,
+    lab2: 2,
+    ccna: 3,
+    sr: 4,
   };
 
-  const allocations: allocation[] = [
-    {
-      lab: 1,
-      start: "13.30",
-      end: "17.00",
-      name: "CCSIP",
-    },
-    {
-      lab: 2,
-      start: "08.00",
-      end: "12.00",
-      name: "Embeded Systems",
-    },
-    {
-      lab: 3,
-      start: "10.00",
-      end: "14.55",
-      name: "CCNA",
-    },
-    {
-      lab: 4,
-      start: "10.00",
-      end: "11.00",
-      name: "Web Development",
-    },
-  ];
+  const convertTimeFormat = (timeString: string): string => {
+    // Split the input time string by ':' to get hours and minutes
+    const timeParts: string[] = timeString.split(":");
+
+    // Ensure we have at least hours and minutes
+    if (timeParts.length >= 2) {
+      // Extract hours and minutes
+      const hours = timeParts[0];
+      const minutes = timeParts[1];
+
+      // Combine hours and minutes with a dot separator
+      const formattedTime: string = `${hours}.${minutes}`;
+
+      return formattedTime;
+    } else {
+      // Return the original string if it doesn't match the expected format
+      return timeString;
+    }
+  };
+
+  const allocations = data.map((item) => ({
+    lab: labMapping[item.lab] ?? null,
+    start: convertTimeFormat(item.start),
+    end: convertTimeFormat(item.end),
+    name: item.course,
+  }));
 
   return (
     <div className="labslots">

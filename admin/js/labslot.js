@@ -1,8 +1,7 @@
-const dates = document.querySelectorAll(".timetable .day");
-const dateCaption = document.querySelectorAll(".timetable .day .date");
-const dateColHeight =
-  dates[0].getBoundingClientRect().height -
-  dateCaption[0].getBoundingClientRect().height;
+const dates = document.querySelectorAll(".timetable");
+const dateCaption = document.querySelectorAll(".timetable .date");
+const captionHeight = dateCaption[0].getBoundingClientRect().height;
+const dateColHeight = dates[0].getBoundingClientRect().height - captionHeight;
 
 const baseStartTime = new Date();
 baseStartTime.setHours(8, 0, 0);
@@ -29,6 +28,22 @@ const calHeight = (start, end) => {
   return (timeDifference / totalTimeSpan) * dateColHeight;
 };
 
+const findGridRow = (start) => {
+  const startTimeParts = start.split(":");
+
+  const startTime = new Date();
+  startTime.setHours(
+    parseInt(startTimeParts[0]),
+    parseInt(startTimeParts[1]),
+    0
+  );
+
+  const timeDifference = startTime - baseStartTime;
+  const totalTimeSpan = baseEndTime - baseStartTime;
+
+  return Math.floor(((timeDifference / totalTimeSpan) * dateColHeight) / 50);
+};
+
 const calTop = (start) => {
   const startTimeParts = start.split(":");
 
@@ -42,10 +57,7 @@ const calTop = (start) => {
   const timeDifference = startTime - baseStartTime;
   const totalTimeSpan = baseEndTime - baseStartTime;
 
-  return (
-    (timeDifference / totalTimeSpan) * dateColHeight +
-    dateCaption[0].getBoundingClientRect().height
-  );
+  return ((timeDifference / totalTimeSpan) * dateColHeight) % 50;
 };
 
 function convertTimeFormat(timeString) {
@@ -68,21 +80,20 @@ function convertTimeFormat(timeString) {
   }
 }
 
-const labslot = (id, date, start, end, course) => {
-  let labSlot = document.getElementById(id);
-  if (!labSlot) {
-    labSlot = document.createElement("div");
-    labSlot.classList.add("labslot");
-    labSlot.id = id;
-    const h3 = document.createElement("h3");
-    h3.textContent = course;
-    const p = document.createElement("p");
-    p.textContent = `${convertTimeFormat(start)} - ${convertTimeFormat(end)}`;
-    labSlot.appendChild(h3);
-    labSlot.appendChild(p);
-    dates[date].appendChild(labSlot);
-  }
+const selectedTimeAsDate = (time) => {
+  const [hours, minutes] = time.split(":");
+  const timeAsDate = new Date();
+  timeAsDate.setHours(parseInt(hours), parseInt(minutes), 0, 0);
 
-  labSlot.style.height = `${calHeight(start, end)}px`;
-  labSlot.style.top = `${calTop(start)}px`;
+  return timeAsDate;
+};
+
+const clipTime = (newTime, lowerBound, upperBound) => {
+  const start = selectedTimeAsDate(lowerBound);
+  const end = selectedTimeAsDate(upperBound);
+  const nowTime = selectedTimeAsDate(newTime);
+
+  if (start > nowTime) return lowerBound;
+  if (end < nowTime) return upperBound;
+  else return newTime;
 };
