@@ -28,7 +28,7 @@
                         <a href="/pages/addnewevent.php"><img src="../images/Add_round.svg" alt=""> Add Event</a>
                     </div>
                     <div class="card-container">                           
-                        <?php include_once "../backend/display_events.php"; ?> 
+                        <?php include_once "../backend/display_upcoming_events.php"; ?> 
                     </div>
                 </div>
             </main>
