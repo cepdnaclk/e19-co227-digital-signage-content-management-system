@@ -23,9 +23,12 @@
             <div class="add-events">
                 <h2>Add New Event</h2>
                 <div class="form-container">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="../backend/upcomingevents.php" method="POST" enctype="multipart/form-data">
                         <label for="e_img">Select an Image:</label>
                         <input type="file" name="e_img" id="e_img" required>
+                        <br><br>
+                        <label for="e_name">Name:</label>
+                        <input type="text" name="e_name" id="e_name">
                         <br><br>
                         <label for="e_date">Date:</label>
                         <input type="date" name="e_date" id="e_date">
