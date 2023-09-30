@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $added_by = 1; // Change this value as needed
 
         // File upload handling
-        $targetDirectory = "../images/upcoming-event-posters"; //  store uploaded images
+        $targetDirectory = "../images/upcoming-event-posters/"; //  store uploaded images
         $targetFile = $targetDirectory . basename($_FILES["e_img"]["name"]);
 
         // Check if the file is an image
