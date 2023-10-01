@@ -23,7 +23,11 @@ if (mysqli_num_rows($result) > 0) {
         // Card actions with icons
         echo "<div class='card-actions'>";
         echo "<button class='edit-button'><span class='icon'>&#9998;</span>Edit</button>";
-        echo "<button class='delete-button'><span class='icon'>&#128465;</span>Delete</button>";
+        echo "<form method='POST' action='../backend/delete_event.php'>";
+        echo "<input type='hidden' name='event_id' value='" . $row["e_id"] . "'>";
+        echo "<button type='submit' class='delete-button' name='delete_event' onclick='confirmDelete(this)'><span class='icon'>&#128465;</span>Delete</button>";
+        //Add a delete confirmation popup
+        echo "</form>";
         echo "</div>";
         echo "</div>";
     }
@@ -31,6 +35,32 @@ if (mysqli_num_rows($result) > 0) {
     echo "No events found.";
 }
 
+
 // Close the database connection
 mysqli_close($conn);
 ?>
+
+<!-- <html>
+    <head>
+
+    </head>
+
+    <body>
+        <div class='confirm-delete'>
+        <script>
+            function confirmDelete(button) {
+                if (confirm("Are you sure you want to delete this event?")) {
+                    // Get the form that the button is inside of
+                    const form = button.closest("form");
+
+                    // Submit the form
+                    form.submit();
+                   
+                } else {
+                // If the user cancels, do nothing
+                }
+            }
+        </script>
+        </div>
+    </body>
+</html> -->

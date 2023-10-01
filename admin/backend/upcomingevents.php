@@ -29,17 +29,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             if (move_uploaded_file($_FILES["e_img"]["tmp_name"], $targetFile)) {
 
-
                 // Prepare and execute the SQL query to insert data into the 'upcoming_event' table
                 $sql = "INSERT INTO upcoming_event (e_name,e_date, e_time, e_venue, e_img, display_from, display_to, added_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = mysqli_prepare($conn, $sql);
-
 
                 // Bind parameters
                 mysqli_stmt_bind_param($stmt, "sssssssi", $e_name, $e_date, $e_time, $e_venue, $targetFile, $display_from, $display_to, $added_by);
 
                 if (mysqli_stmt_execute($stmt)) {
-                    echo "Event added successfully.";
+                    // Event added successfully, trigger popup
+                    echo '<script>alert("Event added successfully");</script>';
+
                 } else {
                     echo "Error: " . mysqli_error($conn);
                 }
@@ -52,7 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     } else {
-        echo "'event_image' ,'display_from' and 'display_to' are required fields";
+        echo "'event_image', 'display_from', and 'display_to' are required fields";
     }
 }
+header("Location: ../pages/upcomingevents.php?success=true");
+exit();
 ?>
