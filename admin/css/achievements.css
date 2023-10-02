@@ -13,7 +13,7 @@
 /* Style the card */
 .achievements .card {
   width: 100%;
-  height: 320px;
+  height: 400px;
   border-radius: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -31,10 +31,10 @@
 
 /* Style the card image */
 .achievements .card img {
-  padding: 5%;
-  width: auto;
-  height: 60%;
-  object-fit: scale-down;
+  padding: 5% 5% 0% 5%;
+  width: 100%;
+  height: 200px; /* Set the desired height for the images */
+  object-fit: cover; /* You can use "cover" or "contain" as per your preference */
 }
 
 /* Style the card content */
@@ -46,25 +46,50 @@
 }
 
 .achievements .card-title {
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   font-weight: 500;
 }
 
-.achievements .card-text {
-  font-size: 0.85rem;
-  font-weight: 600 !important;
-  color: var(--color-1);
+.achievements .card-description {
+  margin-top: 5px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  max-height: 80px; /* Adjust this value as needed */
+  overflow: auto; /* Enable scroll for overflowed content */
+}
+
+/* Adjust the height to accommodate the scroll bar if needed */
+.achievements .card-description.overflowed {
+  max-height: 60px; /* Same as the initial max-height value */
+}
+
+/* Adjust scrollbar width */
+.achievements .card-description::-webkit-scrollbar {
+  width: 6px; /* Adjust the width as needed */
+}
+
+/* Track */
+.achievements .card-description::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+}
+
+/* Handle */
+.achievements .card-description::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb/handle */
+  border-radius: 3px; /* Rounded corners for the thumb */
 }
 
 /* Style the card actions (buttons) */
 .achievements .card-actions {
   display: flex;
-  justify-content: center;
-  gap: 0.5rem;
+  justify-content: center; /* Distribute buttons horizontally */
+  align-items: center; /* Vertically align buttons */
   padding: 10px 20px;
   background: #f0f0f0;
+  gap: 0.5rem;
 }
 
+/* Style the edit and delete buttons */
 .achievements .edit-button,
 .achievements .delete-button {
   padding: 8px 16px;
@@ -79,6 +104,19 @@
   transition: 0.5s all ease;
 }
 
+.achievements .default-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-color: #ffffff;
+  height: 100%;
+  width: 100%;
+  background: rgb(255, 255, 255) url("../images/add.png");
+  background-size: 100%;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+}
 .achievements .edit-button {
   background-color: var(--color-4);
 }

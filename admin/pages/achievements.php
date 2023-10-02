@@ -25,7 +25,7 @@
                 <div class="container">
                     <div class="title">
                         <h1>Achievements</h1>
-                        <a href="/pages/addnewevent.php"><img src="../images/Add_round.svg" alt=""> Add Achievement</a>
+                        <a href="/pages/addachievement.php"><img src="../images/Add_round.svg" alt=""> Add Achievement</a>
                     </div>
                     <div class="card-container">
                         <!-- Card 1 -->
@@ -33,10 +33,7 @@
                             <img src="../images/achievements-posters/image-1.png" alt="Add Event Image">
                             <div class="card-content">
                                 <h2 class="card-title">National ICT Award Winner</h2>
-                                <!-- <p class="card-date">2023/09/20 at 9.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p> -->
+                                <p class="card-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                             </div>
                             <!-- Card actions with icons -->
                             <div class="card-actions">
@@ -51,10 +48,7 @@
                             <img src="../images/achievements-posters/image-2.png" alt="Add Event Image">
                             <div class="card-content">
                                 <h2 class="card-title">Epic Lanka ICT Award Winner</h2>
-                                <!-- <p class="card-date">2023/09/21 at 11.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p> -->
+                                <p class="card-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                             </div>
                             <!-- Card actions with icons -->
                             <div class="card-actions">
