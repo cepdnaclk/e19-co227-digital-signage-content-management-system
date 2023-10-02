@@ -23,10 +23,9 @@ if (mysqli_num_rows($result) > 0) {
         // Card actions with icons
         echo "<div class='card-actions'>";
         echo "<button class='edit-button'><span class='icon'>&#9998;</span>Edit</button>";
-        echo "<form method='POST' action='../backend/delete_event.php'>";
-        echo "<input type='hidden' name='event_id' value='" . $row["e_id"] . "'>";
-        echo "<button type='submit' class='delete-button' name='delete_event' onclick='confirmDelete(this)'><span class='icon'>&#128465;</span>Delete</button>";
-        //Add a delete confirmation popup
+
+        echo  '<button class="delete-button"><span class="icon">&#128465;</span><a href="../backend/delete_event.php?delete_id=' . $row['e_id'] . '">Delete</a></button>';
+
         echo "</form>";
         echo "</div>";
         echo "</div>";
@@ -34,7 +33,6 @@ if (mysqli_num_rows($result) > 0) {
 } else {
     echo "No events found.";
 }
-
 
 // Close the database connection
 mysqli_close($conn);
