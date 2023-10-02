@@ -1,49 +1,60 @@
 <?php
 include_once "../config.php";
 
-// Function to add a new previous event
-function addPreviousEvent($eventName, $eventImage, $displayFrom, $displayTo, $addedBy)
-{
-    global $conn;
-    $stmt = $conn->prepare("INSERT INTO previous_event (p_name, p_img, display_from, display_to, added_by) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssi", $eventName, $eventImage, $displayFrom, $displayTo, $addedBy);
-    if ($stmt->execute()) {
-        return true;
-    } else {
-        return false;
-    }
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if the form fields are set and not empty
+    if (
+        isset($_POST["display_from"]) &&
+        isset($_POST["display_to"]) &&
+        isset($_FILES["e_img"])
+    ) {
+        // Get form data
+        $e_name = $_POST["e_name"];
+        $e_date = $_POST["e_date"];
+        $e_time = $_POST["e_time"];
+        $e_venue = $_POST["e_venue"];
+        $display_from = $_POST["display_from"];
+        $display_to = $_POST["display_to"];
+        // Assuming 'added_by' is the user's ID, replace this with the actual user ID
+        $added_by = 1; // Change this value as needed
 
-// Function to get a list of previous events
-function getPreviousEvents()
-{
-    global $conn;
-    $result = [];
-    $query = "SELECT * FROM previous_event";
-    $res = $conn->query($query);
-    if ($res->num_rows > 0) {
-        while ($row = $res->fetch_assoc()) {
-            $result[] = $row;
+        // File upload handling
+        $targetDirectory = "../images/previous-event-posters/"; //  store uploaded images
+        $targetFile = $targetDirectory . basename($_FILES["e_img"]["name"]);
+
+        // Check if the file is an image
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+            echo "Only JPG, JPEG, and PNG files are allowed.";
+        } else {
+            if (move_uploaded_file($_FILES["e_img"]["tmp_name"], $targetFile)) {
+
+                // Prepare and execute the SQL query to insert data into the 'upcoming_event' table
+                $sql = "INSERT INTO upcoming_event (e_name,e_date, e_time, e_venue, e_img, display_from, display_to, added_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                $stmt = mysqli_prepare($conn, $sql);
+
+                // Bind parameters
+                mysqli_stmt_bind_param($stmt, "sssssssi", $e_name, $e_date, $e_time, $e_venue, $targetFile, $display_from, $display_to, $added_by);
+
+                if (mysqli_stmt_execute($stmt)) {
+                    // Event added successfully, trigger popup
+                    echo '<script>alert("Event added successfully");</script>';
+
+                } else {
+                    echo "Error: " . mysqli_error($conn);
+                }
+
+                // Close the statement and database connection
+                mysqli_stmt_close($stmt);
+                mysqli_close($conn);
+            } else {
+                echo "Error uploading the image.";
+            }
         }
-    }
-    return $result;
-}
-
-// Handle adding a new previous event
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_event"])) {
-    $eventName = $_POST["event_name"];
-    $eventImage = $_POST["event_image"]; // You can handle file upload here
-    $displayFrom = $_POST["display_from"];
-    $displayTo = $_POST["display_to"];
-    $addedBy = $_SESSION["userId"];
-
-    if (addPreviousEvent($eventName, $eventImage, $displayFrom, $displayTo, $addedBy)) {
-        header("Location: previousevents.php?success=1");
     } else {
-        header("Location: previousevents.php?error=1");
+        echo "'event_image', 'display_from', and 'display_to' are required fields";
     }
 }
-
-// Get a list of previous events
-$previousEvents = getPreviousEvents();
+header("Location: ../pages/previousevents.php?success=true");
+exit();
 ?>

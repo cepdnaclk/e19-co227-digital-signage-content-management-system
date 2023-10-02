@@ -48,14 +48,15 @@ img {
 
 .image-title {
   background-color: var(--color-1);
-  font-size: 50px; 
+  font-size: 60px; 
+  font-weight: 500;
   margin-top: 0px;
   color: #fff;
   padding: 15px 100px;
   text-align: center;
   width: 89.2%;
   margin-left: 100px;
-  max-height: 100px;
+  height: 100px;
 }
 
 .image-controls button {

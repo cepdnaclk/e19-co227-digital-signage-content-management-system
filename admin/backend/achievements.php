@@ -1,55 +1,60 @@
 <?php
 include_once "../config.php";
 
-// Function to add a new achievement
-function addAchievement($achievementName, $imagePath, $displayFrom, $displayTo, $addedBy)
-{
-    global $conn;
-    $stmt = $conn->prepare("INSERT INTO achievement (a_name, a_img, display_from, display_to, added_by) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $achievementName, $imagePath, $displayFrom, $displayTo, $addedBy);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if the form fields are set and not empty
+    if (
+        isset($_POST["display_from"]) &&
+        isset($_POST["display_to"]) &&
+        isset($_FILES["e_img"])
+    ) {
+        // Get form data
+        $e_name = $_POST["e_name"];
+        $e_date = $_POST["e_date"];
+        $e_time = $_POST["e_time"];
+        $e_venue = $_POST["e_venue"];
+        $display_from = $_POST["display_from"];
+        $display_to = $_POST["display_to"];
+        // Assuming 'added_by' is the user's ID, replace this with the actual user ID
+        $added_by = 1; // Change this value as needed
 
-    if ($stmt->execute()) {
-        return true;
+        // File upload handling
+        $targetDirectory = "../images/achievements-posters/"; //  store uploaded images
+        $targetFile = $targetDirectory . basename($_FILES["e_img"]["name"]);
+
+        // Check if the file is an image
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+            echo "Only JPG, JPEG, and PNG files are allowed.";
+        } else {
+            if (move_uploaded_file($_FILES["e_img"]["tmp_name"], $targetFile)) {
+
+                // Prepare and execute the SQL query to insert data into the 'upcoming_event' table
+                $sql = "INSERT INTO upcoming_event (e_name,e_date, e_time, e_venue, e_img, display_from, display_to, added_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                $stmt = mysqli_prepare($conn, $sql);
+
+                // Bind parameters
+                mysqli_stmt_bind_param($stmt, "sssssssi", $e_name, $e_date, $e_time, $e_venue, $targetFile, $display_from, $display_to, $added_by);
+
+                if (mysqli_stmt_execute($stmt)) {
+                    // Event added successfully, trigger popup
+                    echo '<script>alert("Event added successfully");</script>';
+
+                } else {
+                    echo "Error: " . mysqli_error($conn);
+                }
+
+                // Close the statement and database connection
+                mysqli_stmt_close($stmt);
+                mysqli_close($conn);
+            } else {
+                echo "Error uploading the image.";
+            }
+        }
     } else {
-        return false;
+        echo "'event_image', 'display_from', and 'display_to' are required fields";
     }
 }
-
-// Function to retrieve all achievements
-// function getAllAchievements()
-// {
-//     global $conn;
-//     $achievements = array();
-
-//     $stmt = $conn->prepare("SELECT a_id, a_name, a_img, display_from, display_to FROM achievement");
-//     $stmt->execute();
-//     $stmt->bind_result($achievementId, $achievementName, $imagePath, $displayFrom, $displayTo);
-
-//     while ($stmt->fetch()) {
-//         $achievements[] = array(
-//             'id' => $achievementId,
-//             'name' => $achievementName,
-//             'image' => $imagePath,
-//             'display_from' => $displayFrom,
-//             'display_to' => $displayTo
-//         );
-//     }
-
-//     return $achievements;
-// }
-
-// Handle adding a new achievement
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addAchievement"])) {
-    $achievementName = $_POST["achievementName"];
-    $imagePath = $_POST["imagePath"]; // You should handle image uploads securely
-    $displayFrom = $_POST["displayFrom"];
-    $displayTo = $_POST["displayTo"];
-    $addedBy = $_POST["addedBy"];
-
-    if (addAchievement($achievementName, $imagePath, $displayFrom, $displayTo, $addedBy)) {
-        header("Location: achievements.php?success=1");
-    } else {
-        header("Location: achievements.php?error=1");
-    }
-}
+header("Location: ../pages/previousevents.php?success=true");
+exit();
 ?>

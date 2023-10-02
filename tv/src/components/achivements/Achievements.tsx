@@ -9,6 +9,15 @@ import img6 from "../../assets/achievements-posters/img-2.png";
 
 const images = [img1, img2, img3, img4, img5, img6]; // Add more images as needed
 
+const imageTitles = [
+  "National ICT Award Winner",
+  "Epic Lanka Award Winner",
+  "National ICT Award Winner",
+  "Epic Lanka Award Winner",
+  "National ICT Award Winner",
+  "Epic Lanka Award Winner",
+];
+
 export default function Achievements() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -36,9 +45,10 @@ export default function Achievements() {
 
   return (
     <div className="achievements-container">
-      
       <div className="image-controls">
-          <button className="left" onClick={handlePrevImage}>&lt;</button>
+        <button className="left" onClick={handlePrevImage}>
+          &lt;
+        </button>
       </div>
       <div className="center-image">
         <img
@@ -46,18 +56,24 @@ export default function Achievements() {
           alt={`Achievement ${currentImageIndex + 1}`}
         />
         <div className="image-title">
-          {/* <img src={img} alt="Logo" className="logo-image" />  */}
-          Achievement {currentImageIndex + 1}
+          {imageTitles[currentImageIndex]}
         </div>
+        {/* <div className="image-text">
+          This is the text below the title of the middle image.
+        </div> */}
       </div>
       <div className="image-controls">
-          <button className="right" onClick={handleNextImage}>&gt;</button>
+        <button className="right" onClick={handleNextImage}>
+          &gt;
+        </button>
       </div>
       <div className="image-list">
         {images.map((image, index) => (
           <div
             key={index}
-            className={`image-item ${currentImageIndex === index ? "active" : ""}`}
+            className={`image-item ${
+              currentImageIndex === index ? "active" : ""
+            }`}
           >
             <img src={image} alt={`Achievement ${index + 1}`} />
           </div>
