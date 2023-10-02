@@ -21,11 +21,11 @@
             <span>Need help? <a href="">Contact us</a></span>
         </div>
         <div class="content">
-            <form action="">
+            <form action="../backend/login.php" method="POST">
                 <h1>Login</h1>
                 <div class="login-input">
                     <label for="uname">Username</label>
-                    <input type="text" id="uname" placeholder="Joen Doe">
+                    <input type="text" id="uname" placeholder="John Doe">
                 </div>
                 <div class="login-input">
                     <label for="password">Password</label>
