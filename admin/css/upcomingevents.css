@@ -91,3 +91,8 @@
 .upcomingevents .delete-button:hover {
   filter: brightness(1.2);
 }
+
+.delete-button a{
+  
+  color: inherit;
+}

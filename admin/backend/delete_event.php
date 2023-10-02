@@ -1,9 +1,9 @@
 <?php
 include_once "../config.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_event"])) {
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Get the event ID from the form submission
-    $event_id = $_POST["event_id"];
+    $event_id = $_GET["delete_id"];
 
     // Delete the event from the 'upcoming_event' table
     $sql = "DELETE FROM upcoming_event WHERE e_id = ?";
