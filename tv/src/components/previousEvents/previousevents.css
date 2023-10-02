@@ -1,55 +1,43 @@
-.accordion {
-  width: 100%;
-  max-width: 2500px; 
-  margin: 100px; 
-  padding: 10px;
-}
-
-.header {
-  font-size: 60px;
-  margin-bottom: 75px;
-  font-weight: 500;
-  margin-left: 10px;
-}
-
-.accordion-item {
-  border: 1px solid #ccc;
-  margin-bottom: 50px;
-  border-radius: 5px;
-}
-
-.accordion-header {
+/* previousevents.css */
+.card-container {
   display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  padding: 10px;
-  background-color: #f2f2f2;
-  border-bottom: 1px solid #ccc;
+  justify-content: center; /* Center cards horizontally */
+  align-items: center; /* Center cards vertically */
+  padding: 10px; /* Increase the padding */
+  margin: 150px 100px;
+  gap: 100px;
 }
 
-.accordion-title {
-  font-weight: 600;
+.card {
+  border: none; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 45%; /* Adjust the width as needed */
+  height: 1400px; /* Allow the card to take full height */
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: last baseline;
+  text-align: left;
+  border-radius: 25px;
+}
+
+.card-image {
+  height: 800px; /* Set a fixed height for the image */
+  width: auto; /* Allow the image to adjust its width while maintaining aspect ratio */
+  max-width: 100%; /* Ensure the image doesn't exceed the card's width */
+}
+
+.card-title {
   font-size: 50px;
-  margin: 20px;
-  padding: 20px 0 20px 20px;
+  margin: 40px 0 20px 0; ;
+  text-align: left;
 }
 
-.icon {
-  font-size: 100px;
-  padding: 20px 80px;
-}
-
-.icon.open {
-  transform: rotate(45deg);
-}
-
-.accordion-content {
+.card-description {
   font-size: 40px;
-  padding: 10px;
-  display: none;
-  padding: 20px;
+  text-align: left;
+  overflow-y: auto; /* Add vertical scroll if content overflows */
+  max-height: 335px; /* Set a maximum height for the scrollable area */
 }
 
-.accordion-content.active {
-  display: block;
-}
+
