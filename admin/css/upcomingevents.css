@@ -92,7 +92,7 @@
   filter: brightness(1.2);
 }
 
-.delete-button a{
+.delete-button a, .edit-button a{
   
   color: inherit;
 }

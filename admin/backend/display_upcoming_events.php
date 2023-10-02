@@ -22,7 +22,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "</div>";
         // Card actions with icons
         echo "<div class='card-actions'>";
-        echo "<button class='edit-button'><span class='icon'>&#9998;</span>Edit</button>";
+        echo '<button class="edit-button"><span class="icon">&#9998;</span><a href="editevent.php?edit_id=' . $row['e_id'] . '">Edit</a></button>';
 
         echo  '<button class="delete-button"><span class="icon">&#128465;</span><a href="../backend/delete_event.php?delete_id=' . $row['e_id'] . '">Delete</a></button>';
 
