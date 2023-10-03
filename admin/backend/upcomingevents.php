@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (
         isset($_POST["display_from"]) &&
         isset($_POST["display_to"]) &&
-        isset($_FILES["e_img"])
+        isset($_FILES["e_img"]) 
     ) {
         // Get form data
         $e_name = $_POST["e_name"];
