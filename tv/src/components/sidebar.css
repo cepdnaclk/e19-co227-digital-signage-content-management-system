@@ -28,16 +28,24 @@ nav li a {
   border-radius: 2rem;
   transition: 0.5s all;
   font-size: 3rem;
+  text-decoration: none;
 }
 
 nav li img {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 4rem;
+  height: 4rem;
   margin-right: 2rem; /* Add some spacing between the logo and label */
+  opacity: 0.9;
 }
 
-nav li.selected {
+nav li a.selected {
   /* background-color: #f9db08; */
   background-color: #9d170e;
   color: white;
+  font-weight: 500;
+}
+
+nav li a.selected img {
+  filter: invert() brightness(5);
+  opacity: 1;
 }
