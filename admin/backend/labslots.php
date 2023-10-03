@@ -1,5 +1,6 @@
 <?php
 include_once "../config.php";
+include_once "../helpers/datetime.php";
 
 header("Access-Control-Allow-Origin: *");
 // Allow specific HTTP methods (e.g., GET, POST, OPTIONS)
@@ -33,7 +34,7 @@ function getLabSlots($lab, $monday, $sunday)
     return $labSlots;
 }
 
-function getLabSlotsToday($today)
+function getLabSlotsToday($today, $day)
 {
     global $conn;
 
@@ -161,8 +162,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             header("Location: ../pages/labslots.php?success=1");
         else
             header("Location: ../pages/labslots.php?error=$result");
-    } else if (isset($_GET['today'])) {
-        $result = getLabSlotsToday($_GET['today']);
+    } else if (isset($_GET['date'])) {
+        $index = getWeekIndex($_GET['date']);
+        $result = getLabSlotsToday($index, $_GET['date']);
 
         header('Content-Type: application/json');
         echo json_encode($result);

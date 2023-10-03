@@ -17,18 +17,24 @@ const LabSlots: React.FC = () => {
     "16.00-17.00",
   ];
 
+  const dateFormatter = (currentDate: Date): string => {
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+    const day = String(currentDate.getDate()).padStart(2, "0");
+
+    const formattedDate: string = `${year}-${month}-${day}`;
+    return formattedDate;
+  };
+
   useEffect(() => {
     const today = new Date();
-    const dayIndex = today.getDay();
-    const adjustedDayIndex = (dayIndex + 6) % 7;
+    const formattedDate = dateFormatter(today);
 
     axios
-      .get(
-        `http://localhost:8000/backend/labslots.php?today=${adjustedDayIndex}`
-      )
+      .get(`http://localhost:8000/backend/labslots.php?date=${formattedDate}`)
       .then((res) => {
-        // Assuming the API response is an array
-        setData(res.data);
+        console.log(res.data);
+        if (res.data.length >= 1) setData(res.data);
       })
       .catch((err) => {
         console.log(err);

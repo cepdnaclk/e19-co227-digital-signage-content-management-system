@@ -26,6 +26,15 @@ function getWeekDates(string $inputDate): array
     return $dateOfWeek;
 }
 
+function getWeekIndex(string $date): int
+{
+    $date = new DateTime($date);
+    $temp = $date->format("N");
+    if ($temp == 0) $index == 7;
+    else $index = $temp - 1;
+    return $index;
+}
+
 function getDatebyIndex(int $index): string
 {
     $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
