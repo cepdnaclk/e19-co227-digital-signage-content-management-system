@@ -1,5 +1,5 @@
 /* Reset default margin and padding */
-.add-events body,
+.add-previous-event body,
 h2,
 form {
   margin: 0;
@@ -7,17 +7,18 @@ form {
 }
 
 /* Center the entire form vertically and horizontally */
-.add-events .form-container {
+.add-previous-event .form-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   background-color: #f0f0f0; /* Set a background color */
+  margin: 0px;
 }
 
 /* Style the form container */
-.add-events form {
+.add-previous-event form {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
@@ -27,7 +28,7 @@ form {
 }
 
 /* Style form elements */
-.add-events h2 {
+.add-previous-event h2 {
   padding: 3%;
   color: #ffffff;
   font-size: 24px;
@@ -35,17 +36,16 @@ form {
   background-color: brown;
 }
 
-.add-events label {
+.add-previous-event label {
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
   color: #333333;
 }
 
-.add-events input[type="text"],
-.add-events input[type="number"],
-.add-events input[type="date"],
-.add-events input[type="time"] {
+.add-previous-event input[type="text"],
+.add-previous-event input[type="number"],
+.add-previous-event input[type="date"]{
   width: 100%;
   padding: 8px;
   margin-bottom: 15px;
@@ -53,7 +53,7 @@ form {
   border-radius: 4px;
 }
 
-.add-events input[type="file"] {
+.add-previous-event input[type="file"] {
   width: 100%;
   padding: 8px;
   margin-bottom: 15px;
@@ -62,7 +62,7 @@ form {
   background-color: #f9f9f9;
 }
 
-.add-events input[type="submit"] {
+.add-previous-event input[type="submit"] {
   background-color: #007bff;
   color: #fff;
   padding: 10px 20px;
@@ -75,7 +75,7 @@ form {
 }
 
 /* Style the uploaded image */
-.add-events img {
+.add-previous-event img {
   max-width: 100%;
   height: auto;
   margin-top: 20px;

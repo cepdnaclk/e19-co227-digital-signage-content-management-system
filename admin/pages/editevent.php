@@ -14,7 +14,18 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $event_venue= $row['e_venue'];
     $event_display_from= $row['display_from'];
     $event_display_to= $row['display_to'];
-    $event_img = $row['e_img']; // Assuming this contains the image path
+    $event_img = $row['e_img'];
+    if (file_exists($event_img)) {
+        // Attempt to delete the image file
+        if (unlink($event_img)) {
+            //echo "Image deleted successfully.";
+                
+        } else {
+            echo "Failed to delete the image.";
+        }
+    } else {
+        echo "Image file does not exist.";
+    }
     //Load the current image. Need debugging
     //$targetDirectory = "../images/upcoming-event-posters/"; // The directory where the images are stored
     //$targetFile = $targetDirectory . basename($event_img); // Full path to the image
@@ -51,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                         <input type="hidden" name="e_id" id="e_id" value= "<?php echo $event_id; ?>">
                         <br><br>
                         <label for="e_img">Select an Image:</label>
-                        <input type="file" name="e_img" id="e_img" value="<?php echo $event_img  ?>" required> <!--Debug -- Image path not loading to form-->
+                        <input type="file" name="e_img" id="e_img"  required> <!--Debug -- Image path not loading to form-->
                         <br><br>
                         <label for="e_name">Name:</label>
                         <input type="text" name="e_name" id="e_name" value= "<?php echo $event_name; ?>">
