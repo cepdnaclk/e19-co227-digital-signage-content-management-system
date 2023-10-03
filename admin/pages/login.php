@@ -1,7 +1,7 @@
-<?php include "../config.php" ?>
+<?php include_once "../config.php" ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,31 +11,32 @@
     <?php include APP_ROOT . "/includes/header_core.php" ?>
     <title>IT Center | Login</title>
 </head>
-
 <body>
     <div class="login">
         <div class="left">
             <h3>Admin Portal</h3>
             <h5>Information Technology Center - CMS</h5>
             <p>Welcome to the Admin Portal of the IT Center's Content Management System. Here you can manage and update all the content related to our center's services and offerings.</p>
-            <span>Need help? <a href="">Contact us</a></span>
+            <span>Need help? <a href="http://www.ceit.pdn.ac.lk/contact.php">Contact us</a></span>
         </div>
         <div class="content">
+            <!-- Corrected form action -->
             <form action="../backend/login.php" method="POST">
                 <h1>Login</h1>
                 <div class="login-input">
-                    <label for="uname">Username</label>
-                    <input type="text" id="uname" placeholder="John Doe">
+                    <!-- Corrected input field name attributes -->
+                    <label for="user_name">Username</label>
+                    <input type="text" id="user_name" name="user_name" placeholder="John Doe">
                 </div>
                 <div class="login-input">
+                    <!-- Corrected input field name attributes -->
                     <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="xxxxxxxx">
+                    <input type="password" id="password" name="password" placeholder="xxxxxxxx">
                 </div>
                 <p>Forgot your password? <a href="">Forgot Password</a></p>
-                <button type="submit">LOGIN</button>
+                <button type="submit" name="login">LOGIN</button>
             </form>
         </div>
     </div>
 </body>
-
 </html>

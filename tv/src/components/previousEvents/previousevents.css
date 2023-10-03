@@ -1,55 +1,56 @@
-.accordion {
-  width: 100%;
-  max-width: 2500px; 
-  margin: 100px; 
-  padding: 10px;
-}
+/* previousevents.css */
 
-.header {
-  font-size: 60px;
-  margin-bottom: 75px;
-  font-weight: 500;
-  margin-left: 10px;
-}
-
-.accordion-item {
-  border: 1px solid #ccc;
-  margin-bottom: 50px;
-  border-radius: 5px;
-}
-
-.accordion-header {
+.card-container {
   display: flex;
-  justify-content: space-between;
-  cursor: pointer;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
-  background-color: #f2f2f2;
-  border-bottom: 1px solid #ccc;
+  margin: 150px 100px;
+  gap: 100px;
+  transition: transform 0.5s ease-in-out; /* Add a smooth transition for card container */
+  overflow: hidden; /* Hide overflow content during transition */
 }
 
-.accordion-title {
-  font-weight: 600;
+.card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 45%;
+  height: 1400px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: last baseline;
+  text-align: left;
+  border-radius: 25px;
+  transition: transform 0.5s ease-in-out; /* Add a smooth transition for cards */
+  transform-origin: center center; /* Set the transform origin to the center for smooth scaling */
+}
+
+.card-image {
+  height: 800px;
+  width: auto;
+  max-width: 100%;
+  transition: transform 0.5s ease-in-out; /* Add a smooth transition for image scaling */
+}
+
+.card-title {
   font-size: 50px;
-  margin: 20px;
-  padding: 20px 0 20px 20px;
+  margin: 40px 0 20px 0;
+  text-align: left;
 }
 
-.icon {
-  font-size: 100px;
-  padding: 20px 80px;
-}
-
-.icon.open {
-  transform: rotate(45deg);
-}
-
-.accordion-content {
+.card-description {
   font-size: 40px;
-  padding: 10px;
-  display: none;
-  padding: 20px;
+  text-align: left;
+  overflow-y: auto;
+  max-height: 335px;
 }
 
-.accordion-content.active {
-  display: block;
+/* Add styles for hover effect */
+.card:hover {
+  transform: scale(1.05); /* Scale up the card on hover */
+}
+
+.card:hover .card-image {
+  transform: scale(1.1); /* Scale up the image on hover */
 }

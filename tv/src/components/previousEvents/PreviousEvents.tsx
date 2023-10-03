@@ -1,63 +1,56 @@
 import React, { useState, useEffect } from "react";
 import "./previousevents.css";
+import img1 from "../../assets/previous-events-posters/img1.jpg";
+import img2 from "../../assets/previous-events-posters/img2.jpg";
+import img3 from "../../assets/previous-events-posters/img3.jpg";
+import img4 from "../../assets/previous-events-posters/img4.jpg";
 
 export default function PreviousEvents() {
-  const accordionItems = [
+  const events = [
     {
-      title: "Providing technology support to the Ministry of Health - Central Province",
-      content: "Providing technology support for the Ministry of Health to improve computer network & the Internet facilities at the Ministry of Health- Central province."
+      title: "NBQSA -The National Best Quality Software Awards",
+      description: "NBQSA -The National Best Quality Software Awards. The awareness session for the University of Peradeniya was held on 16th June at the IT Center. This was organized by BCS- The charted institute for IT and University of Peradeniya. NBQSA has been recognizing and honoring individuals and organizations in Sri Lanka who have made notable contributions to the development of high-quality ICT products. The objective of the competition is to elevate local ICT product standards to meet international marketplace requirements.",
+      image: img1,
     },
     {
-      title: "Website for Department of Ophthalmology (Center for Sight), Teaching Hospital, Kandy",
-      content: "The IT Center designed and launched a web site for the Department of Ophthalmology (Center for Sight), Teaching Hospital, Kandy. This activity was carried out as a social service of the Center in 2009."
+      title: "6th International Conference on Industrial and Information Systems, ICIIS 2021",
+      description: "6th International Conference on Industrial and Information Systems, ICIIS 2021 was held on 2021 December 9-10. This event was organized by Department of Electrical and Electronic Engineering Faculty of Engineering and all technical support was provided by the Information Technology Center, University of Peradeniya.",
+      image: img2,
     },
     {
-      title: "Gynecology and obstetrics patient information analysis system",
-      content: "The IT Center developed a database management system to facilitate collection and analysis of data with regard to the Gynecology and obstetrics patients admitted to the Gyn & Obs ward in the Teaching Hospital, Peradeniya. The main information handled by this system have been carefully designed based on the request of Medical Practitioners, to meet their needs to draw timely conclusions on best management practices."
+      title: "PREVET 2023 for VET Undergraduates",
+      description: "The PREVET course for the First year undergraduates of the Faculty of Veterinary Medicine and Animal Science started on 19/07/2023 at the IT Center",
+      image: img3,
     },
     {
-      title: "IT Center organizes a free workshop for GCE (O/L) students in and around Kandy",
-      content:  "The IT Center of the University organized a one day workshop on ICT named “Thorathuru Thaakshanaya Thulin Lowa Dinamu” for the students sitting for the IT subject in the GCE (O/L) examination this December. A limited number of students from about 20 schools, together with their teachers, amounting to a total of 120 had been invited for this event which was held on November 18th at the IT Center of the University. The Center has received financial and material support from several organizations towards this activity, and the staff thanks all those who pledged their support."
+      title: "Certificate-Based Computer Skills program (CBCS) -Batch 1",
+      description: "The inauguration and orientation of Batch I of the Certificate-Based Computer Skills program (CBCS) by the IT Center for undergraduates of the University of Peradeniya. This initiative focuses on offering students a certificate through self-directed learning and examination.",
+      image: img4,
     },
-    {
-      title: "Technology support for the “Sri Lanka Police Service” and the “Ministry of Justice and Law Reforms” for crime detect",
-      content: "The IT Center is happy to be a technology resource base for government organizations like the Police Department and the Judicial system in several occasions. It is widely accepted that computer and ICT related crime detection and proof is only possible with the involvement of technical expertise in ICT. The IT Center has provided technical support to these organizations in the past, to help them identify criminals with existing evidence, and also to ascertain whether a crime has been committed."
-    }
   ];
 
-  const [openAccordion, setOpenAccordion] = useState<number>(0); // Change null to 0
-
-  const toggleAccordion = (index: number) => {
-    setOpenAccordion(index);
-  };
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    const autoToggleAccordion = () => {
-      const nextIndex = (openAccordion + 1) % accordionItems.length;
-      setOpenAccordion(nextIndex);
-    };
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % (events.length - 1));
+    }, 10000); // Change to 10,000 milliseconds (10 seconds)
 
-    const intervalId = setInterval(autoToggleAccordion, 10000); // Change to 10000 milliseconds (10 seconds)
+    return () => clearInterval(slideInterval);
+  }, [events.length]);
 
-    return () => clearInterval(intervalId);
-  }, [openAccordion, accordionItems.length]);
+  const visibleEvents = events.slice(currentSlide, currentSlide + 2);
 
   return (
-    <div className="accordion">
-      <h1 className="header">Services done by IT Center</h1>
-      {accordionItems.map((item, index) => (
-        <div className="accordion-item" key={index}>
-          <div
-            className="accordion-header"
-            onClick={() => toggleAccordion(index)}
-          >
-            <span className={`accordion-title ${openAccordion === index ? "open" : ""}`}>
-              {item.title}
-            </span>
-            <span className={`icon ${openAccordion === index ? "open" : ""}`}>+</span>
-          </div>
-          <div className={`accordion-content ${openAccordion === index ? "active" : ""}`}>
-            {item.content}
+    <div className="card-container">
+      {visibleEvents.map((event, index) => (
+        <div className="card" key={index}>
+          <img src={event.image} alt={event.title} className="card-image" />
+          <div className="card-content">
+            <h2 className="card-title">{event.title}</h2>
+            <div className="card-description">
+              <p>{event.description}</p>
+            </div>
           </div>
         </div>
       ))}
