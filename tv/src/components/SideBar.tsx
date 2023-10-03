@@ -2,58 +2,34 @@
 
 import { useState } from "react";
 import "./sidebar.css";
-import logo_a from "../assets/logo_a.svg";
-import logo_b from "../assets/logo_b.svg";
+import { Link } from "react-router-dom";
 
-type SideBarProps = {
-  selectedOption: string;
-  setSelectedOption: (option: string) => void;
-};
-
-function Sidebar({ selectedOption, setSelectedOption }: SideBarProps) {
-  const [hoveredOption, setHoveredOption] = useState<string>(selectedOption);
-
-  // Define your options and their corresponding logos
-  const options = [
-    {
-      label: "Lab Slots",
-      logo: hoveredOption === "Lab Slots" ? logo_b : logo_a,
-    },
-    {
-      label: "Course Offerings",
-      logo: hoveredOption === "Course Offerings" ? logo_b : logo_a,
-    },
-    {
-      label: "Upcoming Events",
-      logo: hoveredOption === "Upcoming Events" ? logo_b : logo_a,
-    },
-    {
-      label: "Previous Events",
-      logo: hoveredOption === "Previous Events" ? logo_b : logo_a,
-    },
-    {
-      label: "Achievements",
-      logo: hoveredOption === "Achievements" ? logo_b : logo_a,
-    },
-    // Add other options and logos here...
-  ];
-
+function Sidebar() {
   return (
     <nav className="sidebar">
       <ul>
-        {options.map((option) => (
-          <li
-            key={option.label}
-            className={selectedOption === option.label ? "selected" : ""}
-            onClick={() => {
-              setSelectedOption(option.label);
-              setHoveredOption(option.label);
-            }}
-          >
-            <img src={option.logo} alt={`${option.label} Logo`} />
-            {option.label}
-          </li>
-        ))}
+        <li>
+          <Link to="/labslots">
+            <img src="../assets/logo_a.svg" alt="" />
+            Lab Slot
+          </Link>
+          <Link to="/courses">
+            <img src="../assets/logo_a.svg" alt="" />
+            Course Offerings
+          </Link>
+          <Link to="/upcoming">
+            <img src="../assets/logo_a.svg" alt="" />
+            Upcoming Events
+          </Link>
+          <Link to="/previous">
+            <img src="../assets/logo_a.svg" alt="" />
+            Previous Events
+          </Link>
+          <Link to="/achivements">
+            <img src="../assets/logo_a.svg" alt="" />
+            Achivements
+          </Link>
+        </li>
       </ul>
     </nav>
   );
