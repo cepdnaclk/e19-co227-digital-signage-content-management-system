@@ -36,89 +36,93 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="text-left">Course</th>
-                                        <th class="text-left">Description</th>
+                                        <th class="text-left">Code</th>
+                                        <th class="text-left">Course Name</th>
                                         <th class="text-center"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Sample Rows -->
+                                <?php
+                                    define('API_URL', ''); // Define the API_URL constant
+
+                                    // Fetch courses data from the backend
+                                    $response = @file_get_contents(API_URL . "../backend/course.php");
+
+                                    if ($response === FALSE) {
+                                        // Handle the case where file_get_contents failed
+                                        echo "Failed to fetch data from the API.";
+                                    } else {
+                                        // Decode the response JSON
+                                        $courses = json_decode($response, true);
+
+                                        if ($courses === null) {
+                                            // Handle the case where JSON decoding failed
+                                           
+                                        } else {
+                                            // Loop through and display courses
+                                            foreach ($courses as $course) :
+                                    ?>
                                     <tr>
-                                        <td class="text-left">CCNA 200-301</td>
-                                        <td class="text-left">Cisco Certified Network Associate</td>
+                                        <td class="text-left"><?php echo $course["c_code"]; ?></td>
+                                        <td class="text-left"><?php echo $course["c_name"]; ?></td>
                                         <td class="text-center">
-                                            <button class="btn btn-publish" id="publishButton">Publish</button>&emsp;
-                                            <button class="btn btn-preview">Preview</button>&emsp;
-                                            <a href="/pages/coursemanage.php"><button class="btn btn-manage">Manage</button></a>&emsp;
-                                            <button class="btn btn-delete">Delete</button>
+                                            <button class="btn btn-publish" data-course-id="<?php echo $course["c_id"]; ?>">Publish</button>
+                                            <button class="btn btn-preview" data-course-id="<?php echo $course["c_id"]; ?>">Preview</button>
+                                            <a href="/pages/coursemanage.php?c_id=<?php echo $course["c_id"]; ?>"><button class="btn btn-manage">Manage</button></a>
+                                            <button class="btn btn-delete" data-course-id="<?php echo $course["c_id"]; ?>">Delete</button>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="text-left">IT 201</td>
-                                        <td class="text-left">Web Development Basics</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-publish">Publish</button>&emsp;
-                                            <button class="btn btn-preview">Preview</button>&emsp;
-                                            <a href="/pages/coursemanage.php"><button class="btn btn-manage">Manage</button></a>&emsp;
-                                            <button class="btn btn-delete">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">ML 510</td>
-                                        <td class="text-left">Advanced Machine Learning</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-publish">Publish</button>&emsp;
-                                            <button class="btn btn-preview">Preview</button>&emsp;
-                                            <a href="/pages/coursemanage.php"><button class="btn btn-manage">Manage</button></a>&emsp;
-                                            <button class="btn btn-delete">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left">CP 101</td>
-                                        <td class="text-left">Introduction to Computer Hardware</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-publish">Publish</button>&emsp;
-                                            <button class="btn btn-preview">Preview</button>&emsp;
-                                            <a href="/pages/coursemanage.php"><button class="btn btn-manage">Manage</button></a>&emsp;
-                                            <button class="btn btn-delete">Delete</button>
-                                        </td>
-                                    </tr>
+                                    <?php endforeach; 
+                                    }
+                                }
+                                ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </main>
+            
         </div>
     </div>
-
-    <!-- JavaScript to toggle "Publish" and "Unpublish" and add a highlight effect -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const publishButtons = document.querySelectorAll(".btn-publish");
-            
-            publishButtons.forEach(button => {
-                let isPublished = true; // Initial state
-
-                // Function to toggle the button state and text
-                function togglePublishButton() {
-                    isPublished = !isPublished;
-                    if (isPublished) {
-                        button.textContent = "Publish";
-                        button.classList.remove("btn-unpublish");
-                        button.classList.add("btn-publish");
-                    } else {
-                        button.textContent = "Unpublish";
-                        button.classList.remove("btn-publish");
-                        button.classList.add("btn-unpublish");
-                    }
+    document.addEventListener("DOMContentLoaded", function () {
+        // Fetch courses data from the backend
+        fetch('../backend/course.php')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
-
-                // Add a click event listener to toggle the button
-                button.addEventListener("click", togglePublishButton);
+                return response.json();
+            })
+            .then(courses => {
+                if (courses.length > 0) {
+                    const tbody = document.querySelector("tbody");
+                    courses.forEach(course => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td class="text-left">${course.c_code}</td>
+                            <td class="text-left">${course.c_name}</td>
+                            <td class="text-center">
+                                <button class="btn btn-publish" data-course-id="${course.c_id}">Publish</button>
+                                <button class="btn btn-preview" data-course-id="${course.c_id}">Preview</button>
+                                <a href="/pages/coursemanage.php?c_id=${course.c_id}">
+                                    <button class="btn btn-manage">Manage</button>
+                                </a>
+                                
+                                <button class="btn btn-delete" data-course-id="${course.c_id}">Delete</button>
+                            </td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
             });
-        });
-    </script>
+    });
+</script>
+
 </body>
 
 </html>
