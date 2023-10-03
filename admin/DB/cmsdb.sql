@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `achievement` (
   -- `display_from` date NOT NULL,
   -- `display_to` date NOT NULL,
   `added_by` int NOT NULL COMMENT 'F_key - UserId',
+  `published` tinyint DEFAULT NULL,
   PRIMARY KEY (`a_id`),
   KEY `fk_admin_id` (`added_by`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
