@@ -227,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `upcoming_event` (
   `display_from` date NOT NULL,
   `display_to` date NOT NULL,
   `added_by` int NOT NULL COMMENT 'f_key -userId',
-  `published` tinyint DEFAULT NULL,
+  `published` tinyint DEFAULT 0,
   PRIMARY KEY (`e_id`),
   KEY `fk_admin_id` (`added_by`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
