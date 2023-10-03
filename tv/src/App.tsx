@@ -17,7 +17,7 @@ function App() {
           selectedOption={selectedOption}
         />{" "}
         {/* Pass setSelectedOption as a prop */}
-        <Content selectedOption={selectedOption} />{" "}
+        <Content />
         {/* Pass selectedOption as a prop */}
       </div>
     </div>
