@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/addnewevent.css">
+    <link rel="stylesheet" href="../css/addpreviousevent.css">
     <title>Previous Event Information Form</title>
 </head>
 
@@ -20,31 +20,33 @@
         include_once(APP_ROOT . "/includes/header.php");
         ?>
         <div class="right">
-            <div class="add-events">
+            <div class="add-previous-event">
                 <h2>Add Previous Event</h2>
                 <div class="form-container">
                     <form action="../backend/previousevents.php" method="POST" enctype="multipart/form-data">
-                        <label for="e_img">Select an Image:</label>
-                        <input type="file" name="e_img" id="e_img" required>
+                    <label for="p_img">Select an Image:</label>
+                        <input type="file" name="p_img" id="p_img" required>
+                        <br>
+                        <label for="p_name">Name:</label>
+                        <input type="text" name="p_name" id="p_name">
+                        <br>
+                        <label for="p_desc">Description:</label>
+                        <input type="text" name="p_desc" id="p_desc" style="height: 150px;">
+                        <br>
+                        <label for="p_date">Date:</label>
+                        <input type="date" name="p_date" id="p_date">
+                        <br>
+                        <!-- <label for="p_time">Time:</label>
+                        <input type="time" name="p_time" id="p_time">
                         <br><br>
-                        <label for="e_name">Name:</label>
-                        <input type="text" name="e_name" id="e_name">
-                        <br><br>
-                        <label for="e_date">Date:</label>
-                        <input type="date" name="e_date" id="e_date">
-                        <br><br>
-                        <label for="e_time">Time:</label>
-                        <input type="time" name="e_time" id="e_time">
-                        <br><br>
-                        <label for="e_venue">Venue:</label>
-                        <input type="text" name="e_venue" id="e_venue">
+                        <label for="p_venue">Venue:</label>
+                        <input type="text" name="p_venue" id="p_venue">
                         <br><br>
                         <label for="display_from">Display from:</label>
                         <input type="date" name="display_from" id="display_from" required>
                         <br><br>
                         <label for="display_to">Display to:</label>
-                        <input type="date" name="display_to" id="display_to" required>
-                        <br><br>
+                        <input type="date" name="display_to" id="display_to" required>                        -->
                         <input type="submit" value="Upload">
                     </form>
                 </div>

@@ -26,25 +26,25 @@
                     <form action="../backend/upcomingevents.php" method="POST" enctype="multipart/form-data">
                         <label for="e_img">Select an Image:</label>
                         <input type="file" name="e_img" id="e_img" required>
-                        <br><br>
+                        <br>
                         <label for="e_name">Name:</label>
                         <input type="text" name="e_name" id="e_name">
-                        <br><br>
+                        <br>
                         <label for="e_date">Date:</label>
                         <input type="date" name="e_date" id="e_date">
-                        <br><br>
+                        <br>
                         <label for="e_time">Time:</label>
                         <input type="time" name="e_time" id="e_time">
-                        <br><br>
+                        <br>
                         <label for="e_venue">Venue:</label>
                         <input type="text" name="e_venue" id="e_venue">
-                        <br><br>
+                        <br>
                         <label for="display_from">Display from:</label>
                         <input type="date" name="display_from" id="display_from" required>
-                        <br><br>
+                        <br>
                         <label for="display_to">Display to:</label>
                         <input type="date" name="display_to" id="display_to" required>
-                        <br><br>
+                        <br>
                         <input type="submit" value="Upload">
                     </form>
                 </div>
