@@ -31,10 +31,12 @@ DROP TABLE IF EXISTS `achievement`;
 CREATE TABLE IF NOT EXISTS `achievement` (
   `a_id` int NOT NULL AUTO_INCREMENT,
   `a_name` varchar(100) DEFAULT NULL,
+  `a_desc` varchar(500) DEFAULT NULL,
   `a_img` varchar(100) NOT NULL,
-  `display_from` date NOT NULL,
-  `display_to` date NOT NULL,
+  -- `display_from` date NOT NULL,
+  -- `display_to` date NOT NULL,
   `added_by` int NOT NULL COMMENT 'F_key - UserId',
+  `published` tinyint DEFAULT NULL,
   PRIMARY KEY (`a_id`),
   KEY `fk_admin_id` (`added_by`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -43,11 +45,11 @@ CREATE TABLE IF NOT EXISTS `achievement` (
 -- Dumping data for table `achievement`
 --
 
-INSERT INTO `achievement` (`a_id`, `a_name`, `a_img`, `display_from`, `display_to`, `added_by`) VALUES
-(1, 'Achievement 1', 'achievement1.jpg', '2023-07-01', '2023-07-15', 1),
-(2, 'Achievement 2', 'achievement2.jpg', '2023-08-01', '2023-08-15', 2),
-(3, 'Achievement 3', 'achievement3.jpg', '2023-09-01', '2023-09-15', 3),
-(4, 'Achievement 4', 'achievement4.jpg', '2023-10-01', '2023-10-15', 4);
+INSERT INTO `achievement` (`a_id`, `a_name`, `a_desc`, `a_img`, `added_by`) VALUES
+(1, 'Achievement 1', 'Description 1', 'achievement1.jpg', 1),
+(2, 'Achievement 2', 'Description 2', 'achievement2.jpg', 2),
+(3, 'Achievement 3', 'Description 3', 'achievement3.jpg', 3),
+(4, 'Achievement 4', 'Description 4', 'achievement5.jpg', 4);
 
 -- --------------------------------------------------------
 
@@ -165,11 +167,12 @@ DROP TABLE IF EXISTS `previous_event`;
 CREATE TABLE IF NOT EXISTS `previous_event` (
   `p_id` int NOT NULL AUTO_INCREMENT,
   `p_name` varchar(100) DEFAULT NULL,
+  `p_desc` varchar(500) DEFAULT NULL,
   `p_img` varchar(100) NOT NULL,
-  `display_from` date NOT NULL,
-  `display_to` date NOT NULL,
+  -- `display_from` date NOT NULL,
+  -- `display_to` date NOT NULL,
   `added_by` int NOT NULL COMMENT 'f_key User_id',
-  `published` tinyint DEFAULT NULL,
+  `published` tinyint DEFAULT 0,
   PRIMARY KEY (`p_id`),
   KEY `fk_admin_id` (`added_by`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -178,11 +181,11 @@ CREATE TABLE IF NOT EXISTS `previous_event` (
 -- Dumping data for table `previous_event`
 --
 
-INSERT INTO `previous_event` (`p_id`, `p_name`, `p_img`, `display_from`, `display_to`, `added_by`) VALUES
-(1, 'Previous Event 1', 'prev_event1.jpg', '2022-12-01', '2022-12-15', 1),
-(2, 'Previous Event 2', 'prev_event2.jpg', '2022-11-01', '2022-11-15', 2),
-(3, 'Previous Event 3', 'prev_event3.jpg', '2022-10-01', '2022-10-15', 3),
-(4, 'Previous Event 4', 'prev_event4.jpg', '2022-09-01', '2022-09-15', 4);
+INSERT INTO `previous_event` (`p_id`, `p_name`, `p_desc`, `p_img`, `added_by`) VALUES
+(1, 'Previous Event 1', 'Description 1', 'prev-event1.jpg', 1),
+(2, 'Previous Event 2', 'Description 2', 'prev-event2.jpg', 2),
+(3, 'Previous Event 3', 'Description 3', 'prev-event3.jpg', 3),
+(4, 'Previous Event 4', 'Description 4', 'prev-event4.jpg', 4);
 
 -- --------------------------------------------------------
 
@@ -227,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `upcoming_event` (
   `display_from` date NOT NULL,
   `display_to` date NOT NULL,
   `added_by` int NOT NULL COMMENT 'f_key -userId',
-  `published` tinyint DEFAULT NULL,
+  `published` tinyint DEFAULT 0,
   PRIMARY KEY (`e_id`),
   KEY `fk_admin_id` (`added_by`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;

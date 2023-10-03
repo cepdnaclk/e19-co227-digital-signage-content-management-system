@@ -66,7 +66,8 @@
 }
 
 .upcomingevents .edit-button,
-.upcomingevents .delete-button {
+.upcomingevents .delete-button
+{
   padding: 8px 16px;
   color: white;
   border: none;
@@ -83,16 +84,20 @@
   background-color: var(--color-4);
 }
 
+
 .upcomingevents .delete-button {
   background-color: var(--color-1);
 }
 
 .upcomingevents .edit-button:hover,
-.upcomingevents .delete-button:hover {
+.upcomingevents .delete-button:hover,
+.upcomingevents .publish-button:hover{
   filter: brightness(1.2);
 }
 
-.delete-button a, .edit-button a{
+.delete-button a, .edit-button a ,.publish-button a.unpublish,.publish-button a.publish{
   
   color: inherit;
 }
+
+
