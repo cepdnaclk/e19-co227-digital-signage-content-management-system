@@ -2,58 +2,59 @@
 
 import { useState } from "react";
 import "./sidebar.css";
-import logo_a from "../assets/logo_a.svg";
-import logo_b from "../assets/logo_b.svg";
+import { Link, useMatch } from "react-router-dom";
+import labslotsImg from "/src/assets/labslotsimg.svg";
+import achivementImg from "/src/assets/Star_fill.svg";
 
-type SideBarProps = {
-  selectedOption: string;
-  setSelectedOption: (option: string) => void;
-};
-
-function Sidebar({ selectedOption, setSelectedOption }: SideBarProps) {
-  const [hoveredOption, setHoveredOption] = useState<string>(selectedOption);
-
-  // Define your options and their corresponding logos
-  const options = [
-    {
-      label: "Lab Slots",
-      logo: hoveredOption === "Lab Slots" ? logo_b : logo_a,
-    },
-    {
-      label: "Course Offerings",
-      logo: hoveredOption === "Course Offerings" ? logo_b : logo_a,
-    },
-    {
-      label: "Upcoming Events",
-      logo: hoveredOption === "Upcoming Events" ? logo_b : logo_a,
-    },
-    {
-      label: "Previous Events",
-      logo: hoveredOption === "Previous Events" ? logo_b : logo_a,
-    },
-    {
-      label: "Achievements",
-      logo: hoveredOption === "Achievements" ? logo_b : logo_a,
-    },
-    // Add other options and logos here...
-  ];
-
+function Sidebar() {
   return (
     <nav className="sidebar">
       <ul>
-        {options.map((option) => (
-          <li
-            key={option.label}
-            className={selectedOption === option.label ? "selected" : ""}
-            onClick={() => {
-              setSelectedOption(option.label);
-              setHoveredOption(option.label);
-            }}
+        <li>
+          <Link
+            to="/labslots"
+            className={useMatch("/labslots") ? "selected" : ""}
           >
-            <img src={option.logo} alt={`${option.label} Logo`} />
-            {option.label}
-          </li>
-        ))}
+            <img src={labslotsImg} alt="" />
+            Lab Slot
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/courses"
+            className={useMatch("/courses") ? "selected" : ""}
+          >
+            <img src={labslotsImg} alt="" />
+            Course Offerings
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/upcoming"
+            className={useMatch("/upcoming") ? "selected" : ""}
+          >
+            <img src={labslotsImg} alt="" />
+            Upcoming Events
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/previous"
+            className={useMatch("/previous") ? "selected" : ""}
+          >
+            <img src={labslotsImg} alt="" />
+            Previous Events
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/achivements"
+            className={useMatch("/achivements") ? "selected" : ""}
+          >
+            <img src={achivementImg} alt="" />
+            Achivements
+          </Link>
+        </li>
       </ul>
     </nav>
   );

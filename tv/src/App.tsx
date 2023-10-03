@@ -5,23 +5,56 @@ import Sidebar from "./components/SideBar";
 import Content from "./components/Content";
 import "./app.css";
 
-function App() {
-  const [selectedOption, setSelectedOption] = useState<string>("Lab Slots"); // Initialize the selected option state
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import LabSlots from "./components/labSlots/LabSlots";
+import CourseOfferings from "./components/courseOffering/CourseOfferings";
+import UpcomingEvents from "./components/upcomingEvents/UpcomingEvents";
+import PreviousEvents from "./components/previousEvents/PreviousEvents";
+import Achievements from "./components/achivements/Achievements";
 
+const Root = () => {
   return (
     <div className="App">
       <Header />
       <div className="container">
-        <Sidebar
-          setSelectedOption={setSelectedOption}
-          selectedOption={selectedOption}
-        />{" "}
-        {/* Pass setSelectedOption as a prop */}
-        <Content selectedOption={selectedOption} />{" "}
-        {/* Pass selectedOption as a prop */}
+        <Sidebar />
+        <Content />
       </div>
     </div>
   );
+};
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        path: "/labslots",
+        element: <LabSlots />,
+      },
+      {
+        path: "/courses",
+        element: <CourseOfferings />,
+      },
+      {
+        path: "/upcoming",
+        element: <UpcomingEvents />,
+      },
+      {
+        path: "/previous",
+        element: <PreviousEvents />,
+      },
+      {
+        path: "/achivements",
+        element: <Achievements />,
+      },
+    ],
+  },
+]);
+
+function App() {
+  return <RouterProvider router={router} />;
 }
 
 export default App;
