@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `cmsdb`
 --
+CREATE DATABASE cmsdb;
+USE cmsdb;
 
 -- --------------------------------------------------------
 
@@ -56,52 +58,33 @@ INSERT INTO `achievement` (`a_id`, `a_name`, `a_desc`, `a_img`, `added_by`) VALU
 --
 -- Table structure for table `course`
 --
-
+-- Table structure for table `course`
 DROP TABLE IF EXISTS `course`;
 CREATE TABLE IF NOT EXISTS `course` (
   `c_id` int NOT NULL AUTO_INCREMENT,
-  `c_name` varchar(50) NOT NULL,
-  `details` text,
+  `c_code` varchar(50) NOT NULL,
+  `c_name` varchar(100) NOT NULL,
+  `c_coordinator` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `Poster_img` varchar(255) DEFAULT NULL,
+  `duration(months)` int DEFAULT NULL,
+  `new_intake_date` date DEFAULT NULL,
+  `total_fee` int DEFAULT NULL,
+  `display_description` text DEFAULT NULL,
+  `published` TINYINT DEFAULT NULL,
   PRIMARY KEY (`c_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `course`
 --
-
-INSERT INTO `course` (`c_id`, `c_name`, `details`) VALUES
-(1, 'Introduction to Programming', 'Basic programming concepts and techniques.'),
-(2, 'Web Development', 'Building web applications using HTML, CSS, and JavaScript.'),
-(3, 'Database Management', 'Database design and SQL.'),
-(4, 'Networking Fundamentals', 'Basics of computer networking.');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `course_offering`
---
-
-DROP TABLE IF EXISTS `course_offering`;
-CREATE TABLE IF NOT EXISTS `course_offering` (
-  `c_code` varchar(20) NOT NULL,
-  `c_id` int NOT NULL,
-  `coordinator_id` int NOT NULL,
-  `starting date` date NOT NULL,
-  `display_info` text,
-  PRIMARY KEY (`c_code`),
-  KEY `fk_c_id` (`c_id`),
-  KEY `fk_coord_id` (`coordinator_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `course_offering`
---
-
-INSERT INTO `course_offering` (`c_code`, `c_id`, `coordinator_id`, `starting date`, `display_info`) VALUES
-('COURSE01', 1, 1, '2023-08-15', 'Course details for August 2023'),
-('COURSE02', 2, 2, '2022-12-10', 'Course details for December 2022'),
-('COURSE03', 3, 3, '2023-09-05', 'Course details for September 2023'),
-('COURSE04', 4, 4, '2023-10-01', 'Course details for October 2023');
+INSERT INTO `course` (`c_code`, `c_name`, `c_coordinator`, `description`, `Poster_img`, `duration(months)`, `new_intake_date`, `total_fee`, `display_description`)
+VALUES
+('CCNA01', 'Cisco Certified Network Associate', 'John Doe', 'A comprehensive course on network fundamentals and Cisco technologies.', 'ccna_img.jpg', 6, '2023-09-15', 1500, 'Learn the essentials of networking and gain Cisco certification.'),
+('WEBDEV01', 'Web Development Fundamentals', 'Jane Smith', 'An introductory course to web development technologies and practices.', 'webdev_img.jpg', 3, '2023-10-05', 1200, 'Build websites and web applications with HTML, CSS, and JavaScript.'),
+('ML101', 'Machine Learning Basics', 'Michael Johnson', 'Explore the fundamentals of machine learning and data analysis.', 'ml_img.jpg', 4, '2023-11-20', 1800, 'Get started with machine learning and understand its applications.'),
+('HARDWARE01', 'Computer Hardware Essentials', 'Sarah Williams', 'Learn about computer hardware components and troubleshooting techniques.', 'hardware_img.jpg', 2, '2023-12-10', 900, 'Discover the inner workings of computers and how to fix common issues.'),
+('DBADMIN01', 'Database Administration', 'David Brown', 'A course on managing and optimizing relational databases.', 'dbadmin_img.jpg', 5, '2024-01-05', 1600, 'Master the art of database administration and SQL query optimization.');
 
 -- --------------------------------------------------------
 

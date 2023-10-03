@@ -1,4 +1,4 @@
-<?php include_once "../config.php" ?>
+<?php include_once "../config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,6 +65,8 @@
                             <textarea name="poster_description" id="poster_description" rows="4"></textarea>
                             <br><br>
                         </div>
+
+                        <input type="hidden" name="c_id" value="<?php echo $c_id; ?>"> <!-- Include the course ID here -->
 
                         <input type="submit" value="Submit">
                     </form>

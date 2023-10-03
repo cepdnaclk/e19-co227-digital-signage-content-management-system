@@ -1,4 +1,4 @@
-<?php include_once "../config.php" ?>
+<?php include_once "../config.php"; ?>
 <!DOCTYPE html>
 <html>
 
@@ -10,8 +10,7 @@
 <body>
     <div class="flex-box">
         <div class="left">
-            <?php
-            include_once(APP_ROOT . "/includes/sidebar.php");
+            <?php include_once(APP_ROOT . "/includes/sidebar.php");
             sidebar(1);
             ?>
         </div>
