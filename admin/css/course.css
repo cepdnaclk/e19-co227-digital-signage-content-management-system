@@ -44,7 +44,43 @@
 }
 
 /* Action button styles */
-.course .btn {
+/* Publish Button */
+.course .btn-publish {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 6px 20.8px; /* Adjust the padding for the desired size */
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s, transform 0.3s; /* Added transition for transform property */
+}
+
+.course .btn-publish:hover,
+.course .btn-unpublish:hover {
+    background-color: var(--color-shade-1);
+}
+
+/* Style for the Unpublish button */
+.course .btn-unpublish {
+    background-color: #b9ac4b; /* Change the background color for Unpublish */
+    color: #fff;
+    border: none;
+    padding: 6px 12px; /* Adjust the padding for the desired size */
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s, transform 0.3s; /* Added transition for transform property */
+}
+
+
+.course .btn-publish.btn-highlight,
+.course .btn-unpublish.btn-highlight {
+    transform: scale(1.1); /* Increase the scale to create a highlight effect */
+}
+
+
+/* Other 3 buttons */
+
+.course .btn-manage,.btn-preview  {
   background-color: var(--color-4);
   color: #fff;
   border: none;
@@ -54,8 +90,18 @@
   transition: background-color 0.3s;
 }
 
-.course .btn:hover {
+.course .btn-delete  {
   background-color: var(--color-1);
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s;
+}
+
+.course .btn:hover {
+  background-color: var(--color-shade-1);
 }
 
 /* Add course button styles */
