@@ -1,4 +1,6 @@
 <?php
+include_once "../config.php";
+
 header("Access-Control-Allow-Origin: *");
 // Allow specific HTTP methods (e.g., GET, POST, OPTIONS)
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
@@ -7,42 +9,37 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 session_start();
 
-include_once "../config.php";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["uname"]) && isset($_POST["password"])) {
-    $username = $_POST["uname"];
+if (isset($_POST["login"])) {
+    $user_name = $_POST["user_name"];
     $password = $_POST["password"];
+    echo "Username: $user_name<br>";
+    echo "Password: $password<br>";
 
+    // create prepared statement
+    $stmt = $conn->prepare("SELECT * FROM `user` WHERE `user_name`=? AND `password`=?");
     
-    // Assuming that the stored passwords are hashed.
-    $conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $stmt = $conn->prepare("SELECT u_id, user_name, password FROM user WHERE user_name = ?");
-    $stmt->bind_param("s", $username);
+    // Bind the parameters and execute
+    $stmt->bind_param("ss", $user_name, $password);
     $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows == 1) {
-        $stmt->bind_result($user_id, $user_name, $hashed_password);
-        $stmt->fetch();
-
-        if (password_verify($password, $hashed_password)) {
-            // Authentication successful
-            $_SESSION["user_id"] = $user_id;
-            $_SESSION["user_name"] = $user_name;
-            header("Location: ../pages/dashboard.php"); // Redirect to the dashboard 
-            exit();
-        }
+    
+    // Get the result
+    $result = $stmt->get_result();
+    
+    // Fetch a row
+    $row = $result->fetch_assoc();
+    
+    if ($row) {
+        // Authentication successful
+        // $_SESSION["user_id"] = 1; //set the user ID 
+        $_SESSION["user_name"] = $row["user_name"];
+        $_SESSION["password"] = $row["password"];
+        header("Location: /");
+        exit();
+    } else {
+        // Authentication failed
+        header("Location: ../pages/login.php?error=1");
+        exit();
     }
-
-    // Authentication failed
-    header("Location: ../pages/login.php?error=1");
-    echo "Failed";
-    exit();
 } else {
     // Redirect to the login page if accessed directly without a POST request
     header("Location: ../pages/login.php");
