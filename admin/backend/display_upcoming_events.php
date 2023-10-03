@@ -23,10 +23,18 @@ if (mysqli_num_rows($result) > 0) {
         // Card actions with icons
         echo "<div class='card-actions'>";
         echo '<button class="edit-button"><span class="icon">&#9998;</span><a href="editevent.php?edit_id=' . $row['e_id'] . '">Edit</a></button>';
+        
+        echo '<button class="publish-button" >';
+        if ($row['published'] == 1) {
+            echo '<span class="icon">&#9998;</span><a class="unpublish" href="../backend/publish.php?publish_id=' . $row['e_id'] . '">Unpublish</a>';
+        } else {
+            echo '<span class="icon">&#9998;</span><a class= "publish" href="../backend/publish.php?publish_id=' . $row['e_id'] . '">Publish</a>';
+        }
+        echo '</button>';
 
         echo  '<button class="delete-button"><span class="icon">&#128465;</span><a href="../backend/delete_event.php?delete_id=' . $row['e_id'] . '">Delete</a></button>';
-
-        echo "</form>";
+        //Add confirm delete message
+        
         echo "</div>";
         echo "</div>";
     }
