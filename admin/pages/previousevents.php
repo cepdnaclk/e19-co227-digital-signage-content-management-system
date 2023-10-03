@@ -41,6 +41,7 @@
                             <!-- Card actions with icons -->
                             <div class="card-actions">
                                 <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
+                                <button class="publish-button" id="publish-button-1"><span class="icon">&#10004;</span>Publish</button>
                                 <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
                             </div>
 
@@ -57,6 +58,7 @@
                             <!-- Card actions with icons -->
                             <div class="card-actions">
                                 <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
+                                <button class="publish-button" id="publish-button-1"><span class="icon">&#10004;</span>Publish</button>
                                 <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
                             </div>
 
@@ -73,6 +75,7 @@
                             <!-- Card actions with icons -->
                             <div class="card-actions">
                                 <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
+                                <button class="publish-button" id="publish-button-1"><span class="icon">&#10004;</span>Publish</button>
                                 <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
                             </div>
 
@@ -89,6 +92,7 @@
                             <!-- Card actions with icons -->
                             <div class="card-actions">
                                 <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
+                                <button class="publish-button" id="publish-button-1"><span class="icon">&#10004;</span>Publish</button>
                                 <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
                             </div>
 
@@ -98,6 +102,26 @@
             </main>
         </div>
     </div>
+
+    <script>
+        // Function to toggle the "Publish" button's state and background color
+        function togglePublishButton() {
+            const button = document.getElementById("publish-button-1");
+
+            if (button.classList.contains("published")) {
+                button.classList.remove("published");
+                button.style.backgroundColor = ''; // Reset background color
+                button.innerHTML = '<span class="icon">&#10004;</span>Publish';
+            } else {
+                button.classList.add("published");
+                button.style.backgroundColor = '#B2BEB5'; // Change the background color as needed
+                button.innerHTML = '<span class="icon">&#10680;</span>Unpublish';
+            }
+        }
+
+        // Add a click event listener to the "Publish" button
+        document.getElementById("publish-button-1").addEventListener("click", togglePublishButton);
+    </script>
 </body>
 
 </html>
