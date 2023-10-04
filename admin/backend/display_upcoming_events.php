@@ -22,15 +22,19 @@ if (mysqli_num_rows($result) > 0) {
         echo "</div>";
         // Card actions with icons
         echo "<div class='card-actions'>";
-        echo '<button class="edit-button"><span class="icon">&#9998;</span><a href="editevent.php?edit_id=' . $row['e_id'] . '">Edit</a></button>';
+        echo '<a href="editevent.php?edit_id=' . $row['e_id'] . '"><button class="edit-button"><span class="icon">&#9998;</span>Edit</button></a>';
         
-        echo '<button class="publish-button" >';
+        
         if ($row['published'] == 1) {
-            echo '<span class="icon">&#9998;</span><a class="unpublish" href="../backend/publish.php?publish_id=' . $row['e_id'] . '">Unpublish</a>';
+            echo '<a class="unpublish" href="../backend/publish.php?publish_id=' . $row['e_id'] . '"><button class="unpublish-button" ><span class="icon">&#10680;</span>Unpublish</button></a>';
+            //echo '<button class="unpublish-button" >';
+            //echo '<span class="icon">&#10680;</span><a class="unpublish" href="../backend/publish.php?publish_id=' . $row['e_id'] . '">Unpublish</a>';
         } else {
-            echo '<span class="icon">&#9998;</span><a class= "publish" href="../backend/publish.php?publish_id=' . $row['e_id'] . '">Publish</a>';
+            echo '<a class="publish" href="../backend/publish.php?publish_id=' . $row['e_id'] . '"><button class="publish-button" ><span class="icon">&#10004;</span>Publish</button></a>';
+            //echo '<button class="publish-button" >';
+            //echo '<span class="icon">&#10004;</span><a class= "publish" href="../backend/publish.php?publish_id=' . $row['e_id'] . '">Publish</a>';
         }
-        echo '</button>';
+        //echo '</button>';
 
         echo  '<button class="delete-button"><span class="icon">&#128465;</span><a href="../backend/delete_event.php?delete_id=' . $row['e_id'] . '">Delete</a></button>';
         //Add confirm delete message
