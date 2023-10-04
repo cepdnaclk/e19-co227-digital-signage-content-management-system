@@ -54,8 +54,13 @@
             ?>
             <main class="users">
                 <div class="container">
-                    <h1>Users</h1>
-                    <p>Currently active users in charge of CMS handling</p>
+                    <div class="title">
+                        <div>
+                        <h1>Users</h1>
+                        <p>Currently active users in charge of CMS handling</p>
+                        </div>
+                        <a href="/pages/adduser.php" class="btn btn-success"><img src="../images/Add_round.svg" alt=""> Register New User</a>
+                    </div>
 
                     <!-- User Role Icons and Counts -->
                     <div class="user-roles">
@@ -90,36 +95,42 @@
                             <div class="user-count">10</div>
                         </div>
                     </div>
-                    <!-- Display all users-->
+                    
+                    <!-- Display all users -->
                     <div class="all-users">
-                        <div class="super-admin">
-                            <h3>Super Admin</h3>
-                            <p>Fname Lname</p>
-                        </div>
-
-                        <div class="admins">
-                            <h3>Admins</h3>
-                            <ul>
-                                <li>Admin 1</li>
-                                <li>Admin 2</li>
-                                <li>Admin 3</li>
-                            <!-- Add more users as needed -->
-                        </ul>
-                        </div>
-
-                        <div class="coordinators">
-                            <h3>Coordinators</h3>
-                            <ul>
-                                <li>Coordinator 1</li>
-                                <li>Coordinator 2</li>
-                                <li>Coordinator 3</li>
-                            <!-- Add more users as needed -->
-                        </ul>
-                        </div>
-
-                    </div>
+                <div class="user-list super-admin">
+                    <h3>Super Admin</h3>
+                    <ul>
+                        <!-- List Super Admin users here -->
+                        <li>Super Admin 1</li>
+                    </ul>
                 </div>
-            </main>
+
+                <div class="user-list admins">
+                    <h3>Admins</h3>
+                    <ul>
+                        <!-- List Admin users here -->
+                        <li>Admin 1</li>
+                        <li>Admin 2</li>
+                        <li>Admin 3</li>
+                        <!-- Add more Admin users as needed -->
+                    </ul>
+                </div>
+
+                <div class="user-list coordinators">
+                    <h3>Coordinators</h3>
+                    <ul>
+                        <!-- List Coordinator users here -->
+                        <li>Coordinator 1</li>
+                        <li>Coordinator 2</li>
+                        <!-- Add more Coordinator users as needed -->
+                    </ul>
+                </div>
+            </div>
+
+            </div>
+        </main>
+
         </div>
     </div>
    

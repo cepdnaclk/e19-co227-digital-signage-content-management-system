@@ -106,10 +106,7 @@
                             <td class="text-center">
                                 <button class="btn btn-publish" data-course-id="${course.c_id}">Publish</button>
                                 <button class="btn btn-preview" data-course-id="${course.c_id}">Preview</button>
-                                <a href="/pages/coursemanage.php?c_id=${course.c_id}">
-                                    <button class="btn btn-manage">Manage</button>
-                                </a>
-                                
+                                <a href="/pages/coursemanage.php?c_id=<?php echo $course["c_id"]; ?>"><button class="btn btn-manage">Manage</button></a>
                                 <button class="btn btn-delete" data-course-id="${course.c_id}">Delete</button>
                             </td>
                         `;

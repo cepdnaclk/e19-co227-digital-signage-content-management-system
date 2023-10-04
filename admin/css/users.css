@@ -65,14 +65,15 @@
     margin: 10px;
 }
 
-/* Add this CSS to your users.css file */
-/* .all-users {
+
+.all-users {
     margin-top: 20px;
     padding: 20px;
+    margin-right: 20px;
     border: 1px solid #ccc;
     background-color: #f5f5f5;
     border-radius: 10px;
-  } */
+  }
   
   .super-admin,
   .admins,
@@ -103,6 +104,7 @@
     padding: 0;
   }
   
+  .super-admin ul,
   .admins ul,
   .coordinators ul {
     list-style: none;
@@ -114,3 +116,18 @@
     margin: 5px 0;
   }
   
+  /* Add course button styles */
+.btn btn-success {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #1e7e34;
+  }
