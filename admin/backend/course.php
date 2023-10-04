@@ -3,10 +3,10 @@ include_once "../config.php";
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
-header("Content-Type: application/json"); // Set the Content-Type header to JSON
 
 // Function to add a new course
-function addCourse($conn, $c_code, $c_name) {
+function addCourse($conn, $c_code, $c_name)
+{
     $stmt = $conn->prepare("INSERT INTO course (c_code, c_name) VALUES (?, ?)");
     $stmt->bind_param("ss", $c_code, $c_name);
     if ($stmt->execute()) {
@@ -17,7 +17,8 @@ function addCourse($conn, $c_code, $c_name) {
 }
 
 // Function to edit an existing course
-function editCourse($conn, $c_id, $c_code, $c_name) {
+function editCourse($conn, $c_id, $c_code, $c_name)
+{
     $stmt = $conn->prepare("UPDATE course SET c_code = ?, c_name = ? WHERE c_id = ?");
     $stmt->bind_param("ssi", $c_code, $c_name, $c_id);
     if ($stmt->execute()) {
@@ -28,7 +29,8 @@ function editCourse($conn, $c_id, $c_code, $c_name) {
 }
 
 // Function to delete a course
-function deleteCourse($conn, $c_id) {
+function deleteCourse($conn, $c_id)
+{
     $stmt = $conn->prepare("DELETE FROM course WHERE c_id = ?");
     $stmt->bind_param("i", $c_id);
     if ($stmt->execute()) {
@@ -39,7 +41,8 @@ function deleteCourse($conn, $c_id) {
 }
 
 // Function to retrieve all courses
-function getCourses($conn) {
+function getCourses($conn)
+{
     $result = $conn->query("SELECT c_id, c_code, c_name FROM course");
     if ($result === false) {
         return false; // Error in query execution
@@ -49,6 +52,17 @@ function getCourses($conn) {
         $courses[] = $row;
     }
     return $courses;
+}
+
+function getCourse($conn, $c_id)
+{
+    $result = $conn->query("SELECT * FROM course WHERE c_id=$c_id");
+    if ($result === false) {
+        return false; // Error in query execution
+    }
+    $courses = $result->fetch_all(MYSQLI_ASSOC);
+    if (sizeof($courses) > 0)
+        return $courses[0];
 }
 
 // Main code to handle requests
@@ -79,14 +93,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Handle the initial load and retrieve all courses
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "GET" && !isset($_GET['c_id'])) {
     $courses = getCourses($conn);
     if ($courses !== false) {
         // Send a JSON response for courses
+        header("Content-Type: application/json"); // Set the Content-Type header to JSON
         echo json_encode($courses);
     } else {
         // Send a JSON response for error
         echo json_encode(["error" => "Failed to retrieve courses"]);
     }
 }
-?>
