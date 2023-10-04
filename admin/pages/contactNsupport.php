@@ -1,4 +1,6 @@
-<?php include_once "../config.php" ?>
+<?php include_once "../config.php" ;
+include (APP_ROOT . "/includes/header.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,9 +51,7 @@
             ?>
         </div>
         <div class="right">
-            <?php
-            include_once(APP_ROOT . "/includes/header.php");
-            ?>
+            
             <main class="contact-support">
     <div class="container">
         <h1>Contact and Support</h1>

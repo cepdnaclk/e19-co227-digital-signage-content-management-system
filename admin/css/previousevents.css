@@ -88,6 +88,10 @@
   border-radius: 3px; /* Rounded corners for the thumb */
 }
 
+.previousevents .show-more {
+  display: none;
+}
+
 .previousevents .card-date {
   margin-top: 7px;
   font-size: 0.6rem;
@@ -110,9 +114,8 @@
   gap: 0.5rem;
 }
 
-/* Style the edit, publish and delete buttons */
+/* Style the edit and delete buttons */
 .previousevents .edit-button,
-.previousevents .unpublish-button,
 .previousevents .publish-button,
 .previousevents .delete-button {
   padding: 10px;
@@ -124,40 +127,39 @@
   display: inline-flex;
   align-items: center;
   text-align: center;
-  justify-content: center;
   gap: 0.5rem;
   transition: 0.5s all ease;
   font-size: 10px;
 }
 
+.previousevents .default-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-color: #ffffff;
+  height: 100%;
+  width: 100%;
+  background: rgb(255, 255, 255) url("../images/add.png");
+  background-size: 100%;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+}
 .previousevents .edit-button {
   background-color: var(--color-4);
   width: 70px;
 }
-
 .previousevents .publish-button {
   background-color: #555555;
-  width: 75px;
-}
-
-.previousevents .unpublish-button {
-  background-color: #B2BEB5;
   width: 85px;
 }
-
 .previousevents .delete-button {
   background-color: var(--color-1);
   width: 70px;
 }
 
 .previousevents .edit-button:hover,
-.previousevents .delete-button:hover,
-.previousevents .publish-button:hover,
-.previousevents .unpublish-button:hover {
+.previousevents .delete-button:hover {
   filter: brightness(1.2);
 }
 
-.delete-button a, .edit-button a ,.publish-button a, .unpublish-button a {
-  
-  color: inherit;
-}
