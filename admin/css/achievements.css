@@ -84,48 +84,59 @@
   display: flex;
   justify-content: center; /* Distribute buttons horizontally */
   align-items: center; /* Vertically align buttons */
-  padding: 10px 20px;
+  padding: 10px 10px;
   background: #f0f0f0;
   gap: 0.5rem;
 }
 
-/* Style the edit and delete buttons */
+/* Style the edit, publish and delete buttons */
 .achievements .edit-button,
+.achievements .unpublish-button,
+.achievements .publish-button,
 .achievements .delete-button {
-  padding: 8px 16px;
+  padding: 10px;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  text-align: center;
+  justify-content: center;
   gap: 0.5rem;
   transition: 0.5s all ease;
+  font-size: 10px;
 }
 
-.achievements .default-button {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  border-color: #ffffff;
-  height: 100%;
-  width: 100%;
-  background: rgb(255, 255, 255) url("../images/add.png");
-  background-size: 100%;
-  background-position-x: center;
-  background-position-y: center;
-  background-repeat: no-repeat;
-}
 .achievements .edit-button {
   background-color: var(--color-4);
+  width: 70px;
+}
+
+.achievements .publish-button {
+  background-color: #555555;
+  width: 75px;
+}
+
+.achievements .unpublish-button {
+  background-color: #B2BEB5;
+  width: 85px;
 }
 
 .achievements .delete-button {
   background-color: var(--color-1);
+  width: 70px;
 }
 
 .achievements .edit-button:hover,
-.achievements .delete-button:hover {
+.achievements .delete-button:hover,
+.previousevents .publish-button:hover,
+.previousevents .unpublish-button:hover {
   filter: brightness(1.2);
+}
+
+.delete-button a, .edit-button a ,.publish-button a, .unpublish-button a {
+  
+  color: inherit;
 }

@@ -4,7 +4,7 @@
 
 <head>
     <link rel="stylesheet" href="../css/addachievement.css">
-    <title>Achievements Information Form</title>
+    <title>Achievement Information Form</title>
 </head>
 
 <body>
@@ -34,7 +34,7 @@
                         <input type="text" name="a_desc" id="a_desc" style="height: 150px;">
                         <br>
                         <label for="a_date">Date:</label>
-                        <input type="date" name="e_date" id="e_date">
+                        <input type="date" name="a_date" id="a_date">
                         <br>
                         <!-- <label for="a_time">Time:</label>
                         <input type="time" name="a_time" id="a_time">

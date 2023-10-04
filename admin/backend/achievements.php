@@ -12,8 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $a_name = $_POST["a_name"];
         $a_desc = $_POST["a_desc"];
         $a_date = $_POST["a_date"];
-        // $e_time = $_POST["e_time"];
-        // $e_venue = $_POST["e_venue"];
+        // $a_time = $_POST["a_time"];
+        // $a_venue = $_POST["a_venue"];
         // $display_from = $_POST["display_from"];
         // $display_to = $_POST["display_to"];
 
@@ -36,11 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt = mysqli_prepare($conn, $sql);
 
                 // Bind parameters
-                mysqli_stmt_bind_param($stmt, "sssssssi", $a_name, $a_desc, $a_date, $targetFile, $added_by);
+                mysqli_stmt_bind_param($stmt, "ssssi", $a_name, $a_desc, $a_date, $targetFile, $added_by);
 
                 if (mysqli_stmt_execute($stmt)) {
-                    // Event added successfully, trigger popup
-                    echo '<script>alert("Event added successfully");</script>';
+                    // Achievement added successfully, trigger popup
+                    echo '<script>alert("Achievement added successfully");</script>';
 
                 } else {
                     echo "Error: " . mysqli_error($conn);
