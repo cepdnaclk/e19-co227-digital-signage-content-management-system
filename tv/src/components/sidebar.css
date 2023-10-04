@@ -16,19 +16,15 @@ nav ul {
   gap: 2rem;
 }
 
-nav li a {
+nav li {
   cursor: pointer;
   font-family: "Raleway", sans-serif;
   padding: 5%;
-  background-color: white;
   color: black;
-  display: flex; /* To align logo and label horizontally */
-  align-items: center; /* To vertically center the content */
   transition: background-color 0.1s, color 0.1s;
   border-radius: 2rem;
   transition: 0.5s all;
   font-size: 3rem;
-  text-decoration: none;
 }
 
 nav li img {
@@ -38,14 +34,47 @@ nav li img {
   opacity: 0.9;
 }
 
-nav li a.selected {
+nav li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+
+nav li.selected {
   /* background-color: #f9db08; */
   background-color: #9d170e;
+}
+
+nav li.selected a {
   color: white;
   font-weight: 500;
 }
 
-nav li a.selected img {
+nav li a {
+  background: none;
+}
+
+nav li.selected img {
   filter: invert() brightness(5);
   opacity: 1;
+}
+
+nav li .sublinks {
+  display: none;
+}
+
+nav li.selected .sublinks {
+  display: block;
+  padding-left: 5rem;
+  margin-top: 3rem;
+}
+
+nav li.selected .sublinks li.active {
+  background-color: white;
+  border-radius: 1rem;
+}
+
+nav li.selected .sublinks li.active a {
+  color: black;
 }

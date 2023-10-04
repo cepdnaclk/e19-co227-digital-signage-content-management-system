@@ -11,6 +11,7 @@ import CourseOfferings from "./components/courseOffering/CourseOfferings";
 import UpcomingEvents from "./components/upcomingEvents/UpcomingEvents";
 import PreviousEvents from "./components/previousEvents/PreviousEvents";
 import Achievements from "./components/achivements/Achievements";
+import { redirect } from "../node_modules/react-router-dom/dist/index";
 
 const Root = () => {
   return (
@@ -30,7 +31,13 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: "/labslots",
+        path: "/",
+        loader: () => {
+          return redirect("/labslots/0");
+        },
+      },
+      {
+        path: "/labslots/:lab",
         element: <LabSlots />,
       },
       {

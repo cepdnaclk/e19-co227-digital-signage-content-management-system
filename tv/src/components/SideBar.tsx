@@ -10,47 +10,46 @@ function Sidebar() {
   return (
     <nav className="sidebar">
       <ul>
-        <li>
-          <Link
-            to="/labslots"
-            className={useMatch("/labslots") ? "selected" : ""}
-          >
+        <li className={useMatch("/labslots/:lab") ? "selected" : ""}>
+          <Link to="/labslots/all">
             <img src={labslotsImg} alt="" />
             Lab Slot
           </Link>
+          <ul className="sublinks">
+            <li className={useMatch("/labslots/lab1") ? "active" : ""}>
+              <Link to="/labslots/lab1">Lab 1</Link>
+            </li>
+            <li className={useMatch("/labslots/lab2") ? "active" : ""}>
+              <Link to="/labslots/lab2">Lab 2</Link>
+            </li>
+            <li className={useMatch("/labslots/ccna") ? "active" : ""}>
+              <Link to="/labslots/ccna">CCNA Lab</Link>
+            </li>
+            <li className={useMatch("/labslots/sr") ? "active" : ""}>
+              <Link to="/labslots/sr">Seminar Room</Link>
+            </li>
+          </ul>
         </li>
-        <li>
-          <Link
-            to="/courses"
-            className={useMatch("/courses") ? "selected" : ""}
-          >
+        <li className={useMatch("/courses") ? "selected" : ""}>
+          <Link to="/courses">
             <img src={labslotsImg} alt="" />
             Course Offerings
           </Link>
         </li>
-        <li>
-          <Link
-            to="/upcoming"
-            className={useMatch("/upcoming") ? "selected" : ""}
-          >
+        <li className={useMatch("/upcoming") ? "selected" : ""}>
+          <Link to="/upcoming">
             <img src={labslotsImg} alt="" />
             Upcoming Events
           </Link>
         </li>
-        <li>
-          <Link
-            to="/previous"
-            className={useMatch("/previous") ? "selected" : ""}
-          >
+        <li className={useMatch("/previous") ? "selected" : ""}>
+          <Link to="/previous">
             <img src={labslotsImg} alt="" />
             Previous Events
           </Link>
         </li>
-        <li>
-          <Link
-            to="/achivements"
-            className={useMatch("/achivements") ? "selected" : ""}
-          >
+        <li className={useMatch("/achivements") ? "selected" : ""}>
+          <Link to="/achivements">
             <img src={achivementImg} alt="" />
             Achivements
           </Link>

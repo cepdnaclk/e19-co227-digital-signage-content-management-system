@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useMatch } from "react-router-dom";
 import "./labslots.css";
 import Slot from "./slot";
 import axios from "axios";
 
 const LabSlots: React.FC = () => {
   const [data, setData] = useState([]);
+  const param = useMatch("/labslots/:lab").params.lab;
   const timeSlots: string[] = [
     "08.00-09.00",
     "09.00-10.00",
@@ -33,13 +35,19 @@ const LabSlots: React.FC = () => {
     axios
       .get(`http://localhost:8000/backend/labslots.php?date=${formattedDate}`)
       .then((res) => {
-        console.log(res.data);
-        if (res.data.length >= 1) setData(res.data);
+        setData([]);
+        if (res.data.length >= 1) {
+          if (param != "all") {
+            setData(res.data.filter((slot) => slot.lab == param));
+          } else {
+            setData(res.data);
+          }
+        }
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [param]);
 
   const labMapping = {
     lab1: 1,
