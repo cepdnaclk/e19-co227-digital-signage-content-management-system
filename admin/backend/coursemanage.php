@@ -15,13 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $description = $_POST["description"];
         $display_option = $_POST["display_option"];
         
-        // Add more form fields as needed
-
-        // Process the data and update the database
-        // ...
-
-        // After processing, you can redirect the user to a success page or back to the course list
-        // For example:
+        
         header("Location: success_page.php");
         exit();
     } else {

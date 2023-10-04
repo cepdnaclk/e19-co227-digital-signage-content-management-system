@@ -5,10 +5,7 @@ include_once "../config.php";
 if (isset($_GET['c_id'])) {
     $c_id = $_GET['c_id'];
 } else {
-    // Handle the case where 'c_id' is not provided
-    // You can redirect the user to an error page or take appropriate action
-    // For example:
-    header("Location: error_page.php");
+  
     exit();
 }
 ?>
