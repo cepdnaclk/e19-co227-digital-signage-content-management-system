@@ -1,0 +1,81 @@
+/* Reset default margin and padding */
+.edit-previous-event body, h2, form {
+  margin: 0;
+  padding: 0;
+}
+
+/* Center the entire form vertically and horizontally */
+.edit-previous-event .form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  width: 100%;
+  background-color: #f0f0f0; /* Set a background color */
+  margin: 0px;
+}
+
+/* Style the form container */
+.edit-previous-event form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  width: 500px;
+}
+
+/* Style form elements */
+.edit-previous-event h2 {
+  padding: 3%;
+  color: #ffffff;
+  font-size: 24px;
+  text-align: center;
+  background-color: brown;
+}
+
+.edit-previous-event label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.edit-previous-event input[type="text"],
+.edit-previous-event input[type="number"],
+.edit-previous-event input[type="date"]{
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.edit-previous-event input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.edit-previous-event input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px auto; /* Add this line to horizontally center the button */
+  display: block;
+}
+
+/* Style the uploaded image */
+.edit-previous-event img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}

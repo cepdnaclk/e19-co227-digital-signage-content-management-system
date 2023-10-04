@@ -686,6 +686,7 @@ CREATE TABLE IF NOT EXISTS `previous_event` (
   `p_id` int NOT NULL AUTO_INCREMENT,
   `p_name` varchar(100) DEFAULT NULL,
   `p_desc` varchar(500) DEFAULT NULL,
+  `p_date` date DEFAULT NULL,
   `p_img` varchar(100) NOT NULL,
   `added_by` int NOT NULL COMMENT 'f_key User_id',
   `published` tinyint DEFAULT '0',
@@ -697,6 +698,11 @@ CREATE TABLE IF NOT EXISTS `previous_event` (
 -- Dumping data for table `previous_event`
 --
 
+INSERT INTO `previous_event` (`p_id`, `p_name`, `p_desc`, "p_date", `p_img`, `added_by`) VALUES
+(1, 'Previous Event 1', 'Description 1', '2023-06-10', 'prev-event1.jpg', 1),
+(2, 'Previous Event 2', 'Description 2', '2023-07-10', 'prev-event2.jpg', 2),
+(3, 'Previous Event 3', 'Description 3', '2023-08-10', 'prev-event3.jpg', 3),
+(4, 'Previous Event 4', 'Description 4', '2023-09-10', 'prev-event4.jpg', 4);
 INSERT INTO `previous_event` (`p_id`, `p_name`, `p_desc`, `p_img`, `added_by`, `published`) VALUES
 (1, 'Previous Event 1', 'Description 1', 'prev-event1.jpg', 1, 0),
 (2, 'Previous Event 2', 'Description 2', 'prev-event2.jpg', 2, 0),
