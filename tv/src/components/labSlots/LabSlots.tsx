@@ -6,6 +6,7 @@ import axios from "axios";
 
 const LabSlots: React.FC = () => {
   const [data, setData] = useState([]);
+  const [date, setDate] = useState(new Date());
   const param = useMatch("/labslots/:lab").params.lab;
   const timeSlots: string[] = [
     "08.00-09.00",
@@ -28,8 +29,40 @@ const LabSlots: React.FC = () => {
     return formattedDate;
   };
 
+  const isToday = (date: Date) => {
+    const currentDate: Date = new Date();
+    return (
+      currentDate.getFullYear() === date.getFullYear() &&
+      currentDate.getMonth() === date.getMonth() &&
+      currentDate.getDate() === date.getDate()
+    );
+  };
+
+  const shortMonthDateFormatter = (currentDate: Date): string => {
+    const year = currentDate.getFullYear();
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const month = monthNames[currentDate.getMonth()];
+    const day = String(currentDate.getDate()).padStart(2, "0");
+
+    const formattedDate: string = `${day} ${month} ${year}`;
+    return formattedDate;
+  };
+
   useEffect(() => {
-    const today = new Date();
+    const today = date;
     const formattedDate = dateFormatter(today);
 
     axios
@@ -47,7 +80,7 @@ const LabSlots: React.FC = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [param]);
+  }, [param, date]);
 
   const labMapping = {
     lab1: 1,
@@ -104,8 +137,16 @@ const LabSlots: React.FC = () => {
         </div>
       </div>
       <div className="date">
-        <h3>Today</h3>
-        <p>14 Sep 2023</p>
+        <h3>{isToday(date) ? "Today" : shortMonthDateFormatter(date)}</h3>
+        <p>{isToday(date) ? shortMonthDateFormatter(date) : ""}</p>
+      </div>
+      <div className="datepicker">
+        <label htmlFor="">Choose date</label>
+        <input
+          type="date"
+          onChange={(e) => setDate(new Date(e.target.value))}
+          value={dateFormatter(date)}
+        />
       </div>
       <div className="timetable">
         {timeSlots.map((slot, index) => (
