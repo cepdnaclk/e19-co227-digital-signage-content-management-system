@@ -1,4 +1,5 @@
 <?php include_once "../config.php" ?>
+<?php session_start();?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,16 +21,16 @@
             <span>Need help? <a href="http://www.ceit.pdn.ac.lk/contact.php">Contact us</a></span>
         </div>
         <div class="content">
-            <!-- Corrected form action -->
+        
             <form action="../backend/login.php" method="POST">
                 <h1>Login</h1>
                 <div class="login-input">
-                    <!-- Corrected input field name attributes -->
+                    
                     <label for="user_name">Username</label>
                     <input type="text" id="user_name" name="user_name" placeholder="John Doe">
                 </div>
                 <div class="login-input">
-                    <!-- Corrected input field name attributes -->
+                    
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="xxxxxxxx">
                 </div>

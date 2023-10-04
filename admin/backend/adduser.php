@@ -24,7 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Hash the password before storing it in the database
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $hashed_password = hash('sha256', $password);
+
 
         // Additional fields for Course Coordinator
         $coordination_count = isset($_POST["coordination_count"]) ? $_POST["coordination_count"] : null;
@@ -41,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_stmt_execute($stmt)) {
             // Registration successful, you can redirect the user to a success page
             // For example:
-            header("Location: success_page.php");
+            header("Location: /pages/login.php");
             exit();
         } else {
             echo "Error registering the user.";

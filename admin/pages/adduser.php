@@ -26,9 +26,9 @@
                     <form action="../backend/adduser.php" method="POST" onsubmit="return validateForm()">
                         <div class="role-selection">
                             <p>Select User Role:</p></br>
-                            <label>
+                            <!-- <label>
                                 <input type="radio" name="user_role" value="super_admin" required> Super Admin
-                            </label>
+                            </label> -->
                             <label>
                                 <input type="radio" name="user_role" value="admin" required> Admin
                             </label>

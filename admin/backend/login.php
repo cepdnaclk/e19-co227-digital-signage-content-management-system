@@ -1,5 +1,6 @@
 <?php
 include_once "../config.php";
+session_start();
 
 header("Access-Control-Allow-Origin: *");
 // Allow specific HTTP methods (e.g., GET, POST, OPTIONS)
@@ -7,32 +8,28 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 // Allow specific HTTP headers in requests
 header("Access-Control-Allow-Headers: Content-Type");
 
-session_start();
-
 if (isset($_POST["login"])) {
     $user_name = $_POST["user_name"];
     $password = $_POST["password"];
-    echo "Username: $user_name<br>";
-    echo "Password: $password<br>";
 
-    // create prepared statement
-    $stmt = $conn->prepare("SELECT * FROM `user` WHERE `user_name`=? AND `password`=?");
-    
+    // Hash the provided password
+    $hashed_password = hash('sha256', $password);
+
+    // Create a prepared statement
+    $stmt = $conn->prepare("SELECT u_id, user_name, clearense FROM `user` WHERE `user_name`=? AND `password`=?");
+
     // Bind the parameters and execute
-    $stmt->bind_param("ss", $user_name, $password);
+    $stmt->bind_param("ss", $user_name, $hashed_password);
     $stmt->execute();
-    
+
     // Get the result
     $result = $stmt->get_result();
-    
-    // Fetch a row
-    $row = $result->fetch_assoc();
-    
-    if ($row) {
+
+    if ($row = $result->fetch_assoc()) {
         // Authentication successful
-        // $_SESSION["user_id"] = 1; //set the user ID 
+        $_SESSION["user_id"] = $row["u_id"]; // Set user_id in the session
         $_SESSION["user_name"] = $row["user_name"];
-        $_SESSION["password"] = $row["password"];
+        $_SESSION["clearense"] = $row["clearense"]; // Store user role in the session
         header("Location: /");
         exit();
     } else {
