@@ -27,9 +27,6 @@
                         <div class="role-selection">
                             <p>Select User Role:</p></br>
                             <label>
-                                <input type="radio" name="user_role" value="super_admin" required> Super Admin
-                            </label>
-                            <label>
                                 <input type="radio" name="user_role" value="admin" required> Admin
                             </label>
                             <label>

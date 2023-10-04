@@ -1,4 +1,18 @@
-<?php include_once "../config.php"; ?>
+<?php
+include_once "../config.php";
+
+// Ensure that 'c_id' is provided as a query parameter
+if (isset($_GET['c_id'])) {
+    $c_id = $_GET['c_id'];
+} else {
+    // Handle the case where 'c_id' is not provided
+    // You can redirect the user to an error page or take appropriate action
+    // For example:
+    header("Location: error_page.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +39,7 @@
             <div class="course-manage">
                 <h2>Course Management</h2>
                 <div class="form-container">
-                    <form action="../backend/coursemanagement.php" method="POST" enctype="multipart/form-data">
+                    <form action="../backend/coursemanage.php" method="POST" enctype="multipart/form-data">
                         <!-- Section 1: General Info -->
                         <h3>General Info</h3>
                         <label for="coordinator_name">Course Coordinator Name:</label>
