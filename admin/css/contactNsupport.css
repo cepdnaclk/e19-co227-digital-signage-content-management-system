@@ -1,0 +1,106 @@
+/* Style for the contact-support page */
+.contact-support {
+    background-color: #f7f7f7;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+/* Style for the contact form */
+form {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: var(--color-3);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+
+
+/* Style for the contact details grid */
+.contact-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns, equal width */
+    grid-gap: 10px; /* Gap between grid items */
+    margin-top: 15px;
+}
+
+/* Style for contact details items */
+.contact-address,
+.tele-no,
+.email,
+.web {
+    align-content: center center;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-details h2 {
+    
+    font-size: 24px;
+    color: #333;
+}
+
+address {
+    font-size: 16px;
+    color: #555;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tele-no ul,
+.email,
+.web {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.tele-icon,
+.web-icon,
+.email-icon{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
