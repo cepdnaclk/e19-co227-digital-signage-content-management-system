@@ -26,11 +26,11 @@ if (mysqli_num_rows($result) > 0) {
         
         
         if ($row['published'] == 1) {
-            echo '<a class="unpublish" href="../backend/publish.php?publish_id=' . $row['p_id'] . '"><button class="unpublish-button" ><span class="icon">&#10680;</span>Unpublish</button></a>';
+            echo '<a class="unpublish" href="../backend/publish_previousevents.php?publish_id=' . $row['p_id'] . '"><button class="unpublish-button" ><span class="icon">&#10680;</span>Unpublish</button></a>';
             //echo '<button class="unpublish-button" >';
             //echo '<span class="icon">&#10680;</span><a class="unpublish" href="../backend/publish.php?publish_id=' . $row['e_id'] . '">Unpublish</a>';
         } else {
-            echo '<a class="publish" href="../backend/publish.php?publish_id=' . $row['p_id'] . '"><button class="publish-button" ><span class="icon">&#10004;</span>Publish</button></a>';
+            echo '<a class="publish" href="../backend/publish_previousevents.php?publish_id=' . $row['p_id'] . '"><button class="publish-button" ><span class="icon">&#10004;</span>Publish</button></a>';
             //echo '<button class="publish-button" >';
             //echo '<span class="icon">&#10004;</span><a class= "publish" href="../backend/publish.php?publish_id=' . $row['e_id'] . '">Publish</a>';
         }
