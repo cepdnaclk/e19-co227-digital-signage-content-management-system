@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `cmsdb`
 --
-CREATE DATABASE cmsdb;
+-- CREATE DATABASE cmsdb;
 USE cmsdb;
 
 -- --------------------------------------------------------
@@ -250,10 +250,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`u_id`, `user_name`, `email`, `password`, `contact`, `clearense`) VALUES
-(1, 'John Doe', 'john@example.com', '1', '1234567890', 'Clearance1'),
-(2, 'Jane Smith', 'jane@example.com', '2', '9876543210', 'Clearance2'),
-(3, 'Alice Johnson', 'alice@example.com', '3', '5555555555', 'Clearance3'),
-(4, 'Bob Williams', 'bob@example.com', '4', '9999999999', 'Clearance4');
+(1, 'John Doe', 'john@example.com', '1', '1234567890', 's_admin'),
+(2, 'Jane Smith', 'jane@example.com', '2', '9876543210', 'admin'),
+(3, 'Alice Johnson', 'alice@example.com', '3', '5555555555', 'admin'),
+(4, 'Bob Williams', 'bob@example.com', '4', '9999999999', 'coodinator');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

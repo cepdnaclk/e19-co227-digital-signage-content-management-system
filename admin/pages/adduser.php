@@ -23,9 +23,12 @@
             <div class="register-user">
                 <h2>Register New User</h2>
                 <div class="form-container">
-                    <form action="../backend/registeruser.php" method="POST">
+                    <form action="../backend/adduser.php" method="POST" onsubmit="return validateForm()">
                         <div class="role-selection">
                             <p>Select User Role:</p></br>
+                            <label>
+                                <input type="radio" name="user_role" value="super_admin" required> Super Admin
+                            </label>
                             <label>
                                 <input type="radio" name="user_role" value="admin" required> Admin
                             </label>
@@ -105,6 +108,19 @@
                 courseListContainer.appendChild(document.createElement('br'));
             }
         });
+
+        // Simple client-side validation
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            const confirm_password = document.getElementById('confirm_password').value;
+
+            if (password !== confirm_password) {
+                alert("Password and Confirm Password do not match.");
+                return false;
+            }
+
+            return true;
+        }
     </script>
 </body>
 
