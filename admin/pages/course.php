@@ -42,84 +42,55 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php
-                                    define('API_URL', ''); // Define the API_URL constant
-
-                                    // Fetch courses data from the backend
-                                    $response = @file_get_contents(API_URL . "../backend/course.php");
-
-                                    if ($response === FALSE) {
-                                        // Handle the case where file_get_contents failed
-                                        echo "Failed to fetch data from the API.";
-                                    } else {
-                                        // Decode the response JSON
-                                        $courses = json_decode($response, true);
-
-                                        if ($courses === null) {
-                                            // Handle the case where JSON decoding failed
-                                           
-                                        } else {
-                                            // Loop through and display courses
-                                            foreach ($courses as $course) :
-                                    ?>
-                                    <tr>
-                                        <td class="text-left"><?php echo $course["c_code"]; ?></td>
-                                        <td class="text-left"><?php echo $course["c_name"]; ?></td>
-                                        <td class="text-center">
-                                            <button class="btn btn-publish" data-course-id="<?php echo $course["c_id"]; ?>">Publish</button>
-                                            <button class="btn btn-preview" data-course-id="<?php echo $course["c_id"]; ?>">Preview</button>
-                                            <a href="/pages/coursemanage.php?c_id=<?php echo $course["c_id"]; ?>"><button class="btn btn-manage">Manage</button></a>
-                                            <button class="btn btn-delete" data-course-id="<?php echo $course["c_id"]; ?>">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; 
-                                    }
-                                }
-                                ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </main>
-            
         </div>
     </div>
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Fetch courses data from the backend
-        fetch('../backend/course.php')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(courses => {
-                if (courses.length > 0) {
-                    const tbody = document.querySelector("tbody");
-                    courses.forEach(course => {
-                        const row = document.createElement("tr");
-                        row.innerHTML = `
-                            <td class="text-left">${course.c_code}</td>
-                            <td class="text-left">${course.c_name}</td>
-                            <td class="text-center">
-                                <button class="btn btn-publish" data-course-id="${course.c_id}">Publish</button>
-                                <button class="btn btn-preview" data-course-id="${course.c_id}">Preview</button>
-                                <a href="/pages/coursemanage.php?c_id=<?php echo $course["c_id"]; ?>"><button class="btn btn-manage">Manage</button></a>
-                                <button class="btn btn-delete" data-course-id="${course.c_id}">Delete</button>
-                            </td>
-                        `;
-                        tbody.appendChild(row);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
-    });
-</script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch courses data from the backend
+            fetch('../backend/course.php')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(courses => {
+                    if (courses.length > 0) {
+                        const tbody = document.querySelector("tbody");
+                        courses.forEach(course => {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                                <td class="text-left">${course.c_code}</td>
+                                <td class="text-left">${course.c_name}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-publish" data-course-id="${course.c_id}">Publish</button>
+                                    <button class="btn btn-preview" data-course-id="${course.c_id}">Preview</button>
+                                    <a href="/pages/coursemanage.php" class="btn btn-manage" data-course-id="${course.c_id}">Manage</a>
+                                    <button class="btn btn-delete" data-course-id="${course.c_id}">Delete</button>
+                                </td>
+                            `;
+                            tbody.appendChild(row);
 
+                            // Add click event listener to the "Manage" button
+                            const manageButton = row.querySelector('.btn-manage');
+                            manageButton.addEventListener('click', function () {
+                                const courseId = this.getAttribute('data-course-id');
+                                this.href = `/pages/coursemanage.php?c_id=${courseId}`;
+                            });
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        });
+    </script>
 </body>
 
 </html>
