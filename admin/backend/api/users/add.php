@@ -40,8 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Bind parameters and execute the query
         mysqli_stmt_bind_param($stmt, "ssss", $username, $email, $hashed_password, $user_role);
         if (mysqli_stmt_execute($stmt)) {
-            // Registration successful, you can redirect the user to a success page
-            // For example:
+
             header("Location: /pages/login.php");
             exit();
         } else {
