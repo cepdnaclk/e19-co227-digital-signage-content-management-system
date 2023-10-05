@@ -21,23 +21,24 @@
         ?>
         <div class="right">
             <div class="register-user container">
-                <h2>Register New User</h2>
+                <h2><?= $clearenceStatus[$_SESSION['clearense']] > 1 ? 'Register New User' : 'Register new Course Coordinator' ?></h2>
                 <div class="form-container">
                     <form action="../backend/adduser.php" method="POST" onsubmit="return validateForm()">
-                        <div class="role-selection">
-                            <p>Select User Role:</p></br>
-                            <div class="role">
-                                <input type="radio" id="role1" name="user_role" value="admin" required checked>
-                                <label for="role1">
-                                    Admin
-                                </label>
-                                <input type="radio" id="role2" name="user_role" value="course_coordinator" required>
-                                <label for="role2">
-                                    Course Coordinator
-                                </label>
+                        <?php if ($clearenceStatus[$_SESSION['clearense']] > 1) { ?>
+                            <div class="role-selection">
+                                <p>Select User Role:</p></br>
+                                <div class="role">
+                                    <input type="radio" id="role1" name="user_role" value="admin" required checked>
+                                    <label for="role1">
+                                        Admin
+                                    </label>
+                                    <input type="radio" id="role2" name="user_role" value="course_coordinator" required>
+                                    <label for="role2">
+                                        Course Coordinator
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-
+                        <?php } ?>
                         <label for="username">Username:</label>
                         <input type="text" name="username" id="username" required>
                         <br><br>

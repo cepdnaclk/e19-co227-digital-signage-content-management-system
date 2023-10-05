@@ -65,6 +65,19 @@ function getCourse($conn, $c_id)
         return $courses[0];
 }
 
+function getCoursesIdle($conn)
+{
+    $result = $conn->query("SELECT c_id, c_code, c_name FROM course WHERE c_coordinator = null");
+    if ($result === false) {
+        return false; // Error in query execution
+    }
+    $courses = [];
+    while ($row = $result->fetch_assoc()) {
+        $courses[] = $row;
+    }
+    return $courses;
+}
+
 // Main code to handle requests
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Handle Add, Edit, and Delete requests
