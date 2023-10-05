@@ -85,7 +85,7 @@ if (!isset($users))
                                     <li>
                                         <p><?= $sa['user_name'] ?></p>
                                         <?php if ($_SESSION['user_id'] == $sa['u_id']) { ?>
-                                            <a class="btn btn-success" href="/backend/user.php?edit=<?= $sa['u_id'] ?>">EDIT</a>
+                                            <a class="btn btn-success" href="/backend/users.php?edit=<?= $sa['u_id'] ?>">EDIT</a>
                                         <?php } ?>
                                     </li>
                                 <?php
@@ -103,8 +103,8 @@ if (!isset($users))
                                 ?>
                                     <li>
                                         <p><?= $admin['user_name'] ?></p>
-                                        <?php if ($_SESSION['clearense'] == 'super_admin') { ?>
-                                            <a class="btn btn-danger" href="/backend/user.php?delete=<?= $admin['u_id'] ?>">DELETE</a>
+                                        <?php if ($clearenceStatus[$_SESSION['clearense']] > 1) { ?>
+                                            <a class="btn btn-danger" href="/backend/users.php?delete=<?= $admin['u_id'] ?>">DELETE</a>
                                         <?php } ?>
                                         <?php if ($_SESSION['user_id'] == $admin['u_id']) { ?>
                                             <a class="btn btn-success" href="/backend/user.php?edit=<?= $admin['u_id'] ?>">EDIT</a>
@@ -125,8 +125,8 @@ if (!isset($users))
                                 ?>
                                     <li>
                                         <p><?= $cc['user_name'] ?></p>
-                                        <?php if ($_SESSION['clearense'] == 'super_admin' || 'admin') { ?>
-                                            <a class="btn btn-danger" href="/backend/user.php?delete=<?= $cc['u_id'] ?>">DELETE</a>
+                                        <?php if ($clearenceStatus[$_SESSION['clearense']] > 1) { ?>
+                                            <a class="btn btn-danger" href="/backend/users.php?delete=<?= $cc['u_id'] ?>">DELETE</a>
                                         <?php } ?>
                                         <?php if ($_SESSION['user_id'] == $cc['u_id']) { ?>
                                             <a class="btn btn-success" href="/backend/user.php?edit=<?= $cc['u_id'] ?>">EDIT</a>

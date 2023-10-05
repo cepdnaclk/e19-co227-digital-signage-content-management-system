@@ -31,3 +31,55 @@ function getUsers()
 
     return $users;
 }
+
+
+function getUser(int $userId)
+{
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM user WHERE u_id = ?");
+    $stmt->bind_param("i", $userId);
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+    if (!isset($user))
+        return false;
+
+    $stmt->close();
+
+    return $user;
+}
+
+
+function deleteUser(int $userId)
+{
+    global $conn;
+
+    $stmt = $conn->prepare("DELETE FROM user WHERE u_id = ?");
+
+    $stmt->bind_param('i', $userId);
+
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_GET['delete'])) {
+        $user = getUser($_GET['delete']);
+        if ($user == false) {
+            header('Location: /pages/users.php');
+            exit();
+        }
+        if ($clearenceStatus[$user['clearense']] < $clearenceStatus[$_SESSION['clearense']]) {
+            if (deleteUser($_GET['delete'])) {
+                header('Location: /pages/users.php?success=1');
+            } else {
+                header('Location: /pages/users.php?error=1');
+            }
+        }
+    }
+}

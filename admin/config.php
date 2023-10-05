@@ -2,10 +2,10 @@
 const APP_ROOT = __DIR__;
 
 // Database Configuration
-const DB_HOST = 'localhost'; 
-const DB_USER = 'root'; 
-const DB_PASSWORD = ''; 
-const DB_NAME = 'cmsdb'; 
+const DB_HOST = 'localhost';
+const DB_USER = 'root';
+const DB_PASSWORD = '';
+const DB_NAME = 'cmsdb';
 
 // Create a database connection
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -18,5 +18,8 @@ if ($conn->connect_error) {
 // Set the character set to UTF-8 (if needed)
 $conn->set_charset("utf8");
 
-
-?>
+$clearenceStatus = [
+    'super_admin' => 2,
+    'admin' => 1,
+    'course_c' => 0
+];
