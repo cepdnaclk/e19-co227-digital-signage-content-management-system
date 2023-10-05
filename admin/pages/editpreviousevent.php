@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                         <input type="text" name="p_name" id="p_name" value= "<?php echo $event_name; ?>">
                         <br>
                         <label for="p_desc">Description:</label>
-                        <input type="text" name="p_desc" id="p_desc" style="height: 150px" value= "<?php echo $event_desc; ?>">
+                        <textarea name="p_desc" id="p_desc" rows="6" value= "<?php echo $event_desc; ?>"></textarea>
                         <br>
                         <label for="p_date">Date:</label>
                         <input type="date" name="p_date" id="p_date" value= "<?php echo $event_date; ?>">

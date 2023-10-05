@@ -32,7 +32,7 @@
 /* Style the card image */
 .achievements .card img {
   padding: 5% 5% 0% 5%;
-  width: 100%;
+  width: auto;
   height: 200px; /* Set the desired height for the images */
   object-fit: cover; /* You can use "cover" or "contain" as per your preference */
 }
@@ -58,9 +58,15 @@
   overflow: auto; /* Enable scroll for overflowed content */
 }
 
+.achievements .card-date {
+  margin-top: 5px;
+  font-size: 0.6rem;
+  font-weight: 300;
+}
+
 /* Adjust the height to accommodate the scroll bar if needed */
 .achievements .card-description.overflowed {
-  max-height: 60px; /* Same as the initial max-height value */
+  max-height: 80px; /* Same as the initial max-height value */
 }
 
 /* Adjust scrollbar width */
