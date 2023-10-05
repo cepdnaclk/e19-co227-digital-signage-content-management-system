@@ -1,4 +1,4 @@
-<?php include_once "../config.php" ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,7 +51,7 @@
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             // Fetch courses data from the backend
             fetch('../backend/course.php')
                 .then(response => {
@@ -79,7 +79,7 @@
 
                             // Add click event listener to the "Manage" button
                             const manageButton = row.querySelector('.btn-manage');
-                            manageButton.addEventListener('click', function () {
+                            manageButton.addEventListener('click', function() {
                                 const courseId = this.getAttribute('data-course-id');
                                 this.href = `/pages/coursemanage.php?c_id=${courseId}`;
                             });

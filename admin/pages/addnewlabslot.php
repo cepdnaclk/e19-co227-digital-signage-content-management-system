@@ -1,6 +1,6 @@
-<?php include_once "../config.php" ?>
-<?php include_once "../helpers/datetime.php" ?>
-<?php include_once "../backend/labslots.php" ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/helpers/datetime.php" ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/labslots.php" ?>
 
 <?php
 
@@ -71,7 +71,7 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
                             <p>Create a labslot for a course</p>
                         </div>
                     </div>
-                    <form class="options" method="post" action="../backend/labslots.php">
+                    <form class="options" method="post" action="../backend/api/labslots/add_update.php">
                         <div class="option">
                             <select name="course" id="course" v-model="course">
                                 <option value="CCNA">CCNA</option>

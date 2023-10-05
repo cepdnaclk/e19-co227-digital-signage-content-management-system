@@ -1,12 +1,6 @@
 <?php
-include_once "../config.php";
-include_once "../helpers/datetime.php";
-
-header("Access-Control-Allow-Origin: *");
-// Allow specific HTTP methods (e.g., GET, POST, OPTIONS)
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-// Allow specific HTTP headers in requests
-header("Access-Control-Allow-Headers: Content-Type");
+include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/helpers/datetime.php";
 
 function getLabSlots($lab, $monday, $sunday)
 {
@@ -136,37 +130,5 @@ function deleteLabSlot($slotID)
         return true;
     } else {
         return false;
-    }
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if ($_POST['updateid'] == '') {
-        $result = addLabSlot($_POST['lab'], $_POST['course'], $_POST['stime'], $_POST['etime'], $_POST['date'], $_POST['isoneday'], $_POST['oneday']);
-        if ($result === true)
-            header("Location: ../pages/labslots.php?success=1");
-        else
-            header("Location: ../pages/addnewlabslot.php?error=$result&lab={$_POST['lab']}");
-    } else {
-        $result = editLabSlot($_POST['updateid'], $_POST['course'], $_POST['stime'], $_POST['etime'], $_POST['date'], $_POST['isoneday'], $_POST['oneday']);
-        if ($result === true)
-            header("Location: ../pages/labslots.php?success=2");
-        else
-            header("Location: ../pages/addnewlabslot.php?error=$result&lab={$_POST['lab']}");
-    }
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    if (isset($_GET['delete_id'])) {
-        $result = deleteLabSlot($_GET['delete_id']);
-        if ($result === true)
-            header("Location: ../pages/labslots.php?success=1");
-        else
-            header("Location: ../pages/labslots.php?error=$result");
-    } else if (isset($_GET['date'])) {
-        $index = getWeekIndex($_GET['date']);
-        $result = getLabSlotsToday($index, $_GET['date']);
-
-        header('Content-Type: application/json');
-        echo json_encode($result);
     }
 }
