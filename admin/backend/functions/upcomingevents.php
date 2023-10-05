@@ -1,7 +1,6 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 
-
 function getUpcomingEvents()
 {
     global $conn;
@@ -41,13 +40,65 @@ function getUpcomingEventById(int $eventId)
     return $result;
 }
 
+function addUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $display_from, $display_to, $added_by)
+{
+    global $conn;
+    $result = array();
+
+    // Check if a file was uploaded
+    if (!empty($file['name'])) {
+        $targetDirectory = "/images/upcoming-event-posters/";
+        $targetFile = $targetDirectory . basename($file["name"]);
+
+        // Check if the file is an image
+        $allowedExtensions = ["jpg", "jpeg", "png"];
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+        if (!in_array($imageFileType, $allowedExtensions)) {
+            $result = array('error' => "Only JPG, JPEG, and PNG files are allowed.");
+            return $result;
+        }
+
+        // Move the uploaded file to the target directory
+        if (move_uploaded_file($file["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $targetFile)) {
+            // File uploaded successfully
+        } else {
+            $result = array('error' => "Error uploading the image.");
+            return $result;
+        }
+    } else {
+        $result = array('error' => "Select an image.");
+        return $result;
+    }
+
+    // Prepare and execute the SQL query to insert data into the 'upcoming_event' table
+    $sql = "INSERT INTO upcoming_event 
+            (e_name, e_date, e_time, e_venue, e_img, display_from, display_to, added_by)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $sql);
+
+    // Bind parameters
+    mysqli_stmt_bind_param($stmt, "sssssssi", $e_name, $e_date, $e_time, $e_venue, $targetFile, $display_from, $display_to, $added_by);
+
+    if (mysqli_stmt_execute($stmt)) {
+        $result = array('message' => "Upcoming Event Added Successfully");
+    } else {
+        $result = array('error' => mysqli_error($conn));
+    }
+
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}
+
+
 function editUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_path, $display_from, $display_to, $added_by, $e_id)
 {
     global $conn;
     $result = array();
-    $targetFile = null;
+    $targetFile = $file_path;
 
-    if (isset($file)) {
+    if ($file['name']) {
         if (isset($file_path)) {
             if (file_exists($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
                 if (!unlink($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
@@ -63,7 +114,7 @@ function editUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_pa
         // Check if the file is an image
         $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-            $result = array('error' => "Only JPG, JPEG, and PNG files are allowed.");
+            $result = array('error' => "Only JPG, JPEG, and PNG files are allowed." . $file['name']);
             return $result;
         } else {
             if (move_uploaded_file($file["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $targetFile)) {
@@ -72,11 +123,6 @@ function editUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_pa
                 return $result;
             }
         }
-    } else if (isset($file_path)) {
-        $targetFile = $file_path;
-    } else {
-        $result = array('error' => "Please select a image");
-        return $result;
     }
 
     // Prepare and execute the SQL query to insert data into the 'upcoming_event' table
@@ -98,7 +144,7 @@ function editUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_pa
     if (mysqli_stmt_execute($stmt)) {
         $result = array('message' => "Upcoming Event Updated");
     } else {
-        $result = array('error' => mysqli_error($conn) . $targetFile);
+        $result = array('error' => mysqli_error($conn));
     }
 
     mysqli_stmt_close($stmt);
