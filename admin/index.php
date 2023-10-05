@@ -43,7 +43,7 @@
                 <!-- Widgets -->
                 <div class="dashboard-widgets">
                     <?php
-                    // ToDO: from the backend => Include necessary logic to fetch data from the database
+                    // TODO: from the backend => Include necessary logic to fetch data from the database
                     // Replace the placeholders with actual data
                     $widgets = [
                         [
