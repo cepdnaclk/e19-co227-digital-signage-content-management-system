@@ -49,7 +49,7 @@
                         [
                             'title' => 'Lab Slots',
                             'total_pages' => 5,
-                            'published' => '5 (Publish all by defualt)',
+                            'published' => 1,
                             'allocated_total_time' => '30s',
                             'allocated_time_per_page' => '30s',
                         ],
