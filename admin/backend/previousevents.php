@@ -32,11 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (move_uploaded_file($_FILES["p_img"]["tmp_name"], $targetFile)) {
 
                 // Prepare and execute the SQL query to insert data into the 'previous_event' table
-                $sql = "INSERT INTO previous_event (p_name, p_desc, p_date, p_img, added_by) VALUES (?, ?, ?, ?, ?";
+                $sql = "INSERT INTO previous_event (p_name, p_desc, p_date, p_img, added_by) VALUES (?, ?, ?, ?, ?)";
                 $stmt = mysqli_prepare($conn, $sql);
 
                 // Bind parameters
-                mysqli_stmt_bind_param($stmt, "sssssssi", $p_name, $p_desc, $p_date, $targetFile, $added_by);
+                mysqli_stmt_bind_param($stmt, "ssssi", $p_name, $p_desc, $p_date, $targetFile, $added_by);
 
                 if (mysqli_stmt_execute($stmt)) {
                     // Event added successfully, trigger popup
