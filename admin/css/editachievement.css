@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 85vh;
+  height: 80vh;
   width: 100%;
   background-color: #f0f0f0; /* Set a background color */
   margin: 0px;
@@ -43,7 +43,8 @@
 
 .edit-achievement input[type="text"],
 .edit-achievement input[type="number"],
-.edit-achievement input[type="date"]{
+.edit-achievement input[type="date"],
+.edit-achievement textarea {
   width: 100%;
   padding: 8px;
   margin-bottom: 15px;

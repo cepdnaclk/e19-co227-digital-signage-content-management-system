@@ -45,7 +45,8 @@ form {
 
 .add-previous-event input[type="text"],
 .add-previous-event input[type="number"],
-.add-previous-event input[type="date"]{
+.add-previous-event input[type="date"],
+.add-previous-event textarea {
   width: 100%;
   padding: 8px;
   margin-bottom: 15px;
