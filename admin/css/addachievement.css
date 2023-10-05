@@ -45,7 +45,8 @@ form {
 
 .add-achievement input[type="text"],
 .add-achievement input[type="number"],
-.add-achievement input[type="date"]{
+.add-achievement input[type="date"],
+.add-achievement textarea {
   width: 100%;
   padding: 8px;
   margin-bottom: 15px;

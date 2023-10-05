@@ -31,7 +31,7 @@
                         <input type="text" name="p_name" id="p_name">
                         <br>
                         <label for="p_desc">Description:</label>
-                        <input type="text" name="p_desc" id="p_desc" style="height: 150px;">
+                        <textarea name="p_desc" id="p_desc" rows="6"></textarea>
                         <br>
                         <label for="p_date">Date:</label>
                         <input type="date" name="p_date" id="p_date">
