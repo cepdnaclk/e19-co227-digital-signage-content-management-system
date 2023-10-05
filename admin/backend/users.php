@@ -1,21 +1,33 @@
 <?php
 include_once "../config.php"; // Include your database connection
 
-$users = array(); // Initialize an empty array to store user data
+function getUsers()
+{
+    global $conn;
 
-// Fetch user names for each role from the database
-$query = "SELECT clearense, GROUP_CONCAT(user_name) AS usernames FROM user GROUP BY clearense";
-$result = mysqli_query($conn, $query);
+    // Prepare the SQL query
+    $stmt = $conn->prepare("SELECT clearense, u_id, user_name FROM user");
 
-if ($result) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $users[$row['clearense']] = explode(',', $row['usernames']);
+    // Execute the prepared statement
+    $stmt->execute();
+
+    // Get the result set
+    $result = $stmt->get_result();
+
+    // Fetch and return the data
+    $users = array();
+    while ($row = $result->fetch_assoc()) {
+        $clearence = $row['clearense'];
+
+        if (!isset($users[$clearence])) {
+            $users[$clearence] = array();
+        }
+
+        $users[$clearence][] = $row;
     }
 
-    // Convert the user data to JSON format
-    echo json_encode($users);
-} else {
-    // Handle any database query errors here
-    echo json_encode(array('error' => 'Database query failed.'));
+    // Close the statement
+    $stmt->close();
+
+    return $users;
 }
-?>

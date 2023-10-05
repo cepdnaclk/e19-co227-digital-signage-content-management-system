@@ -1,6 +1,11 @@
-<?php include_once "../config.php" ;
-  include (APP_ROOT . "/includes/header.php");
+<?php include_once "../config.php";
+include(APP_ROOT . "/includes/header.php");
+include_once "../backend/users.php";
 
+$users = getUsers();
+
+if (!isset($users))
+    header("Location: '/'");
 ?>
 
 <!DOCTYPE html>
@@ -11,21 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/users.css">
     <title>IT Center | Users</title>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Make an AJAX request to fetch user names
-            fetch("../backend/users.php")
-                .then((response) => response.json())
-                .then((data) => {
-                    // Populate user names for each role
-                    console.log(data);
-                    document.querySelector(".super-admin ul").innerHTML = data["super_admin"].map((name) => `<li>${name}</li>`).join("");
-                    document.querySelector(".admins ul").innerHTML = data["admin"].map((name) => `<li>${name}</li>`).join("");
-                    document.querySelector(".coordinators ul").innerHTML = data["coordinator"].map((name) => `<li>${name}</li>`).join("");
-                });
-        });
-    </script>
+
+
 </head>
 
 <body>
@@ -37,7 +29,6 @@
             ?>
         </div>
         <div class="right">
-           
             <main class="users">
                 <div class="container">
                     <div class="title">
@@ -45,7 +36,7 @@
                             <h1>Users</h1>
                             <p>Currently active users in charge of CMS handling</p>
                         </div>
-                        <a href="/pages/adduser.php" class="btn btn-success"><img src="../images/Add_round.svg" alt=""> Register New User</a>
+                        <a href="/pages/adduser.php"><img src="../images/Add_round.svg" alt=""> Register New User</a>
                     </div>
 
                     <!-- User Role Icons and Counts -->
@@ -58,7 +49,7 @@
                                 <h3>Super-Admin</h3>
                                 <p>Director of IT Center</p>
                             </div>
-                            <div class="user-count">1</div>
+                            <div class="user-count"><?= isset($users['super_admin']) ? sizeof($users['super_admin']) : 0 ?></div>
                         </div>
                         <div class="user-role" id="admin-role">
                             <div class="user-icon">
@@ -68,7 +59,7 @@
                                 <h3>Admin</h3>
                                 <p>Administrator</p>
                             </div>
-                            <div class="user-count">5</div>
+                            <div class="user-count"><?= isset($users['admin']) ? sizeof($users['admin']) : 0 ?></div>
                         </div>
                         <div class="user-role" id="coordinator-role">
                             <div class="user-icon">
@@ -78,30 +69,72 @@
                                 <h3>Course Coordinator</h3>
                                 <p>Coordinator</p>
                             </div>
-                            <div class="user-count">10</div>
+                            <div class="user-count"><?= isset($users['course_c']) ? sizeof($users['course_c']) : 0 ?></div>
                         </div>
                     </div>
-                    
+
                     <!-- Display all users -->
                     <div class="all-users">
                         <div class="user-list super-admin">
                             <h3>Super Admin</h3>
                             <ul>
-                                <!-- User names for Super Admin will be populated dynamically -->
+                                <?php
+                                if (isset($users['super_admin']))
+                                    foreach ($users['super_admin'] as $key => $sa) {
+                                ?>
+                                    <li>
+                                        <p><?= $sa['user_name'] ?></p>
+                                        <?php if ($_SESSION['user_id'] == $sa['u_id']) { ?>
+                                            <a class="btn btn-success" href="/backend/user.php?edit=<?= $sa['u_id'] ?>">EDIT</a>
+                                        <?php } ?>
+                                    </li>
+                                <?php
+                                    }
+                                ?>
                             </ul>
                         </div>
 
                         <div class="user-list admins">
                             <h3>Admins</h3>
                             <ul>
-                                <!-- User names for Admins will be populated dynamically -->
+                                <?php
+                                if (isset($users['admin']))
+                                    foreach ($users['admin'] as $key => $admin) {
+                                ?>
+                                    <li>
+                                        <p><?= $admin['user_name'] ?></p>
+                                        <?php if ($_SESSION['clearense'] == 'super_admin') { ?>
+                                            <a class="btn btn-danger" href="/backend/user.php?delete=<?= $admin['u_id'] ?>">DELETE</a>
+                                        <?php } ?>
+                                        <?php if ($_SESSION['user_id'] == $admin['u_id']) { ?>
+                                            <a class="btn btn-success" href="/backend/user.php?edit=<?= $admin['u_id'] ?>">EDIT</a>
+                                        <?php } ?>
+                                    </li>
+                                <?php
+                                    }
+                                ?>
                             </ul>
                         </div>
 
                         <div class="user-list coordinators">
                             <h3>Coordinators</h3>
                             <ul>
-                                <!-- User names for Coordinators will be populated dynamically -->
+                                <?php
+                                if (isset($users['course_c']))
+                                    foreach ($users['course_c'] as $key => $cc) {
+                                ?>
+                                    <li>
+                                        <p><?= $cc['user_name'] ?></p>
+                                        <?php if ($_SESSION['clearense'] == 'super_admin' || 'admin') { ?>
+                                            <a class="btn btn-danger" href="/backend/user.php?delete=<?= $cc['u_id'] ?>">DELETE</a>
+                                        <?php } ?>
+                                        <?php if ($_SESSION['user_id'] == $cc['u_id']) { ?>
+                                            <a class="btn btn-success" href="/backend/user.php?edit=<?= $cc['u_id'] ?>">EDIT</a>
+                                        <?php } ?>
+                                    </li>
+                                <?php
+                                    }
+                                ?>
                             </ul>
                         </div>
                     </div>
