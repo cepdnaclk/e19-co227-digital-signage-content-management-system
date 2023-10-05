@@ -1,5 +1,5 @@
 <?php
-include_once "../config.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the form fields are set and not empty
@@ -54,4 +54,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "All required fields must be filled.";
     }
 }
-?>
