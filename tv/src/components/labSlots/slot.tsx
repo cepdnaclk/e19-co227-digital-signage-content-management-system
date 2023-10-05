@@ -19,7 +19,7 @@ const Slot: React.FC = ({ details }) => {
 
   const style = {
     backgroundColor: `var(--color-${details.lab == 1 ? 1 : details.lab + 1})`,
-    gridColumn: details.lab + 1,
+    gridColumn: details.lab + 1 == 1 ? 2 : details.lab + 1,
     gridRow: getGridRow(startMinutes),
     height: `${getHeight(startMinutes, endMinutes, tableHeight)}px`,
     transform: `translateY(${getRowOffset(startMinutes, tableHeight)}px)`,
