@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $e_date = $_POST["e_date"];
         $e_time = $_POST["e_time"];
         $e_venue = $_POST["e_venue"];
-        $file = $_POST['e_img'];
+        $file = $_FILES['e_img'];
         $file_path = $_POST['e_img_loc'];
         $display_from = $_POST["display_from"];
         $display_to = $_POST["display_to"];

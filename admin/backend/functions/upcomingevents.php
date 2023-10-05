@@ -48,7 +48,16 @@ function editUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_pa
     $targetFile = null;
 
     if (isset($file)) {
-        $targetDirectory = $_SERVER['DOCUMENT_ROOT'] . "/images/upcoming-event-posters/";
+        if (isset($file_path)) {
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
+                if (!unlink($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
+                    $result = array('error' => "Error uploading the image. Couldn't delete old one" . $_SERVER['DOCUMENT_ROOT'] . $file_path);
+                    return $result;
+                }
+            }
+        }
+
+        $targetDirectory = "/images/upcoming-event-posters/";
         $targetFile = $targetDirectory . basename($file["name"]);
 
         // Check if the file is an image
@@ -57,7 +66,7 @@ function editUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_pa
             $result = array('error' => "Only JPG, JPEG, and PNG files are allowed.");
             return $result;
         } else {
-            if (move_uploaded_file($file["tmp_name"], $targetFile)) {
+            if (move_uploaded_file($file["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $targetFile)) {
             } else {
                 $result = array('error' => "Error uploading the image.");
                 return $result;
@@ -87,9 +96,9 @@ function editUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_pa
     mysqli_stmt_bind_param($stmt, "sssssssii", $e_name, $e_date, $e_time, $e_venue, $targetFile, $display_from, $display_to, $added_by, $e_id);
 
     if (mysqli_stmt_execute($stmt)) {
-        $result = array('message' => "Upcoming Event Updated" . $targetFile);
+        $result = array('message' => "Upcoming Event Updated");
     } else {
-        $result = array('error' => mysqli_error($conn));
+        $result = array('error' => mysqli_error($conn) . $targetFile);
     }
 
     mysqli_stmt_close($stmt);
@@ -105,7 +114,7 @@ function deleteUpcomingEvent(int $eventId)
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
-    $event_img = $row['e_img'];
+    $event_img = $_SERVER['DOCUMENT_ROOT'] . $row['e_img'];
     if (file_exists($event_img)) {
         if (!unlink($event_img)) {
             echo "Failed to delete the image.";

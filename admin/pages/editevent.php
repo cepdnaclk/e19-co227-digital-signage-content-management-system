@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                         <br><br>
                         <label for="e_img">Select an Image:</label>
                         <input type="file" name="e_img" id="e_img">
-                        <input type="text" name="e_img_loc" style="display:none" value="<?= isset($row['e_img']) ? $row['e_img'] : "" ?>">
+                        <input type="text" name="e_img_loc" style="display:none" value="<?= $event_img ?>">
                         <br><br>
                         <label for="e_name">Name:</label>
                         <input type="text" name="e_name" id="e_name" value="<?php echo $event_name; ?>">
