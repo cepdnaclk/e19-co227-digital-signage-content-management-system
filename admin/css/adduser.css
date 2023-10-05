@@ -2,116 +2,102 @@
 
 /* General styles for the registration form */
 .register-user {
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem 0;
 }
 
 .register-user h2 {
-    font-size: 24px;
-    color: #333;
+  font-size: 24px;
+  color: #333;
 }
 
-.form-container {
-    margin-top: 20px;
+.register-user .form-container {
+  margin-top: 20px;
 }
 
-label {
-    display: block;
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 8px;
+.register-user .role-selection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 15px;
+.register-user .role {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-1);
 }
 
-input[type="radio"] {
-    margin-right: 10px;
+.register-user .role input {
+  display: none;
+}
+
+.register-user .role label {
+  padding: 0.5rem 1rem;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.register-user .role input:checked + label {
+  background: var(--color-1);
+  color: white;
+}
+
+.register-user input[type="text"],
+.register-user input[type="email"],
+.register-user input[type="password"],
+.register-user input[type="number"],
+.register-user select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.register-user input[type="radio"] {
+  margin-right: 10px;
 }
 
 /* Styles for Course Coordinator fields */
-.course-coordinator-fields {
-    display: none;
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f5f5f5;
+.register-user .course-coordinator-fields {
+  display: none;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
 }
 
-.course-list label {
-    font-size: 16px;
-    color: #333;
+.register-user .course-list label {
+  font-size: 16px;
+  color: #333;
 }
 
-.course-list select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
+.register-user .course-list select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 /* Submit button */
-input[type="submit"] {
-    background-color: var(--color-3);
-    color: #fff;
-    font-size: 18px;
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.register-user input[type="submit"] {
+  background-color: var(--color-3);
+  color: #fff;
+  font-size: 18px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* Submit button hover effect */
-input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-/* Center the role-selection div in the middle of the screen */
-.role-selection {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 30%;
-}
-
-/* Add some styles for the role selection options */
-.role-selection h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.role-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-}
-
-/* Style for the radio buttons and labels */
-.role-option label {
-    font-weight: 800;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* Style for the radio button itself */
-.role-option input[type="radio"] {
-    margin-right: 5px;
+.register-user input[type="submit"]:hover {
+  background-color: #0056b3;
 }

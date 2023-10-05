@@ -20,21 +20,22 @@
         include_once(APP_ROOT . "/includes/header.php");
         ?>
         <div class="right">
-            <div class="register-user">
+            <div class="register-user container">
                 <h2>Register New User</h2>
                 <div class="form-container">
                     <form action="../backend/adduser.php" method="POST" onsubmit="return validateForm()">
                         <div class="role-selection">
                             <p>Select User Role:</p></br>
-                            <!-- <label>
-                                <input type="radio" name="user_role" value="super_admin" required> Super Admin
-                            </label> -->
-                            <label>
-                                <input type="radio" name="user_role" value="admin" required> Admin
-                            </label>
-                            <label>
-                                <input type="radio" name="user_role" value="course_coordinator" required> Course Coordinator
-                            </label>
+                            <div class="role">
+                                <input type="radio" id="role1" name="user_role" value="admin" required checked>
+                                <label for="role1">
+                                    Admin
+                                </label>
+                                <input type="radio" id="role2" name="user_role" value="course_coordinator" required>
+                                <label for="role2">
+                                    Course Coordinator
+                                </label>
+                            </div>
                         </div>
 
                         <label for="username">Username:</label>
@@ -77,7 +78,7 @@
         const coordinatorFields = document.querySelector('.course-coordinator-fields');
 
         userRoleRadio.forEach((radio) => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 if (this.value === 'course_coordinator') {
                     coordinatorFields.style.display = 'block';
                 } else {
@@ -90,7 +91,7 @@
         const coordinationCountInput = document.getElementById('coordination_count');
         const courseListContainer = document.querySelector('.course-list');
 
-        coordinationCountInput.addEventListener('input', function () {
+        coordinationCountInput.addEventListener('input', function() {
             const count = parseInt(this.value);
 
             // Remove existing dropdowns

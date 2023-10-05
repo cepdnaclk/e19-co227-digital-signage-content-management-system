@@ -1,5 +1,8 @@
 <?php
 include_once "../config.php"; // Include your database connection
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 function getUsers()
 {
