@@ -20,16 +20,19 @@ const imageTitles = [
 
 export default function Achievements() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [clickedImageIndex, setClickedImageIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      if (clickedImageIndex === null) {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }
     }, 5000); // Change image every 5 seconds (5000 milliseconds)
 
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [clickedImageIndex]);
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prevIndex) =>
@@ -43,37 +46,56 @@ export default function Achievements() {
     );
   };
 
+  const handleImageClick = (index: number) => {
+    setCurrentImageIndex(index);
+    setClickedImageIndex(null); // Reset clickedImageIndex to null to exit full-screen mode
+  };
+
   return (
     <div className="achievements-container">
       <div className="image-controls">
-        <button className="left" onClick={handlePrevImage}>
-          &lt;
-        </button>
+        <button className="left" onClick={handlePrevImage}>&#10094;</button>
       </div>
-      <div className="center-image">
-        <img
-          src={images[currentImageIndex]}
-          alt={`Achievement ${currentImageIndex + 1}`}
-        />
+      <div className="center-content">
+        {clickedImageIndex !== null ? (
+          <div>
+            <img
+              className="center-image"
+              src={images[clickedImageIndex]}
+              alt={`Achievement ${clickedImageIndex + 1}`}
+              onClick={() => handleImageClick(currentImageIndex)}
+            />
+          </div>
+        ) : (
+          <div>
+            <img
+              className="center-image"
+              src={images[currentImageIndex]}
+              alt={`Achievement ${currentImageIndex + 1}`}
+              onClick={() => handleImageClick(currentImageIndex)}
+            />
+          </div>
+        )}
         <div className="image-title">
-          {imageTitles[currentImageIndex]}
+          &#10029; {imageTitles[currentImageIndex]} &#10029;
         </div>
         {/* <div className="image-text">
           This is the text below the title of the middle image.
         </div> */}
       </div>
       <div className="image-controls">
-        <button className="right" onClick={handleNextImage}>
-          &gt;
-        </button>
+        <button className="right" onClick={handleNextImage}>&#10095;</button>
       </div>
       <div className="image-list">
-        {images.map((image, index) => (
+        {images.map((image, index: number) => (
           <div
             key={index}
             className={`image-item ${
-              currentImageIndex === index ? "active" : ""
+              currentImageIndex === index || clickedImageIndex === index
+                ? "active"
+                : ""
             }`}
+            onClick={() => handleImageClick(index)}
           >
             <img src={image} alt={`Achievement ${index + 1}`} />
           </div>

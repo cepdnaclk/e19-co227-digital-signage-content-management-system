@@ -9,7 +9,7 @@
 }
 
 .achievements-container .image-list {
-  width: 30%; /* Adjust the width of the image list */
+  width: 30%;
 }
 
 .achievements-container .image-item {
@@ -31,13 +31,12 @@
   display: block;
 }
 
-.achievements-container .center-image {
-  margin-top: 0px;
+.achievements-container .center-content {
   width: 100%; /* Adjust the width of the center image */
   position: relative;
 }
 
-.achievements-container .center-image img {
+.achievements-container .center-content .center-image {
   max-width: 1600px; /* Increase the max-width to make the center image larger */
   width: 100%;
   height: auto;
@@ -46,25 +45,26 @@
   margin-bottom: 0px;
 }
 
-.achievements-container .image-title {
-  background-color: var(--color-1);
+.achievements-container .center-content .image-title {
+  background-color: rgb(237, 234, 234);
   font-size: 60px;
-  font-weight: 500;
-  margin-top: 0px;
-  color: #fff;
-  padding: 15px 100px;
+  font-weight: 600;
+  margin-top: 10px;
+  color: #000000;
   text-align: center;
-  width: 89.2%;
+  align-items: center;
+  justify-content: center;
+  width: 1600px;
   margin-left: 100px;
   height: 100px;
 }
 
 .achievements-container .image-controls button {
   font-size: 100px;
-  color: #8a8383;
+  color: #989494;
   background: none;
   border: none;
-  padding: 10px 20px;
+  padding: 0px 20px;
   cursor: pointer;
   font-weight: 900;
 }
