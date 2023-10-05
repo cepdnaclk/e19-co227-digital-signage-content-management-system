@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             echo "Image file does not exist.";
         }
 
-    // Delete the event from the 'achievement' table
+    // Delete the event from the 'previous_event' table
     $sql = "DELETE FROM achievement WHERE a_id = ?";
     $stmt = mysqli_prepare($conn, $sql);
 
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         // Achievement deleted successfully
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
-        header("Location: ../pages/ahievements.php?success=true"); // Redirect back to the events page
+        header("Location: ../pages/achievements.php?success=true"); // Redirect back to the events page
         exit();
     } else {
         echo "Error: " . mysqli_error($conn);
