@@ -1,5 +1,5 @@
 <?php
-include_once "../config.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the form fields are set and not empty
@@ -14,12 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $coordinator_name = $_POST["coordinator_name"];
         $description = $_POST["description"];
         $display_option = $_POST["display_option"];
-        
-        
+
+
         header("Location: success_page.php");
         exit();
     } else {
         echo "'coordinator_name', 'description', 'display_option', and 'c_id' are required fields";
     }
 }
-?>
