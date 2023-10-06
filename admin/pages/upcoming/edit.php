@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/addnewevent.css">
+    <link rel="stylesheet" href="/css/addnewevent.css">
     <title>Edit Event Information Form</title>
 </head>
 

@@ -25,11 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $result = addUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file,  $display_from, $display_to, $added_by);
         if (isset($result['error'])) {
-            header("Location: /pages/upcomingevents.php?error={$result['error']} {$_SESSION["user_id"]}");
+            header("Location: /pages/upcoming/?error={$result['error']} {$_SESSION["user_id"]}");
         } else
-            header("Location: /pages/upcomingevents.php?success={$result['message']}");
+            header("Location: /pages/upcoming/?success={$result['message']}");
     } else {
-        header("Location: /pages/upcomingevents.php?error='event_image,display_from display_to are required fields'");
+        header("Location: /pages/upcoming/?error='event_image,display_from display_to are required fields'");
     }
 }
 exit();

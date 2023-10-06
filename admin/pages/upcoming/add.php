@@ -1,9 +1,9 @@
-<?php include_once "../config.php" ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/addnewevent.css">
+    <link rel="stylesheet" href="/css/addnewevent.css">
     <title>New Event Information Form</title>
 </head>
 
