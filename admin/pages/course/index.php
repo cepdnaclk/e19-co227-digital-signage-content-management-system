@@ -28,7 +28,7 @@
                             <h1>Courses</h1>
                             <p>Currently Offered Courses by Us</p>
                         </div>
-                        <a href="/pages/addcourse.php" class="btn btn-success"><img src="/images/Add_round.svg" alt=""> Add New Course</a>
+                        <a href="/pages/course/addcourse.php" class="btn btn-success"><img src="/images/Add_round.svg" alt=""> Add New Course</a>
                     </div>
 
                     <div class="table-container">
@@ -73,7 +73,7 @@
                                 ${course.published === '1' ? 'Unpublish' : 'Publish'}
                             </a>
                             <a href="/pages/coursemanage.php" class="btn btn-preview" data-course-id="${course.c_id}">Preview</a>
-                            <a href="/pages/coursemanage.php" class="btn btn-manage" data-course-id="${course.c_id}">Manage</a>
+                            <a href="/pages/course/coursemanage.php" class="btn btn-manage" data-course-id="${course.c_id}">Manage</a>
                             <a href="/backend/api/course?delete=${course.c_id}" class="btn btn-delete" data-course-id="${course.c_id}">Delete</a>
                         </td>
                     `;
@@ -83,7 +83,7 @@
                             const manageButton = row.querySelector('.btn-manage');
                             manageButton.addEventListener('click', function() {
                                 const courseId = this.getAttribute('data-course-id');
-                                this.href = `/pages/coursemanage.php?c_id=${courseId}`;
+                                this.href = `/pages/course/coursemanage.php?c_id=${courseId}`;
                             });
 
                             // Add click event listener to the "Publish" button
