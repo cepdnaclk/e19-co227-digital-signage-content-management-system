@@ -1,5 +1,4 @@
-<?php
-include_once "../config.php";
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the form fields are set and not empty
