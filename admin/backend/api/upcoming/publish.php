@@ -12,7 +12,4 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         header("Location: /pages/upcoming/?error={$result['error']}");
     } else
         header("Location: /pages/upcoming/?success={$result['message']}");
-
-    // Close the statement
-    $stmt->close();
 }
