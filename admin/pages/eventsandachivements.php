@@ -1,11 +1,11 @@
-<?php include_once "../config.php" ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/upcomingevents.css">
+    <link rel="stylesheet" href="/css/upcomingevents.css">
     <title>IT Center | UpcomingEvents</title>
     <style>
         .card-container {
@@ -35,7 +35,7 @@
                     <div class="card-container">
                         <!-- Card 1 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-1.jpg" alt="See All Image">
+                            <img src="/images/upcoming-event-posters/upcoming-event-1.jpg" alt="See All Image">
                             <div class="card-content">
                                 <h2 class="card-title">Event1</h2>
                                 <p class="card-date">2023/09/20 at 9.00 a.m</p>
@@ -53,7 +53,7 @@
 
                         <!-- Card 2 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-2.jpg" alt="See All Image">
+                            <img src="/images/upcoming-event-posters/upcoming-event-2.jpg" alt="See All Image">
                             <div class="card-content">
                                 <h2 class="card-title">Event2</h2>
                                 <p class="card-date">2023/09/21 at 11.00 a.m</p>
@@ -71,7 +71,7 @@
 
                         <!-- Card 3 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
+                            <img src="/images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
                             <div class="card-content">
                                 <h2 class="card-title">Event3</h2>
                                 <p class="card-date">2023/09/22 at 9.00 a.m</p>
@@ -89,7 +89,7 @@
 
                         <!-- Card 4 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
+                            <img src="/images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
                             <div class="card-content">
                                 <h2 class="card-title">Event 4</h2>
                                 <p class="card-date">2023/09/23 at 3 p.m</p>
@@ -112,7 +112,7 @@
                     <div class="card-container">
                         <!-- Card 1 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-1.jpg" alt="See All Image">
+                            <img src="/images/upcoming-event-posters/upcoming-event-1.jpg" alt="See All Image">
                             <div class="card-content">
                                 <h2 class="card-title">Event1</h2>
                                 <p class="card-date">2023/09/20 at 9.00 a.m</p>
@@ -130,7 +130,7 @@
 
                         <!-- Card 2 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-2.jpg" alt="See All Image">
+                            <img src="/images/upcoming-event-posters/upcoming-event-2.jpg" alt="See All Image">
                             <div class="card-content">
                                 <h2 class="card-title">Event2</h2>
                                 <p class="card-date">2023/09/21 at 11.00 a.m</p>
@@ -148,7 +148,7 @@
 
                         <!-- Card 3 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
+                            <img src="/images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
                             <div class="card-content">
                                 <h2 class="card-title">Event3</h2>
                                 <p class="card-date">2023/09/22 at 9.00 a.m</p>
@@ -166,7 +166,7 @@
 
                         <!-- Card 4 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
+                            <img src="/images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
                             <div class="card-content">
                                 <h2 class="card-title">Event 4</h2>
                                 <p class="card-date">2023/09/23 at 3 p.m</p>
@@ -184,12 +184,12 @@
                     </div>
                     <div class="title">
                         <h1>Achivements</h1>
-                        <a href="../pages/achievements.php">See All</a>
+                        <a href="/pages/achievements.php">See All</a>
                     </div>
                     <div class="card-container">
                         <!-- Card 1 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-1.jpg" alt="See All Image">
+                            <img src="/images/upcoming-event-posters/upcoming-event-1.jpg" alt="See All Image">
                             <div class="card-content">
                                 <h2 class="card-title">Event1</h2>
                                 <p class="card-date">2023/09/20 at 9.00 a.m</p>
@@ -207,7 +207,7 @@
 
                         <!-- Card 2 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-2.jpg" alt="See All Image">
+                            <img src="/images/upcoming-event-posters/upcoming-event-2.jpg" alt="See All Image">
                             <div class="card-content">
                                 <h2 class="card-title">Event2</h2>
                                 <p class="card-date">2023/09/21 at 11.00 a.m</p>
@@ -225,7 +225,7 @@
 
                         <!-- Card 3 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
+                            <img src="/images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
                             <div class="card-content">
                                 <h2 class="card-title">Event3</h2>
                                 <p class="card-date">2023/09/22 at 9.00 a.m</p>
@@ -243,7 +243,7 @@
 
                         <!-- Card 4 -->
                         <div class="card">
-                            <img src="../images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
+                            <img src="/images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
                             <div class="card-content">
                                 <h2 class="card-title">Event 4</h2>
                                 <p class="card-date">2023/09/23 at 3 p.m</p>

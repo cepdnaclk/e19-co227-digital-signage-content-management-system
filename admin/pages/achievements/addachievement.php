@@ -1,9 +1,9 @@
-<?php include_once "../config.php" ?>
+<?php include_once "/config.php" ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/addachievement.css">
+    <link rel="stylesheet" href="/css/addachievement.css">
     <title>Achievement Information Form</title>
 </head>
 
@@ -23,7 +23,7 @@
             <div class="add-achievement">
                 <h2>Add Achievement</h2>
                 <div class="form-container">
-                    <form action="../backend/achievements.php" method="POST" enctype="multipart/form-data">
+                    <form action="/backend/achievements.php" method="POST" enctype="multipart/form-data">
                         <label for="a_img">Select an Image:</label>
                         <input type="file" name="a_img" id="a_img" required>
                         <br>

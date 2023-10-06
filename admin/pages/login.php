@@ -1,4 +1,4 @@
-<?php include_once "../config.php" ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
 <?php session_start();?>
 
 <!DOCTYPE html>
@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/login.css">
     <?php include APP_ROOT . "/includes/header_core.php" ?>
     <title>IT Center | Login</title>
 </head>
@@ -22,7 +22,7 @@
         </div>
         <div class="content">
         
-            <form action="../backend/login.php" method="POST">
+            <form action="/backend/login.php" method="POST">
                 <h1>Login</h1>
                 <div class="login-input">
                     
