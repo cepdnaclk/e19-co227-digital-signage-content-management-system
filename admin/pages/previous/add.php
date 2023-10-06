@@ -23,7 +23,7 @@
             <div class="add-events">
                 <h2>Add New Event</h2>
                 <div class="form-container">
-                    <form action="/backend/api/upcoming/add.php" method="POST" enctype="multipart/form-data">
+                    <form action="/backend/api/previous/add.php" method="POST" enctype="multipart/form-data">
                         <label for="e_img">Select an Image:</label>
                         <input type="file" name="e_img" id="e_img" required>
                         <br>

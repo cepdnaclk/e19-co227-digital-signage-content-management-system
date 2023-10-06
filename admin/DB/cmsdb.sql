@@ -32,6 +32,7 @@ SET
 --
 -- Database: `cmsdb`
 USE cmsdb;
+
 -- --------------------------------------------------------
 --
 -- Table structure for table `achievement`
@@ -398,65 +399,71 @@ VALUES
 DROP TABLE IF EXISTS `previous_event`;
 
 CREATE TABLE IF NOT EXISTS `previous_event` (
-  `p_id` int(11) NOT NULL AUTO_INCREMENT,
-  `p_name` varchar(100) DEFAULT NULL,
-  `p_desc` varchar(500) DEFAULT NULL,
-  `p_date` date DEFAULT NULL,
-  `p_img` varchar(100) NOT NULL,
-  `added_by` int(11) NOT NULL COMMENT 'f_key User_id',
+  `e_id` int(11) NOT NULL AUTO_INCREMENT,
+  `e_name` varchar(100) DEFAULT NULL,
+  `e_date` date DEFAULT NULL,
+  `e_time` time DEFAULT NULL,
+  `e_venue` varchar(100) DEFAULT NULL,
+  `e_img` varchar(1000) NOT NULL,
+  `display_from` date NOT NULL,
+  `display_to` date NOT NULL,
+  `added_by` int(11) NOT NULL COMMENT 'f_key -userId',
   `published` tinyint(4) DEFAULT 0,
-  PRIMARY KEY (`p_id`),
+  PRIMARY KEY (`e_id`),
   KEY `fk_admin_id` (`added_by`)
-) ENGINE = MyISAM AUTO_INCREMENT = 5 DEFAULT CHARSET = latin1;
+) ENGINE = MyISAM AUTO_INCREMENT = 6 DEFAULT CHARSET = latin1;
 
 --
 -- Dumping data for table `previous_event`
 --
 INSERT INTO
   `previous_event` (
-    `p_id`,
-    `p_name`,
-    `p_desc`,
-    `p_date`,
-    `p_img`,
+    `e_id`,
+    `e_name`,
+    `e_date`,
+    `e_time`,
+    `e_venue`,
+    `e_img`,
+    `display_from`,
+    `display_to`,
     `added_by`,
     `published`
   )
 VALUES
   (
-    1,
-    'Previous Event 1',
-    'Description 1',
-    '2023-06-10',
-    'prev-event1.jpg',
-    1,
-    0
-  ),
-  (
-    2,
-    'Previous Event 2',
-    'Description 2',
-    '2023-07-10',
-    'prev-event2.jpg',
-    2,
-    0
-  ),
-  (
     3,
-    'Previous Event 3',
-    'Description 3',
-    '2023-08-10',
-    'prev-event3.jpg',
+    'Event 3',
+    '2023-09-22',
+    '09:00:00',
+    'Classroom A',
+    'event3.jpg',
+    '2023-09-14',
+    '2023-09-26',
     3,
     0
   ),
   (
     4,
-    'Previous Event 4',
-    'Description 4',
-    '2023-09-10',
-    'prev-event4.jpg',
+    'Event 4',
+    '2023-09-23',
+    '15:00:00',
+    'Seminar Room',
+    'event4.jpg',
+    '2023-09-16',
+    '2023-09-28',
     4,
+    0
+  ),
+  (
+    5,
+    'Event New',
+    '2023-10-20',
+    '09:40:00',
+    'IT center',
+    '../images/previous-event-posters/Capture.PNG',
+    '2023-10-06',
+    '2023-10-19',
+    1,
     0
   );
 
@@ -601,15 +608,18 @@ CREATE TABLE IF NOT EXISTS `dashboard` (
   PRIMARY KEY (`feature`)
 ) ENGINE = MyISAM AUTO_INCREMENT = 5 DEFAULT CHARSET = latin1;
 
-INSERT INTO `dashboard` (`feature`, `total_pages`, `published_pages`) VALUES
-('Lab Slots', 5, 1 ),
-('Course Offerings', 15, 5),
-('Upcoming Events', 8, 2 ),
-('Previous Events', 20, 8 ),
-('Achievements', 5, 1 ),
-('total', 58, 19);
+INSERT INTO
+  `dashboard` (`feature`, `total_pages`, `published_pages`)
+VALUES
+  ('Lab Slots', 5, 1),
+  ('Course Offerings', 15, 5),
+  ('Upcoming Events', 8, 2),
+  ('Previous Events', 20, 8),
+  ('Achievements', 5, 1),
+  ('total', 58, 19);
 
 COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
 ;
 

@@ -1,11 +1,11 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 
-function getUpcomingEvents()
+function getPreviousEvents()
 {
     global $conn;
 
-    $sql = "SELECT * FROM upcoming_event";
+    $sql = "SELECT * FROM previous_event";
     $res = mysqli_query($conn, $sql);
 
     $result = array();
@@ -21,11 +21,11 @@ function getUpcomingEvents()
     return $result;
 }
 
-function getUpcomingEventById(int $eventId)
+function getPreviousEventById(int $eventId)
 {
     global $conn;
 
-    $sql = "SELECT * FROM  upcoming_event WHERE e_id= $eventId";
+    $sql = "SELECT * FROM  previous_event WHERE e_id= $eventId";
     $res = mysqli_query($conn, $sql);
 
     $result = array();
@@ -40,14 +40,14 @@ function getUpcomingEventById(int $eventId)
     return $result;
 }
 
-function addUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $display_from, $display_to, $added_by, $published)
+function addPreviousEvents($e_name, $e_date, $e_time, $e_venue, $file, $display_from, $display_to, $added_by, $published)
 {
     global $conn;
     $result = array();
 
     // Check if a file was uploaded
     if (!empty($file['name'])) {
-        $targetDirectory = "/images/upcoming-event-posters/";
+        $targetDirectory = "/images/previous-event-posters/";
         $targetFile = $targetDirectory . basename($file["name"]);
 
         // Check if the file is an image
@@ -71,8 +71,8 @@ function addUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $display_
         return $result;
     }
 
-    // Prepare and execute the SQL query to insert data into the 'upcoming_event' table
-    $sql = "INSERT INTO upcoming_event 
+    // Prepare and execute the SQL query to insert data into the 'previous_event' table
+    $sql = "INSERT INTO previous_event 
             (e_name, e_date, e_time, e_venue, e_img, display_from, display_to, added_by, published)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
@@ -81,7 +81,7 @@ function addUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $display_
     mysqli_stmt_bind_param($stmt, "sssssssii", $e_name, $e_date, $e_time, $e_venue, $targetFile, $display_from, $display_to, $added_by, $published);
 
     if (mysqli_stmt_execute($stmt)) {
-        $result = array('message' => "Upcoming Event Added Successfully");
+        $result = array('message' => "previous Event Added Successfully");
     } else {
         $result = array('error' => mysqli_error($conn));
     }
@@ -92,7 +92,7 @@ function addUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $display_
 }
 
 
-function editUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_path, $display_from, $display_to, $added_by, $e_id)
+function editPreviousEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_path, $display_from, $display_to, $added_by, $e_id)
 {
     global $conn;
     $result = array();
@@ -108,7 +108,7 @@ function editUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_pa
             }
         }
 
-        $targetDirectory = "/images/upcoming-event-posters/";
+        $targetDirectory = "/images/previous-event-posters/";
         $targetFile = $targetDirectory . basename($file["name"]);
 
         // Check if the file is an image
@@ -125,8 +125,8 @@ function editUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_pa
         }
     }
 
-    // Prepare and execute the SQL query to insert data into the 'upcoming_event' table
-    $sql = "UPDATE upcoming_event 
+    // Prepare and execute the SQL query to insert data into the 'previous_event' table
+    $sql = "UPDATE previous_event 
             SET e_name = ?, 
                 e_date = ?, 
                 e_time = ?, 
@@ -142,7 +142,7 @@ function editUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_pa
     mysqli_stmt_bind_param($stmt, "sssssssii", $e_name, $e_date, $e_time, $e_venue, $targetFile, $display_from, $display_to, $added_by, $e_id);
 
     if (mysqli_stmt_execute($stmt)) {
-        $result = array('message' => "Upcoming Event Updated");
+        $result = array('message' => "previous Event Updated");
     } else {
         $result = array('error' => mysqli_error($conn));
     }
@@ -152,11 +152,11 @@ function editUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_pa
     return $result;
 }
 
-function deleteUpcomingEvent(int $eventId)
+function deletepreviousEvent(int $eventId)
 {
     global $conn;
 
-    $sql = "SELECT * FROM  upcoming_event WHERE e_id= $eventId";
+    $sql = "SELECT * FROM  previous_event WHERE e_id= $eventId";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
@@ -170,7 +170,7 @@ function deleteUpcomingEvent(int $eventId)
     }
 
 
-    $sql = "DELETE FROM upcoming_event WHERE e_id = ?";
+    $sql = "DELETE FROM previous_event WHERE e_id = ?";
     $stmt = mysqli_prepare($conn, $sql);
 
     mysqli_stmt_bind_param($stmt, "i", $eventId);
@@ -188,11 +188,11 @@ function deleteUpcomingEvent(int $eventId)
     return $result;
 }
 
-function publishUpcomingEvent(int $event_id)
+function publishpreviousEvent(int $event_id)
 {
     global $conn;
 
-    $sql = "UPDATE upcoming_event SET published = !published WHERE e_id = ?";
+    $sql = "UPDATE previous_event SET published = !published WHERE e_id = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "i", $event_id);
 

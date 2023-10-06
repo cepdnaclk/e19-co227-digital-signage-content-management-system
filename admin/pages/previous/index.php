@@ -1,8 +1,8 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/upcomingevents.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/previousevents.php";
 
-$events = getUpcomingEvents();
+$events = getPreviousEvents();
 if (isset($events['error']))
     header("Location: ?error={$events['error']}");
 ?>
@@ -13,7 +13,7 @@ if (isset($events['error']))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/upcomingevents.css">
-    <title>IT Center | UpcomingEvents</title>
+    <title>IT Center | Prevoius Events</title>
 </head>
 
 <body>
@@ -35,7 +35,7 @@ if (isset($events['error']))
             <main class="upcomingevents">
                 <div class="container">
                     <div class="title">
-                        <h1>Upcoming Events</h1>
+                        <h1>Previous Events</h1>
                         <a href="add.php"><img src="/images/Add_round.svg" alt=""> Add Event</a>
 
                     </div>
@@ -58,14 +58,14 @@ if (isset($events['error']))
                                         </button>
                                     </a>
                                     <?php if ($row['published'] == 1) { ?>
-                                        <a class="unpublish" href="/backend/api/upcoming/publish.php?publish_id=<?= $row['e_id'] ?>">
+                                        <a class="unpublish" href="/backend/api/previous/publish.php?publish_id=<?= $row['e_id'] ?>">
                                             <button class="unpublish-button">
                                                 <span class="icon">&#10680;</span>
                                                 Unpublish
                                             </button>
                                         </a>
                                     <?php } else { ?>
-                                        <a class="publish" href="/backend/api/upcoming/publish.php?publish_id=<?= $row['e_id'] ?>">
+                                        <a class="publish" href="/backend/api/previous/publish.php?publish_id=<?= $row['e_id'] ?>">
                                             <button class="publish-button">
                                                 <span class="icon">&#10004;</span>
                                                 Publish
@@ -75,7 +75,7 @@ if (isset($events['error']))
                                     </button>
                                     <button class="delete-button">
                                         <span class="icon">&#128465;</span>
-                                        <a href="/backend/api/upcoming/delete.php?delete_id=<?= $row['e_id'] ?>">Delete</a>
+                                        <a href="/backend/api/previous/delete.php?delete_id=<?= $row['e_id'] ?>">Delete</a>
                                     </button>
                                 </div>
                             </div>
