@@ -40,6 +40,38 @@ function getPreviousEventById(int $eventId)
     return $result;
 }
 
+function getPreviousEventsDisplay()
+{
+    global $conn;
+
+    // Validate and format the date to prevent SQL injection
+    $formattedToday = date("Y:m:d");
+
+    $sql = "SELECT * FROM previous_event WHERE published = 1 AND ? >= display_from AND ? <= display_to";
+
+    // Use prepared statements to safely bind the parameters
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ss", $formattedToday, $formattedToday);
+
+    $result = array();
+
+    if (mysqli_stmt_execute($stmt)) {
+        $res = mysqli_stmt_get_result($stmt);
+
+        while ($row = mysqli_fetch_assoc($res)) {
+            $result[] = $row;
+        }
+    } else {
+        $result = array('error' => mysqli_error($conn));
+    }
+
+    // Close the statement
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}
+
+
 function addPreviousEvents($e_name, $e_date, $e_time, $e_venue, $file, $display_from, $display_to, $added_by, $published)
 {
     global $conn;

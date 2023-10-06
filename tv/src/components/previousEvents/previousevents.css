@@ -33,6 +33,10 @@
   transition: transform 0.5s ease-in-out; /* Add a smooth transition for image scaling */
 }
 
+.card-content {
+  padding: 0 2rem;
+}
+
 .card-title {
   font-size: 50px;
   margin: 40px 0 20px 0;
@@ -44,6 +48,11 @@
   text-align: left;
   overflow-y: auto;
   max-height: 335px;
+}
+
+.card-description p {
+  font-size: 3rem;
+  margin: 1rem 0;
 }
 
 /* Add styles for hover effect */
