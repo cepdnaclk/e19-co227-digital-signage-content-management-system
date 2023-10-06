@@ -88,7 +88,7 @@ foreach ($dashboardData as $feature => $data) {
                     <p class="widget-info" id="total-published-pages">Total Published Pages: <?php echo $totalPublished; ?></p>
                     <p class="widget-info" id="total-time-for-cycle">Total Time for One Cycle: <?php echo $totalTime; ?>s</p>
                     <div class="widget-buttons">
-                        <button class="preview-button">Preview</button>
+                        <a href="/pages/previewmain.php"><button class="preview-button">Preview</button></a>
                         &emsp;
                         <button class="manage-button">Manage</button>
                     </div>
