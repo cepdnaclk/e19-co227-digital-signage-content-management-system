@@ -31,7 +31,7 @@ SET
 
 --
 -- Database: `cmsdb`
---
+USE cmsdb;
 -- --------------------------------------------------------
 --
 -- Table structure for table `achievement`

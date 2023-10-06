@@ -30,15 +30,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+
 // Handle the initial load and retrieve all courses
-if ($_SERVER["REQUEST_METHOD"] == "GET" && !isset($_GET['c_id'])) {
-    $courses = getCourses($conn);
-    if ($courses !== false) {
-        // Send a JSON response for courses
-        header("Content-Type: application/json"); // Set the Content-Type header to JSON
-        echo json_encode($courses);
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_GET['c_id'])) {
+        // If 'c_id' is provided in the query parameters, retrieve a single course
+        $c_id = $_GET['c_id'];
+        $course = getCourse($c_id);
+
+        if ($course !== false) {
+            // Send a JSON response for the retrieved course
+            header("Content-Type: application/json"); // Set the Content-Type header to JSON
+            echo json_encode($course);
+        } else {
+            // Send a JSON response for error
+            echo json_encode(["error" => "Failed to retrieve the course"]);
+        }
     } else {
-        // Send a JSON response for error
-        echo json_encode(["error" => "Failed to retrieve courses"]);
+        // If 'c_id' is not provided, retrieve all courses
+        $courses = getCourses($conn);
+
+        if ($courses !== false) {
+            // Send a JSON response for courses
+            header("Content-Type: application/json"); // Set the Content-Type header to JSON
+            echo json_encode($courses);
+        } else {
+            // Send a JSON response for error
+            echo json_encode(["error" => "Failed to retrieve courses"]);
+        }
     }
 }

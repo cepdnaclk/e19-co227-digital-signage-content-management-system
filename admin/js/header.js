@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Delay the dropdown hiding for a few seconds
       setTimeout(function () {
         dropdown.style.display = "none";
-      }, 600); // Adjust the delay time as needed (in milliseconds)
+      }, 1000); // Adjust the delay time as needed (in milliseconds)
     });
   });
   

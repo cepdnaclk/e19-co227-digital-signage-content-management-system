@@ -1,11 +1,11 @@
 <?php
 include_once "../config.php";
-include_once "../backend/course.php";
+include_once "../backend/functions/course.php";
 
 // Ensure that 'c_id' is provided as a query parameter
 if (isset($_GET['c_id'])) {
     $c_id = $_GET['c_id'];
-    $course = getCourse($conn, $c_id);
+    $course = getCourse($c_id);
     if (!$course)
         header("Location: /pages/course.php");
 } else {

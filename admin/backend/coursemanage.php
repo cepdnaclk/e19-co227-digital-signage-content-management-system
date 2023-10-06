@@ -1,7 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST"||"PUT") {
     // Check if the form fields are set and not empty
     if (
         isset($_POST["coordinator_name"]) &&
@@ -16,9 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $display_option = $_POST["display_option"];
 
 
-        header("Location: success_page.php");
+        header("Location: /pages/course.php");
         exit();
     } else {
         echo "'coordinator_name', 'description', 'display_option', and 'c_id' are required fields";
     }
 }
+?>

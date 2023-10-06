@@ -51,45 +51,72 @@
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Fetch courses data from the backend
-            fetch('../backend/course.php')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(courses => {
-                    if (courses.length > 0) {
-                        const tbody = document.querySelector("tbody");
-                        courses.forEach(course => {
-                            const row = document.createElement("tr");
-                            row.innerHTML = `
-                                <td class="text-left">${course.c_code}</td>
-                                <td class="text-left">${course.c_name}</td>
-                                <td class="text-center">
-                                    <button class="btn btn-publish" data-course-id="${course.c_id}">Publish</button>
-                                    <button class="btn btn-preview" data-course-id="${course.c_id}">Preview</button>
-                                    <a href="/pages/coursemanage.php" class="btn btn-manage" data-course-id="${course.c_id}">Manage</a>
-                                    <button class="btn btn-delete" data-course-id="${course.c_id}">Delete</button>
-                                </td>
-                            `;
-                            tbody.appendChild(row);
+       document.addEventListener("DOMContentLoaded", function () {
+    // Fetch courses data from the backend
+    fetch('../backend/api/course/index.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(courses => {
+            if (courses.length > 0) {
+                const tbody = document.querySelector("tbody");
+                courses.forEach(course => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td class="text-left">${course.c_code}</td>
+                        <td class="text-left">${course.c_name}</td>
+                        <td class="text-center">
+                            <a href="/backend/coursepublish.php" class="btn btn-publish" data-course-id="${course.c_id}">
+                                ${course.published === '1' ? 'Unpublish' : 'Publish'}
+                            </a>
+                            <a href="/pages/coursemanage.php" class="btn btn-preview" data-course-id="${course.c_id}">Preview</a>
+                            <a href="/pages/coursemanage.php" class="btn btn-manage" data-course-id="${course.c_id}">Manage</a>
+                            <a href="/pages/coursemanage.php" class="btn btn-delete" data-course-id="${course.c_id}">Delete</a>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
 
-                            // Add click event listener to the "Manage" button
-                            const manageButton = row.querySelector('.btn-manage');
+                      // Add click event listener to the "Manage" button
+                      const manageButton = row.querySelector('.btn-manage');
                             manageButton.addEventListener('click', function() {
                                 const courseId = this.getAttribute('data-course-id');
                                 this.href = `/pages/coursemanage.php?c_id=${courseId}`;
                             });
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
+
+                    // Add click event listener to the "Publish" button
+                    const publishButton = row.querySelector('.btn-publish');
+                    publishButton.addEventListener('click', function () {
+                        const courseId = this.getAttribute('data-course-id');
+                        const isPublished = course.published === '1';
+
+                        // console.log(courseId,isPublished);
+                        // Toggle the publish state and update the button text
+                        course.published = isPublished ? '0' : '1';
+                        this.textContent = isPublished ? 'Publish' : 'Unpublish';
+
+                        // Make an AJAX request to update the database
+                        fetch(`/backend/coursepublish.php?c_id=${courseId}&published=${isPublished}`)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                return response.json();
+                            })
+                            .catch(error => {
+                                console.error('There was a problem with the fetch operation:', error);
+                            });
+                    });
                 });
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
         });
+});
+
     </script>
 </body>
 
