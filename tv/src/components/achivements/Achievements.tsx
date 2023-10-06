@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./achievements.css"; // CSS file
 import img1 from "../../assets/achievements-posters/img-1.png";
 import img2 from "../../assets/achievements-posters/img-2.png";
-import img3 from "../../assets/achievements-posters/img-1.png";
-import img4 from "../../assets/achievements-posters/img-2.png";
-import img5 from "../../assets/achievements-posters/img-1.png";
-import img6 from "../../assets/achievements-posters/img-2.png";
+import img3 from "../../assets/achievements-posters/img-3.jpg";
+import img4 from "../../assets/achievements-posters/img-4.jpg";
+import img5 from "../../assets/achievements-posters/img-5.jpg";
+import img6 from "../../assets/achievements-posters/img-6.jpg";
+import img7 from "../../assets/achievements-posters/img-7.jpeg";
+import img8 from "../../assets/achievements-posters/img-8.jpeg";
+import img9 from "../../assets/achievements-posters/img-9.jpg";
 
-const images = [img1, img2, img3, img4, img5, img6]; // Add more images as needed
-
+const initialImages = [img1, img2, img3, img4, img5, img6, img7, img8, img9]; // All images
 const imageTitles = [
   "National ICT Award Winner",
   "Epic Lanka Award Winner",
@@ -16,6 +18,9 @@ const imageTitles = [
   "Epic Lanka Award Winner",
   "National ICT Award Winner",
   "Epic Lanka Award Winner",
+  "National ICT Award Winner",
+  "Epic Lanka Award Winner",
+  "National ICT Award Winner"
 ];
 
 export default function Achievements() {
@@ -25,7 +30,7 @@ export default function Achievements() {
   useEffect(() => {
     const interval = setInterval(() => {
       if (clickedImageIndex === null) {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % initialImages.length);
       }
     }, 5000); // Change image every 5 seconds (5000 milliseconds)
 
@@ -36,13 +41,13 @@ export default function Achievements() {
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? initialImages.length - 1 : prevIndex - 1
     );
   };
 
   const handleNextImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      prevIndex === initialImages.length - 1 ? 0 : prevIndex + 1
     );
   };
 
@@ -51,17 +56,24 @@ export default function Achievements() {
     setClickedImageIndex(null); // Reset clickedImageIndex to null to exit full-screen mode
   };
 
+  const displayedImages = [];
+  for (let i = 0; i < 6; i++) {
+    displayedImages.push(initialImages[(currentImageIndex + i) % initialImages.length]);
+  }
+
   return (
     <div className="achievements-container">
       <div className="image-controls">
-        <button className="left" onClick={handlePrevImage}>&#10094;</button>
+        <button className="left" onClick={handlePrevImage}>
+          &#10094;
+        </button>
       </div>
       <div className="center-content">
         {clickedImageIndex !== null ? (
           <div>
             <img
               className="center-image"
-              src={images[clickedImageIndex]}
+              src={initialImages[clickedImageIndex]}
               alt={`Achievement ${clickedImageIndex + 1}`}
               onClick={() => handleImageClick(currentImageIndex)}
             />
@@ -70,34 +82,33 @@ export default function Achievements() {
           <div>
             <img
               className="center-image"
-              src={images[currentImageIndex]}
+              src={initialImages[currentImageIndex]}
               alt={`Achievement ${currentImageIndex + 1}`}
               onClick={() => handleImageClick(currentImageIndex)}
             />
           </div>
         )}
         <div className="image-title">
-          {imageTitles[currentImageIndex]};
+          {imageTitles[currentImageIndex]}
         </div>
-        {/* <div className="image-text">
-          This is the text below the title of the middle image.
-        </div> */}
       </div>
       <div className="image-controls">
-        <button className="right" onClick={handleNextImage}>&#10095;</button>
+        <button className="right" onClick={handleNextImage}>
+          &#10095;
+        </button>
       </div>
       <div className="image-list">
-        {images.map((image, index: number) => (
+        {displayedImages.map((image, index) => (
           <div
             key={index}
             className={`image-item ${
-              currentImageIndex === index || clickedImageIndex === index
+              currentImageIndex === (currentImageIndex + index) % initialImages.length || clickedImageIndex === (currentImageIndex + index) % initialImages.length
                 ? "active"
                 : ""
             }`}
-            onClick={() => handleImageClick(index)}
+            onClick={() => handleImageClick((currentImageIndex + index) % initialImages.length)}
           >
-            <img src={image} alt={`Achievement ${index + 1}`} />
+            <img src={image} alt={`Achievement ${(currentImageIndex + index) % initialImages.length + 1}`} />
           </div>
         ))}
       </div>

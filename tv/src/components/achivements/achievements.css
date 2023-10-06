@@ -13,9 +13,9 @@
 }
 
 .achievements-container .image-item {
-  margin-bottom: 5px; /* Adjust the spacing between images */
+  margin-bottom: 20px; /* Adjust the spacing between images */
   transition: opacity 0.3s ease-in-out;
-  margin-right: 1px;
+  margin: auto 1px;
   opacity: 0.5;
 }
 
