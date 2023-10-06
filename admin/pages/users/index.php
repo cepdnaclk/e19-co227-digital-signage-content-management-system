@@ -54,7 +54,7 @@ if (!isset($users))
                         </div>
                         <div class="user-role" id="admin-role">
                             <div class="user-icon">
-                                <img src="../images/admin.svg" alt="Admin Icon">
+                                <img src="/images/admin.svg" alt="Admin Icon">
                             </div>
                             <div class="user-details">
                                 <h3>Admin</h3>
