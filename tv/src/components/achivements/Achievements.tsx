@@ -32,7 +32,7 @@ export default function Achievements() {
       if (clickedImageIndex === null) {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % initialImages.length);
       }
-    }, 5000); // Change image every 5 seconds (5000 milliseconds)
+    }, 10000); // Change image every 10 seconds (10000 milliseconds)
 
     return () => {
       clearInterval(interval);
@@ -56,10 +56,11 @@ export default function Achievements() {
     setClickedImageIndex(null); // Reset clickedImageIndex to null to exit full-screen mode
   };
 
-  const displayedImages = [];
-  for (let i = 0; i < 6; i++) {
-    displayedImages.push(initialImages[(currentImageIndex + i) % initialImages.length]);
-  }
+  // Determine the number of images to display in the list
+  const numImagesToDisplay = Math.min(6, initialImages.length);
+  const displayedImages = Array.from({ length: numImagesToDisplay }, (_, i) =>
+    initialImages[(currentImageIndex + i) % initialImages.length]
+  );
 
   return (
     <div className="achievements-container">
@@ -89,7 +90,7 @@ export default function Achievements() {
           </div>
         )}
         <div className="image-title">
-          {imageTitles[currentImageIndex]}
+          &#9733; {imageTitles[currentImageIndex]} &#9733;
         </div>
       </div>
       <div className="image-controls">

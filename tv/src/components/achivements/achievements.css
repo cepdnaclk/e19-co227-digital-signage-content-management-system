@@ -37,12 +37,10 @@
 }
 
 .achievements-container .center-content .center-image {
-  max-width: 1600px; /* Increase the max-width to make the center image larger */
+  max-width: 1600px; 
+  max-height: 1400px;
   width: 100%;
-  height: auto;
-  margin-right: 0px;
-  padding-right: 0px;
-  margin-bottom: 0px;
+  height: 100%;
 }
 
 .achievements-container .center-content .image-title {

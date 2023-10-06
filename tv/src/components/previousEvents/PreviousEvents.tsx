@@ -4,13 +4,15 @@ import img1 from "../../assets/previous-events-posters/img1.jpg";
 import img2 from "../../assets/previous-events-posters/img2.jpg";
 import img3 from "../../assets/previous-events-posters/img3.jpg";
 import img4 from "../../assets/previous-events-posters/img4.jpg";
+import img5 from "../../assets/previous-events-posters/img5.jpeg";
 
-const initialImages = [img1, img2, img3, img4]; // All images
+const initialImages = [img1, img2, img3, img4, img5]; // All images
 const imageTitles = [
-  "Providing technology support to the Ministry of Health - Central Province",
-  "Website for Department of Ophthalmology (Center for Sight), Teaching Hospital, Kandy",
-  "Gynecology and obstetrics patient information analysis system",
-  "IT Center organizes a free workshop for GCE (O/L) students in and around Kandy",
+  "NBQSA -The National Best Quality Software Awards",
+  "6th International Conference on Industrial and Information Systems, ICIIS 2021",
+  "PREVET 2023 for VET Undergraduates",
+  "Certificate-Based Computer Skills program (CBCS) -Batch 1",
+  "SITSEP- Staff IT Skills Development Programme- 2022 – Batch 2- Poster Presentation"
 ];
 
 export default function PreviousEvents() {
@@ -22,7 +24,7 @@ export default function PreviousEvents() {
       if (clickedImageIndex === null) {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % initialImages.length);
       }
-    }, 5000); // Change image every 5 seconds (5000 milliseconds)
+    }, 10000); // Change image every 10 seconds (10000 milliseconds)
 
     return () => {
       clearInterval(interval);
@@ -46,7 +48,11 @@ export default function PreviousEvents() {
     setClickedImageIndex(null); // Reset clickedImageIndex to null to exit full-screen mode
   };
 
-  const displayedImages = initialImages.slice(0, 6);
+  // Determine the number of images to display in the list
+  const numImagesToDisplay = Math.min(6, initialImages.length);
+  const displayedImages = Array.from({ length: numImagesToDisplay }, (_, i) =>
+    initialImages[(currentImageIndex + i) % initialImages.length]
+  );
 
   return (
     <div className="previousevents-container">
@@ -56,9 +62,6 @@ export default function PreviousEvents() {
         </button>
       </div>
       <div className="center-content">
-        <div className="image-title">
-          {imageTitles[currentImageIndex]}
-        </div>
         {clickedImageIndex !== null ? (
           <div>
             <img
@@ -78,7 +81,9 @@ export default function PreviousEvents() {
             />
           </div>
         )}
-        
+        <div className="image-title">
+          {imageTitles[currentImageIndex]}
+        </div>
       </div>
       <div className="image-controls">
         <button className="right" onClick={handleNextImage}>
@@ -90,13 +95,13 @@ export default function PreviousEvents() {
           <div
             key={index}
             className={`image-item ${
-              currentImageIndex === index || clickedImageIndex === index
+              currentImageIndex === (currentImageIndex + index) % initialImages.length || clickedImageIndex === (currentImageIndex + index) % initialImages.length
                 ? "active"
                 : ""
             }`}
-            onClick={() => handleImageClick(index)}
+            onClick={() => handleImageClick((currentImageIndex + index) % initialImages.length)}
           >
-            <img src={image} alt={`PreviousEvents ${index + 1}`} />
+            <img src={image} alt={`PreviousEvents ${(currentImageIndex + index) % initialImages.length + 1}`} />
           </div>
         ))}
       </div>

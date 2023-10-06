@@ -1,66 +1,108 @@
 import React, { useState, useEffect } from "react";
 import "./courseofferings.css";
-import { useSwipeable } from "react-swipeable";
 import img1 from '../../assets/course-img-1.jpeg';
 import img2 from '../../assets/course-img-2.jpeg';
 import img3 from '../../assets/course-img-3.jpeg';
 
-const courseOfferingImages = [
-  img1,
-  img2,
-  img3
-  // Add more image URLs as needed
-];
+const initialImages = [img1, img2, img3]; // All images
+
+// const imageTitles = [
+//   "NBQSA -The National Best Quality Software Awards",
+//   "6th International Conference on Industrial and Information Systems, ICIIS 2021",
+//   "PREVET 2023 for VET Undergraduates",
+//   "Certificate-Based Computer Skills program (CBCS) -Batch 1",
+//   "SITSEP- Staff IT Skills Development Programme- 2022 – Batch 2- Poster Presentation"
+// ];
 
 export default function CourseOfferings() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => handleSwipe("left"),
-    onSwipedRight: () => handleSwipe("right"),
-  });
-
-  const handleSwipe = (direction: string) => {
-    if (direction === "left") {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === courseOfferingImages.length - 1 ? 0 : prevIndex + 1
-      );
-    } else if (direction === "right") {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === 0 ? courseOfferingImages.length - 1 : prevIndex - 1
-      );
-    }
-  };
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [clickedImageIndex, setClickedImageIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // Automatically swipe to the right image
-      setCurrentIndex((prevIndex) =>
-        prevIndex === 0 ? courseOfferingImages.length - 1 : prevIndex - 1
-      );
-    }, 5000); // 5000 milliseconds (5 seconds)
+      if (clickedImageIndex === null) {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % initialImages.length);
+      }
+    }, 10000); // Change image every 10 seconds (10000 milliseconds)
 
     return () => {
-      clearInterval(interval); // Clear the interval when the component unmounts
+      clearInterval(interval);
     };
-  }, []);
+  }, [clickedImageIndex]);
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? initialImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === initialImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const handleImageClick = (index: number) => {
+    setCurrentImageIndex(index);
+    setClickedImageIndex(null); // Reset clickedImageIndex to null to exit full-screen mode
+  };
+
+  // Determine the number of images to display in the list
+  const numImagesToDisplay = Math.min(6, initialImages.length);
+  const displayedImages = Array.from({ length: numImagesToDisplay }, (_, i) =>
+    initialImages[(currentImageIndex + i) % initialImages.length]
+  );
 
   return (
-    <div className="course-offerings" {...handlers}>
-      <div className="course-offering-container">
-        <img
-          src={courseOfferingImages[currentIndex]}
-          alt={`Course Offering ${currentIndex + 1}`}
-        />
-        <div className="dot-indicators">
-          {courseOfferingImages.map((_, index) => (
-            <div
-              key={index}
-              className={`dot ${currentIndex === index ? "active-dot" : ""}`}
-              onClick={() => setCurrentIndex(index)}
-            ></div>
-          ))}
-        </div>
+    <div className="courseofferings-container">
+      <div className="image-controls">
+        <button className="left" onClick={handlePrevImage}>
+          &#10094;
+        </button>
+      </div>
+      <div className="center-content">
+        {clickedImageIndex !== null ? (
+          <div>
+            <img
+              className="center-image"
+              src={initialImages[clickedImageIndex]}
+              alt={`CourseOfferings ${clickedImageIndex + 1}`}
+              onClick={() => handleImageClick(currentImageIndex)}
+            />
+          </div>
+        ) : (
+          <div>
+            <img
+              className="center-image"
+              src={initialImages[currentImageIndex]}
+              alt={`CourseOfferings ${currentImageIndex + 1}`}
+              onClick={() => handleImageClick(currentImageIndex)}
+            />
+          </div>
+        )}
+        {/* <div className="image-title">
+          {imageTitles[currentImageIndex]}
+        </div> */}
+      </div>
+      <div className="image-controls">
+        <button className="right" onClick={handleNextImage}>
+          &#10095;
+        </button>
+      </div>
+      <div className="image-list">
+        {displayedImages.map((image, index) => (
+          <div
+            key={index}
+            className={`image-item ${
+              currentImageIndex === (currentImageIndex + index) % initialImages.length || clickedImageIndex === (currentImageIndex + index) % initialImages.length
+                ? "active"
+                : ""
+            }`}
+            onClick={() => handleImageClick((currentImageIndex + index) % initialImages.length)}
+          >
+            <img src={image} alt={`CourseOfferings ${(currentImageIndex + index) % initialImages.length + 1}`} />
+          </div>
+        ))}
       </div>
     </div>
   );

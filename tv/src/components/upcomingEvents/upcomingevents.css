@@ -2,10 +2,10 @@
 
 .upcomingevents-container {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
   height: 1000px; /* Adjust the height as needed */
-  margin-top: 350px;
+  margin-top: 360px;
 }
 
 .upcomingevents-container .image-list {
@@ -13,11 +13,10 @@
 }
 
 .upcomingevents-container .image-item {
-  margin-bottom: 5px; /* Adjust the spacing between images */
+  margin-bottom: 20px; /* Adjust the spacing between images */
   transition: opacity 0.3s ease-in-out;
-  margin-right: 1px;
+  margin: auto 1px;
   opacity: 0.5;
-  
 }
 
 .upcomingevents-container .image-item.active {
@@ -28,41 +27,32 @@
   margin-bottom: 10px;
   margin-left: 100px;
   max-width: 300px;
-  max-height: 1500px;
   height: auto;
-  width: 100%;
   display: block;
 }
 
 .upcomingevents-container .center-content {
-  width: 100%;
-  height: auto; 
-  position:inherit;
+  width: 100%; /* Adjust the width of the center image */
+  position: relative;
 }
 
 .upcomingevents-container .center-content .center-image {
-  max-width: 2000px;
-  max-height: 1500px; /* Increase the max-width to make the center image larger */
+  max-width: 1600px; 
+  max-height: 1400px;
   width: 100%;
   height: 100%;
-  margin-right: 0px;
-  padding-right: 0px;
-  margin-bottom: 0px;
-  border-radius: 71px;
 }
 
 .upcomingevents-container .center-content .image-title {
-  background-color: rgb(237, 234, 234);
-  font-size: 60px;
+  font-size: 55px;
   font-weight: 600;
-  margin-top: 10px;
+  margin-top: 20px;
   color: #000000;
   text-align: center;
   align-items: center;
   justify-content: center;
   width: 1600px;
   margin-left: 100px;
-  height: 100px;
 }
 
 .upcomingevents-container .image-controls button {
@@ -88,3 +78,7 @@
 .upcomingevents-container .image-controls button:hover {
   color: #000;
 }
+
+/* .logo-image {
+  background-color: #000;
+} */

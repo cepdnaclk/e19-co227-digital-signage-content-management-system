@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   height: 1000px; /* Adjust the height as needed */
-  margin-top: 350px;
+  margin-top: 360px;
 }
 
 .previousevents-container .image-list {
@@ -37,22 +37,22 @@
 }
 
 .previousevents-container .center-content .center-image {
-  max-width: 1600px; /* Increase the max-width to make the center image larger */
+  max-width: 1600px; 
+  max-height: 1400px;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .previousevents-container .center-content .image-title {
-  font-size: 50px;
+  font-size: 55px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-top: 20px;
   color: #000000;
   text-align: center;
   align-items: center;
   justify-content: center;
   width: 1600px;
   margin-left: 100px;
-  height: 100px;
 }
 
 .previousevents-container .image-controls button {
