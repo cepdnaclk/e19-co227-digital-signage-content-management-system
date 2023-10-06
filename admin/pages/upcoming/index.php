@@ -4,7 +4,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/upcomingevents.php"
 
 $events = getUpcomingEvents();
 if (isset($events['error']))
-    header("Location: ?error={$events['error']}");
+    if (!isset($_GET['error']))
+        header("Location: ?error={$events['error']}");
 ?>
 <!DOCTYPE html>
 <html lang="en">

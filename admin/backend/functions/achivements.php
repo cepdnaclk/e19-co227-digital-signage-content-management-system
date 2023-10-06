@@ -5,7 +5,7 @@ function getAchivements()
 {
     global $conn;
 
-    $sql = "SELECT * FROM achivement";
+    $sql = "SELECT * FROM achievement";
     $res = mysqli_query($conn, $sql);
 
     $result = array();
@@ -25,7 +25,7 @@ function getAchivementById(int $a_id)
 {
     global $conn;
 
-    $sql = "SELECT * FROM  achivement WHERE a_id= $a_id";
+    $sql = "SELECT * FROM achievement WHERE a_id= $a_id";
     $res = mysqli_query($conn, $sql);
 
     $result = array();
@@ -45,7 +45,7 @@ function getAchivementDisplay()
 {
     global $conn;
 
-    $sql = "SELECT * FROM achivement WHERE published = 1";
+    $sql = "SELECT * FROM achievement WHERE published = 1";
 
     // Use prepared statements to safely bind the parameters
     $stmt = mysqli_prepare($conn, $sql);
@@ -100,7 +100,7 @@ function addAchivement($a_name, $a_desc, $a_date, $file, $added_by, $published)
     }
 
     // Prepare and execute the SQL query to insert data into the 'upcoming_event' table
-    $sql = "INSERT INTO achivement
+    $sql = "INSERT INTO achievement
             (a_name, a_desc, a_date, a_img, added_by, published)
             VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
@@ -154,7 +154,7 @@ function editAchivement($a_name, $a_desc, $a_date, $file, $file_path, $added_by,
     }
 
     // Prepare and execute the SQL query to insert data into the 'upcoming_event' table
-    $sql = "UPDATE achivement
+    $sql = "UPDATE achievement
             SET a_name = ?, 
                 a_desc = ?, 
                 a_date = ?, 
@@ -181,7 +181,7 @@ function deleteAchivement(int $a_id)
 {
     global $conn;
 
-    $sql = "SELECT * FROM  achivement WHERE a_id= $a_id";
+    $sql = "SELECT * FROM achievement WHERE a_id= $a_id";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
@@ -195,7 +195,7 @@ function deleteAchivement(int $a_id)
     }
 
 
-    $sql = "DELETE FROM achivement WHERE a_id = ?";
+    $sql = "DELETE FROM achievement WHERE a_id = ?";
     $stmt = mysqli_prepare($conn, $sql);
 
     mysqli_stmt_bind_param($stmt, "i", $a_id);
@@ -217,7 +217,7 @@ function publishAchivement(int $a_id)
 {
     global $conn;
 
-    $sql = "UPDATE achivement SET published = !published WHERE a_id = ?";
+    $sql = "UPDATE achievement SET published = !published WHERE a_id = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "i", $a_id);
 

@@ -4,7 +4,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/previousevents.php"
 
 $events = getPreviousEvents();
 if (isset($events['error']))
-    header("Location: ?error={$events['error']}");
+    if (!isset($_GET['error']))
+        header("Location: ?error={$events['error']}");
 ?>
 <!DOCTYPE html>
 <html lang="en">

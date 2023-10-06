@@ -1,6 +1,6 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/achivement.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/achivements.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Get the event ID from the form submission
@@ -9,9 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     // Execute the update query
     if (isset($result['error'])) {
-        header("Location: /pages/upcoming/?error={$result['error']}");
+        header("Location: /pages/achievements/?error={$result['error']}");
     } else
-        header("Location: /pages/upcoming/?success={$result['message']}");
+        header("Location: /pages/achievements/?success={$result['message']}");
 
     // Close the statement
     $stmt->close();

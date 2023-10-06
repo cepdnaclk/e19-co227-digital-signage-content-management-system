@@ -43,7 +43,7 @@
                     <ul>
                         <li><a href="/pages/upcoming/" class="link <?php echo $index == 3 ? 'active' : '' ?>">Upcoming Events</a></li>
                         <li><a href="/pages/previous/" class="link <?php echo $index == 3 ? 'active' : '' ?>">Previous Events</a></li>
-                        <li><a href="/pages/achievements.php" class="link <?php echo $index == 3 ? 'active' : '' ?>">Achievements</a></li>
+                        <li><a href="/pages/achievements/" class="link <?php echo $index == 3 ? 'active' : '' ?>">Achievements</a></li>
                     </ul>
                 </div>
                 <a href="/pages/labslots.php" class="link <?php echo $index == 4 ? 'active' : '' ?>">
