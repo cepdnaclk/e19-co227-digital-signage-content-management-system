@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $result = addUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file,  $display_from, $display_to, $added_by);
         if (isset($result['error'])) {
-            header("Location: /pages/upcoming/?error={$result['error']} {$_SESSION["user_id"]}");
+            header("Location: /pages/upcoming/?error={$result['error']}");
         } else
             header("Location: /pages/upcoming/?success={$result['message']}");
     } else {

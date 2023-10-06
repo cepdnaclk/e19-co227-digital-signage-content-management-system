@@ -32,29 +32,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
-    // Handle course deletion when a DELETE request is received
-    parse_str(file_get_contents("php://input"), $deleteParams);
-    if (isset($deleteParams["c_id"])) {
-        $c_id = $deleteParams["c_id"];
-        $result = deleteCourse($conn, $c_id);
+// Handle the initial load and retrieve all courses
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_GET["delete"])) {
+        $c_id = $_GET["delete"];
+        $result = deleteCourse($c_id);
 
         if ($result) {
             // Send a JSON response for success
-            echo json_encode(["success" => true]);
+            header("Location: /pages/course.php?success={$result['message']}");
         } else {
             // Send a JSON response for error
-            echo json_encode(["error" => "Course deletion failed"]);
+            header("Location: /pages/course.php?error={$result['error']}");
         }
-    } else {
-        // Send a JSON response for missing parameters
-        echo json_encode(["error" => "Missing 'c_id' parameter"]);
-    }
-}
-
-// Handle the initial load and retrieve all courses
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    if (isset($_GET['c_id'])) {
+    } else if (isset($_GET['c_id'])) {
         // If 'c_id' is provided in the query parameters, retrieve a single course
         $c_id = $_GET['c_id'];
         $course = getCourse($c_id);
@@ -81,4 +72,3 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         }
     }
 }
-?>
