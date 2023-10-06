@@ -5,8 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $event_id = $_GET["delete_id"];
     $result = deleteUpcomingEvent($event_id);
     if ($result) {
-        header("Location: /pages/upcomingevents.php?success=1");
+        header("Location: /pages/upcoming/?success=1");
     } else {
-        header("Location: /pages/upcomingevents.php?error=$result");
+        header("Location: /pages/upcoming/?error=$result");
     }
 }

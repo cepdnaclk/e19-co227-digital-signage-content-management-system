@@ -3,10 +3,10 @@
 include_once "../config.php";
 
 // Check if the request is a POST request
-if ($_SERVER["REQUEST_METHOD"] == "POST"||"PUT"||"GET") {
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Get the course ID and new publish state from the POST data
-    $c_id = isset($_POST["c_id"]) ? $_POST["c_id"] : null;
-    $newPublishState = isset($_POST["published"]) ? $_POST["published"] : null;
+    $c_id = isset($_GET["c_id"]) ? $_GET["c_id"] : null;
+    $newPublishState = isset($_GET["published"]) ? $_GET["published"] : null;
 
 
     if ($c_id !== null && $newPublishState !== null) {
@@ -30,4 +30,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"||"PUT"||"GET") {
     // Send a JSON response for invalid request method
     echo json_encode(["error" => "Invalid request method"]);
 }
-?>

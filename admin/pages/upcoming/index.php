@@ -12,7 +12,7 @@ if (isset($events['error']))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/upcomingevents.css">
+    <link rel="stylesheet" href="/css/upcomingevents.css">
     <title>IT Center | UpcomingEvents</title>
 </head>
 
@@ -36,7 +36,7 @@ if (isset($events['error']))
                 <div class="container">
                     <div class="title">
                         <h1>Upcoming Events</h1>
-                        <a href="/pages/addnewevent.php"><img src="../images/Add_round.svg" alt=""> Add Event</a>
+                        <a href="add.php"><img src="../images/Add_round.svg" alt=""> Add Event</a>
 
                     </div>
                     <div class="card-container">
@@ -51,7 +51,7 @@ if (isset($events['error']))
                                     <p class='card-duration'>From <?= $row["display_from"] ?><br>To <?= $row["display_to"] ?></p>
                                 </div>
                                 <div class='card-actions'>
-                                    <a href="editevent.php?edit_id=<?= $row['e_id'] ?>">
+                                    <a href="edit.php?edit_id=<?= $row['e_id'] ?>">
                                         <button class="edit-button">
                                             <span class="icon">&#9998;</span>
                                             Edit

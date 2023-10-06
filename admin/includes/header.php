@@ -8,23 +8,22 @@ include APP_ROOT . "/includes/header_core.php";
 
 // Check if the user is logged in
 if (isset($_SESSION['user_id'])) {
-    // Fetch user information from the database based on the user_id
-    $user_id = $_SESSION['user_id'];
-    
-    // Use your database connection and query to fetch user data
-    // Replace 'your_query_here' with the actual SQL query to fetch user data
-    $sql = "SELECT user_name, clearense FROM user WHERE u_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($row = $result->fetch_assoc()) {
-        // User data found, retrieve information
-        $username = $row['user_name'];
-        $role = $row['clearense'];
-        
-    }
+  // Fetch user information from the database based on the user_id
+  $user_id = $_SESSION['user_id'];
+
+  // Use your database connection and query to fetch user data
+  // Replace 'your_query_here' with the actual SQL query to fetch user data
+  $sql = "SELECT user_name, clearense FROM user WHERE u_id = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("i", $user_id);
+  $stmt->execute();
+  $result = $stmt->get_result();
+
+  if ($row = $result->fetch_assoc()) {
+    // User data found, retrieve information
+    $username = $row['user_name'];
+    $role = $row['clearense'];
+  }
 }
 if (!isset($_SESSION['user_id'])) {
   // User is not logged in, redirect them to the login page
@@ -38,7 +37,7 @@ if (!isset($_SESSION['user_id'])) {
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="/css/header.css">
 </head>
 
 <body>
@@ -52,14 +51,14 @@ if (!isset($_SESSION['user_id'])) {
       <div class="img"><?php echo isset($username) ? strtoupper(substr($username, 0, 1)) : 'G'; ?></div>
       <h5><?php echo isset($username) ? $username : 'Guest'; ?></h5>
       <p><?php echo isset($role) ? $role : 'Guest'; ?></p>
-        <div class="profile-dropdown">
-          <ul>
-            <li><a href="/backend/logout.php">Logout</a></li> 
-          </ul>
-        </div>
+      <div class="profile-dropdown">
+        <ul>
+          <li><a href="/backend/logout.php">Logout</a></li>
+        </ul>
+      </div>
     </div>
   </header>
-  <script src="../js/header.js"></script>
+  <script src="/js/header.js"></script>
 </body>
 
 </html>
