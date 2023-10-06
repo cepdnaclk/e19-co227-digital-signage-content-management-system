@@ -50,7 +50,8 @@
 }
 
 .preview-button,
-.manage-button {
+.manage-button,
+.update-button {
     background-color: var(--color-5);
     color: #fff;
     border: none;
@@ -62,7 +63,8 @@
 }
 
 .preview-button:hover,
-.manage-button:hover {
+.manage-button:hover,
+.update-button:hover {
     background-color: var(--color-4);
 }
 
@@ -121,3 +123,18 @@
     background-color: var(--color-4);
 }
 
+/* Style the time slot input */
+.allocated-time-input {
+    width: 60px; /* Adjust the width as needed */
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Style the time unit (e.g., "s" for seconds) */
+.time-unit {
+    margin-left: 4px;
+    font-size: 14px;
+    color: #333;
+}

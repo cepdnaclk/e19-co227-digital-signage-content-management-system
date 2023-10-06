@@ -117,6 +117,38 @@
         });
 });
 
+
+     // Add click event listener to the "Delete" button
+     const deleteButtons = document.querySelectorAll('.btn-delete');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const courseId = this.getAttribute('data-course-id');
+            const courseName = this.closest('tr').querySelector('.text-left').textContent;
+            
+            // Show a confirmation dialog
+            if (confirm(`Are you sure you want to delete the course "${courseName}"?`)) {
+                // If the user confirms, send a DELETE request to delete the course
+                fetch(`/backend/api/course/index.php?c_id=${courseId}`, {
+                    method: 'DELETE',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    // Remove the row from the table
+                    this.closest('tr').remove();
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+            }
+        });
+    });
+
+
+
+
     </script>
 </body>
 

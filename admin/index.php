@@ -1,4 +1,59 @@
-<?php include_once("./config.php") ?>
+<?php
+include_once("./config.php");
+include_once(APP_ROOT . "/includes/header.php");
+
+// Function to fetch data from the database
+function fetchDashboardData($conn) {
+    $dashboardData = array();
+
+    $result = $conn->query("SELECT * FROM `dashboard`");
+    if ($result === false) {
+        return $dashboardData;
+    }
+
+    while ($row = $result->fetch_assoc()) {
+        $dashboardData[$row['feature']] = $row;
+    }
+
+    return $dashboardData;
+}
+
+// Function to update the "Total Time" field in the database
+function updateTotalTime($conn, $feature, $totalTime) {
+    $totalTime = (int)$totalTime; // Convert to integer for security
+
+    $sql = "UPDATE `dashboard` SET `total_time` = ? WHERE `feature` = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("is", $totalTime, $feature);
+    $stmt->execute();
+}
+
+$dashboardData = fetchDashboardData($conn);
+
+// Calculate the total values
+$totalPages = 0;
+$totalPublished = 0;
+$totalTime = 0;
+
+foreach ($dashboardData as $feature => $data) {
+    // Skip the "total" feature
+    if ($feature === 'total') {
+        continue;
+    }
+
+    // Calculate Allocated Time Per Page
+    if ($data['published_pages'] > 0) {
+        $allocatedTimePerPage = number_format($data['total_time'] / $data['published_pages'], 2) . 's';
+    } else {
+        $allocatedTimePerPage = 'N/A';
+    }
+
+    // Update the total values
+    $totalPages += $data['total_pages'];
+    $totalPublished += $data['published_pages'];
+    $totalTime += $data['total_time'];
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,76 +81,53 @@
 
             <!-- Dashboard Content -->
             <div class="dashboard-content">
-
-            <!-- Summary Widget -->
-            <div class="widget elegant-widget">
-                <h2 class="widget-title">Overview</h2>
-                <p class="widget-info">Total Pages: 53</p>
-                <p class="widget-info">Total Published Pages: 21</p>
-                <p class="widget-info">Total Time for One Cycle: 4.30 min</p>
-                <div class="widget-buttons">
-                    <button class="preview-button">Preview</button>
-                    &emsp;
-                    <button class="manage-button">Manage</button>
+                <!-- Summary Widget -->
+                <div class="widget elegant-widget" id="overview-widget">
+                    <h2 class="widget-title">Overview</h2>
+                    <p class="widget-info" id="total-pages">Total Pages: <?php echo $totalPages; ?></p>
+                    <p class="widget-info" id="total-published-pages">Total Published Pages: <?php echo $totalPublished; ?></p>
+                    <p class="widget-info" id="total-time-for-cycle">Total Time for One Cycle: <?php echo $totalTime; ?>s</p>
+                    <div class="widget-buttons">
+                        <button class="preview-button">Preview</button>
+                        &emsp;
+                        <button class="manage-button">Manage</button>
+                    </div>
                 </div>
-            </div>
 
                 <!-- Widgets -->
                 <div class="dashboard-widgets">
                     <?php
-                    // TODO: from the backend => Include necessary logic to fetch data from the database
-                    // Replace the placeholders with actual data
-                    $widgets = [
-                        [
-                            'title' => 'Lab Slots',
-                            'total_pages' => 5,
-                            'published' => 1,
-                            'allocated_total_time' => '30s',
-                            'allocated_time_per_page' => '30s',
-                        ],
-                        [
-                            'title' => 'Course Offerings',
-                            'total_pages' => 5,
-                            'published' => 1,
-                            'allocated_total_time' => '30s',
-                            'allocated_time_per_page' => '30s',
-                        ],
-                        [
-                            'title' => 'Upcoming Events',
-                            'total_pages' => 5,
-                            'published' => 1,
-                            'allocated_total_time' => '30s',
-                            'allocated_time_per_page' => '30s',
-                        ],
-                        [
-                            'title' => 'Previous Events',
-                            'total_pages' => 5,
-                            'published' => 1,
-                            'allocated_total_time' => '30s',
-                            'allocated_time_per_page' => '30s',
-                        ],
-                        [
-                            'title' => 'Achievements',
-                            'total_pages' => 5,
-                            'published' => 1,
-                            'allocated_total_time' => '30s',
-                            'allocated_time_per_page' => '30s',
-                        ],
-                    ];
-                    
+                    foreach ($dashboardData as $feature => $data) {
+                        // Skip the "total" feature
+                        if ($feature === 'total') {
+                            continue;
+                        }
 
-                    foreach ($widgets as $widget) {
+                        // Calculate Allocated Time Per Page
+                        if ($data['published_pages'] > 0) {
+                            $allocatedTimePerPage = number_format($data['total_time'] / $data['published_pages'], 2) . 's';
+                        } else {
+                            $allocatedTimePerPage = 'N/A';
+                        }
                     ?>
                         <div class="widget">
-                            <h2 class="widget-title"><?php echo $widget['title']; ?></h2>
-                            <p class="widget-info">Total Pages: <?php echo $widget['total_pages']; ?></p>
-                            <p class="widget-info">Published: <?php echo $widget['published']; ?></p>
-                            <p class="widget-info">Allocated Total Time: <?php echo $widget['allocated_total_time']; ?></p>
-                            <p class="widget-info">Allocated Time Per Page: <?php echo $widget['allocated_time_per_page']; ?></p>
-                            <div class="widget-buttons">
-                                <button class="preview-button">Preview</button>
-                                <button class="manage-button">Manage</button>
-                            </div>
+                            <h2 class="widget-title"><?php echo $feature; ?></h2>
+                            <p class="widget-info">Total Pages: <?php echo $data['total_pages']; ?></p>
+                            <p class="widget-info">Published: <?php echo $data['published_pages']; ?></p>
+                            <form method="POST">
+                                <input type="hidden" name="feature" value="<?php echo $feature; ?>">
+                                <p class="widget-info">
+                                    Allocated Time:
+                                    <input type="number" name="total_time" value="<?php echo $data['total_time']; ?>" class="allocated-time-input">
+                                    <span class="time-unit">s</span>
+                                </p>
+                                <p class="widget-info">Allocated Time Per Page: <?php echo $allocatedTimePerPage; ?></p>
+                                <div class="widget-buttons">
+                                    <button class="preview-button">Preview</button>
+                                    <button class="manage-button">Manage</button>
+                                    <button type="submit" class="update-button">Update</button>
+                                </div>
+                            </form>
                         </div>
                     <?php
                     }
@@ -104,6 +136,8 @@
             </div>
         </div>
     </div>
+    <script src="./js/dashboard.js"></script>
+
 </body>
 
 </html>

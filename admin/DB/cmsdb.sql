@@ -591,6 +591,25 @@ VALUES
 
 COMMIT;
 
+DROP TABLE IF EXISTS `dashboard`;
+
+CREATE TABLE IF NOT EXISTS `dashboard` (
+  `feature` varchar(100) NOT NULL,
+  `total_pages` int(11) DEFAULT 0,
+  `published_pages` int(11) DEFAULT 0,
+  `total_time` int(11) DEFAULT 0,
+  PRIMARY KEY (`feature`)
+) ENGINE = MyISAM AUTO_INCREMENT = 5 DEFAULT CHARSET = latin1;
+
+INSERT INTO `dashboard` (`feature`, `total_pages`, `published_pages`) VALUES
+('Lab Slots', 5, 1 ),
+('Course Offerings', 15, 5),
+('Upcoming Events', 8, 2 ),
+('Previous Events', 20, 8 ),
+('Achievements', 5, 1 ),
+('total', 58, 19);
+
+COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
 ;
 

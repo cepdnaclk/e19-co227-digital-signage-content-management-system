@@ -1,6 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/course.php";
@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } elseif ($action == "edit" && $c_id !== null) {
             $result = editCourse($conn, $c_id, $c_code, $c_name);
         } elseif ($action == "delete" && $c_id !== null) {
+            // This block will be used for deleting a course
             $result = deleteCourse($conn, $c_id);
         }
 
@@ -28,6 +29,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Send a JSON response for error
             echo json_encode(["error" => "Operation failed"]);
         }
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
+    // Handle course deletion when a DELETE request is received
+    parse_str(file_get_contents("php://input"), $deleteParams);
+    if (isset($deleteParams["c_id"])) {
+        $c_id = $deleteParams["c_id"];
+        $result = deleteCourse($conn, $c_id);
+
+        if ($result) {
+            // Send a JSON response for success
+            echo json_encode(["success" => true]);
+        } else {
+            // Send a JSON response for error
+            echo json_encode(["error" => "Course deletion failed"]);
+        }
+    } else {
+        // Send a JSON response for missing parameters
+        echo json_encode(["error" => "Missing 'c_id' parameter"]);
     }
 }
 
@@ -60,3 +81,4 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         }
     }
 }
+?>
