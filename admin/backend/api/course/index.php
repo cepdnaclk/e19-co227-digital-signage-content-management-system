@@ -34,11 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
     // Handle course deletion when a DELETE request is received
-    parse_str(file_get_contents("php://input"), $deleteParams);
+    // parse_str(file_get_contents("/pages/course.php"), $deleteParams);
     if (isset($deleteParams["c_id"])) {
         $c_id = $deleteParams["c_id"];
         $result = deleteCourse($conn, $c_id);
-
+        
         if ($result) {
             // Send a JSON response for success
             echo json_encode(["success" => true]);

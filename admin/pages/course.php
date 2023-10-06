@@ -53,7 +53,7 @@
     <script>
        document.addEventListener("DOMContentLoaded", function () {
     // Fetch courses data from the backend
-    fetch('../backend/api/course/index.php')
+    fetch('/backend/api/course/index.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');

@@ -3,7 +3,7 @@
 include_once "../config.php";
 
 // Check if the request is a POST request
-if ($_SERVER["REQUEST_METHOD"] == "POST"||"PUT") {
+if ($_SERVER["REQUEST_METHOD"] == "POST"||"PUT"||"GET") {
     // Get the course ID and new publish state from the POST data
     $c_id = isset($_POST["c_id"]) ? $_POST["c_id"] : null;
     $newPublishState = isset($_POST["published"]) ? $_POST["published"] : null;

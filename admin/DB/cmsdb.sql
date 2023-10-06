@@ -610,6 +610,26 @@ INSERT INTO `dashboard` (`feature`, `total_pages`, `published_pages`) VALUES
 ('total', 58, 19);
 
 COMMIT;
+
+
+DROP TABLE IF EXISTS `contactsupport`;
+
+CREATE TABLE IF NOT EXISTS `contactsupport` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = MyISAM AUTO_INCREMENT = 5 DEFAULT CHARSET = latin1;
+
+
+INSERT INTO `contactsupport` (`name`, `email`, `message`) VALUES
+('John Doe', 'john@example.com', 'I have a question about your services.'),
+('Alice Smith', 'alice@example.com', 'I encountered an issue with my account.'),
+('Bob Johnson', 'bob@example.com', 'I would like to request more information about your products.'),
+('Eve Wilson', 'eve@example.com', 'I need assistance with a recent purchase.');
+
+COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
 ;
 

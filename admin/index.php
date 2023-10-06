@@ -132,9 +132,40 @@ foreach ($dashboardData as $feature => $data) {
                     <?php
                     }
                     ?>
-                </div>
-            </div>
-        </div>
+                       </div>
+                    </div>
+                            <div class="contact-support">
+                            <?php
+        // Query to fetch data from the supports table
+        $query = "SELECT * FROM `contactsupport`";
+        $result = mysqli_query($conn, $query);
+
+        // Check if the query was successful
+        if ($result) {
+            echo "<h2><i><center>Complaints and Messages From Other CMS Handlers<center></i></h2>
+                    <center><table border='1'>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                    </tr>";
+
+            // Loop through the rows of data
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['name'] . "</td>";
+                echo "<td>" . $row['email'] . "</td>";
+                echo "<td>" . $row['message'] . "</td>";
+                echo "</tr>";
+            }
+
+            echo "</center></table>";
+        } else {
+            echo "Error: " . mysqli_error($conn);
+        }
+                            ?>
+                            </div>  
+             
     </div>
     <script src="./js/dashboard.js"></script>
 
