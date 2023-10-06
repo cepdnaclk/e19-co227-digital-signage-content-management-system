@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/labslots.css">
+    <link rel="stylesheet" href="/css/labslots.css">
     <title>IT Center | Lab Allocations</title>
 </head>
 
@@ -38,7 +38,7 @@ $labslots = getLabSlotsAll();
                     <div class="title">
                         <div class="title">
                             <h2>Lab 1</h2>
-                            <a href="/pages/addnewlabslot.php?lab=lab1"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
+                            <a href="/pages/addnewlabslot.php?lab=lab1"><img src="/images/Add_round.svg" alt=""> Add a slot</a>
                         </div>
                     </div>
                     <table class="lab-table">
@@ -75,7 +75,7 @@ $labslots = getLabSlotsAll();
                     <div class="title">
                         <div class="title">
                             <h2>Lab 2</h2>
-                            <a href="/pages/addnewlabslot.php?lab=lab2"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
+                            <a href="/pages/addnewlabslot.php?lab=lab2"><img src="/images/Add_round.svg" alt=""> Add a slot</a>
                         </div>
                     </div>
                     <table class="lab-table">
@@ -112,7 +112,7 @@ $labslots = getLabSlotsAll();
                     <div class="title">
                         <div class="title">
                             <h2>CCNA Lab</h2>
-                            <a href="/pages/addnewlabslot.php?lab=ccna"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
+                            <a href="/pages/addnewlabslot.php?lab=ccna"><img src="/images/Add_round.svg" alt=""> Add a slot</a>
                         </div>
                     </div>
                     <table class="lab-table">
@@ -149,7 +149,7 @@ $labslots = getLabSlotsAll();
                     <div class="title">
                         <div class="title">
                             <h2>Seminar Room</h2>
-                            <a href="/pages/addnewlabslot.php?lab=sr"><img src="../images/Add_round.svg" alt=""> Add a slot</a>
+                            <a href="/pages/addnewlabslot.php?lab=sr"><img src="/images/Add_round.svg" alt=""> Add a slot</a>
                         </div>
                     </div>
                     <table class="lab-table">

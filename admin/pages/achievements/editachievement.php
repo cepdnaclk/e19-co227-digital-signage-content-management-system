@@ -1,5 +1,5 @@
 <?php
-include_once "../config.php";
+include_once "/config.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Get the event ID from the form submission
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/editachievement.css">
+    <link rel="stylesheet" href="/css/editachievement.css">
     <title>Edit Achievement Information Form</title>
 </head>
 
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <div class="edit-achievement">
                 <h2>Edit Achievement Information</h2>
                 <div class="form-container">
-                    <form action="../backend/editachievement.php" method="POST" enctype="multipart/form-data">
+                    <form action="/backend/editachievement.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="a_id" id="a_id" value= "<?php echo $event_id; ?>">
                         <br>
                         <label for="a_img">Select an Image:</label>

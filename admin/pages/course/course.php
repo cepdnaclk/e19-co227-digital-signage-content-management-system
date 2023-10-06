@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/course.css">
+    <link rel="stylesheet" href="/css/course.css">
     <title>IT Center | Courses</title>
 </head>
 
@@ -28,7 +28,7 @@
                             <h1>Courses</h1>
                             <p>Currently Offered Courses by Us</p>
                         </div>
-                        <a href="/pages/addcourse.php" class="btn btn-success"><img src="../images/Add_round.svg" alt=""> Add New Course</a>
+                        <a href="/pages/addcourse.php" class="btn btn-success"><img src="/images/Add_round.svg" alt=""> Add New Course</a>
                     </div>
 
                     <div class="table-container">
@@ -53,7 +53,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Fetch courses data from the backend
-            fetch('../backend/api/course/index.php')
+            fetch('../../backend/api/course/index.php')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');

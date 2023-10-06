@@ -1,10 +1,10 @@
-<?php include_once "../config.php"; ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/adduser.css">
+    <link rel="stylesheet" href="/css/adduser.css">
     <title>Register New User</title>
 </head>
 
@@ -23,7 +23,7 @@
             <div class="register-user container">
                 <h2><?= $clearenceStatus[$_SESSION['clearense']] > 1 ? 'Register New User' : 'Register new Course Coordinator' ?></h2>
                 <div class="form-container">
-                    <form action="../backend/adduser.php" method="POST" onsubmit="return validateForm()">
+                    <form action="/backend/adduser.php" method="POST" onsubmit="return validateForm()">
                         <?php if ($clearenceStatus[$_SESSION['clearense']] > 1) { ?>
                             <div class="role-selection">
                                 <p>Select User Role:</p></br>

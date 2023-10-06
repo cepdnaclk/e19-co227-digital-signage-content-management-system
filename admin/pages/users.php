@@ -15,7 +15,7 @@ if (!isset($users))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/users.css">
+    <link rel="stylesheet" href="/css/users.css">
     <title>IT Center | Users</title>
 
 
@@ -37,14 +37,14 @@ if (!isset($users))
                             <h1>Users</h1>
                             <p>Currently active users in charge of CMS handling</p>
                         </div>
-                        <a href="/pages/adduser.php"><img src="../images/Add_round.svg" alt=""> Register New User</a>
+                        <a href="/pages/adduser.php"><img src="/images/Add_round.svg" alt=""> Register New User</a>
                     </div>
 
                     <!-- User Role Icons and Counts -->
                     <div class="user-roles">
                         <div class="user-role" id="super-admin-role">
                             <div class="user-icon">
-                                <img src="../images/superadmin.svg" alt="Superadmin Icon">
+                                <img src="/images/superadmin.svg" alt="Superadmin Icon">
                             </div>
                             <div class="user-details">
                                 <h3>Super-Admin</h3>
@@ -64,7 +64,7 @@ if (!isset($users))
                         </div>
                         <div class="user-role" id="coordinator-role">
                             <div class="user-icon">
-                                <img src="../images/coordinator.svg" alt="Coordinator Icon">
+                                <img src="/images/coordinator.svg" alt="Coordinator Icon">
                             </div>
                             <div class="user-details">
                                 <h3>Course Coordinator</h3>

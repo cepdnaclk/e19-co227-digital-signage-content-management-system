@@ -1,9 +1,10 @@
-<?php include_once "../config.php"; ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/addcourse.css">
+    <link rel="stylesheet" href="/css/addcourse.css">
     <title>Add New Course</title>
 </head>
 
@@ -22,7 +23,7 @@
             <div class="add-course">
                 <h2>Add New Course</h2>
                 <div class="form-container">
-                    <form action="../backend/addcourse.php" method="POST">
+                    <form action="/backend/addcourse.php" method="POST">
                         <label for="c_code">Course Code:</label>
                         <input type="text" name="c_code" id="c_code" required>
                         <br><br>

@@ -1,6 +1,6 @@
 <?php
-include_once "../config.php";
-include_once "../backend/functions/course.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ;
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/course.php" ;
 
 // Ensure that 'c_id' is provided as a query parameter
 if (isset($_GET['c_id'])) {
@@ -19,7 +19,7 @@ if (isset($_GET['c_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/coursemanage.css">
+    <link rel="stylesheet" href="../../css/coursemanage.css">
     <title>Course Management</title>
 </head>
 
@@ -39,7 +39,7 @@ if (isset($_GET['c_id'])) {
             <div class="course-manage">
                 <h2>Course Management</h2>
                 <div class="form-container">
-                    <form action="../backend/coursemanage.php" method="POST" enctype="multipart/form-data">
+                    <form action="/backend/coursemanage.php" method="POST" enctype="multipart/form-data">
                         <!-- Section 1: General Info -->
                         <h3>General Info</h3>
                         <label for="coordinator_name">Course Coordinator Name:</label>

@@ -1,4 +1,4 @@
-<?php include_once "../config.php" ;
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ;
 include (APP_ROOT . "/includes/header.php");
 ?>
 <!DOCTYPE html>
@@ -7,7 +7,7 @@ include (APP_ROOT . "/includes/header.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/contactNsupport.css">
+    <link rel="stylesheet" href="/css/contactNsupport.css">
     <title>IT Center | Contact & Support</title>
     
     <script> //display relevent data on hovering
