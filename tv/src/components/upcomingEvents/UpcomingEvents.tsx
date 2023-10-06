@@ -10,19 +10,19 @@ import img5 from "../../assets/upcoming-event-posters/upcoming-event-5.jpg"; // 
 
 export default function UpcomingEvents() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = [img1, img2, img3, img4, img5]; // Add  image paths to this array
+  const [clickedImageIndex, setClickedImageIndex] = useState<number | null>(
+    null
+  );
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      // Increment the current image index
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 5000); // Change the time interval (in milliseconds) as needed
+    const interval = setInterval(() => {
+      if (clickedImageIndex === null) {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }
+    }, 5000); // Change image every 5 seconds (5000 milliseconds)
 
     return () => {
-      // Clean up the timer to avoid memory leaks
-      clearTimeout(timer);
+      clearInterval(interval);
     };
   }, [currentImageIndex, images]);
 

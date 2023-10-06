@@ -77,7 +77,7 @@ export default function Achievements() {
           </div>
         )}
         <div className="image-title">
-          &#10029; {imageTitles[currentImageIndex]} &#10029;
+          {imageTitles[currentImageIndex]};
         </div>
         {/* <div className="image-text">
           This is the text below the title of the middle image.
