@@ -58,7 +58,7 @@ include (APP_ROOT . "/includes/header.php");
         <p>If you have any questions or need assistance, please feel free to get in touch with us.</p>
 
         <!-- Contact Form -->
-        <form action="#" method="post">
+        <form action="/backend/contactNsupport.php" method="post">
             <label for="name">Your Name:</label>
             <input type="text" id="name" name="name" required>
 
