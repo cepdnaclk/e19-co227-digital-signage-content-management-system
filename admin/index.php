@@ -3,13 +3,15 @@ include_once("./config.php");
 include_once(APP_ROOT . "/includes/header.php");
 
 // Function to fetch data from the database
-function fetchDashboardData($conn) {
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    updateTotalTime($conn, $_POST['feature'], $_POST['total_time']);
+}
+function fetchDashboardData($conn)
+{
     $dashboardData = array();
 
     $result = $conn->query("SELECT * FROM `dashboard`");
-    if ($result === false) {
-        return $dashboardData;
-    }
 
     while ($row = $result->fetch_assoc()) {
         $dashboardData[$row['feature']] = $row;
@@ -19,8 +21,9 @@ function fetchDashboardData($conn) {
 }
 
 // Function to update the "Total Time" field in the database
-function updateTotalTime($conn, $feature, $totalTime) {
-    $totalTime = (int)$totalTime; // Convert to integer for security
+function updateTotalTime($conn, $feature, $totalTime)
+{
+    $totalTime = (int) $totalTime; // Convert to integer for security
 
     $sql = "UPDATE `dashboard` SET `total_time` = ? WHERE `feature` = ?";
     $stmt = $conn->prepare($sql);
@@ -84,9 +87,15 @@ foreach ($dashboardData as $feature => $data) {
                 <!-- Summary Widget -->
                 <div class="widget elegant-widget" id="overview-widget">
                     <h2 class="widget-title">Overview</h2>
-                    <p class="widget-info" id="total-pages">Total Pages: <?php echo $totalPages; ?></p>
-                    <p class="widget-info" id="total-published-pages">Total Published Pages: <?php echo $totalPublished; ?></p>
-                    <p class="widget-info" id="total-time-for-cycle">Total Time for One Cycle: <?php echo $totalTime; ?>s</p>
+                    <p class="widget-info" id="total-pages">Total Pages:
+                        <?php echo $totalPages; ?>
+                    </p>
+                    <p class="widget-info" id="total-published-pages">Total Published Pages:
+                        <?php echo $totalPublished; ?>
+                    </p>
+                    <p class="widget-info" id="total-time-for-cycle">Total Time for One Cycle:
+                        <?php echo $totalTime; ?>s
+                    </p>
                     <div class="widget-buttons">
                         <a href="/pages/preview"><button class="preview-button">Preview</button></a>
                         &emsp;
@@ -109,19 +118,28 @@ foreach ($dashboardData as $feature => $data) {
                         } else {
                             $allocatedTimePerPage = 'N/A';
                         }
-                    ?>
+                        ?>
                         <div class="widget">
-                            <h2 class="widget-title"><?php echo $feature; ?></h2>
-                            <p class="widget-info">Total Pages: <?php echo $data['total_pages']; ?></p>
-                            <p class="widget-info">Published: <?php echo $data['published_pages']; ?></p>
-                            <form method="POST">
+                            <h2 class="widget-title">
+                                <?php echo $feature; ?>
+                            </h2>
+                            <p class="widget-info">Total Pages:
+                                <?php echo $data['total_pages']; ?>
+                            </p>
+                            <p class="widget-info">Published:
+                                <?php echo $data['published_pages']; ?>
+                            </p>
+                            <form method="POST" action="/">
                                 <input type="hidden" name="feature" value="<?php echo $feature; ?>">
                                 <p class="widget-info">
                                     Allocated Time:
-                                    <input type="number" name="total_time" value="<?php echo $data['total_time']; ?>" class="allocated-time-input">
+                                    <input type="number" name="total_time" value="<?php echo $data['total_time']; ?>"
+                                        class="allocated-time-input">
                                     <span class="time-unit">s</span>
                                 </p>
-                                <p class="widget-info">Allocated Time Per Page: <?php echo $allocatedTimePerPage; ?></p>
+                                <p class="widget-info">Allocated Time Per Page:
+                                    <?php echo $allocatedTimePerPage; ?>
+                                </p>
                                 <div class="widget-buttons">
                                     <button class="preview-button">Preview</button>
                                     <button class="manage-button">Manage</button>
@@ -129,20 +147,20 @@ foreach ($dashboardData as $feature => $data) {
                                 </div>
                             </form>
                         </div>
-                    <?php
+                        <?php
                     }
                     ?>
-                       </div>
-                    </div>
-                            <div class="contact-support">
-                            <?php
-        // Query to fetch data from the supports table
-        $query = "SELECT * FROM `contactsupport`";
-        $result = mysqli_query($conn, $query);
+                </div>
+            </div>
+            <div class="contact-support">
+                <?php
+                // Query to fetch data from the supports table
+                $query = "SELECT * FROM `contactsupport`";
+                $result = mysqli_query($conn, $query);
 
-        // Check if the query was successful
-        if ($result) {
-            echo "<h2><i><center>Complaints and Messages From Other CMS Handlers<center></i></h2>
+                // Check if the query was successful
+                if ($result) {
+                    echo "<h2><i><center>Complaints and Messages From Other CMS Handlers<center></i></h2>
                     <center><table border='1'>
                     <tr>
                         <th>Name</th>
@@ -150,24 +168,24 @@ foreach ($dashboardData as $feature => $data) {
                         <th>Message</th>
                     </tr>";
 
-            // Loop through the rows of data
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr>";
-                echo "<td>" . $row['name'] . "</td>";
-                echo "<td>" . $row['email'] . "</td>";
-                echo "<td>" . $row['message'] . "</td>";
-                echo "</tr>";
-            }
+                    // Loop through the rows of data
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . $row['name'] . "</td>";
+                        echo "<td>" . $row['email'] . "</td>";
+                        echo "<td>" . $row['message'] . "</td>";
+                        echo "</tr>";
+                    }
 
-            echo "</center></table>";
-        } else {
-            echo "Error: " . mysqli_error($conn);
-        }
-                            ?>
-                            </div>  
-             
-    </div>
-    <script src="./js/dashboard.js"></script>
+                    echo "</center></table>";
+                } else {
+                    echo "Error: " . mysqli_error($conn);
+                }
+                ?>
+            </div>
+
+        </div>
+        <script src="./js/dashboard.js"></script>
 
 </body>
 

@@ -18,10 +18,6 @@ if (isset($events['error']))
 </head>
 
 <body>
-    <?php
-    if (isset($_GET['error']))
-        echo '<script>alert("' . $_GET['error'] . '")</script>';
-    ?>
     <div class="flex-box">
         <div class="left">
             <?php
@@ -41,7 +37,7 @@ if (isset($events['error']))
 
                     </div>
                     <div class="card-container">
-                        <?php foreach ($events as $key => $row) { ?>
+                        <?php if(!isset($_GET['error'])) foreach ($events as $key => $row) { ?>
                             <div class='card'>
                                 <img src='<?= $row["e_img"] ?>' alt='Add Event Image'>
                                 <div class='card-content'>
@@ -80,6 +76,12 @@ if (isset($events['error']))
                                     </button>
                                 </div>
                             </div>
+                        <?php } else { ?>
+                            <p style="width:400px">No Achivements Found.
+                                <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
+                                    <a style="text-decoration:underline" href="add.php">Add Achievements</a>
+                                <?php } ?>
+                            </p>
                         <?php } ?>
                     </div>
                 </div>

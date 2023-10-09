@@ -34,7 +34,7 @@ if (isset($_POST["login"])) {
         exit();
     } else {
         // Authentication failed
-        header("Location: ../pages/login.php?error=1");
+        header("Location: /pages/login.php?error=1");
         exit();
     }
 } else {

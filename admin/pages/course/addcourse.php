@@ -30,6 +30,9 @@
                         <label for="c_name">Course Name:</label>
                         <input type="text" name="c_name" id="c_name" required>
                         <br><br>
+                        <label for="c_coordintaor">Course Coordinator's Name:</label>
+                        <input type="text" name="c_coordinator" id="c_coordinator" required>
+                        <br><br>
                         <label for="description">Description:</label>
                         <textarea name="description" id="description" rows="4" cols="50"></textarea>
                         <br><br>

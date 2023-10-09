@@ -21,13 +21,13 @@
                         <p>Dashboard</p>
                     </div>
                 </a>
-                <a href="/pages/course" class="link <?php echo $index == 1 ? 'active' : '' ?>">
+                <a href="/pages/course/" class="link <?php echo $index == 1 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="/images/Mortarboard.svg" alt="">
                         <p>Courses</p>
                     </div>
                 </a>
-                <a href="/pages/users" class="link <?php echo $index == 2 ? 'active' : '' ?>">
+                <a href="/pages/users/" class="link <?php echo $index == 2 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="/images/User_alt.svg" alt="">
                         <p>Users</p>
@@ -46,7 +46,7 @@
                         <li><a href="/pages/achievements/" class="link <?php echo $index == 3 ? 'active' : '' ?>">Achievements</a></li>
                     </ul>
                 </div>
-                <a href="/pages/labslots" class="link <?php echo $index == 4 ? 'active' : '' ?>">
+                <a href="/pages/labslots/" class="link <?php echo $index == 4 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="/images/calendar.svg" alt="">
                         <p>Lab Allocations</p>

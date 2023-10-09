@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         loader: () => {
-          return redirect("/labslots/0");
+          return redirect("/labslots/all");
         },
       },
       {

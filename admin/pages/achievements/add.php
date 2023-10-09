@@ -1,4 +1,4 @@
-<?php include_once "/config.php" ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
 <!DOCTYPE html>
 <html>
 
@@ -23,7 +23,7 @@
             <div class="add-achievement">
                 <h2>Add Achievement</h2>
                 <div class="form-container">
-                    <form action="/backend/achievements.php" method="POST" enctype="multipart/form-data">
+                    <form action="/backend/api/achivements/add.php" method="POST" enctype="multipart/form-data">
                         <label for="a_img">Select an Image:</label>
                         <input type="file" name="a_img" id="a_img" required>
                         <br>
@@ -35,18 +35,10 @@
                         <br>
                         <label for="a_date">Date:</label>
                         <input type="date" name="a_date" id="a_date">
-                        <br>
-                        <!-- <label for="a_time">Time:</label>
-                        <input type="time" name="a_time" id="a_time">
-                        <br><br>
-                        <label for="a_venue">Venue:</label>
-                        <input type="text" name="a_venue" id="a_venue">
-                        <br><br>
-                        <label for="display_from">Display from:</label>
-                        <input type="date" name="display_from" id="display_from" required>
-                        <br><br>
-                        <label for="display_to">Display to:</label>
-                        <input type="date" name="display_to" id="display_to" required>                        -->
+                        <br>  
+                        <label for="published">Published:</label>
+                        <input type="checkbox" name="published" id="published">
+                        <br>                    
                         <input type="submit" value="Upload">
                     </form>
                 </div>

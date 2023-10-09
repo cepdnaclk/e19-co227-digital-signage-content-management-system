@@ -1,7 +1,7 @@
 <?php
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/achivement.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/achivements.php";
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -9,7 +9,7 @@ if (session_status() == PHP_SESSION_NONE) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the form fields are set and not empty
     if (
-        isset($_FILES['e_img'])
+        isset($_FILES['a_img'])
     ) {
         // Get form data
         $a_name = $_POST["a_name"];
@@ -21,11 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $result = addAchivement($a_name, $a_desc, $a_date, $file, $added_by, $published);
         if (isset($result['error'])) {
-            header("Location: /pages/upcoming/?error={$result['error']}");
+            header("Location: /pages/achievements/?error={$result['error']}");
         } else
-            header("Location: /pages/upcoming/?success={$result['message']}");
+            header("Location: /pages/achievements/?success={$result['message']}");
     } else {
-        header("Location: /pages/upcoming/?error='event_image,display_from display_to are required fields'");
+        header("Location: /pages/achievements/?error='acheivement_image is required field'");
     }
 }
 exit();

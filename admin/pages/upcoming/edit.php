@@ -5,8 +5,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/upcomingevents.php"
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $event_id = $_GET["edit_id"];
     $row = getUpcomingEventById($event_id);
-    if (isset($row['error']))
-        echo $row['error'];
+    if (isset($row['error']) && !isset($_GET['error']))
+        header("Location: ?error={$row['error']}");
 
     $event_name = $row['e_name'];
     $event_date = $row['e_date'];

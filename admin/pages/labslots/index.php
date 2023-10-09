@@ -38,7 +38,7 @@ $labslots = getLabSlotsAll();
                     <div class="title">
                         <div class="title">
                             <h2>Lab 1</h2>
-                            <a href="/pages/addnewlabslot.php?lab=lab1"><img src="/images/Add_round.svg" alt=""> Add a slot</a>
+                            <a href="add.php?lab=lab1"><img src="/images/Add_round.svg" alt=""> Add a slot</a>
                         </div>
                     </div>
                     <table class="lab-table">
@@ -62,7 +62,7 @@ $labslots = getLabSlotsAll();
                                         <td><?= $slot['course'] ?></td>
                                         <td><?= getDatebyIndex($slot['date']) ?></td>
                                         <td><?= substr($slot['start'], 0, 5) . ' - ' . substr($slot['end'], 0, 5) ?></td>
-                                        <td><a href="/pages/addnewlabslot.php?id=<?= $slot['slot_id'] ?>&lab=lab1" role="button">Edit</a> </td>
+                                        <td><a href="add.php?id=<?= $slot['slot_id'] ?>&lab=lab1" role="button">Edit</a> </td>
                                         <td><a href="/backend/api/labslots/delete.php?delete_id=<?= $slot['slot_id'] ?>" role="button">Delete</a> </td>
                                     </tr>
                                 <?php }; ?>
@@ -75,7 +75,7 @@ $labslots = getLabSlotsAll();
                     <div class="title">
                         <div class="title">
                             <h2>Lab 2</h2>
-                            <a href="/pages/addnewlabslot.php?lab=lab2"><img src="/images/Add_round.svg" alt=""> Add a slot</a>
+                            <a href="add.php?lab=lab2"><img src="/images/Add_round.svg" alt=""> Add a slot</a>
                         </div>
                     </div>
                     <table class="lab-table">
@@ -99,7 +99,7 @@ $labslots = getLabSlotsAll();
                                         <td><?= $slot['course'] ?></td>
                                         <td><?= getDatebyIndex($slot['date']) ?></td>
                                         <td><?= substr($slot['start'], 0, 5) . ' - ' . substr($slot['end'], 0, 5) ?></td>
-                                        <td><a href="#">Edit</a> </td>
+                                        <td><a href="add.php?id=<?= $slot['slot_id'] ?>&lab=lab2">Edit</a> </td>
                                         <td><a href="/backend/api/labslots/delete.php?delete_id=<?= $slot['slot_id'] ?>" role="button">Delete</a> </td>
                                     </tr>
                                 <?php }; ?>
@@ -112,7 +112,7 @@ $labslots = getLabSlotsAll();
                     <div class="title">
                         <div class="title">
                             <h2>CCNA Lab</h2>
-                            <a href="/pages/addnewlabslot.php?lab=ccna"><img src="/images/Add_round.svg" alt=""> Add a slot</a>
+                            <a href="add.php?lab=ccna"><img src="/images/Add_round.svg" alt=""> Add a slot</a>
                         </div>
                     </div>
                     <table class="lab-table">
@@ -136,7 +136,7 @@ $labslots = getLabSlotsAll();
                                         <td><?= $slot['course'] ?></td>
                                         <td><?= getDatebyIndex($slot['date']) ?></td>
                                         <td><?= substr($slot['start'], 0, 5) . ' - ' . substr($slot['end'], 0, 5) ?></td>
-                                        <td><a href="#">Edit</a> </td>
+                                        <td><a href="add.php?id=<?= $slot['slot_id'] ?>&lab=ccna">Edit</a> </td>
                                         <td><a href="/backend/api/labslots/delete.php?delete_id=<?= $slot['slot_id'] ?>" role="button">Delete</a> </td>
                                     </tr>
                                 <?php }; ?>
@@ -149,7 +149,7 @@ $labslots = getLabSlotsAll();
                     <div class="title">
                         <div class="title">
                             <h2>Seminar Room</h2>
-                            <a href="/pages/addnewlabslot.php?lab=sr"><img src="/images/Add_round.svg" alt=""> Add a slot</a>
+                            <a href="add.php?lab=sr"><img src="/images/Add_round.svg" alt=""> Add a slot</a>
                         </div>
                     </div>
                     <table class="lab-table">
@@ -173,7 +173,7 @@ $labslots = getLabSlotsAll();
                                         <td><?= $slot['course'] ?></td>
                                         <td><?= getDatebyIndex($slot['date']) ?></td>
                                         <td><?= substr($slot['start'], 0, 5) . ' - ' . substr($slot['end'], 0, 5) ?></td>
-                                        <td><a href="#">Edit</a> </td>
+                                        <td><a href="add.php?id=<?= $slot['slot_id'] ?>&lab=sr">Edit</a> </td>
                                         <td><a href="/backend/api/labslots/delete.php?delete_id=<?= $slot['slot_id'] ?>" role="button">Delete</a> </td>
                                     </tr>
                                 <?php }; ?>

@@ -7,11 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $achivement = $_GET["publish_id"];
     $result = publishAchivement($achivement);
     print_r($result);
-    // // Execute the update query
-    // if (isset($result['error'])) {
-    //     header("Location: /pages/achievements/?error={$result['error']}");
-    // } else
-    //     header("Location: /pages/achievements/?success={$result['message']}");
-
-    // Close the statement
+    // Execute the update query
+    if (isset($result['error'])) {
+        header("Location: /pages/achievements/?error={$result['error']}");
+    } else
+        header("Location: /pages/achievements/?success={$result['message']}");
 }
