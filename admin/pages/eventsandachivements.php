@@ -30,7 +30,7 @@
                 <div class="container">
                     <div class="title">
                         <h1>Upcoming Events</h1>
-                        <a href="/pages/upcomingevents.php">See All</a>
+                        <a href="/pages/upcoming">See All</a>
                     </div>
                     <div class="card-container">
                         <!-- Card 1 -->
@@ -107,7 +107,7 @@
                     </div>
                     <div class="title">
                         <h1>Previous Events</h1>
-                        <a href="/pages/previousevents.php">See All</a>
+                        <a href="/pages/previous">See All</a>
                     </div>
                     <div class="card-container">
                         <!-- Card 1 -->
@@ -184,7 +184,7 @@
                     </div>
                     <div class="title">
                         <h1>Achivements</h1>
-                        <a href="/pages/achievements.php">See All</a>
+                        <a href="/pages/achievements">See All</a>
                     </div>
                     <div class="card-container">
                         <!-- Card 1 -->

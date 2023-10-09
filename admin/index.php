@@ -62,7 +62,7 @@ foreach ($dashboardData as $feature => $data) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
     <title>Admin Panel</title>
 </head>
 
@@ -88,7 +88,7 @@ foreach ($dashboardData as $feature => $data) {
                     <p class="widget-info" id="total-published-pages">Total Published Pages: <?php echo $totalPublished; ?></p>
                     <p class="widget-info" id="total-time-for-cycle">Total Time for One Cycle: <?php echo $totalTime; ?>s</p>
                     <div class="widget-buttons">
-                        <a href="/pages/previewmain.php"><button class="preview-button">Preview</button></a>
+                        <a href="/pages/preview"><button class="preview-button">Preview</button></a>
                         &emsp;
                         <button class="manage-button">Manage</button>
                     </div>

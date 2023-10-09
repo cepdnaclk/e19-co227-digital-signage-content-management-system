@@ -71,9 +71,9 @@
                         <td class="text-center">
                             <a href="/backend/coursepublish.php?c_id=${course.c_id}&published=${!course.published}" class="btn btn-publish" data-course-id="${course.c_id}">
                                 ${course.published === '1' ? 'Unpublish' : 'Publish'}
-                            </a>
-                            <a href="/pages/coursemanage.php" class="btn btn-preview" data-course-id="${course.c_id}">Preview</a>
-                            <a href="/pages/course/coursemanage.php" class="btn btn-manage" data-course-id="${course.c_id}">Manage</a>
+                            </a>&nbsp;
+                            <a href="/pages/coursemanage.php" class="btn btn-preview" data-course-id="${course.c_id}">Preview</a>&nbsp;
+                            <a href="/pages/course/coursemanage.php" class="btn btn-manage" data-course-id="${course.c_id}">Manage</a>&nbsp;
                             <a href="/backend/api/course?delete=${course.c_id}" class="btn btn-delete" data-course-id="${course.c_id}">Delete</a>
                         </td>
                     `;

@@ -67,7 +67,7 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
                 <div class="container">
                     <div class="title">
                         <div>
-                            <h1><a href="/pages/labslots.php">Lab Allocation ></a>Add a Lab slot : <?= isset($_GET['lab']) ? getLab($_GET['lab']) : '' ?></h1>
+                            <h1><a href="/pages/labslots">Lab Allocation ></a>Add a Lab slot : <?= isset($_GET['lab']) ? getLab($_GET['lab']) : '' ?></h1>
                             <p>Create a labslot for a course</p>
                         </div>
                     </div>
