@@ -209,64 +209,6 @@ VALUES
 
 -- --------------------------------------------------------
 --
--- Table structure for table `course_offering`
---
-DROP TABLE IF EXISTS `course_offering`;
-
-CREATE TABLE IF NOT EXISTS `course_offering` (
-  `c_code` varchar(20) NOT NULL,
-  `c_id` int(11) NOT NULL,
-  `coordinator_id` int(11) NOT NULL,
-  `starting date` date NOT NULL,
-  `display_info` text DEFAULT NULL,
-  PRIMARY KEY (`c_code`),
-  KEY `fk_c_id` (`c_id`),
-  KEY `fk_coord_id` (`coordinator_id`)
-) ENGINE = MyISAM DEFAULT CHARSET = latin1;
-
---
--- Dumping data for table `course_offering`
---
-INSERT INTO
-  `course_offering` (
-    `c_code`,
-    `c_id`,
-    `coordinator_id`,
-    `starting date`,
-    `display_info`
-  )
-VALUES
-  (
-    'COURSE01',
-    1,
-    1,
-    '2023-08-15',
-    'Course details for August 2023'
-  ),
-  (
-    'COURSE02',
-    2,
-    2,
-    '2022-12-10',
-    'Course details for December 2022'
-  ),
-  (
-    'COURSE03',
-    3,
-    3,
-    '2023-09-05',
-    'Course details for September 2023'
-  ),
-  (
-    'COURSE04',
-    4,
-    4,
-    '2023-10-01',
-    'Course details for October 2023'
-  );
-
--- --------------------------------------------------------
---
 -- Table structure for table `facility`
 --
 DROP TABLE IF EXISTS `facility`;
@@ -655,6 +597,81 @@ VALUES
   );
 
 COMMIT;
+
+DELIMITER //
+
+-- Create event for 'Upcoming Events'
+CREATE EVENT update_dashboard_upcoming_events
+ON SCHEDULE EVERY 1 MINUTE
+DO
+BEGIN
+    -- Update total_pages based on the number of rows in upcoming_event
+    UPDATE dashboard
+    SET total_pages = (SELECT COUNT(*) FROM upcoming_event)
+    WHERE feature = 'Upcoming Events';
+    
+    -- Update published_pages based on the number of rows with published = 1 in upcoming_event
+    UPDATE dashboard
+    SET published_pages = (SELECT COUNT(*) FROM upcoming_event WHERE published = 1)
+    WHERE feature = 'Upcoming Events';
+END;
+//
+
+-- Create event for 'Previous Events'
+CREATE EVENT update_dashboard_previous_events
+ON SCHEDULE EVERY 1 MINUTE
+DO
+BEGIN
+    -- Update total_pages based on the number of rows in upcoming_event
+    UPDATE dashboard
+    SET total_pages = (SELECT COUNT(*) FROM previous_event)
+    WHERE feature = 'Previous Events';
+    
+    -- Update published_pages based on the number of rows with published = 1 in upcoming_event
+    UPDATE dashboard
+    SET published_pages = (SELECT COUNT(*) FROM previous_event WHERE published = 1)
+    WHERE feature = 'Previous Events';
+END;
+//
+
+-- Create event for 'Course Offerings'
+CREATE EVENT update_dashboard_course_offerings
+ON SCHEDULE EVERY 1 MINUTE
+DO
+BEGIN
+    -- Update total_pages based on the number of rows in the course table
+    UPDATE dashboard
+    SET total_pages = (SELECT COUNT(*) FROM course)
+    WHERE feature = 'Course Offerings';
+    
+    -- Update published_pages based on the number of rows with published = 1 in the course table
+    UPDATE dashboard
+    SET published_pages = (SELECT COUNT(*) FROM course WHERE published = 1)
+    WHERE feature = 'Course Offerings';
+END;
+//
+
+-- Create event for 'Achievements'
+CREATE EVENT update_dashboard_achievements
+ON SCHEDULE EVERY 1 MINUTE
+DO
+BEGIN
+    -- Update total_pages based on the number of rows in the achievement table
+    UPDATE dashboard
+    SET total_pages = (SELECT COUNT(*) FROM achievement)
+    WHERE feature = 'Achievements';
+    
+    -- Update published_pages based on the number of rows with published = 1 in the achievement table
+    UPDATE dashboard
+    SET published_pages = (SELECT COUNT(*) FROM achievement WHERE published = 1)
+    WHERE feature = 'Achievements';
+END;
+//
+
+
+
+DELIMITER ;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
 ;

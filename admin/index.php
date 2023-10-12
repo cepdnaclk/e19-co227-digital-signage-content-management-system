@@ -132,7 +132,7 @@ foreach ($dashboardData as $feature => $data) {
                             <form method="POST" action="/">
                                 <input type="hidden" name="feature" value="<?php echo $feature; ?>">
                                 <p class="widget-info">
-                                    Allocated Time:
+                                    Allocated Total Time:
                                     <input type="number" name="total_time" value="<?php echo $data['total_time']; ?>"
                                         class="allocated-time-input">
                                     <span class="time-unit">s</span>
