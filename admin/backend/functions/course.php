@@ -59,6 +59,21 @@ function getCourses()
     return $courses;
 }
 
+function getCoursesCo(string $user)
+{
+    global $conn;
+
+    $result = $conn->query("SELECT c_id, c_code, c_name FROM course WHERE c_coordinator = " . $user);
+    if ($result === false) {
+        return false; // Error in query execution
+    }
+    $courses = [];
+    while ($row = $result->fetch_assoc()) {
+        $courses[] = $row;
+    }
+    return $courses;
+}
+
 function getCourse($c_id)
 {
     global $conn;

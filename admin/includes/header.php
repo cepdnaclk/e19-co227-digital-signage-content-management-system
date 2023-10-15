@@ -1,10 +1,12 @@
 <?php
 // Start the session before any output is sent
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
 // var_dump($_SESSION);
 
 // Include the core header
-include APP_ROOT . "/includes/header_core.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/includes/header_core.php";
 
 // Check if the user is logged in
 if (isset($_SESSION['user_id'])) {

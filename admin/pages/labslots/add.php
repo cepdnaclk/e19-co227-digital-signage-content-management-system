@@ -1,8 +1,12 @@
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/helpers/datetime.php" ?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/labslots.php" ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/course.php" ?>
 
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (isset($_GET['date']))
     $today = $_GET['date'];
@@ -39,6 +43,11 @@ function getLab(string $lab)
 }
 
 $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
+if ($clearenceStatus[$_SESSION['clearense']] > 1)
+    $courses = getCourses();
+else {
+    $courses = getCoursesCo($_SESSION['user_id']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -74,9 +83,11 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
                     <form class="options" method="post" action="/backend/api/labslots/add_update.php">
                         <div class="option">
                             <select name="course" id="course" v-model="course">
-                                <option value="CCNA">CCNA</option>
-                                <option value="IT01">IT01</option>
-                                <option value="IT03">IT03</option>
+                                <?php $i = 0;
+                                foreach ($courses as $key => $course) { ?>
+                                    <option :value="'<?= $course['c_code'] ?>'"><?= $course['c_code'] ?></option>
+                                <?php $i++;
+                                } ?>
                             </select>
                         </div>
                         <div class="option">
@@ -206,7 +217,7 @@ $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
         const app = createApp({
             setup() {
                 <?php if (!isset($_GET['id'])) { ?>
-                    const course = ref("<?= "CCNA" ?>");
+                    const course = ref("<?= $courses[0]['c_code'] ?>");
                     const start = ref("<?= "08:00" ?>");
                     const end = ref("<?= "10:00" ?>");
                     const date = ref(<?php
