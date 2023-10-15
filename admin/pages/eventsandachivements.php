@@ -1,4 +1,29 @@
-<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/upcomingevents.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/previousevents.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/achivements.php";
+
+$uevents = getUpcomingEvents();
+if (isset($uevents['error']))
+    if (!isset($_GET['error']))
+        header("Location: ?error={$uevents['error']}");
+
+$pevents = getPreviousEvents();
+if (isset($pevents['error']))
+    if (!isset($_GET['error']))
+        header("Location: ?error={$pevents['error']}");
+
+$achivements = getAchivements();
+if (isset($achivements['error']))
+    if (!isset($_GET['error']))
+        header("Location: ?error={$achivements['error']}");
+
+
+$uevents = array_slice($uevents, 0, 4);
+$pevents = array_slice($pevents, 0, 4);
+$achivements = array_slice($achivements, 0, 4);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,231 +58,167 @@
                         <a href="/pages/upcoming">See All</a>
                     </div>
                     <div class="card-container">
-                        <!-- Card 1 -->
-                        <div class="card">
-                            <img src="/images/upcoming-event-posters/upcoming-event-1.jpg" alt="See All Image">
-                            <div class="card-content">
-                                <h2 class="card-title">Event1</h2>
-                                <p class="card-date">2023/09/20 at 9.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
+                        <?php if (!isset($_GET['error'])) foreach ($uevents as $key => $row) { ?>
+                            <div class='card'>
+                                <img src='<?= $row["e_img"] ?>' alt='Add Event Image'>
+                                <div class='card-content'>
+                                    <h2 class='card-title'><?= $row["e_name"] ?></h2>
+                                    <p class='card-date'><?= $row["e_date"] ?> at <?= $row["e_time"] ?></p>
+                                    <p class='card-venue'><?= $row["e_venue"] ?></p>
+                                    <p><br>Display Duration</p>
+                                    <p class='card-duration'>From <?= $row["display_from"] ?><br>To <?= $row["display_to"] ?></p>
+                                </div>
+                                <div class='card-actions'>
+                                    <a href="edit.php?edit_id=<?= $row['e_id'] ?>">
+                                        <button class="edit-button">
+                                            <span class="icon">&#9998;</span>
+                                            Edit
+                                        </button>
+                                    </a>
+                                    <?php if ($row['published'] == 1) { ?>
+                                        <a class="unpublish" href="/backend/api/upcoming/publish.php?publish_id=<?= $row['e_id'] ?>">
+                                            <button class="unpublish-button">
+                                                <span class="icon">&#10680;</span>
+                                                Unpublish
+                                            </button>
+                                        </a>
+                                    <?php } else { ?>
+                                        <a class="publish" href="/backend/api/upcoming/publish.php?publish_id=<?= $row['e_id'] ?>">
+                                            <button class="publish-button">
+                                                <span class="icon">&#10004;</span>
+                                                Publish
+                                            </button>
+                                        </a>
+                                    <?php } ?>
+                                    </button>
+                                    <button class="delete-button">
+                                        <span class="icon">&#128465;</span>
+                                        <a href="/backend/api/upcoming/delete.php?delete_id=<?= $row['e_id'] ?>">Delete</a>
+                                    </button>
+                                </div>
                             </div>
-                            <!-- Card actions with icons -->
-                            <div class="card-actions">
-                                <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                                <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                            </div>
-
-                        </div>
-
-                        <!-- Card 2 -->
-                        <div class="card">
-                            <img src="/images/upcoming-event-posters/upcoming-event-2.jpg" alt="See All Image">
-                            <div class="card-content">
-                                <h2 class="card-title">Event2</h2>
-                                <p class="card-date">2023/09/21 at 11.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
-                            </div>
-                            <!-- Card actions with icons -->
-                            <div class="card-actions">
-                                <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                                <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                            </div>
-
-                        </div>
-
-                        <!-- Card 3 -->
-                        <div class="card">
-                            <img src="/images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
-                            <div class="card-content">
-                                <h2 class="card-title">Event3</h2>
-                                <p class="card-date">2023/09/22 at 9.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
-                            </div>
-                            <!-- Card actions with icons -->
-                            <div class="card-actions">
-                                <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                                <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                            </div>
-
-                        </div>
-
-                        <!-- Card 4 -->
-                        <div class="card">
-                            <img src="/images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
-                            <div class="card-content">
-                                <h2 class="card-title">Event 4</h2>
-                                <p class="card-date">2023/09/23 at 3 p.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
-                            </div>
-                            <!-- Card actions with icons -->
-                            <div class="card-actions">
-                                <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                                <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                            </div>
-
-                        </div>
+                        <?php }
+                        else { ?>
+                            <p style="width:400px">No Achivements Found.
+                                <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
+                                    <a style="text-decoration:underline" href="add.php">Add Achievements</a>
+                                <?php } ?>
+                            </p>
+                        <?php } ?>
                     </div>
                     <div class="title">
                         <h1>Previous Events</h1>
                         <a href="/pages/previous">See All</a>
                     </div>
                     <div class="card-container">
-                        <!-- Card 1 -->
-                        <div class="card">
-                            <img src="/images/upcoming-event-posters/upcoming-event-1.jpg" alt="See All Image">
-                            <div class="card-content">
-                                <h2 class="card-title">Event1</h2>
-                                <p class="card-date">2023/09/20 at 9.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
+                        <?php if (!isset($_GET['error'])) foreach ($pevents as $key => $row) { ?>
+                            <div class='card'>
+                                <img src='<?= $row["e_img"] ?>' alt='Add Event Image'>
+                                <div class='card-content'>
+                                    <h2 class='card-title'><?= $row["e_name"] ?></h2>
+                                    <p class='card-date'><?= $row["e_date"] ?> at <?= $row["e_time"] ?></p>
+                                    <p class='card-venue'><?= $row["e_venue"] ?></p>
+                                    <p><br>Display Duration</p>
+                                    <p class='card-duration'>From <?= $row["display_from"] ?><br>To <?= $row["display_to"] ?></p>
+                                </div>
+                                <div class='card-actions'>
+                                    <a href="edit.php?edit_id=<?= $row['e_id'] ?>">
+                                        <button class="edit-button">
+                                            <span class="icon">&#9998;</span>
+                                            Edit
+                                        </button>
+                                    </a>
+                                    <?php if ($row['published'] == 1) { ?>
+                                        <a class="unpublish" href="/backend/api/previous/publish.php?publish_id=<?= $row['e_id'] ?>">
+                                            <button class="unpublish-button">
+                                                <span class="icon">&#10680;</span>
+                                                Unpublish
+                                            </button>
+                                        </a>
+                                    <?php } else { ?>
+                                        <a class="publish" href="/backend/api/previous/publish.php?publish_id=<?= $row['e_id'] ?>">
+                                            <button class="publish-button">
+                                                <span class="icon">&#10004;</span>
+                                                Publish
+                                            </button>
+                                        </a>
+                                    <?php } ?>
+                                    </button>
+                                    <button class="delete-button">
+                                        <span class="icon">&#128465;</span>
+                                        <a href="/backend/api/previous/delete.php?delete_id=<?= $row['e_id'] ?>">Delete</a>
+                                    </button>
+                                </div>
                             </div>
-                            <!-- Card actions with icons -->
-                            <div class="card-actions">
-                                <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                                <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                            </div>
-
-                        </div>
-
-                        <!-- Card 2 -->
-                        <div class="card">
-                            <img src="/images/upcoming-event-posters/upcoming-event-2.jpg" alt="See All Image">
-                            <div class="card-content">
-                                <h2 class="card-title">Event2</h2>
-                                <p class="card-date">2023/09/21 at 11.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
-                            </div>
-                            <!-- Card actions with icons -->
-                            <div class="card-actions">
-                                <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                                <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                            </div>
-
-                        </div>
-
-                        <!-- Card 3 -->
-                        <div class="card">
-                            <img src="/images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
-                            <div class="card-content">
-                                <h2 class="card-title">Event3</h2>
-                                <p class="card-date">2023/09/22 at 9.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
-                            </div>
-                            <!-- Card actions with icons -->
-                            <div class="card-actions">
-                                <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                                <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                            </div>
-
-                        </div>
-
-                        <!-- Card 4 -->
-                        <div class="card">
-                            <img src="/images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
-                            <div class="card-content">
-                                <h2 class="card-title">Event 4</h2>
-                                <p class="card-date">2023/09/23 at 3 p.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
-                            </div>
-                            <!-- Card actions with icons -->
-                            <div class="card-actions">
-                                <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                                <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                            </div>
-
-                        </div>
+                        <?php }
+                        else { ?>
+                            <p style="width:400px">No Previous Events Found.
+                                <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
+                                    <a style="text-decoration:underline" href="add.php">Add Event</a>
+                                <?php } ?>
+                            </p>
+                        <?php } ?>
                     </div>
                     <div class="title">
                         <h1>Achivements</h1>
                         <a href="/pages/achievements">See All</a>
                     </div>
                     <div class="card-container">
-                        <!-- Card 1 -->
-                        <div class="card">
-                            <img src="/images/upcoming-event-posters/upcoming-event-1.jpg" alt="See All Image">
-                            <div class="card-content">
-                                <h2 class="card-title">Event1</h2>
-                                <p class="card-date">2023/09/20 at 9.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
-                            </div>
-                            <!-- Card actions with icons -->
-                            <div class="card-actions">
-                                <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                                <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                            </div>
+                        <?php if (!isset($_GET['error']))
+                            foreach ($achivements as $key => $row) { ?>
+                            <div class='card'>
+                                <img src='<?= $row["a_img"] ?>' alt='Add Event Image'>
+                                <div class='card-content'>
+                                    <h2 class='card-title'>
+                                        <?= $row["a_name"] ?>
+                                    </h2>
+                                    <p class='card-description'>
+                                        <?= $row["a_desc"] ?>
+                                    </p>
+                                    <p class='card-date'>
+                                        <?= $row["a_date"] ?>
+                                    </p>
 
-                        </div>
+                                </div>
+                                <div class='card-actions'>
+                                    <a href="edit.php?edit_id=<?= $row['a_id'] ?>">
+                                        <button class="edit-button">
+                                            <span class="icon">&#9998;</span>
+                                            Edit
+                                        </button>
+                                    </a>
+                                    <?php if ($row['published'] == 1) { ?>
+                                        <a class="unpublish" href="/backend/api/achivements/publish.php?publish_id=<?= $row['a_id'] ?>">
+                                            <button class="unpublish-button">
+                                                <span class="icon">&#10680;</span>
+                                                Unpublish
+                                            </button>
+                                        </a>
+                                    <?php } else { ?>
+                                        <a class="publish" href="/backend/api/achivements/publish.php?publish_id=<?= $row['a_id'] ?>">
+                                            <button class="publish-button">
+                                                <span class="icon">&#10004;</span>
+                                                Publish
+                                            </button>
+                                        </a>
+                                    <?php } ?>
 
-                        <!-- Card 2 -->
-                        <div class="card">
-                            <img src="/images/upcoming-event-posters/upcoming-event-2.jpg" alt="See All Image">
-                            <div class="card-content">
-                                <h2 class="card-title">Event2</h2>
-                                <p class="card-date">2023/09/21 at 11.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
+                                    <a href="/backend/api/achivements/delete.php?delete_id=<?= $row['a_id'] ?>">
+                                        <button class="delete-button">
+                                            <span class="icon">&#128465;</span>
+                                            Delete
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
-                            <!-- Card actions with icons -->
-                            <div class="card-actions">
-                                <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                                <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                            </div>
-
-                        </div>
-
-                        <!-- Card 3 -->
-                        <div class="card">
-                            <img src="/images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
-                            <div class="card-content">
-                                <h2 class="card-title">Event3</h2>
-                                <p class="card-date">2023/09/22 at 9.00 a.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
-                            </div>
-                            <!-- Card actions with icons -->
-                            <div class="card-actions">
-                                <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                                <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                            </div>
-
-                        </div>
-
-                        <!-- Card 4 -->
-                        <div class="card">
-                            <img src="/images/upcoming-event-posters/upcoming-event-3.jpg" alt="See All Image">
-                            <div class="card-content">
-                                <h2 class="card-title">Event 4</h2>
-                                <p class="card-date">2023/09/23 at 3 p.m</p>
-                                <p class="card-venue">Seminar Room</p>
-                                <p><br>Display Duration</p>
-                                <p class="card-duration">From 2023/09/10<br>To 2023/09/22 </p>
-                            </div>
-                            <!-- Card actions with icons -->
-                            <div class="card-actions">
-                                <button class="edit-button"><span class="icon">&#9998;</span>Edit</button>
-                                <button class="delete-button"><span class="icon">&#128465;</span>Delete</button>
-                            </div>
-
-                        </div>
+                        <?php }
+                        else { ?>
+                            <p style="width:400px">No Achivements Found.
+                                <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
+                                    <a style="text-decoration:underline" href="add.php">Add Achievements</a>
+                                <?php } ?>
+                            </p>
+                        <?php } ?>
                     </div>
                 </div>
             </main>

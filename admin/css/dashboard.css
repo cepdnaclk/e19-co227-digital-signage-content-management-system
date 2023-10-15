@@ -152,11 +152,14 @@
 
 table {
   display: flex;
-  padding: 10px;
-  padding-left: 50px;
   margin: 20px;
   border-collapse: collapse;
   border-radius: 10px;
+  padding: 1rem;
+}
+
+tbody {
+  margin: auto;
 }
 
 th,
