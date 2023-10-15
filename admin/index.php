@@ -1,61 +1,12 @@
 <?php
-include_once("./config.php");
-include_once(APP_ROOT . "/includes/header.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/config.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/dashboard.php";
 
-// Function to fetch data from the database
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    updateTotalTime($conn, $_POST['feature'], $_POST['total_time']);
-}
-function fetchDashboardData($conn)
-{
-    $dashboardData = array();
-
-    $result = $conn->query("SELECT * FROM `dashboard`");
-
-    while ($row = $result->fetch_assoc()) {
-        $dashboardData[$row['feature']] = $row;
-    }
-
-    return $dashboardData;
-}
-
-// Function to update the "Total Time" field in the database
-function updateTotalTime($conn, $feature, $totalTime)
-{
-    $totalTime = (int) $totalTime; // Convert to integer for security
-
-    $sql = "UPDATE `dashboard` SET `total_time` = ? WHERE `feature` = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("is", $totalTime, $feature);
-    $stmt->execute();
-}
-
-$dashboardData = fetchDashboardData($conn);
-
-// Calculate the total values
-$totalPages = 0;
-$totalPublished = 0;
-$totalTime = 0;
-
-foreach ($dashboardData as $feature => $data) {
-    // Skip the "total" feature
-    if ($feature === 'total') {
-        continue;
-    }
-
-    // Calculate Allocated Time Per Page
-    if ($data['published_pages'] > 0) {
-        $allocatedTimePerPage = number_format($data['total_time'] / $data['published_pages'], 2) . 's';
-    } else {
-        $allocatedTimePerPage = 'N/A';
-    }
-
-    // Update the total values
-    $totalPages += $data['total_pages'];
-    $totalPublished += $data['published_pages'];
-    $totalTime += $data['total_time'];
-}
+$data = getDashboardData();
+if (isset($data['error']))
+    if (!isset($_GET['error']))
+        header("Location: ?error={$data['error']}");
 ?>
 
 <!DOCTYPE html>
@@ -88,13 +39,13 @@ foreach ($dashboardData as $feature => $data) {
                 <div class="widget elegant-widget" id="overview-widget">
                     <h2 class="widget-title">Overview</h2>
                     <p class="widget-info" id="total-pages">Total Pages:
-                        <?php echo $totalPages; ?>
+                        <?= $data['total']['pages'] ?>
                     </p>
                     <p class="widget-info" id="total-published-pages">Total Published Pages:
-                        <?php echo $totalPublished; ?>
+                        <?= $data['total']['pagesP'] ?>
                     </p>
                     <p class="widget-info" id="total-time-for-cycle">Total Time for One Cycle:
-                        <?php echo $totalTime; ?>s
+                        <?= $data['total']['time'] ?>s
                     </p>
                     <div class="widget-buttons">
                         <a href="/pages/preview"><button class="preview-button">Preview</button></a>
@@ -106,39 +57,29 @@ foreach ($dashboardData as $feature => $data) {
                 <!-- Widgets -->
                 <div class="dashboard-widgets">
                     <?php
-                    foreach ($dashboardData as $feature => $data) {
-                        // Skip the "total" feature
-                        if ($feature === 'total') {
-                            continue;
-                        }
-
-                        // Calculate Allocated Time Per Page
-                        if ($data['published_pages'] > 0) {
-                            $allocatedTimePerPage = number_format($data['total_time'] / $data['published_pages'], 2) . 's';
-                        } else {
-                            $allocatedTimePerPage = 'N/A';
-                        }
-                        ?>
+                    foreach ($data['features'] as $key => $feature) {
+                    ?>
                         <div class="widget">
                             <h2 class="widget-title">
-                                <?php echo $feature; ?>
+                                <?= $key ?>
                             </h2>
                             <p class="widget-info">Total Pages:
-                                <?php echo $data['total_pages']; ?>
+                                <?= $feature['pages'] ?>
                             </p>
                             <p class="widget-info">Published:
-                                <?php echo $data['published_pages']; ?>
+                                <?= $feature['pagesP'] ?>
                             </p>
-                            <form method="POST" action="/">
-                                <input type="hidden" name="feature" value="<?php echo $feature; ?>">
+                            <form method="POST" action="/backend/api/dashboard/update.php">
+                                <input type="hidden" name="feature" value="<?php echo $key; ?>">
                                 <p class="widget-info">
-                                    Allocated Total Time:
-                                    <input type="number" name="total_time" value="<?php echo $data['total_time']; ?>"
-                                        class="allocated-time-input">
+                                    Allocated Time per Cycle:
+                                    <input type="number" name="time" value="<?= $feature['time'] ?>" class="allocated-time-input">
                                     <span class="time-unit">s</span>
                                 </p>
-                                <p class="widget-info">Allocated Time Per Page:
-                                    <?php echo $allocatedTimePerPage; ?>
+                                <p class="widget-info">
+                                    Allocated Time Per Page:
+                                    <input type="number" name="time_slide" min="1" value="<?= $feature['time_slide'] ?>" class="allocated-time-input">
+                                    <span class="time-unit">s</span>
                                 </p>
                                 <div class="widget-buttons">
                                     <button class="preview-button">Preview</button>
@@ -147,7 +88,7 @@ foreach ($dashboardData as $feature => $data) {
                                 </div>
                             </form>
                         </div>
-                        <?php
+                    <?php
                     }
                     ?>
                 </div>

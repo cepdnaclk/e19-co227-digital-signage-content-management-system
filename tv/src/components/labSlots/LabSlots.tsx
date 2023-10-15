@@ -66,9 +66,7 @@ const LabSlots: React.FC = () => {
     const formattedDate = dateFormatter(today);
 
     axios
-      .get(
-        `http://localhost:8000/backend/api/labslots/get.php?date=${formattedDate}`
-      )
+      .get(`/backend/api/labslots/get.php?date=${formattedDate}`)
       .then((res) => {
         setData([]);
         if (res.data.length >= 1) {
