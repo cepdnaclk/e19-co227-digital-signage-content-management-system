@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 05, 2023 at 02:12 PM
+-- Generation Time: Oct 15, 2023 at 04:31 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 SET
@@ -31,8 +31,7 @@ SET
 
 --
 -- Database: `cmsdb`
-USE cmsdb;
-
+--
 -- --------------------------------------------------------
 --
 -- Table structure for table `achievement`
@@ -104,6 +103,51 @@ VALUES
 
 -- --------------------------------------------------------
 --
+-- Table structure for table `contactsupport`
+--
+DROP TABLE IF EXISTS `contactsupport`;
+
+CREATE TABLE IF NOT EXISTS `contactsupport` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE = MyISAM AUTO_INCREMENT = 9 DEFAULT CHARSET = latin1;
+
+--
+-- Dumping data for table `contactsupport`
+--
+INSERT INTO
+  `contactsupport` (`id`, `name`, `email`, `message`)
+VALUES
+  (
+    5,
+    'John Doe',
+    'john@example.com',
+    'I have a question about your services.'
+  ),
+  (
+    6,
+    'Alice Smith',
+    'alice@example.com',
+    'I encountered an issue with my account.'
+  ),
+  (
+    7,
+    'Bob Johnson',
+    'bob@example.com',
+    'I would like to request more information about your products.'
+  ),
+  (
+    8,
+    'Eve Wilson',
+    'eve@example.com',
+    'I need assistance with a recent purchase.'
+  );
+
+-- --------------------------------------------------------
+--
 -- Table structure for table `course`
 --
 DROP TABLE IF EXISTS `course`;
@@ -152,7 +196,7 @@ VALUES
     '2023-09-15',
     1500,
     'Learn the essentials of networking and gain Cisco certification.',
-    NULL
+    0
   ),
   (
     6,
@@ -209,6 +253,31 @@ VALUES
 
 -- --------------------------------------------------------
 --
+-- Table structure for table `dashboard`
+--
+DROP TABLE IF EXISTS `dashboard`;
+
+CREATE TABLE IF NOT EXISTS `dashboard` (
+  `feature` varchar(100) NOT NULL,
+  `time` int(11) DEFAULT 0,
+  `time_slide` int(10) DEFAULT NULL,
+  PRIMARY KEY (`feature`)
+) ENGINE = MyISAM AUTO_INCREMENT = 5 DEFAULT CHARSET = latin1;
+
+--
+-- Dumping data for table `dashboard`
+--
+INSERT INTO
+  `dashboard` (`feature`, `time`, `time_slide`)
+VALUES
+  ('Lab Slots', 3, 1),
+  ('Course Offerings', 2, 1),
+  ('Upcoming Events', 2, 1),
+  ('Previous Events', 2, 1),
+  ('Achievements', 3, 1);
+
+-- --------------------------------------------------------
+--
 -- Table structure for table `facility`
 --
 DROP TABLE IF EXISTS `facility`;
@@ -246,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `labslot` (
   `oneday` date DEFAULT NULL,
   `published` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`slot_id`)
-) ENGINE = MyISAM AUTO_INCREMENT = 18 DEFAULT CHARSET = latin1;
+) ENGINE = MyISAM AUTO_INCREMENT = 20 DEFAULT CHARSET = latin1;
 
 --
 -- Dumping data for table `labslot`
@@ -428,7 +497,7 @@ CREATE TABLE IF NOT EXISTS `upcoming_event` (
   `published` tinyint(4) DEFAULT 0,
   PRIMARY KEY (`e_id`),
   KEY `fk_admin_id` (`added_by`)
-) ENGINE = MyISAM AUTO_INCREMENT = 6 DEFAULT CHARSET = latin1;
+) ENGINE = MyISAM AUTO_INCREMENT = 7 DEFAULT CHARSET = latin1;
 
 --
 -- Dumping data for table `upcoming_event`
@@ -457,7 +526,7 @@ VALUES
     '2023-09-14',
     '2023-09-26',
     3,
-    0
+    1
   ),
   (
     4,
@@ -482,6 +551,18 @@ VALUES
     '2023-10-19',
     1,
     0
+  ),
+  (
+    6,
+    'Event edited',
+    '2023-10-19',
+    '12:00:00',
+    'IT center Hall',
+    '/images/upcoming-event-posters/Screenshot (11).png',
+    '2023-10-15',
+    '2023-10-19',
+    7,
+    1
   );
 
 -- --------------------------------------------------------
@@ -539,139 +620,6 @@ VALUES
   );
 
 COMMIT;
-
-DROP TABLE IF EXISTS `dashboard`;
-
-CREATE TABLE IF NOT EXISTS `dashboard` (
-  `feature` varchar(100) NOT NULL,
-  `total_pages` int(11) DEFAULT 0,
-  `published_pages` int(11) DEFAULT 0,
-  `total_time` int(11) DEFAULT 0,
-  PRIMARY KEY (`feature`)
-) ENGINE = MyISAM AUTO_INCREMENT = 5 DEFAULT CHARSET = latin1;
-
-INSERT INTO
-  `dashboard` (`feature`, `total_pages`, `published_pages`)
-VALUES
-  ('Lab Slots', 5, 1),
-  ('Course Offerings', 15, 5),
-  ('Upcoming Events', 8, 2),
-  ('Previous Events', 20, 8),
-  ('Achievements', 5, 1),
-  ('total', 58, 19);
-
-COMMIT;
-
-DROP TABLE IF EXISTS `contactsupport`;
-
-CREATE TABLE IF NOT EXISTS `contactsupport` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `message` text DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE = MyISAM AUTO_INCREMENT = 5 DEFAULT CHARSET = latin1;
-
-INSERT INTO
-  `contactsupport` (`name`, `email`, `message`)
-VALUES
-  (
-    'John Doe',
-    'john@example.com',
-    'I have a question about your services.'
-  ),
-  (
-    'Alice Smith',
-    'alice@example.com',
-    'I encountered an issue with my account.'
-  ),
-  (
-    'Bob Johnson',
-    'bob@example.com',
-    'I would like to request more information about your products.'
-  ),
-  (
-    'Eve Wilson',
-    'eve@example.com',
-    'I need assistance with a recent purchase.'
-  );
-
-COMMIT;
-
-DELIMITER //
-
--- Create event for 'Upcoming Events'
-CREATE EVENT update_dashboard_upcoming_events
-ON SCHEDULE EVERY 1 MINUTE
-DO
-BEGIN
-    -- Update total_pages based on the number of rows in upcoming_event
-    UPDATE dashboard
-    SET total_pages = (SELECT COUNT(*) FROM upcoming_event)
-    WHERE feature = 'Upcoming Events';
-    
-    -- Update published_pages based on the number of rows with published = 1 in upcoming_event
-    UPDATE dashboard
-    SET published_pages = (SELECT COUNT(*) FROM upcoming_event WHERE published = 1)
-    WHERE feature = 'Upcoming Events';
-END;
-//
-
--- Create event for 'Previous Events'
-CREATE EVENT update_dashboard_previous_events
-ON SCHEDULE EVERY 1 MINUTE
-DO
-BEGIN
-    -- Update total_pages based on the number of rows in upcoming_event
-    UPDATE dashboard
-    SET total_pages = (SELECT COUNT(*) FROM previous_event)
-    WHERE feature = 'Previous Events';
-    
-    -- Update published_pages based on the number of rows with published = 1 in upcoming_event
-    UPDATE dashboard
-    SET published_pages = (SELECT COUNT(*) FROM previous_event WHERE published = 1)
-    WHERE feature = 'Previous Events';
-END;
-//
-
--- Create event for 'Course Offerings'
-CREATE EVENT update_dashboard_course_offerings
-ON SCHEDULE EVERY 1 MINUTE
-DO
-BEGIN
-    -- Update total_pages based on the number of rows in the course table
-    UPDATE dashboard
-    SET total_pages = (SELECT COUNT(*) FROM course)
-    WHERE feature = 'Course Offerings';
-    
-    -- Update published_pages based on the number of rows with published = 1 in the course table
-    UPDATE dashboard
-    SET published_pages = (SELECT COUNT(*) FROM course WHERE published = 1)
-    WHERE feature = 'Course Offerings';
-END;
-//
-
--- Create event for 'Achievements'
-CREATE EVENT update_dashboard_achievements
-ON SCHEDULE EVERY 1 MINUTE
-DO
-BEGIN
-    -- Update total_pages based on the number of rows in the achievement table
-    UPDATE dashboard
-    SET total_pages = (SELECT COUNT(*) FROM achievement)
-    WHERE feature = 'Achievements';
-    
-    -- Update published_pages based on the number of rows with published = 1 in the achievement table
-    UPDATE dashboard
-    SET published_pages = (SELECT COUNT(*) FROM achievement WHERE published = 1)
-    WHERE feature = 'Achievements';
-END;
-//
-
-
-
-DELIMITER ;
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
 ;

@@ -1,41 +1,43 @@
 /* Style the dashboard content */
 .dashboard-content {
-    padding: 20px;
+  padding: 20px;
 }
 
 /* Style dashboard widgets */
 .dashboard-widgets {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns as needed */
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
 
 .widget {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer; /* Add pointer cursor to indicate interactivity */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer; /* Add pointer cursor to indicate interactivity */
+  display: flex;
+  flex-direction: column;
 }
 
 .widget:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .widget h2 {
-    color: #9d170e; /* Red color */
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    font-weight: bold; /* Make widget titles bold */
+  color: #9d170e; /* Red color */
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  font-weight: bold; /* Make widget titles bold */
 }
 
 .widget p {
-    color: #555; /* Slightly darker text color */
-    font-size: 1rem;
-    margin-bottom: 10px;
-    line-height: 1.4; /* Improve text readability with increased line height */
+  color: #555; /* Slightly darker text color */
+  font-size: 1rem;
+  margin-bottom: 10px;
+  line-height: 1.4; /* Improve text readability with increased line height */
 }
 
 /* Style alternate rows for a dashboard-like feeling */
@@ -43,126 +45,133 @@
     background-color: var(--color-2); 
 } */
 
+.widget form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .widget-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-top: auto;
 }
 
 .preview-button,
 .manage-button,
 .update-button {
-    background-color: var(--color-5);
-    color: #fff;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
+  background-color: var(--color-5);
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
 .preview-button:hover,
 .manage-button:hover,
 .update-button:hover {
-    background-color: var(--color-4);
+  background-color: var(--color-4);
 }
 
 /* Add styles for the elegant widget */
 .elegant-widget {
-    background-color: #ECD1CF;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 15px;
-    padding: 30px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-    text-align: center;
+  background-color: #ecd1cf;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  padding: 30px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  text-align: center;
 }
 
 .elegant-widget:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .elegant-widget h2 {
-    color: #333;
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    font-weight: bold;
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .elegant-widget p {
-    color: #666;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    line-height: 1.4;
+  color: #666;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  line-height: 1.4;
 }
 
 .elegant-widget .widget-buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
 }
 
 /* Style buttons as needed */
 .elegant-widget .preview-button,
 .elegant-widget .manage-button {
-    background-color: #9d170e;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
+  background-color: #9d170e;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
 .elegant-widget .preview-button:hover,
 .elegant-widget .manage-button:hover {
-    background-color: var(--color-4);
+  background-color: var(--color-4);
 }
 
 /* Style the time slot input */
 .allocated-time-input {
-    width: 60px; /* Adjust the width as needed */
-    padding: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
+  width: 60px; /* Adjust the width as needed */
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
 /* Style the time unit (e.g., "s" for seconds) */
 .time-unit {
-    margin-left: 4px;
-    font-size: 14px;
-    color: #333;
+  margin-left: 4px;
+  font-size: 14px;
+  color: #333;
 }
 
 /* styling for the contact support reviews */
 
 table {
-    display: flex;
-    padding: 10px;
-    padding-left: 50px;
-    margin: 20px;
-    border-collapse: collapse;
-    border-radius: 10px;
+  display: flex;
+  padding: 10px;
+  padding-left: 50px;
+  margin: 20px;
+  border-collapse: collapse;
+  border-radius: 10px;
 }
 
-th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #1e0808;
-
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #1e0808;
 }
 
 th {
-    background-color: var(--color-3);
+  background-color: var(--color-3);
 }
 
 tr:hover {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 /* Add some spacing and styling to the table container */
@@ -174,7 +183,7 @@ tr:hover {
     border-radius: 10px;
 } */
 
-.contact-support{
-    margin: 30px;
-    border-radius: 10px;
+.contact-support {
+  margin: 30px;
+  border-radius: 10px;
 }

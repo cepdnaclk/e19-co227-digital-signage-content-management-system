@@ -66,9 +66,11 @@ if (isset($data['error']))
                             <p class="widget-info">Total Pages:
                                 <?= $feature['pages'] ?>
                             </p>
-                            <p class="widget-info">Published:
-                                <?= $feature['pagesP'] ?>
-                            </p>
+                            <?php if ($key != 'Lab Slots') { ?>
+                                <p class="widget-info">Published:
+                                    <?= $feature['pagesP'] ?>
+                                </p>
+                            <?php } ?>
                             <form method="POST" action="/backend/api/dashboard/update.php">
                                 <input type="hidden" name="feature" value="<?php echo $key; ?>">
                                 <p class="widget-info">
@@ -76,11 +78,13 @@ if (isset($data['error']))
                                     <input type="number" name="time" value="<?= $feature['time'] ?>" class="allocated-time-input">
                                     <span class="time-unit">s</span>
                                 </p>
-                                <p class="widget-info">
-                                    Allocated Time Per Page:
-                                    <input type="number" name="time_slide" min="1" value="<?= $feature['time_slide'] ?>" class="allocated-time-input">
-                                    <span class="time-unit">s</span>
-                                </p>
+                                <?php if ($key != 'Lab Slots') { ?>
+                                    <p class="widget-info">
+                                        Allocated Time Per Page:
+                                        <input type="number" name="time_slide" min="1" value="<?= $feature['time_slide'] ?>" class="allocated-time-input">
+                                        <span class="time-unit">s</span>
+                                    </p>
+                                <?php } ?>
                                 <div class="widget-buttons">
                                     <button class="preview-button">Preview</button>
                                     <button class="manage-button">Manage</button>
