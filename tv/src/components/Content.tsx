@@ -8,6 +8,9 @@ const Content = () => {
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
+  const [timerId, setTimerId] = useState(null);
+  const [active, setActive] = useState(false);
+  const [activeTimer, setActiveTimer] = useState(false);
 
   const routes = [
     {
@@ -49,31 +52,56 @@ const Content = () => {
       .get(`/backend/api/dashboard/get.php`)
       .then((res) => {
         setData(res.data.features);
-        console.log(res.data.features);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  useEffect(() => {
-    if (currentIndex < routes.length) {
-      const { path } = routes[currentIndex];
-      const { name } =
-        routes[currentIndex > 0 ? currentIndex - 1 : routes.length - 1];
-      const time = data[name] ? data[name].time : "";
-      if (time > 1) {
-        const timeoutId = setTimeout(() => {
-          navigate(path);
-          setCurrentIndex((prevIndex) => prevIndex + 1);
-        }, time * 1000);
-
-        return () => clearTimeout(timeoutId);
-      }
-    } else {
-      setCurrentIndex(0);
+  const handleUserActivity = () => {
+    if (timerId) {
+      clearTimeout(timerId);
+      setTimerId(null);
     }
-  }, [currentIndex, data]);
+    clearTimeout(activeTimer);
+    setActive(true);
+    const activeT = setTimeout(() => {
+      setActive(false);
+    }, 2000);
+    setActiveTimer(activeT);
+  };
+
+  useEffect(() => {
+    const { path } = routes[currentIndex];
+    const { name } =
+      routes[currentIndex > 0 ? currentIndex - 1 : routes.length - 1];
+    const time = data[name] ? data[name].time : 0;
+
+    console.log(path, name, time);
+    if (!active) {
+      const timeoutId = setTimeout(() => {
+        navigate(path);
+        setCurrentIndex((prevIndex) =>
+          prevIndex < routes.length - 1 ? prevIndex + 1 : 0
+        );
+      }, time * 1000);
+
+      // Store the timer ID
+      setTimerId(timeoutId);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [currentIndex, data, active]);
+
+  useEffect(() => {
+    // Attach event listeners for user activity
+    window.addEventListener("mousemove", handleUserActivity);
+
+    return () => {
+      // Clean up event listeners
+      window.removeEventListener("mousemove", handleUserActivity);
+    };
+  }, []);
 
   return (
     <div className="content">
