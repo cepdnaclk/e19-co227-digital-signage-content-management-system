@@ -105,29 +105,26 @@ if (isset($data['error']))
 
                 // Check if the query was successful
                 if ($result) {
-                    echo "<h2><i><center>Complaints and Messages From Other CMS Handlers<center></i></h2>
-                    <center><table border='1'>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Message</th>
-                    </tr>";
+                    echo '<div class="custom-large-card">';
+                    echo "<h2><i>Complaints and Messages From Other CMS Handlers</i></h2>";
 
                     // Loop through the rows of data
                     while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>";
-                        echo "<td>" . $row['name'] . "</td>";
-                        echo "<td>" . $row['email'] . "</td>";
-                        echo "<td>" . $row['message'] . "</td>";
-                        echo "</tr>";
+                        echo '<div class="custom-card">';
+                        echo '<h3>' . $row['name'] . '</h3>';
+                        echo '<h5>' . $row['email'] . '</h5>';
+                        echo '<p>' . $row['message'] . '</p>';
+                        echo '</div>';
                     }
 
-                    echo "</center></table>";
+                    echo '</div>'; // Close the large card
                 } else {
                     echo "Error: " . mysqli_error($conn);
                 }
                 ?>
             </div>
+
+
 
         </div>
         <script src="./js/dashboard.js"></script>
