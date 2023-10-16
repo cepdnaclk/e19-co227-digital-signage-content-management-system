@@ -33,7 +33,7 @@ if (isset($events['error']))
                 <div class="container">
                     <div class="title">
                         <h1>Upcoming Events</h1>
-                        <a href="add.php"><img src="/images/Add_round.svg" alt=""> Add Event</a>
+                        <a href="upcoming/add.php"><img src="/images/Add_round.svg" alt=""> Add Event</a>
 
                     </div>
                     <div class="card-container">
@@ -48,7 +48,7 @@ if (isset($events['error']))
                                     <p class='card-duration'>From <?= $row["display_from"] ?><br>To <?= $row["display_to"] ?></p>
                                 </div>
                                 <div class='card-actions'>
-                                    <a href="edit.php?edit_id=<?= $row['e_id'] ?>">
+                                    <a href="upcoming/edit.php?edit_id=<?= $row['e_id'] ?>">
                                         <button class="edit-button">
                                             <span class="icon">&#9998;</span>
                                             Edit
