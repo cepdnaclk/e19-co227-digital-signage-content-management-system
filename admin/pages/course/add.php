@@ -23,7 +23,7 @@
             <div class="add-course">
                 <h2>Add New Course</h2>
                 <div class="form-container">
-                    <form action="/backend/addcourse.php" method="POST">
+                    <form action="/backend/api/course/add.php" method="POST">
                         <label for="c_code">Course Code:</label>
                         <input type="text" name="c_code" id="c_code" required>
                         <br><br>

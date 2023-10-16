@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   `new_intake_date` date DEFAULT NULL,
   `total_fee` int(11) DEFAULT NULL,
   `display_description` text DEFAULT NULL,
-  `published` tinyint(4) DEFAULT NULL,
+  `published` tinyint(4) DEFAULT 0,
   PRIMARY KEY (`c_id`)
 ) ENGINE = MyISAM AUTO_INCREMENT = 10 DEFAULT CHARSET = latin1;
 
@@ -209,7 +209,7 @@ VALUES
     '2023-10-05',
     1200,
     'Build websites and web applications with HTML, CSS, and JavaScript.',
-    NULL
+    0
   ),
   (
     7,
@@ -222,7 +222,7 @@ VALUES
     '2023-11-20',
     1800,
     'Get started with machine learning and understand its applications.',
-    NULL
+    0
   ),
   (
     8,
@@ -235,7 +235,7 @@ VALUES
     '2023-12-10',
     900,
     'Discover the inner workings of computers and how to fix common issues.',
-    NULL
+    0
   ),
   (
     9,
@@ -248,7 +248,7 @@ VALUES
     '2024-01-05',
     1600,
     'Master the art of database administration and SQL query optimization.',
-    NULL
+    0
   );
 
 -- --------------------------------------------------------

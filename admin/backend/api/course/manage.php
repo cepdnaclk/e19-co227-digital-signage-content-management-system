@@ -1,4 +1,11 @@
 <?php
+
+include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/course.php";
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"||"PUT") {
@@ -16,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"||"PUT") {
         $display_option = $_POST["display_option"];
 
 
-        header("Location: /pages/course.php");
+        header("Location: /pages/course");
         exit();
     } else {
         echo "'coordinator_name', 'description', 'display_option', and 'c_id' are required fields";

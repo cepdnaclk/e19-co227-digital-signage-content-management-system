@@ -1,5 +1,10 @@
 <?php
-include_once "../config.php";
+
+include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/course.php";
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
@@ -18,16 +23,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         // Course added successfully
-        header("Location: ../pages/course.php?success=1");
+        header("Location: /pages/course?success=1");
         exit();
     } else {
         // Error occurred
-        header("Location: ../pages/course.php?error=1");
+        header("Location: /pages/course?error=1");
         exit();
     }
 } else {
     // Handle invalid request method
-    header("Location: ../pages/course.php");
+    header("Location: /pages/course");
     exit();
 }
 ?>
