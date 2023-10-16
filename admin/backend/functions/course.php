@@ -48,7 +48,7 @@ function getCourses()
 {
     global $conn;
 
-    $result = $conn->query("SELECT c_id, c_code, c_name FROM course");
+    $result = $conn->query("SELECT * FROM course");
     if ($result === false) {
         return false; // Error in query execution
     }
@@ -129,7 +129,7 @@ function publishCourse(int $c_id)
     $result = array();
     // Execute the update query
     if (mysqli_stmt_execute($stmt)) {
-        $result = array('success' => "published succesfully");
+        $result = array('message' => "published succesfully");
     } else {
         $result = array('error' => mysqli_error($conn));
     }
