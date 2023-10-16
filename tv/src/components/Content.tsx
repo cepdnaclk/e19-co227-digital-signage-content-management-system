@@ -75,9 +75,8 @@ const Content = () => {
     const { path } = routes[currentIndex];
     const { name } =
       routes[currentIndex > 0 ? currentIndex - 1 : routes.length - 1];
-    const time = data[name] ? data[name].time : 0;
+    const time = data[name] ? data[name].time : 100000000;
 
-    console.log(path, name, time);
     if (!active) {
       const timeoutId = setTimeout(() => {
         navigate(path);

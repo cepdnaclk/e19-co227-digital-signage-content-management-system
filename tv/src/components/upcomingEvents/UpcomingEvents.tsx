@@ -1,36 +1,47 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./upcomingevents.css";
-import img1 from "../../assets/upcoming-event-posters/upcoming-event-1.jpg";
-import img2 from "../../assets/upcoming-event-posters/upcoming-event-2.jpg";
-import img3 from "../../assets/upcoming-event-posters/upcoming-event-3.jpg";
-import img4 from "../../assets/upcoming-event-posters/upcoming-event-4.png";
-import img5 from "../../assets/upcoming-event-posters/upcoming-event-5.jpg"; // Add  images import here
-
-const initialImages = [img1, img2, img3, img4, img5]; // All images
-
-// const imageTitles = [
-//   "NBQSA -The National Best Quality Software Awards",
-//   "6th International Conference on Industrial and Information Systems, ICIIS 2021",
-//   "PREVET 2023 for VET Undergraduates",
-//   "Certificate-Based Computer Skills program (CBCS) -Batch 1",
-//   "SITSEP- Staff IT Skills Development Programme- 2022 – Batch 2- Poster Presentation"
-// ];
 
 export default function UpcomingEvents() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [clickedImageIndex, setClickedImageIndex] = useState<number | null>(null);
+  const [clickedImageIndex, setClickedImageIndex] = useState<number | null>(
+    null
+  );
+  const [initialImages, setInitialImages] = useState([]);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`/backend/api/upcoming/get.php`)
+      .then((res) => {
+        if (res.data.length >= 1) {
+          setData(res.data);
+          let array = [];
+          res.data.forEach((ele) => {
+            array.push("http://localhost:8000" + ele["e_img"]);
+          });
+          setInitialImages(array);
+          console.log(data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (clickedImageIndex === null) {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % initialImages.length);
+        setCurrentImageIndex(
+          (prevIndex) => (prevIndex + 1) % initialImages.length
+        );
       }
     }, 10000); // Change image every 10 seconds (10000 milliseconds)
 
     return () => {
       clearInterval(interval);
     };
-  }, [clickedImageIndex]);
+  }, [clickedImageIndex, initialImages]);
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prevIndex) =>
@@ -51,8 +62,9 @@ export default function UpcomingEvents() {
 
   // Determine the number of images to display in the list
   const numImagesToDisplay = Math.min(6, initialImages.length);
-  const displayedImages = Array.from({ length: numImagesToDisplay }, (_, i) =>
-    initialImages[(currentImageIndex + i) % initialImages.length]
+  const displayedImages = Array.from(
+    { length: numImagesToDisplay },
+    (_, i) => initialImages[(currentImageIndex + i) % initialImages.length]
   );
 
   return (
@@ -77,14 +89,12 @@ export default function UpcomingEvents() {
             <img
               className="center-image"
               src={initialImages[currentImageIndex]}
-              alt={`UpcomingEvents ${currentImageIndex + 1}`}
+              alt={initialImages[currentImageIndex]}
               onClick={() => handleImageClick(currentImageIndex)}
             />
           </div>
         )}
-        {/* <div className="image-title">
-          {imageTitles[currentImageIndex]}
-        </div> */}
+        {/* <div className="image-title">{data[currentImageIndex]["e_name"]}</div> */}
       </div>
       <div className="image-controls">
         <button className="right" onClick={handleNextImage}>
@@ -96,17 +106,28 @@ export default function UpcomingEvents() {
           <div
             key={index}
             className={`image-item ${
-              currentImageIndex === (currentImageIndex + index) % initialImages.length || clickedImageIndex === (currentImageIndex + index) % initialImages.length
+              currentImageIndex ===
+                (currentImageIndex + index) % initialImages.length ||
+              clickedImageIndex ===
+                (currentImageIndex + index) % initialImages.length
                 ? "active"
                 : ""
             }`}
-            onClick={() => handleImageClick((currentImageIndex + index) % initialImages.length)}
+            onClick={() =>
+              handleImageClick(
+                (currentImageIndex + index) % initialImages.length
+              )
+            }
           >
-            <img src={image} alt={`UpcomingEvents ${(currentImageIndex + index) % initialImages.length + 1}`} />
+            <img
+              src={image}
+              alt={`UpcomingEvents ${
+                ((currentImageIndex + index) % initialImages.length) + 1
+              }`}
+            />
           </div>
         ))}
       </div>
     </div>
   );
 }
-

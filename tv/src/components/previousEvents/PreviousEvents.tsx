@@ -1,35 +1,44 @@
 import React, { useState, useEffect } from "react";
 import "./previousevents.css"; // CSS file
-import img1 from "../../assets/previous-events-posters/img1.jpg";
-import img2 from "../../assets/previous-events-posters/img2.jpg";
-import img3 from "../../assets/previous-events-posters/img3.jpg";
-import img4 from "../../assets/previous-events-posters/img4.jpg";
-import img5 from "../../assets/previous-events-posters/img5.jpeg";
-
-const initialImages = [img1, img2, img3, img4, img5]; // All images
-const imageTitles = [
-  "NBQSA -The National Best Quality Software Awards",
-  "6th International Conference on Industrial and Information Systems, ICIIS 2021",
-  "PREVET 2023 for VET Undergraduates",
-  "Certificate-Based Computer Skills program (CBCS) -Batch 1",
-  "SITSEP- Staff IT Skills Development Programme- 2022 – Batch 2- Poster Presentation"
-];
+import axios from "axios";
 
 export default function PreviousEvents() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [clickedImageIndex, setClickedImageIndex] = useState<number | null>(null);
+  const [clickedImageIndex, setClickedImageIndex] = useState<number | null>(
+    null
+  );
+  const [initialImages, setInitialImages] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`/backend/api/previous/get.php`)
+      .then((res) => {
+        if (res.data.length >= 1) {
+          let array = [];
+          res.data.forEach((ele) => {
+            array.push("http://localhost:8000" + ele["e_img"]);
+          });
+          setInitialImages(array);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (clickedImageIndex === null) {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % initialImages.length);
+        setCurrentImageIndex(
+          (prevIndex) => (prevIndex + 1) % initialImages.length
+        );
       }
     }, 10000); // Change image every 10 seconds (10000 milliseconds)
 
     return () => {
       clearInterval(interval);
     };
-  }, [clickedImageIndex]);
+  }, [clickedImageIndex, initialImages]);
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prevIndex) =>
@@ -50,8 +59,9 @@ export default function PreviousEvents() {
 
   // Determine the number of images to display in the list
   const numImagesToDisplay = Math.min(6, initialImages.length);
-  const displayedImages = Array.from({ length: numImagesToDisplay }, (_, i) =>
-    initialImages[(currentImageIndex + i) % initialImages.length]
+  const displayedImages = Array.from(
+    { length: numImagesToDisplay },
+    (_, i) => initialImages[(currentImageIndex + i) % initialImages.length]
   );
 
   return (
@@ -81,9 +91,7 @@ export default function PreviousEvents() {
             />
           </div>
         )}
-        <div className="image-title">
-          {imageTitles[currentImageIndex]}
-        </div>
+        {/* <div className="image-title">{imageTitles[currentImageIndex]}</div> */}
       </div>
       <div className="image-controls">
         <button className="right" onClick={handleNextImage}>
@@ -95,13 +103,25 @@ export default function PreviousEvents() {
           <div
             key={index}
             className={`image-item ${
-              currentImageIndex === (currentImageIndex + index) % initialImages.length || clickedImageIndex === (currentImageIndex + index) % initialImages.length
+              currentImageIndex ===
+                (currentImageIndex + index) % initialImages.length ||
+              clickedImageIndex ===
+                (currentImageIndex + index) % initialImages.length
                 ? "active"
                 : ""
             }`}
-            onClick={() => handleImageClick((currentImageIndex + index) % initialImages.length)}
+            onClick={() =>
+              handleImageClick(
+                (currentImageIndex + index) % initialImages.length
+              )
+            }
           >
-            <img src={image} alt={`PreviousEvents ${(currentImageIndex + index) % initialImages.length + 1}`} />
+            <img
+              src={image}
+              alt={`PreviousEvents ${
+                ((currentImageIndex + index) % initialImages.length) + 1
+              }`}
+            />
           </div>
         ))}
       </div>

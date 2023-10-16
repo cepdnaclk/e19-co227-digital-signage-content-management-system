@@ -37,7 +37,7 @@ if (isset($events['error']))
 
                     </div>
                     <div class="card-container">
-                        <?php if(!isset($_GET['error'])) foreach ($events as $key => $row) { ?>
+                        <?php if (isset($events[0]['e_name'])) foreach ($events as $key => $row) { ?>
                             <div class='card'>
                                 <img src='<?= $row["e_img"] ?>' alt='Add Event Image'>
                                 <div class='card-content'>
@@ -76,7 +76,8 @@ if (isset($events['error']))
                                     </button>
                                 </div>
                             </div>
-                        <?php } else { ?>
+                        <?php }
+                        else { ?>
                             <p style="width:400px">No Previous Events Found.
                                 <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
                                     <a style="text-decoration:underline" href="add.php">Add Event</a>

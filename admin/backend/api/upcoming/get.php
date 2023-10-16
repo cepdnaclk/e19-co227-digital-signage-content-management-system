@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/previousevents.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/upcomingevents.php";
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");

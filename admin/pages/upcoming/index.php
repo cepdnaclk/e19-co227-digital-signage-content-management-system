@@ -37,7 +37,7 @@ if (isset($events['error']))
 
                     </div>
                     <div class="card-container">
-                        <?php if(!isset($_GET['error'])) foreach ($events as $key => $row) { ?>
+                        <?php if (isset($events[0]['e_name'])) foreach ($events as $key => $row) { ?>
                             <div class='card'>
                                 <img src='<?= $row["e_img"] ?>' alt='Add Event Image'>
                                 <div class='card-content'>
@@ -48,7 +48,7 @@ if (isset($events['error']))
                                     <p class='card-duration'>From <?= $row["display_from"] ?><br>To <?= $row["display_to"] ?></p>
                                 </div>
                                 <div class='card-actions'>
-                                    <a href="upcoming/edit.php?edit_id=<?= $row['e_id'] ?>">
+                                    <a href="edit.php?edit_id=<?= $row['e_id'] ?>">
                                         <button class="edit-button">
                                             <span class="icon">&#9998;</span>
                                             Edit
@@ -76,7 +76,8 @@ if (isset($events['error']))
                                     </button>
                                 </div>
                             </div>
-                        <?php } else { ?>
+                        <?php }
+                        else { ?>
                             <p style="width:400px">No Achivements Found.
                                 <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
                                     <a style="text-decoration:underline" href="add.php">Add Achievements</a>
