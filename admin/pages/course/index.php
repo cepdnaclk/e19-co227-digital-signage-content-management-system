@@ -28,7 +28,7 @@
                             <h1>Courses</h1>
                             <p>Currently Offered Courses by Us</p>
                         </div>
-                        <a href="/pages/course/addcourse.php" class="btn btn-success"><img src="/images/Add_round.svg" alt=""> Add New Course</a>
+                        <a href="/pages/course/add.php" class="btn btn-success"><img src="/images/Add_round.svg" alt=""> Add New Course</a>
                     </div>
 
                     <div class="table-container">
@@ -53,7 +53,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Fetch courses data from the backend
-            fetch('../../backend/api/course/index.php')
+            fetch('/backend/api/course/index.php')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -69,12 +69,12 @@
                         <td class="text-left">${course.c_code}</td>
                         <td class="text-left">${course.c_name}</td>
                         <td class="text-center">
-                            <a href="/backend/coursepublish.php?c_id=${course.c_id}&published=${!course.published}" class="btn btn-publish" data-course-id="${course.c_id}">
+                            <a href="/backend/api/course/publish.php?c_id=${course.c_id}" class="btn btn-publish" data-course-id="${course.c_id}">
                                 ${course.published === '1' ? 'Unpublish' : 'Publish'}
                             </a>&nbsp;
                             <a href="/pages/coursemanage.php" class="btn btn-preview" data-course-id="${course.c_id}">Preview</a>&nbsp;
                             <a href="/pages/course/coursemanage.php" class="btn btn-manage" data-course-id="${course.c_id}">Manage</a>&nbsp;
-                            <a href="/backend/api/course?delete=${course.c_id}" class="btn btn-delete" data-course-id="${course.c_id}">Delete</a>
+                            <a href="/pages/course/delete.php?c_id=${course.c_id}" class="btn btn-delete" data-course-id="${course.c_id}">Delete</a>
                         </td>
                     `;
                             tbody.appendChild(row);
@@ -83,7 +83,7 @@
                             const manageButton = row.querySelector('.btn-manage');
                             manageButton.addEventListener('click', function() {
                                 const courseId = this.getAttribute('data-course-id');
-                                this.href = `/pages/course/coursemanage.php?c_id=${courseId}`;
+                                this.href = `/pages/course/manage.php?c_id=${courseId}`;
                             });
 
                             // Add click event listener to the "Publish" button
@@ -98,7 +98,7 @@
                                 this.textContent = isPublished ? 'Publish' : 'Unpublish';
 
                                 // Make an AJAX request to update the database
-                                fetch(`/backend/coursepublish.php?c_id=${courseId}&published=${isPublished}`)
+                                fetch(`/backend/api/course/publish.php?c_id=${courseId}&published=${isPublished}`)
                                     .then(response => {
                                         if (!response.ok) {
                                             throw new Error('Network response was not ok');

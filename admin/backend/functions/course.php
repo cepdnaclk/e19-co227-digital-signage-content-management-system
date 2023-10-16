@@ -116,3 +116,25 @@ function getCoursesIdle()
     }
     return $courses;
 }
+
+
+function publishCourse(int $c_id)
+{
+    global $conn;
+
+    $sql = "UPDATE course SET published = !published WHERE c_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $c_id);
+
+    $result = array();
+    // Execute the update query
+    if (mysqli_stmt_execute($stmt)) {
+        $result = array('success' => "published succesfully");
+    } else {
+        $result = array('error' => mysqli_error($conn));
+    }
+
+    // Close the statement
+    $stmt->close();
+    return $result;
+}
