@@ -66,7 +66,7 @@ const Content = () => {
     clearTimeout(activeTimer);
     setActive(true);
     const activeT = setTimeout(() => {
-      // setActive(false);
+      setActive(false);
     }, 2000);
     setActiveTimer(activeT);
   };
