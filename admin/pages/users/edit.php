@@ -33,34 +33,47 @@ if (isset($user['error']))
         ?>
         <div class="right">
             <div class="register-user container">
-                <h2>Edit Profile</h2>
+                <div class="title">
+                    <div>
+                        <h1><a href="./">Users ></a>Edit Profile</h1>
+                        <p>Edit your account settings</p>
+                    </div>
+                </div>
+                <br><br>
+                <h3>User Details</h3>
                 <div class="form-container">
-                    <form action="/backend/users/edit.php" method="POST">
+                    <form action="/backend/api/users/edit.php" method="POST">
+                        <input type="text" name="u_id" id="u_id" value="<?= $user['u_id'] ?>" required style="display:none">
+
                         <label for="username">Username:</label>
-                        <input type="text" name="username" id="username" value="<?= $user['user_name'] ?>" required>
-                        <br><br>
+                        <p><?= $user['user_name'] ?></p>
 
                         <label for="email">Email:</label>
                         <input type="email" name="email" id="email" value="<?= $user['email'] ?>">
-                        <br><br>
 
-                        <label for="opassword">Old Password:</label>
-                        <input type="password" name="opassword" id="opassword">
-                        <br><br>
-
-                        <label for="password">New Password:</label>
-                        <input type="password" name="password" id="password">
-                        <br><br>
-
-                        <label for="confirm_password">Confirm Password:</label>
-                        <input type="password" name="confirm_password" id="confirm_password">
-                        <br><br>
 
                         <label for="contact">Contact:</label>
                         <input type="text" name="contact" id="contact" value="<?= $user['contact'] ?>">
-                        <br><br>
 
-                        <input type="submit" value="Register User">
+                        <input type="submit" value="Update">
+                    </form>
+                </div>
+                <br><br><br>
+                <h3>Change Password</h3>
+                <div class="form-container">
+                    <form action="/backend/api/users/changepass.php" method="POST">
+                        <input type="text" name="u_id" id="u_id" value="<?= $user['u_id'] ?>" required style="display:none">
+
+                        <label for="old_password">Old Password:</label>
+                        <input type="password" name="old_password" id="old_password" required>
+
+                        <label for="password">New Password:</label>
+                        <input type="password" name="password" id="password" required>
+
+                        <label for="confirm_password">Confirm Password:</label>
+                        <input type="password" name="confirm_password" id="confirm_password" required>
+
+                        <input type="submit" value="Change Password">
                     </form>
                 </div>
             </div>

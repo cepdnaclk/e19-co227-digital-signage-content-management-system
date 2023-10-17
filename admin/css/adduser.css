@@ -10,6 +10,11 @@
   color: #333;
 }
 
+.register-user h3 {
+  font-size: 24px;
+  color: var(--color-1);
+}
+
 .register-user .form-container {
   margin-top: 20px;
 }
@@ -48,6 +53,7 @@
 .register-user input[type="email"],
 .register-user input[type="password"],
 .register-user input[type="number"],
+.register-user form p,
 .register-user select {
   width: 100%;
   padding: 10px;
@@ -55,6 +61,13 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 15px;
+}
+
+.register-user form label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
 }
 
 .register-user input[type="radio"] {
@@ -95,6 +108,8 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  display: block;
+  margin-inline: auto;
 }
 
 /* Submit button hover effect */

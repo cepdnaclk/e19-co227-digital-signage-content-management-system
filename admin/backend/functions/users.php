@@ -55,6 +55,55 @@ function getUser(int $userId)
 }
 
 
+function editUser(int $u_id, string $email, string $contact)
+{
+    if (!isset($u_id))
+        return array("error" => "Bad Request");
+
+    global $conn;
+
+    $stmt = $conn->prepare("UPDATE user SET email = COALESCE(?, ''), contact = COALESCE(?, '') WHERE u_id = ?");
+    $stmt->bind_param("ssi", $email, $contact, $u_id);
+
+    if (!$stmt->execute())
+        return array("error" => $stmt->error);
+    else
+        return array("message" => "Update Succesfully");
+
+    $stmt->close();
+}
+
+function changePass(string $opass, string $npass, string $cpass, int $u_id)
+{
+    global $conn;
+
+    if (!isset($u_id) || !(isset($opass) && isset($npass) && isset($cpass)))
+        return array("error" => "Bad Request");
+
+    if ($npass != $cpass)
+        return array("error" => "Password and Confirm Password must same");
+
+    $oldPass = hash('sha256', $opass);
+    $user = getUser($u_id);
+    if (isset($user['error']))
+        return array("error" => "Unable to fetch user data");
+
+    if ($user['password'] != $oldPass)
+        return array("error" => "Please enter the correct password in current password");
+
+    $npass = hash('sha256', $npass);
+
+    $stmt = $conn->prepare("UPDATE user SET password = ? WHERE u_id = ?");
+    $stmt->bind_param("si", $npass, $u_id);
+
+    if (!$stmt->execute())
+        return array("error" => $stmt->error);
+    else
+        return array("message" => "Update Password Succesfully");
+
+    $stmt->close();
+}
+
 function deleteUser(int $userId)
 {
     global $conn;
@@ -64,8 +113,8 @@ function deleteUser(int $userId)
     $stmt->bind_param('i', $userId);
 
     if ($stmt->execute()) {
-        return true;
+        return array("message" => "Delete Succesfully");
     } else {
-        return false;
+        return array("error" => $stmt->error);
     }
 }
