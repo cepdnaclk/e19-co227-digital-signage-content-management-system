@@ -43,17 +43,17 @@
                 <ul>
                     <li>
                         <a href="/pages/upcoming/" class="link <?php echo $index == 3 ? 'active' : '' ?>">
-                            Upcoming Events<?php echo $index == 3 && $subindex == 1 ? ' |' : '' ?>
+                            Upcoming Events<?php echo $index == 3 && $subindex == 1 ? ' <b>|</b>' : '' ?>
                         </a>
                     </li>
                     <li>
                         <a href="/pages/previous/" class="link <?php echo $index == 3 ? 'active' : '' ?>">
-                            Previous Events<?php echo $index == 3 && $subindex == 2? ' |' : '' ?>
+                            Previous Events<?php echo $index == 3 && $subindex == 2? ' <b>|</b>' : '' ?>
                         </a>
                     </li>
                     <li>
                         <a href="/pages/achievements/" class="link <?php echo $index == 3 ? 'active' : '' ?>">
-                            Achievements<?php echo $index == 3 && $subindex == 3 ? ' |' : '' ?>
+                            Achievements<?php echo $index == 3 && $subindex == 3 ? ' <b>|</b>' : '' ?>
                         </a>
                     </li>
                 </ul>
