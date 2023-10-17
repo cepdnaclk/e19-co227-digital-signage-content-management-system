@@ -25,7 +25,7 @@ if (isset($data['error']))
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(0);
+            sidebar(0,0);
             ?>
         </div>
         <div class="right">
@@ -111,9 +111,15 @@ if (isset($data['error']))
                     // Loop through the rows of data
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '<div class="custom-card">';
+                        echo '<div class="name-email">';
                         echo '<h3>' . $row['name'] . '</h3>';
                         echo '<h5>' . $row['email'] . '</h5>';
+                        echo '</div>';
                         echo '<p>' . $row['message'] . '</p>';
+                        echo '<div class="checkbox">';
+                        echo '<label for="checked">Checked</label>';
+                        echo '<input type="checkbox" id="checked" name="checked">';
+                        echo '</div>';
                         echo '</div>';
                     }
 
@@ -123,8 +129,6 @@ if (isset($data['error']))
                 }
                 ?>
             </div>
-
-
 
         </div>
         <script src="./js/dashboard.js"></script>

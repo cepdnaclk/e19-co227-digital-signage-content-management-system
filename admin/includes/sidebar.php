@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <?php function sidebar(int $index)
+    <?php function sidebar(int $index, int $subindex)
     {
     ?>
         <div class="side">
@@ -34,18 +34,31 @@
                     </div>
                 </a>
                 <div>
-                    <a href="/pages/eventsandachivements.php" class="link <?php echo $index == 3 ? 'active' : '' ?>">
-                        <div class="link-main">
-                            <img src="/images/Star.svg" alt="">
-                            <p>Events & Achievements</p>
-                        </div>
-                    </a>
-                    <ul>
-                        <li><a href="/pages/upcoming/" class="link <?php echo $index == 3 ? 'active' : '' ?>">Upcoming Events</a></li>
-                        <li><a href="/pages/previous/" class="link <?php echo $index == 3 ? 'active' : '' ?>">Previous Events</a></li>
-                        <li><a href="/pages/achievements/" class="link <?php echo $index == 3 ? 'active' : '' ?>">Achievements</a></li>
-                    </ul>
-                </div>
+                <a href="/pages/eventsandachivements.php" class="link <?php echo $index == 3 ? 'active' : '' ?>">
+                    <div class="link-main">
+                        <img src="/images/Star.svg" alt="">
+                        <p>Events & Achievements</p>
+                    </div>
+                </a>
+                <ul>
+                    <li>
+                        <a href="/pages/upcoming/" class="link <?php echo $index == 3 ? 'active' : '' ?>">
+                            Upcoming Events<?php echo $index == 3 && $subindex == 1 ? ' <b>|</b>' : '' ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pages/previous/" class="link <?php echo $index == 3 ? 'active' : '' ?>">
+                            Previous Events<?php echo $index == 3 && $subindex == 2? ' <b>|</b>' : '' ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pages/achievements/" class="link <?php echo $index == 3 ? 'active' : '' ?>">
+                            Achievements<?php echo $index == 3 && $subindex == 3 ? ' <b>|</b>' : '' ?>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
                 <a href="/pages/labslots/" class="link <?php echo $index == 4 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="/images/calendar.svg" alt="">

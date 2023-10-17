@@ -47,7 +47,7 @@ include (APP_ROOT . "/includes/header.php");
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(2);
+            sidebar(2,0);
             ?>
         </div>
         <div class="right">

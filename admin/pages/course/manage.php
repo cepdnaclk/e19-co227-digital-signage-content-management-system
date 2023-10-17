@@ -28,7 +28,7 @@ if (isset($_GET['c_id'])) {
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(1); // Use an appropriate sidebar item number
+            sidebar(1,0); // Use an appropriate sidebar item number
             ?>
         </div>
 

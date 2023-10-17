@@ -24,7 +24,7 @@ if (isset($user['error']))
     <div class="flex-box">
         <div class="left">
             <?php include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(2);
+            sidebar(2,0);
             ?>
         </div>
 

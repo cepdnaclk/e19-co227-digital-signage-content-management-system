@@ -30,6 +30,16 @@ if (isset($_GET['c_id'])) {
 </head>
 
 <body>
+    <div class="flex-box">
+        <div class="left">
+            <?php include_once(APP_ROOT . "/includes/sidebar.php");
+            sidebar(1,0);
+            ?>
+        </div>
+
+        <?php
+        include_once(APP_ROOT . "/includes/header.php");
+        ?>
     <div class="overlay" id="overlay"></div>
     <div class="card">
         <h2>Delete Confirmation</h2>
@@ -37,6 +47,7 @@ if (isset($_GET['c_id'])) {
 
             <a href="/backend/api/course?delete=<?php echo $courseId; ?>"><button type="submit" class="yes">YES</button></a>
             <a href="javascript:history.back();"><button type="button">NO</button></a>
+    </div>
     </div>
     <script>
         // JavaScript to show the overlay and modal

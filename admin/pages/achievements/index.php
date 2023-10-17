@@ -23,7 +23,7 @@ if (isset($achivements['error']))
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(3);
+            sidebar(3,3);
             ?>
         </div>
         <div class="right">

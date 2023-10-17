@@ -79,3 +79,7 @@
   gap: 1rem;
   color: white;
 }
+
+b {
+  color:var(--color-2);
+}
