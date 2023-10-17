@@ -42,6 +42,7 @@
   width: 200px;
   text-align: center;
   cursor: pointer;
+  margin: 0;
 }
 
 .register-user .role input:checked + label {

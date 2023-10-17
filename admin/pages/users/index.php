@@ -26,7 +26,7 @@ if (!isset($users))
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(2,0);
+            sidebar(2, 0);
             ?>
         </div>
         <div class="right">
@@ -126,7 +126,7 @@ if (!isset($users))
                                 ?>
                                     <li>
                                         <p><?= $cc['user_name'] ?></p>
-                                        <?php if ($clearenceStatus[$_SESSION['clearense']] > 1) { ?>
+                                        <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
                                             <a class="btn btn-danger" href="/backend/api/users/get.php?delete=<?= $cc['u_id'] ?>">DELETE</a>
                                         <?php } ?>
                                         <?php if ($_SESSION['user_id'] == $cc['u_id']) { ?>
