@@ -55,7 +55,7 @@ if (!isset($_SESSION['user_id'])) {
       <p><?php echo isset($role) ? $role : 'Guest'; ?></p>
       <div class="profile-dropdown">
         <ul>
-          <li><a href="/backend/logout.php">Logout</a></li>
+          <li><a href="/backend/logout.php">⟫  Logout</a></li>
         </ul>
       </div>
     </div>

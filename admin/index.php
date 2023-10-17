@@ -49,8 +49,7 @@ if (isset($data['error']))
                     </p>
                     <div class="widget-buttons">
                         <a href="/pages/preview"><button class="preview-button">Preview</button></a>
-                        &emsp;
-                        <button class="manage-button">Manage</button>
+                        
                     </div>
                 </div>
 
