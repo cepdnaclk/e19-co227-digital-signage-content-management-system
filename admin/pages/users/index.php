@@ -86,7 +86,7 @@ if (!isset($users))
                                     <li>
                                         <p><?= $sa['user_name'] ?></p>
                                         <?php if ($_SESSION['user_id'] == $sa['u_id']) { ?>
-                                            <a class="btn btn-success" href="/backend/users.php?edit=<?= $sa['u_id'] ?>">EDIT</a>
+                                            <a class="btn btn-success" href="/pages/users/edit.php">EDIT</a>
                                         <?php } ?>
                                     </li>
                                 <?php
@@ -108,7 +108,7 @@ if (!isset($users))
                                             <a class="btn btn-danger" href="/backend/api/users/get.php?delete=<?= $admin['u_id'] ?>">DELETE</a>
                                         <?php } ?>
                                         <?php if ($_SESSION['user_id'] == $admin['u_id']) { ?>
-                                            <a class="btn btn-success" href="/backend/user.php?edit=<?= $admin['u_id'] ?>">EDIT</a>
+                                            <a class="btn btn-success" href="/pages/users/edit.php">EDIT</a>
                                         <?php } ?>
                                     </li>
                                 <?php
@@ -130,7 +130,7 @@ if (!isset($users))
                                             <a class="btn btn-danger" href="/backend/api/users/get.php?delete=<?= $cc['u_id'] ?>">DELETE</a>
                                         <?php } ?>
                                         <?php if ($_SESSION['user_id'] == $cc['u_id']) { ?>
-                                            <a class="btn btn-success" href="/backend/user.php?edit=<?= $cc['u_id'] ?>">EDIT</a>
+                                            <a class="btn btn-success" href="/pages/users/edit.php">EDIT</a>
                                         <?php } ?>
                                     </li>
                                 <?php

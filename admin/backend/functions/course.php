@@ -48,7 +48,7 @@ function getCourses()
 {
     global $conn;
 
-    $result = $conn->query("SELECT c_id, c_code, c_name FROM course");
+    $result = $conn->query("SELECT * FROM course");
     if ($result === false) {
         return false; // Error in query execution
     }
@@ -78,7 +78,7 @@ function getCoursesCo(string $user)
 {
     global $conn;
 
-    $result = $conn->query("SELECT c_id, c_code, c_name FROM course WHERE c_coordinator = " . $user);
+    $result = $conn->query("SELECT * FROM course WHERE c_coordinator = " . $user);
     if ($result === false) {
         return false; // Error in query execution
     }

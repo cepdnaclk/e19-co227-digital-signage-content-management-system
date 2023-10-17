@@ -55,7 +55,7 @@ $achivements = array_slice($achivements, 0, 4);
                 <div class="container">
                     <div class="title">
                         <h1>Upcoming Events</h1>
-                        <a href="/pages/upcoming">See All</a>
+                        <a href="/pages/upcoming/">See All</a>
                     </div>
                     <div class="card-container">
                         <?php if (!isset($_GET['error'])) foreach ($uevents as $key => $row) { ?>
@@ -69,7 +69,7 @@ $achivements = array_slice($achivements, 0, 4);
                                     <p class='card-duration'>From <?= $row["display_from"] ?><br>To <?= $row["display_to"] ?></p>
                                 </div>
                                 <div class='card-actions'>
-                                    <a href="edit.php?edit_id=<?= $row['e_id'] ?>">
+                                    <a href="/pages/upcoming/edit.php?edit_id=<?= $row['e_id'] ?>">
                                         <button class="edit-button">
                                             <span class="icon">&#9998;</span>
                                             Edit
@@ -108,7 +108,7 @@ $achivements = array_slice($achivements, 0, 4);
                     </div>
                     <div class="title">
                         <h1>Previous Events</h1>
-                        <a href="/pages/previous">See All</a>
+                        <a href="/pages/previous/">See All</a>
                     </div>
                     <div class="card-container">
                         <?php if (!isset($_GET['error'])) foreach ($pevents as $key => $row) { ?>
@@ -122,7 +122,7 @@ $achivements = array_slice($achivements, 0, 4);
                                     <p class='card-duration'>From <?= $row["display_from"] ?><br>To <?= $row["display_to"] ?></p>
                                 </div>
                                 <div class='card-actions'>
-                                    <a href="edit.php?edit_id=<?= $row['e_id'] ?>">
+                                    <a href="/pages/previous/edit.php?edit_id=<?= $row['e_id'] ?>">
                                         <button class="edit-button">
                                             <span class="icon">&#9998;</span>
                                             Edit
@@ -161,7 +161,7 @@ $achivements = array_slice($achivements, 0, 4);
                     </div>
                     <div class="title">
                         <h1>Achivements</h1>
-                        <a href="/pages/achievements">See All</a>
+                        <a href="/pages/achievements/">See All</a>
                     </div>
                     <div class="card-container">
                         <?php if (!isset($_GET['error']))
@@ -181,7 +181,7 @@ $achivements = array_slice($achivements, 0, 4);
 
                                 </div>
                                 <div class='card-actions'>
-                                    <a href="edit.php?edit_id=<?= $row['a_id'] ?>">
+                                    <a href="/pages/achievements/edit.php?edit_id=<?= $row['a_id'] ?>">
                                         <button class="edit-button">
                                             <span class="icon">&#9998;</span>
                                             Edit

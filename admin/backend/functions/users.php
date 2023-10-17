@@ -47,7 +47,7 @@ function getUser(int $userId)
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
     if (!isset($user))
-        return false;
+        return array("error" => $stmt->error);
 
     $stmt->close();
 
