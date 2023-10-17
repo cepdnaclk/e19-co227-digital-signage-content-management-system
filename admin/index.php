@@ -25,7 +25,7 @@ if (isset($data['error']))
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(0);
+            sidebar(0,0);
             ?>
         </div>
         <div class="right">

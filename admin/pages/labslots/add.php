@@ -65,7 +65,7 @@ else {
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(4);
+            sidebar(4,0);
             ?>
         </div>
         <div class="right">

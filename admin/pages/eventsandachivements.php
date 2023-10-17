@@ -44,7 +44,7 @@ $achivements = array_slice($achivements, 0, 4);
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(3);
+            sidebar(3,0);
             ?>
         </div>
         <div class="right">
