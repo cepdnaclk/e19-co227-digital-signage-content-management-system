@@ -48,7 +48,7 @@ if (isset($events['error']))
                                     <p class='card-duration'>From <?= $row["display_from"] ?><br>To <?= $row["display_to"] ?></p>
                                 </div>
                                 <div class='card-actions'>
-                                    <a href="edit.php?edit_id=<?= $row['e_id'] ?>">
+                                    <a href="/pages/upcoming/edit.php?edit_id=<?= $row['e_id'] ?>">
                                         <button class="edit-button">
                                             <span class="icon">&#9998;</span>
                                             Edit

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./courseofferings.css";
-import img1 from '../../assets/course-img-1.jpeg';
-import img2 from '../../assets/course-img-2.jpeg';
-import img3 from '../../assets/course-img-3.jpeg';
+import img1 from "../../assets/course-img-1.jpeg";
+import img2 from "../../assets/course-img-2.jpeg";
+import img3 from "../../assets/course-img-3.jpeg";
 
 const initialImages = [img1, img2, img3]; // All images
 
@@ -16,12 +16,16 @@ const initialImages = [img1, img2, img3]; // All images
 
 export default function CourseOfferings() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [clickedImageIndex, setClickedImageIndex] = useState<number | null>(null);
+  const [clickedImageIndex, setClickedImageIndex] = useState<number | null>(
+    null
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (clickedImageIndex === null) {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % initialImages.length);
+        setCurrentImageIndex(
+          (prevIndex) => (prevIndex + 1) % initialImages.length
+        );
       }
     }, 10000); // Change image every 10 seconds (10000 milliseconds)
 
@@ -49,8 +53,9 @@ export default function CourseOfferings() {
 
   // Determine the number of images to display in the list
   const numImagesToDisplay = Math.min(6, initialImages.length);
-  const displayedImages = Array.from({ length: numImagesToDisplay }, (_, i) =>
-    initialImages[(currentImageIndex + i) % initialImages.length]
+  const displayedImages = Array.from(
+    { length: numImagesToDisplay },
+    (_, i) => initialImages[(currentImageIndex + i) % initialImages.length]
   );
 
   return (
@@ -94,13 +99,25 @@ export default function CourseOfferings() {
           <div
             key={index}
             className={`image-item ${
-              currentImageIndex === (currentImageIndex + index) % initialImages.length || clickedImageIndex === (currentImageIndex + index) % initialImages.length
+              currentImageIndex ===
+                (currentImageIndex + index) % initialImages.length ||
+              clickedImageIndex ===
+                (currentImageIndex + index) % initialImages.length
                 ? "active"
                 : ""
             }`}
-            onClick={() => handleImageClick((currentImageIndex + index) % initialImages.length)}
+            onClick={() =>
+              handleImageClick(
+                (currentImageIndex + index) % initialImages.length
+              )
+            }
           >
-            <img src={image} alt={`CourseOfferings ${(currentImageIndex + index) % initialImages.length + 1}`} />
+            <img
+              src={image}
+              alt={`CourseOfferings ${
+                ((currentImageIndex + index) % initialImages.length) + 1
+              }`}
+            />
           </div>
         ))}
       </div>
