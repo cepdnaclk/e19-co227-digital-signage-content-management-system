@@ -55,11 +55,23 @@ if (!isset($_SESSION['user_id'])) {
       <p><?php echo isset($role) ? $role : 'Guest'; ?></p>
       <div class="profile-dropdown">
         <ul>
-          <li><a href="/backend/logout.php">⟫  Logout</a></li>
+          <li><a href="/backend/logout.php">⟫ Logout</a></li>
         </ul>
       </div>
     </div>
   </header>
+  <?php if (isset($_GET['error'])) { ?>
+    <div class="alert error">
+      <h4>Error :</h4>
+      <p><?= $_GET['error'] ?></p>
+    </div>
+  <?php } ?>
+  <?php if (isset($_GET['success'])) { ?>
+    <div class="alert success">
+      <h4>Success :</h4>
+      <p><?= $_GET['success'] ?></p>
+    </div>
+  <?php } ?>
   <script src="/js/header.js"></script>
 </body>
 
