@@ -1,8 +1,9 @@
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
-<?php session_start();?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +12,27 @@
     <link rel="stylesheet" href="/css/login.css">
     <?php include APP_ROOT . "/includes/header_core.php" ?>
     <title>IT Center | Login</title>
+    <style>
+        .alert {
+            left: 50%;
+        }
+    </style>
 </head>
+
 <body>
     <div class="login">
+        <?php if (isset($_GET['error'])) { ?>
+            <div class="alert error">
+                <h4>Error :</h4>
+                <p><?= $_GET['error'] ?></p>
+            </div>
+        <?php } ?>
+        <?php if (isset($_GET['success'])) { ?>
+            <div class="alert success">
+                <h4>Success :</h4>
+                <p><?= $_GET['success'] ?></p>
+            </div>
+        <?php } ?>
         <div class="left">
             <h3>Admin Portal</h3>
             <h5>Information Technology Center - CMS</h5>
@@ -21,16 +40,16 @@
             <span>Need help? <a href="http://www.ceit.pdn.ac.lk/contact.php">Contact us</a></span>
         </div>
         <div class="content">
-        
+
             <form action="/backend/login.php" method="POST">
                 <h1>Login</h1>
                 <div class="login-input">
-                    
+
                     <label for="user_name">Username</label>
                     <input type="text" id="user_name" name="user_name" placeholder="John Doe">
                 </div>
                 <div class="login-input">
-                    
+
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="xxxxxxxx">
                 </div>
@@ -40,4 +59,5 @@
         </div>
     </div>
 </body>
+
 </html>

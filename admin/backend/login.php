@@ -34,7 +34,7 @@ if (isset($_POST["login"])) {
         exit();
     } else {
         // Authentication failed
-        header("Location: /pages/login.php?error=1");
+        header("Location: /pages/login.php?error=No user found with this username");
         exit();
     }
 } else {
@@ -42,4 +42,3 @@ if (isset($_POST["login"])) {
     header("Location: ../pages/login.php");
     exit();
 }
-?>
