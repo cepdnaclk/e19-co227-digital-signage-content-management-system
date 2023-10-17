@@ -44,7 +44,7 @@ $achivements = array_slice($achivements, 0, 4);
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(3,0);
+            sidebar(3, 0);
             ?>
         </div>
         <div class="right">
@@ -68,34 +68,36 @@ $achivements = array_slice($achivements, 0, 4);
                                     <p><br>Display Duration</p>
                                     <p class='card-duration'>From <?= $row["display_from"] ?><br>To <?= $row["display_to"] ?></p>
                                 </div>
-                                <div class='card-actions'>
-                                    <a href="/pages/upcoming/edit.php?edit_id=<?= $row['e_id'] ?>">
-                                        <button class="edit-button">
-                                            <span class="icon">&#9998;</span>
-                                            Edit
+                                <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
+                                    <div class='card-actions'>
+                                        <a href="/pages/upcoming/edit.php?edit_id=<?= $row['e_id'] ?>">
+                                            <button class="edit-button">
+                                                <span class="icon">&#9998;</span>
+                                                Edit
+                                            </button>
+                                        </a>
+                                        <?php if ($row['published'] == 1) { ?>
+                                            <a class="unpublish" href="/backend/api/upcoming/publish.php?publish_id=<?= $row['e_id'] ?>">
+                                                <button class="unpublish-button">
+                                                    <span class="icon">&#10680;</span>
+                                                    Unpublish
+                                                </button>
+                                            </a>
+                                        <?php } else { ?>
+                                            <a class="publish" href="/backend/api/upcoming/publish.php?publish_id=<?= $row['e_id'] ?>">
+                                                <button class="publish-button">
+                                                    <span class="icon">&#10004;</span>
+                                                    Publish
+                                                </button>
+                                            </a>
+                                        <?php } ?>
                                         </button>
-                                    </a>
-                                    <?php if ($row['published'] == 1) { ?>
-                                        <a class="unpublish" href="/backend/api/upcoming/publish.php?publish_id=<?= $row['e_id'] ?>">
-                                            <button class="unpublish-button">
-                                                <span class="icon">&#10680;</span>
-                                                Unpublish
-                                            </button>
-                                        </a>
-                                    <?php } else { ?>
-                                        <a class="publish" href="/backend/api/upcoming/publish.php?publish_id=<?= $row['e_id'] ?>">
-                                            <button class="publish-button">
-                                                <span class="icon">&#10004;</span>
-                                                Publish
-                                            </button>
-                                        </a>
-                                    <?php } ?>
-                                    </button>
-                                    <button class="delete-button">
-                                        <span class="icon">&#128465;</span>
-                                        <a href="/backend/api/upcoming/delete.php?delete_id=<?= $row['e_id'] ?>">Delete</a>
-                                    </button>
-                                </div>
+                                        <button class="delete-button">
+                                            <span class="icon">&#128465;</span>
+                                            <a href="/backend/api/upcoming/delete.php?delete_id=<?= $row['e_id'] ?>">Delete</a>
+                                        </button>
+                                    </div>
+                                <?php } ?>
                             </div>
                         <?php }
                         else { ?>
@@ -121,34 +123,36 @@ $achivements = array_slice($achivements, 0, 4);
                                     <p><br>Display Duration</p>
                                     <p class='card-duration'>From <?= $row["display_from"] ?><br>To <?= $row["display_to"] ?></p>
                                 </div>
-                                <div class='card-actions'>
-                                    <a href="/pages/previous/edit.php?edit_id=<?= $row['e_id'] ?>">
-                                        <button class="edit-button">
-                                            <span class="icon">&#9998;</span>
-                                            Edit
+                                <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
+                                    <div class='card-actions'>
+                                        <a href="/pages/previous/edit.php?edit_id=<?= $row['e_id'] ?>">
+                                            <button class="edit-button">
+                                                <span class="icon">&#9998;</span>
+                                                Edit
+                                            </button>
+                                        </a>
+                                        <?php if ($row['published'] == 1) { ?>
+                                            <a class="unpublish" href="/backend/api/previous/publish.php?publish_id=<?= $row['e_id'] ?>">
+                                                <button class="unpublish-button">
+                                                    <span class="icon">&#10680;</span>
+                                                    Unpublish
+                                                </button>
+                                            </a>
+                                        <?php } else { ?>
+                                            <a class="publish" href="/backend/api/previous/publish.php?publish_id=<?= $row['e_id'] ?>">
+                                                <button class="publish-button">
+                                                    <span class="icon">&#10004;</span>
+                                                    Publish
+                                                </button>
+                                            </a>
+                                        <?php } ?>
                                         </button>
-                                    </a>
-                                    <?php if ($row['published'] == 1) { ?>
-                                        <a class="unpublish" href="/backend/api/previous/publish.php?publish_id=<?= $row['e_id'] ?>">
-                                            <button class="unpublish-button">
-                                                <span class="icon">&#10680;</span>
-                                                Unpublish
-                                            </button>
-                                        </a>
-                                    <?php } else { ?>
-                                        <a class="publish" href="/backend/api/previous/publish.php?publish_id=<?= $row['e_id'] ?>">
-                                            <button class="publish-button">
-                                                <span class="icon">&#10004;</span>
-                                                Publish
-                                            </button>
-                                        </a>
-                                    <?php } ?>
-                                    </button>
-                                    <button class="delete-button">
-                                        <span class="icon">&#128465;</span>
-                                        <a href="/backend/api/previous/delete.php?delete_id=<?= $row['e_id'] ?>">Delete</a>
-                                    </button>
-                                </div>
+                                        <button class="delete-button">
+                                            <span class="icon">&#128465;</span>
+                                            <a href="/backend/api/previous/delete.php?delete_id=<?= $row['e_id'] ?>">Delete</a>
+                                        </button>
+                                    </div>
+                                <?php } ?>
                             </div>
                         <?php }
                         else { ?>
@@ -180,36 +184,38 @@ $achivements = array_slice($achivements, 0, 4);
                                     </p>
 
                                 </div>
-                                <div class='card-actions'>
-                                    <a href="/pages/achievements/edit.php?edit_id=<?= $row['a_id'] ?>">
-                                        <button class="edit-button">
-                                            <span class="icon">&#9998;</span>
-                                            Edit
-                                        </button>
-                                    </a>
-                                    <?php if ($row['published'] == 1) { ?>
-                                        <a class="unpublish" href="/backend/api/achivements/publish.php?publish_id=<?= $row['a_id'] ?>">
-                                            <button class="unpublish-button">
-                                                <span class="icon">&#10680;</span>
-                                                Unpublish
+                                <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
+                                    <div class='card-actions'>
+                                        <a href="/pages/achievements/edit.php?edit_id=<?= $row['a_id'] ?>">
+                                            <button class="edit-button">
+                                                <span class="icon">&#9998;</span>
+                                                Edit
                                             </button>
                                         </a>
-                                    <?php } else { ?>
-                                        <a class="publish" href="/backend/api/achivements/publish.php?publish_id=<?= $row['a_id'] ?>">
-                                            <button class="publish-button">
-                                                <span class="icon">&#10004;</span>
-                                                Publish
-                                            </button>
-                                        </a>
-                                    <?php } ?>
+                                        <?php if ($row['published'] == 1) { ?>
+                                            <a class="unpublish" href="/backend/api/achivements/publish.php?publish_id=<?= $row['a_id'] ?>">
+                                                <button class="unpublish-button">
+                                                    <span class="icon">&#10680;</span>
+                                                    Unpublish
+                                                </button>
+                                            </a>
+                                        <?php } else { ?>
+                                            <a class="publish" href="/backend/api/achivements/publish.php?publish_id=<?= $row['a_id'] ?>">
+                                                <button class="publish-button">
+                                                    <span class="icon">&#10004;</span>
+                                                    Publish
+                                                </button>
+                                            </a>
+                                        <?php } ?>
 
-                                    <a href="/backend/api/achivements/delete.php?delete_id=<?= $row['a_id'] ?>">
-                                        <button class="delete-button">
-                                            <span class="icon">&#128465;</span>
-                                            Delete
-                                        </button>
-                                    </a>
-                                </div>
+                                        <a href="/backend/api/achivements/delete.php?delete_id=<?= $row['a_id'] ?>">
+                                            <button class="delete-button">
+                                                <span class="icon">&#128465;</span>
+                                                Delete
+                                            </button>
+                                        </a>
+                                    </div>
+                                <?php } ?>
                             </div>
                         <?php }
                         else { ?>

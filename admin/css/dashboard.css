@@ -79,7 +79,7 @@
 
 /* Add styles for the elegant widget */
 .elegant-widget {
-  background: linear-gradient(to bottom, #FDF1EC, #FFDADA);
+  background: linear-gradient(to bottom, #fdf1ec, #ffdada);
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px;
@@ -199,7 +199,7 @@ tr:hover {
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-  background: linear-gradient(to bottom, #FDF1EC, #FFDADA);
+  background: linear-gradient(to bottom, #fdf1ec, #ffdada);
 }
 
 .custom-large-card h2 {
@@ -259,6 +259,46 @@ tr:hover {
 }
 
 .checkbox input[type="checkbox"] {
-  width: 20px; 
+  width: 20px;
   height: 20px;
+}
+
+.course {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 4rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.course > img {
+  position: absolute;
+  height: 120%;
+  width: 120%;
+  object-fit: contain;
+  z-index: -1;
+}
+
+.course .container {
+  margin-top: 10%;
+}
+
+.course .container h1 {
+  font-size: 3rem;
+  font-weight: 500;
+  color: var(--color-1);
+}
+
+.course .container p {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.course .container a {
+  display: block;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-5);
+  width: max-content;
+  border-radius: 5px;
+  color: white;
 }

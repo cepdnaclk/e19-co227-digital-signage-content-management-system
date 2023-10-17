@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $event_id = $_GET["edit_id"];
     $row = getPreviousEventById($event_id);
     if (isset($row['error']) && !isset($_GET['error']))
-    header("Location: ?error={$row['error']}");
+        header("Location: ?error={$row['error']}");
 
     $event_name = $row['e_name'];
     $event_date = $row['e_date'];
@@ -24,6 +24,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <head>
     <link rel="stylesheet" href="/css/addnewevent.css">
     <title>Edit Event Information Form</title>
+    <style>
+        .container {
+            padding: 1rem 0;
+            background-color: var(--color-1);
+            box-shadow: 0 0 0 1000px var(--color-1);
+        }
+
+        .container .title {
+            filter: invert();
+        }
+
+        .container .title a {
+            opacity: 1;
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(3,2);
+            sidebar(3, 2);
             ?>
         </div>
 
@@ -40,7 +56,14 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         ?>
         <div class="right">
             <div class="add-events">
-                <h2>Edit event information</h2>
+                <div class="container">
+                    <div class="title">
+                        <div>
+                            <h1><a href="./">Previous Events ></a>Edit Event</h1>
+                            <p>edit the <?php echo $event_name; ?> event</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-container">
                     <form action="/backend/api/previous/edit.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="e_id" id="e_id" value="<?php echo $event_id; ?>">

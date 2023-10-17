@@ -5,6 +5,22 @@
 <head>
     <link rel="stylesheet" href="/css/addachievement.css">
     <title>Achievement Information Form</title>
+    <style>
+        .container {
+            padding: 1rem 0;
+            background-color: var(--color-1);
+            box-shadow: 0 0 0 1000px var(--color-1);
+        }
+
+        .container .title {
+            filter: invert();
+        }
+
+        .container .title a {
+            opacity: 1;
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -12,7 +28,7 @@
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(3,3);
+            sidebar(3, 3);
             ?>
         </div>
 
@@ -21,7 +37,14 @@
         ?>
         <div class="right">
             <div class="add-achievement">
-                <h2>Add Achievement</h2>
+                <div class="container">
+                    <div class="title">
+                        <div>
+                            <h1><a href="./">Achievements ></a>Add Achivement</h1>
+                            <p>Add a new Achievement</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-container">
                     <form action="/backend/api/achivements/add.php" method="POST" enctype="multipart/form-data">
                         <label for="a_img">Select an Image:</label>
@@ -35,10 +58,10 @@
                         <br>
                         <label for="a_date">Date:</label>
                         <input type="date" name="a_date" id="a_date">
-                        <br>  
+                        <br>
                         <label for="published">Published:</label>
                         <input type="checkbox" name="published" id="published">
-                        <br>                    
+                        <br>
                         <input type="submit" value="Upload">
                     </form>
                 </div>
