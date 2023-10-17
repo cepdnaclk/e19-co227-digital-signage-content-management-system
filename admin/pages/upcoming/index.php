@@ -22,7 +22,7 @@ if (isset($events['error']))
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(3,1);
+            sidebar(3, 1);
             ?>
         </div>
         <div class="right">
@@ -33,7 +33,7 @@ if (isset($events['error']))
                 <div class="container">
                     <div class="title">
                         <h1>Upcoming Events</h1>
-                        <a href="upcoming/add.php"><img src="/images/Add_round.svg" alt=""> Add Event</a>
+                        <a href="add.php"><img src="/images/Add_round.svg" alt=""> Add Event</a>
 
                     </div>
                     <div class="card-container">

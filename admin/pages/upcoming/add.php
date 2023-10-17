@@ -5,6 +5,22 @@
 <head>
     <link rel="stylesheet" href="/css/addnewevent.css">
     <title>New Event Information Form</title>
+    <style>
+        .container {
+            padding: 1rem 0;
+            background-color: var(--color-1);
+            box-shadow: 0 0 0 1000px var(--color-1);
+        }
+
+        .container .title {
+            filter: invert();
+        }
+
+        .container .title a {
+            opacity: 1;
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -12,7 +28,7 @@
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(3,1);
+            sidebar(3, 1);
             ?>
         </div>
 
@@ -21,7 +37,14 @@
         ?>
         <div class="right">
             <div class="add-events">
-                <h2>Add New Event</h2>
+                <div class="container">
+                    <div class="title">
+                        <div>
+                            <h1><a href="./">Upcoming Events ></a>Add Event</h1>
+                            <p>Add a new upcoming event</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-container">
                     <form action="/backend/api/upcoming/add.php" method="POST" enctype="multipart/form-data">
                         <label for="e_img">Select an Image:</label>
