@@ -86,7 +86,8 @@ if (isset($_GET['c_id'])) {
                         <!-- Option 3: Display Both Poster Image and Manual Details -->
                         <div id="both_section" >
                             <label for="poster_image_both">Select a Poster Image:</label>
-                            <input type="file" name="poster_image" id="poster_image_both">
+                            <input type="file" name="image" id="poster_image_both">
+                            <input type="text" name="image_loc" style="display:none" value="<?= $course['Poster_img'] ?>">
                             <br><br>
                             <label for="duration_both">Duration (in months):</label>
                             <input type="number" name="duration" id="duration_both" value="<?= $course['duration(months)'] ?>">
