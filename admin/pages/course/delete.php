@@ -14,7 +14,6 @@ if (isset($_GET['c_id'])) {
         exit;
     }
 } else {
-  
     echo "Course ID not provided.";
     exit;
 }
@@ -31,15 +30,25 @@ if (isset($_GET['c_id'])) {
 </head>
 
 <body>
+    <div class="overlay" id="overlay"></div>
     <div class="card">
-    <h2>Delete Confirmation</h2>
-    <p><?php echo $courseCode; ?> and all its details & lab slots will be deleted permanently.</p>
+        <h2>Delete Confirmation</h2>
+        <p><?php echo $courseCode; ?> and all its details & lab slots will be deleted permanently.</p>
 
-    <form action="/backend/api/course?delete=<?php echo $courseId; ?>" method="POST">
-        <button type="submit" name="confirmDelete">YES</button>
-        <a href="javascript:history.back();"><button type="button">NO</button></a>
-    </form>
-</div>
+            <a href="/backend/api/course?delete=<?php echo $courseId; ?>"><button type="submit" class="yes">YES</button></a>
+            <a href="javascript:history.back();"><button type="button">NO</button></a>
+    </div>
+    <script>
+        // JavaScript to show the overlay and modal
+        document.addEventListener("DOMContentLoaded", function () {
+            const overlay = document.getElementById("overlay");
+            const card = document.querySelector(".card"); 
+
+            // Show the overlay and modal
+            overlay.style.display = "block";
+            card.style.display = "block"; 
+        });
+    </script>
 </body>
 
 </html>

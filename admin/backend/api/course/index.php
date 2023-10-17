@@ -40,10 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
         if ($result) {
             // Send a JSON response for success
-            header("Location: /pages/course.php?success={$result['message']}");
+            header("Location: /pages/course?success={$result['message']}");
         } else {
             // Send a JSON response for error
-            header("Location: /pages/course.php?error={$result['error']}");
+            header("Location: /pages/course?error={$result['error']}");
         }
     } else if (isset($_GET['c_id'])) {
         // If 'c_id' is provided in the query parameters, retrieve a single course
