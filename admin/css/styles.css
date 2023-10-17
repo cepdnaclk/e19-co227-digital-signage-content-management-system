@@ -83,3 +83,56 @@ a {
 .title a img {
   filter: invert() brightness(2);
 }
+
+.alert {
+  position: fixed;
+  z-index: 100;
+  padding: 1rem 2rem;
+  top: 8rem;
+  left: calc(50% + 150px);
+  transform: translate(-50%, -50%);
+  color: white;
+  width: 60%;
+  animation: alert forwards 5s;
+  border-radius: 5px;
+  box-shadow: 0 0 10px black;
+}
+
+.alert.error {
+  background-color: var(--color-1);
+}
+
+.alert.success {
+  background-color: var(--color-4);
+}
+
+@keyframes alert {
+  0% {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  5% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  6% {
+    transform: translate(-51%, -50%);
+  }
+  7% {
+    transform: translate(-50%, -50%);
+  }
+  8% {
+    transform: translate(-49%, -50%);
+  }
+  9% {
+    transform: translate(-50%, -50%);
+  }
+  90% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+}

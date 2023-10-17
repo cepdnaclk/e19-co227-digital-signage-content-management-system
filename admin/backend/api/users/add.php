@@ -24,6 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else
             header("Location: /pages/users/?success={$result['message']}");
     } else {
-        return array("error" => "All fields must fill");
+        header("Location: /pages/users/?error=Please fill all the required fields");
     }
 }
