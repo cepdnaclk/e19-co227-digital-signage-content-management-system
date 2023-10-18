@@ -215,3 +215,24 @@ function getPublishedState(int $c_id)
 
     return (bool)$published; // Convert the result to a boolean (true if published, false if not)
 }
+
+function getCourseCoordinators(){
+
+  $coordinators = [];
+  global $conn;
+
+  // Query to select unique course coordinators from the course table
+  $sql = "SELECT DISTINCT c_coordinator FROM course";
+
+  // Execute the query
+  $result = $conn->query($sql);
+
+  // Check if the query was successful
+  if ($result && $result->num_rows > 0) {
+      // Fetch course coordinators and add them to the $coordinators array
+      while ($row = $result->fetch_assoc()) {
+          $coordinators[] = $row['c_coordinator'];
+      }
+  }
+  return $coordinators;
+}

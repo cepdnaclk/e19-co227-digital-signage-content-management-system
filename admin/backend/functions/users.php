@@ -154,3 +154,27 @@ function deleteUser(int $userId)
         return array("error" => $stmt->error);
     }
 }
+
+function get_coordinators(){
+    global $conn;
+    $coordinators = [];
+
+    // Use a prepared statement to prevent SQL injection
+    $sql = $conn->prepare("SELECT user_name FROM user WHERE clearense = 'course_c'");
+
+    // Execute the query
+    $sql->execute();
+    
+    // Get the result set
+    $result = $sql->get_result();
+
+    // Check if the query was successful
+    if ($result && $result->num_rows > 0) {
+        // Fetch course coordinators and add them to the $coordinators array
+        while ($row = $result->fetch_assoc()) {
+            $coordinators[] = $row['user_name'];
+        }
+    }
+
+    return $coordinators;
+}

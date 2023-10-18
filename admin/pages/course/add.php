@@ -1,4 +1,17 @@
-<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/users.php";
+
+// Fetch the list of course coordinators from the course table
+$coordinators = get_coordinators();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Process the form data here
+    // Retrieve the selected coordinator from $_POST["c_coordinator"]
+    $selectedCoordinator = $_POST["c_coordinator"];
+    // Rest of your form processing logic
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -30,8 +43,17 @@
                         <label for="c_name">Course Name:</label>
                         <input type="text" name="c_name" id="c_name" required>
                         <br><br>
-                        <label for="c_coordintaor">Course Coordinator's Name:</label>
-                        <input type="text" name="c_coordinator" id="c_coordinator" required>
+                        <label for="c_coordinator">Course Coordinator:</label>
+                        <select id="coordinator-dropdown" name="c_coordinator">
+                            <option value="">Select a Course Coordinator</option>
+                            <?php
+                            $coordinators = get_coordinators(); // Fetch course coordinators using your function
+                            foreach ($coordinators as $coordinator) {
+                                echo "<option value='$coordinator'>$coordinator</option>";
+                            }
+                            ?>
+                        </select>
+
                         <br><br>
                         <label for="description">Description:</label>
                         <textarea name="description" id="description" rows="4" cols="50"></textarea>
