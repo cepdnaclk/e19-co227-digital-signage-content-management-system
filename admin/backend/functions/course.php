@@ -16,38 +16,16 @@ function addCourse($c_code, $c_name)
 }
 
 // Function to edit an existing course
-function editCourse($c_id, $c_coordinator, $description, $file, $file_name, $duration, $intake_date, $course_fee, $poster_description)
+function editCourse($c_id, $c_coordinator, $description, $file, $file_path, $duration, $intake_date, $course_fee, $poster_description)
 {
     global $conn;
+    $targetFile = $file_path;
 
-    $targetFile = $file_name;
-        // Check if a file was uploaded
-        if (!empty($file['name'])) {
-            $targetDirectory = "/images/course-posters/";
-            $targetFile = $targetDirectory . basename($file["name"]);
-    
-            // Check if the file is an image
-            $allowedExtensions = ["jpg", "jpeg", "png"];
-            $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-    
-            if (!in_array($imageFileType, $allowedExtensions)) {
-                $result = array('error' => "Only JPG, JPEG, and PNG files are allowed.");
-                return $result;
-            }
-    
-            // Move the uploaded file to the target directory
-            if (move_uploaded_file($file["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $targetFile)) {
-                // File uploaded successfully
-            } else {
-                $result = array('error' => "Error uploading the image.");
-                return $result;
-            }
-        }
-        else if ($file['name']) {
+    if ($file['name']) {
         if (isset($file_path)) {
-            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $file_name)) {
-                if (!unlink($_SERVER['DOCUMENT_ROOT'] . $file_name)) {
-                    $result = array('error' => "Error uploading the image. Couldn't delete old one" . $_SERVER['DOCUMENT_ROOT'] . $file_name);
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
+                if (!unlink($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
+                    $result = array('error' => "Error uploading the image. Couldn't delete old one" . $_SERVER['DOCUMENT_ROOT'] . $file_path);
                     return $result;
                 }
             }
@@ -69,23 +47,35 @@ function editCourse($c_id, $c_coordinator, $description, $file, $file_name, $dur
             }
         }
     }
+
     $stmt = $conn->prepare("UPDATE course SET c_coordinator = ?, 
     `description` = ?,
-    Poster_img = ?,
+    `Poster_img` = ?,
     `duration(months)` = ?,
     new_intake_date = ?,
     total_fee = ?,
     display_description = ?
     WHERE c_id = ?");
 
-    $stmt->bind_param("sssisisi",  $c_coordinator, $description, $targetFile, 
-    $duration, $intake_date, $course_fee, $poster_description, $c_id);
+    $stmt->bind_param(
+        "sssisisi",
+        $c_coordinator,
+        $description,
+        $targetFile,
+        $duration,
+        $intake_date,
+        $course_fee,
+        $poster_description,
+        $c_id
+    );
 
     if ($stmt->execute()) {
-        return true; // Success
+        $result = array('message' => "Course Updated Successfully");
     } else {
-        return false; // Error
+        $result = array('error' => $stmt->error);
     }
+
+    return $result;
 }
 
 // Function to delete a course
