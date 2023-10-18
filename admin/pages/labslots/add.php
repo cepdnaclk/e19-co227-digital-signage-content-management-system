@@ -116,7 +116,7 @@ else {
                             <input type="time" name="etime" id="etime" v-model="end" @change="handleEndChange" min="09:00:00" max="17:00:00">
                         </div>
                         <input type="text" name="lab" id="lab" style="display: none;" value="<?= isset($_GET['lab']) ? $_GET['lab'] : '' ?>">
-                        <input type="text" name="updateid" id="updateid" style="display: none;" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>">
+                        <input type="text" name="update_id" id="updateid" style="display: none;" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>">
                         <button type="submit" class="add"><?= !isset($_GET['id']) ? 'CREATE SLOT' : 'UPDATE SLOT' ?></button>
                     </form>
                     <div class="timetable">

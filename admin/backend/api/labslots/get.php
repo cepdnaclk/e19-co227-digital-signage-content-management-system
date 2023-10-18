@@ -11,6 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $index = getWeekIndex($_GET['date']);
         $result = getLabSlotsToday($index, $_GET['date']);
 
-        echo json_encode($result);
+        if (isset($result['error']))
+            echo json_encode($result['error']);
+        else
+            echo json_encode($result);
     }
 }

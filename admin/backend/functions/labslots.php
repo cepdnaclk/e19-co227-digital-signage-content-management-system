@@ -38,7 +38,8 @@ function getLabSlotsToday($today, $day)
     $stmt->bind_param('is', $today, $day);
 
     // Execute the prepared statement
-    $stmt->execute();
+    if (!$stmt->execute())
+        return array("error" => "failed to retrive data");
 
     // Get the result set
     $result = $stmt->get_result();

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 15, 2023 at 04:31 PM
+-- Generation Time: Oct 18, 2023 at 03:03 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 SET
@@ -31,7 +31,7 @@ SET
 
 --
 -- Database: `cmsdb`
-USE cmsdb;
+--
 -- --------------------------------------------------------
 --
 -- Table structure for table `achievement`
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `achievement` (
   `a_date` date DEFAULT NULL,
   `a_img` varchar(100) NOT NULL,
   `added_by` int(11) NOT NULL COMMENT 'F_key - UserId',
-  `published` tinyint(4) DEFAULT 0,
+  `published` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`a_id`),
   KEY `fk_admin_id` (`added_by`)
 ) ENGINE = MyISAM AUTO_INCREMENT = 5 DEFAULT CHARSET = latin1;
@@ -69,36 +69,18 @@ VALUES
     'Achievement 1',
     'Description 1',
     '2023-06-10',
-    'achievement1.jpg',
-    1,
-    NULL
+    '/images/upcoming-event-posters/img-2.png',
+    7,
+    1
   ),
   (
     2,
     'Achievement 2',
     'Description 2',
     '2023-07-10',
-    'achievement2.jpg',
-    2,
-    NULL
-  ),
-  (
-    3,
-    'Achievement 3',
-    'Description 3',
-    '2023-08-10',
-    'achievement3.jpg',
-    3,
-    NULL
-  ),
-  (
-    4,
-    'Achievement 4',
-    'Description 4',
-    '2023-09-10',
-    'achievement5.jpg',
-    4,
-    NULL
+    '/images/upcoming-event-posters/img-1.png',
+    7,
+    1
   );
 
 -- --------------------------------------------------------
@@ -163,7 +145,8 @@ CREATE TABLE IF NOT EXISTS `course` (
   `new_intake_date` date DEFAULT NULL,
   `total_fee` int(11) DEFAULT NULL,
   `display_description` text DEFAULT NULL,
-  `published` tinyint(4) DEFAULT 0,
+  `published` tinyint(4) NOT NULL DEFAULT 0,
+  `poster` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`c_id`)
 ) ENGINE = MyISAM AUTO_INCREMENT = 10 DEFAULT CHARSET = latin1;
 
@@ -182,7 +165,8 @@ INSERT INTO
     `new_intake_date`,
     `total_fee`,
     `display_description`,
-    `published`
+    `published`,
+    `poster`
   )
 VALUES
   (
@@ -191,12 +175,13 @@ VALUES
     'Cisco Certified Network Associate',
     'John Doe',
     'A comprehensive course on network fundamentals and Cisco technologies.',
-    'ccna_img.jpg',
+    '',
     6,
     '2023-09-15',
     1500,
     'Learn the essentials of networking and gain Cisco certification.',
-    0
+    0,
+    NULL
   ),
   (
     6,
@@ -209,7 +194,8 @@ VALUES
     '2023-10-05',
     1200,
     'Build websites and web applications with HTML, CSS, and JavaScript.',
-    0
+    0,
+    NULL
   ),
   (
     7,
@@ -222,7 +208,8 @@ VALUES
     '2023-11-20',
     1800,
     'Get started with machine learning and understand its applications.',
-    0
+    0,
+    NULL
   ),
   (
     8,
@@ -235,7 +222,8 @@ VALUES
     '2023-12-10',
     900,
     'Discover the inner workings of computers and how to fix common issues.',
-    0
+    0,
+    NULL
   ),
   (
     9,
@@ -248,7 +236,8 @@ VALUES
     '2024-01-05',
     1600,
     'Master the art of database administration and SQL query optimization.',
-    0
+    0,
+    NULL
   );
 
 -- --------------------------------------------------------
@@ -270,11 +259,11 @@ CREATE TABLE IF NOT EXISTS `dashboard` (
 INSERT INTO
   `dashboard` (`feature`, `time`, `time_slide`)
 VALUES
-  ('Lab Slots', 3, 1),
-  ('Course Offerings', 2, 1),
-  ('Upcoming Events', 2, 1),
-  ('Previous Events', 2, 1),
-  ('Achievements', 3, 1);
+  ('Lab Slots', 1000, NULL),
+  ('Course Offerings', 1000, 1),
+  ('Upcoming Events', 1000, 1),
+  ('Previous Events', 1000, 1),
+  ('Achievements', 1000, 1);
 
 -- --------------------------------------------------------
 --
@@ -315,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `labslot` (
   `oneday` date DEFAULT NULL,
   `published` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`slot_id`)
-) ENGINE = MyISAM AUTO_INCREMENT = 20 DEFAULT CHARSET = latin1;
+) ENGINE = MyISAM AUTO_INCREMENT = 31 DEFAULT CHARSET = latin1;
 
 --
 -- Dumping data for table `labslot`
@@ -393,13 +382,63 @@ VALUES
     NULL
   ),
   (
-    17,
+    20,
+    'ccna',
+    'CCNA01',
+    '08:00:00',
+    '10:00:00',
+    0,
+    NULL,
+    NULL
+  ),
+  (
+    22,
     'lab1',
-    'IT01',
-    '13:30:00',
-    '15:00:00',
+    'CCNA01',
+    '12:00:00',
+    '17:00:00',
+    5,
+    NULL,
+    NULL
+  ),
+  (
+    23,
+    'lab2',
+    'ML101',
+    '08:00:00',
+    '10:00:00',
     2,
     NULL,
+    NULL
+  ),
+  (
+    24,
+    'ccna',
+    'CCNA01',
+    '13:00:00',
+    '17:00:00',
+    2,
+    NULL,
+    NULL
+  ),
+  (
+    25,
+    'sr',
+    'CCNA01',
+    '11:05:00',
+    '12:45:00',
+    2,
+    NULL,
+    NULL
+  ),
+  (
+    30,
+    'lab1',
+    'CCNA01',
+    '08:00:00',
+    '13:30:00',
+    2,
+    '2023-10-25',
     NULL
   );
 
@@ -459,11 +498,11 @@ VALUES
     '2023-09-23',
     '15:00:00',
     'Seminar Room',
-    'event4.jpg',
+    '/images/previous-event-posters/img2.jpg',
     '2023-09-16',
-    '2023-09-28',
-    4,
-    0
+    '2023-11-21',
+    7,
+    1
   ),
   (
     5,
@@ -471,11 +510,11 @@ VALUES
     '2023-10-20',
     '09:40:00',
     'IT center',
-    '../images/previous-event-posters/Capture.PNG',
+    '/images/previous-event-posters/upcoming-event-4.png',
     '2023-10-06',
     '2023-10-19',
-    1,
-    0
+    7,
+    1
   );
 
 -- --------------------------------------------------------
@@ -497,7 +536,7 @@ CREATE TABLE IF NOT EXISTS `upcoming_event` (
   `published` tinyint(4) DEFAULT 0,
   PRIMARY KEY (`e_id`),
   KEY `fk_admin_id` (`added_by`)
-) ENGINE = MyISAM AUTO_INCREMENT = 7 DEFAULT CHARSET = latin1;
+) ENGINE = MyISAM AUTO_INCREMENT = 8 DEFAULT CHARSET = latin1;
 
 --
 -- Dumping data for table `upcoming_event`
@@ -534,10 +573,10 @@ VALUES
     '2023-09-23',
     '15:00:00',
     'Seminar Room',
-    'event4.jpg',
+    '/images/upcoming-event-posters/upcoming-event-4.png',
     '2023-09-16',
     '2023-09-28',
-    4,
+    10,
     0
   ),
   (
@@ -546,11 +585,11 @@ VALUES
     '2023-10-20',
     '09:40:00',
     'IT center',
-    '../images/upcoming-event-posters/Capture.PNG',
+    '/images/upcoming-event-posters/upcoming-event-2.jpg',
     '2023-10-06',
     '2023-10-19',
-    1,
-    0
+    7,
+    1
   ),
   (
     6,
@@ -558,9 +597,21 @@ VALUES
     '2023-10-19',
     '12:00:00',
     'IT center Hall',
-    '/images/upcoming-event-posters/Screenshot (11).png',
+    '/images/upcoming-event-posters/upcoming-event-1.jpg',
     '2023-10-15',
     '2023-10-19',
+    7,
+    1
+  ),
+  (
+    7,
+    'Event edited',
+    '2023-10-31',
+    '08:41:00',
+    'IT center',
+    '/images/upcoming-event-posters/upcoming-event-3.jpg',
+    '2023-10-16',
+    '2023-10-30',
     7,
     1
   );
@@ -579,7 +630,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `contact` varchar(20) NOT NULL,
   `clearense` varchar(20) NOT NULL,
   PRIMARY KEY (`u_id`)
-) ENGINE = MyISAM AUTO_INCREMENT = 9 DEFAULT CHARSET = latin1;
+) ENGINE = MyISAM AUTO_INCREMENT = 11 DEFAULT CHARSET = latin1;
 
 --
 -- Dumping data for table `user`
@@ -595,12 +646,12 @@ INSERT INTO
   )
 VALUES
   (
-    8,
+    9,
     'test1',
-    'test1@test.com',
+    'test1@test.co',
     '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4',
-    '',
-    'admin'
+    '4564654654',
+    'course_c'
   ),
   (
     7,
@@ -618,15 +669,15 @@ VALUES
     '',
     'admin'
   ),
-(
+  (
     10,
-    'Dr. test cood',
-    'cood@test.com',
+    'admin1',
+    'admin@test.com',
     '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4',
     '',
-    'course_c'
+    'admin'
   );
-  
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
