@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./courseofferings.css";
-import img1 from "../../assets/course-img-1.jpeg";
-import img2 from "../../assets/course-img-2.jpeg";
-import img3 from "../../assets/course-img-3.jpeg";
-
-const initialImages = [img1, img2, img3]; // All images
+import axios from "axios";
 
 // const imageTitles = [
 //   "NBQSA -The National Best Quality Software Awards",
@@ -20,6 +16,25 @@ export default function CourseOfferings() {
     null
   );
 
+  const [initialImages, setInitialImages] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`/backend/api/course/get.php`)
+      .then((res) => {
+        if (res.data.length >= 1) {
+          let array = [];
+          res.data.forEach((ele) => {
+            array.push(axios.defaults.baseURL + ele["Poster_img"]);
+          });
+          setInitialImages(array);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (clickedImageIndex === null) {
@@ -32,7 +47,7 @@ export default function CourseOfferings() {
     return () => {
       clearInterval(interval);
     };
-  }, [clickedImageIndex]);
+  }, [clickedImageIndex, initialImages]);
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prevIndex) =>

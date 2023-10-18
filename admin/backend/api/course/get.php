@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json');
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $result = getCourses();
+    $result = getCoursesDisplay();
     if (!isset($result['error'])) {
         echo json_encode($result);
     } else {

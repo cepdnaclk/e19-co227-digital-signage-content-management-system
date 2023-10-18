@@ -22,7 +22,7 @@ function editCourse($c_id, $c_coordinator, $description, $file, $file_path, $dur
     $targetFile = $file_path;
 
     if (isset($file['name'])) {
-        if (isset($file_path)) {
+        if ($file_path != "") {
             if (file_exists($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
                 if (!unlink($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
                     $result = array('error' => "Error uploading the image. Couldn't delete old one" . $_SERVER['DOCUMENT_ROOT'] . $file_path);
@@ -112,7 +112,7 @@ function getCoursesDisplay()
 {
     global $conn;
 
-    $result = $conn->query("SELECT c_id, c_code, c_name FROM course WHERE published = 1");
+    $result = $conn->query("SELECT c_id, c_code, c_name, Poster_img FROM course WHERE published = 1");
     if ($result === false) {
         return false; // Error in query execution
     }
