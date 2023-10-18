@@ -181,10 +181,16 @@ else {
                     return calHeight(props.start, props.end) + "px";
                 });
                 const gridRow = computed(() => {
-                    return findGridRow(props.start) + 2 || 2;
+                    const row = findGridRow(props.start) + 2;
+                    if (row < 2)
+                        return 2
+                    return row
                 });
                 const gridCol = computed(() => {
-                    return parseInt(props.date) + 2 || 2;
+                    const col = parseInt(props.date) + 2;
+                    if (col < 2)
+                        return 2
+                    return col
                 });
                 const top = computed(() => {
                     return calTop(props.start) + "px";

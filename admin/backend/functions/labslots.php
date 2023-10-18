@@ -33,8 +33,7 @@ function getLabSlotsToday($today, $day)
     global $conn;
 
     // Prepare the SQL query
-    $stmt = $conn->prepare("SELECT * FROM labslot WHERE date = ? OR oneday = ?");
-    $day = date("Y-m-d");
+    $stmt = $conn->prepare("SELECT * FROM labslot WHERE date = ? AND ( oneday = ? OR oneday IS NULL)");
     $stmt->bind_param('is', $today, $day);
 
     // Execute the prepared statement

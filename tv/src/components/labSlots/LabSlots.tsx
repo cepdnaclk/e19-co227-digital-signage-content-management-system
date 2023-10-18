@@ -69,6 +69,7 @@ const LabSlots: React.FC = () => {
       .get(`/backend/api/labslots/get.php?date=${formattedDate}`)
       .then((res) => {
         setData([]);
+        console.log(res.data);
         if (res.data.length >= 1) {
           if (param != "all") {
             setData(res.data.filter((slot) => slot.lab == param));
