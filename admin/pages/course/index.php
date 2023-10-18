@@ -72,7 +72,7 @@
                             <a href="/backend/api/course/publish.php?c_id=${course.c_id}" class="btn btn-publish" data-course-id="${course.c_id}">
                                 ${course.published == 1 ? 'Unpublish' : 'Publish'}
                             </a>&nbsp;
-                            <a href="/pages/coursemanage.php" class="btn btn-preview" data-course-id="${course.c_id}">Preview</a>&nbsp;
+                            <a href="/pages/course/preview.php?c_id=${course.c_id}" class="btn btn-preview" data-course-id="${course.c_id}">Preview</a>&nbsp;
                             <a href="/pages/course/coursemanage.php" class="btn btn-manage" data-course-id="${course.c_id}">Manage</a>&nbsp;
                             <a href="/pages/course/delete.php?c_id=${course.c_id}" class="btn btn-delete" data-course-id="${course.c_id}">Delete</a>
                         </td>
