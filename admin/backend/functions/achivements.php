@@ -224,7 +224,13 @@ function publishAchivement(int $a_id)
     $result = array();
     // Execute the update query
     if (mysqli_stmt_execute($stmt)) {
-        $result = array('success' => "published succesfully");
+        $publishedState = getPublishedState($a_id);
+
+        if ($publishedState) {
+            $result = array('message' => 'Achievement has been published successfully.');
+        } else {
+            $result = array('message' => 'Achievement has been unpublished successfully.');
+        }
     } else {
         $result = array('error' => mysqli_error($conn));
     }
@@ -232,4 +238,24 @@ function publishAchivement(int $a_id)
     // Close the statement
     $stmt->close();
     return $result;
+}
+
+function getPublishedState(int $a_id)
+{
+    global $conn;
+
+    // Query the current state of the 'published' column for the given achievement
+    $sql = "SELECT published FROM achievement WHERE a_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $a_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $published);
+
+    // Fetch the result
+    mysqli_stmt_fetch($stmt);
+
+    // Close the statement
+    $stmt->close();
+
+    return (bool)$published; // Convert the result to a boolean (true if published, false if not)
 }

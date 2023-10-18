@@ -231,7 +231,13 @@ function publishUpcomingEvent(int $event_id)
     $result = array();
     // Execute the update query
     if (mysqli_stmt_execute($stmt)) {
-        $result = array('success' => "published succesfully");
+        $publishedState = getPublishedState($event_id);
+
+        if ($publishedState) {
+            $result = array('message' => 'Upcoming event has been published successfully.');
+        } else {
+            $result = array('message' => 'Upcoming event has been unpublished successfully.');
+        }
     } else {
         $result = array('error' => mysqli_error($conn));
     }
@@ -239,4 +245,24 @@ function publishUpcomingEvent(int $event_id)
     // Close the statement
     $stmt->close();
     return $result;
+}
+
+function getPublishedState(int $event_id)
+{
+    global $conn;
+
+    // Query the current state of the 'published' column for the given upcoming event
+    $sql = "SELECT published FROM upcoming_event WHERE e_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $event_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $published);
+
+    // Fetch the result
+    mysqli_stmt_fetch($stmt);
+
+    // Close the statement
+    $stmt->close();
+
+    return (bool)$published; // Convert the result to a boolean (true if published, false if not)
 }

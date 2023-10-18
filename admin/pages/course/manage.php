@@ -1,6 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ;
-include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/course.php" ;
+include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/course.php";
 
 // Ensure that 'c_id' is provided as a query parameter
 if (isset($_GET['c_id'])) {
@@ -28,7 +28,7 @@ if (isset($_GET['c_id'])) {
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(1,0); // Use an appropriate sidebar item number
+            sidebar(1, 0); // Use an appropriate sidebar item number
             ?>
         </div>
 
@@ -49,7 +49,7 @@ if (isset($_GET['c_id'])) {
                         <textarea name="description" id="description" rows="4" required><?= $course['description'] ?></textarea>
                         <br><br>
 
-                            
+
                         <!-- Section 2: Public Display Info -->
                         <h3>Public Display Info</h3>
                         <label>Choose an option:</label>
@@ -60,15 +60,16 @@ if (isset($_GET['c_id'])) {
                         <input type="radio" name="display_option" id="both" value="both">
                         <label for="both">Option 3: Display Both (Poster Image and Manual Details)</label><br><br>
 
-                       <!-- Option 1: Display Only Poster Image -->
-                        <div id="poster_upload_section" >
+                        <!-- Option 1: Display Only Poster Image -->
+                        <div id="poster_upload_section">
                             <label for="poster_image">Select a Poster Image:</label>
                             <input type="file" name="poster_image" id="poster_image">
+                            <input type="text" name="image_loc" value="<?= $course['Poster_img'] ?>">
                             <br><br>
                         </div>
 
                         <!-- Option 2: Display Only Manual Poster Details -->
-                        <div id="manual_details_section" >
+                        <div id="manual_details_section">
                             <label for="duration">Duration (in months):</label>
                             <input type="number" name="duration" id="duration" value="<?= $course['duration(months)'] ?>">
                             <br><br>
@@ -84,7 +85,7 @@ if (isset($_GET['c_id'])) {
                         </div>
 
                         <!-- Option 3: Display Both Poster Image and Manual Details -->
-                        <div id="both_section" >
+                        <div id="both_section">
                             <label for="poster_image_both">Select a Poster Image:</label>
                             <input type="file" name="image" id="poster_image_both">
                             <input type="text" name="image_loc" style="display:none" value="<?= $course['Poster_img'] ?>">
@@ -114,44 +115,44 @@ if (isset($_GET['c_id'])) {
         </div>
     </div>
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const posterUploadSection = document.getElementById("poster_upload_section");
-        const manualDetailsSection = document.getElementById("manual_details_section");
-        const bothSection = document.getElementById("both_section");
-        const posterUploadRadio = document.getElementById("poster_only");
-        const manualDetailsRadio = document.getElementById("manual_only");
-        const bothRadio = document.getElementById("both");
+        document.addEventListener("DOMContentLoaded", function() {
+            const posterUploadSection = document.getElementById("poster_upload_section");
+            const manualDetailsSection = document.getElementById("manual_details_section");
+            const bothSection = document.getElementById("both_section");
+            const posterUploadRadio = document.getElementById("poster_only");
+            const manualDetailsRadio = document.getElementById("manual_only");
+            const bothRadio = document.getElementById("both");
 
-        // Initially, make sure all sections are hidden
-        posterUploadSection.style.display = "none";
-        manualDetailsSection.style.display = "none";
-        bothSection.style.display = "none";
-
-        // Function to hide all sections
-        function hideAllSections() {
+            // Initially, make sure all sections are hidden
             posterUploadSection.style.display = "none";
             manualDetailsSection.style.display = "none";
             bothSection.style.display = "none";
-        }
 
-        posterUploadRadio.addEventListener("change", function () {
-            hideAllSections();
-            posterUploadSection.style.display = "block";
+            // Function to hide all sections
+            function hideAllSections() {
+                posterUploadSection.style.display = "none";
+                manualDetailsSection.style.display = "none";
+                bothSection.style.display = "none";
+            }
+
+            posterUploadRadio.addEventListener("change", function() {
+                hideAllSections();
+                posterUploadSection.style.display = "block";
+            });
+
+            manualDetailsRadio.addEventListener("change", function() {
+                hideAllSections();
+                manualDetailsSection.style.display = "block";
+            });
+
+            bothRadio.addEventListener("change", function() {
+                hideAllSections();
+                bothSection.style.display = "block";
+            });
         });
+    </script>
 
-        manualDetailsRadio.addEventListener("change", function () {
-            hideAllSections();
-            manualDetailsSection.style.display = "block";
-        });
 
-        bothRadio.addEventListener("change", function () {
-            hideAllSections();
-            bothSection.style.display = "block";
-        });
-    });
-</script>
-
-    
 
 </body>
 
