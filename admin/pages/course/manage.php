@@ -21,6 +21,22 @@ if (isset($_GET['c_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/coursemanage.css">
     <title>Course Management</title>
+    <style>
+        .container {
+            padding: 1rem 0;
+            background-color: var(--color-1);
+            box-shadow: 0 0 0 1000px var(--color-1);
+        }
+
+        .container .title {
+            filter: invert();
+        }
+
+        .container .title a {
+            opacity: 1;
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,7 +53,14 @@ if (isset($_GET['c_id'])) {
         ?>
         <div class="right">
             <div class="course-manage">
-                <h2>Course Management</h2>
+                <div class="container">
+                    <div class="title">
+                        <div>
+                            <h1><a href="./">Course ></a>Manage Course</h1>
+                            <p>Manage the <?= $course['c_name'] ?></p>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-container">
                     <form action="/backend/api/course/manage.php" method="POST" enctype="multipart/form-data">
                         <!-- Section 1: General Info -->
