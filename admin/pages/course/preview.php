@@ -34,7 +34,7 @@ $hasDetails = isset($course['duration(months)']) && isset($course['total_fee']);
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(1, 0); 
+            sidebar(1, 0);
             ?>
         </div>
 
@@ -42,14 +42,19 @@ $hasDetails = isset($course['duration(months)']) && isset($course['total_fee']);
         include_once(APP_ROOT . "/includes/header.php");
         ?>
         <div class="right">
-            <h2 class="head">Course Preview</h2>
-            <div class="course-preview">
-                <h2>Course Preview</h2>
-
+            <div class="container">
+                <div class="title">
+                    <div>
+                        <h1><a href="./">Courses ></a>Preview Course</h1>
+                        <p>Preview of the <?= $course['c_name'] ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="course-preview container">
                 <?php if ($hasPoster && $hasDetails) { ?>
                     <div class="two-columns">
                         <div class="poster">
-                            <img src="/images/course_posters/<?= $course['Poster_img'] ?>" alt="Course Poster">
+                            <img src="<?= $course['Poster_img'] ?>" alt="Course Poster">
                         </div>
                         <div class="details">
                             <h3>Course Details</h3>
@@ -63,7 +68,7 @@ $hasDetails = isset($course['duration(months)']) && isset($course['total_fee']);
                     </div>
                 <?php } elseif ($hasPoster) { ?>
                     <div class="centered">
-                        <img src="/images/course_posters/<?= $course['Poster_img'] ?>" alt="Course Poster">
+                        <img src="<?= $course['Poster_img'] ?>" alt="Course Poster">
                     </div>
                 <?php } elseif ($hasDetails) { ?>
                     <div class="centered">
@@ -82,4 +87,5 @@ $hasDetails = isset($course['duration(months)']) && isset($course['total_fee']);
         </div>
     </div>
 </body>
+
 </html>
