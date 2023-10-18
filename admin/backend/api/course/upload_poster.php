@@ -8,7 +8,12 @@ if (session_status() == PHP_SESSION_NONE) {
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" || "PUT") {
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+header('Content-Type: application/json');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
     $c_id = $_POST["c_id"];
     $file = $_FILES["poster"];
@@ -16,8 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || "PUT") {
 
     $result = editPoster($c_id, $poster, $poster_path);
 
-    if (isset($result['error']))
-        header("Location: /pages/course/?error={$result['error']}");
-    else
-        header("Location: /pages/course/?success={$result['message']}");
+    if (!isset($result['error'])) {
+        echo json_encode($result);
+    } else {
+        echo json_encode($result);
+    }
 }

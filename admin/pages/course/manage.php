@@ -204,6 +204,8 @@ if (isset($_GET['mode'])) {
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js" integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         const imgInput = document.getElementById('poster_image')
         const description = document.getElementById('poster_description')
@@ -250,26 +252,26 @@ if (isset($_GET['mode'])) {
         if (courseFee)
             courseFee.addEventListener("input", handleFeeChange);
 
-        document.getElementById("formUpload").addEventListener("submit", function() {
+        document.getElementById("formUpload").addEventListener("submit", function(e) {
             var exportDiv = document.getElementById("course_display");
             html2canvas(exportDiv, {
                 onrendered: function(canvas) {
                     var dataURL = canvas.toDataURL("image/png");
 
                     var formData = new FormData();
-                    formData.append("poster", dataURL);
                     formData.append("c_id", $course['c_id']);
-                    formData.append("poster_path", $couse['c_id']);
+                    formData.append("poster", dataURL);
+                    formData.append("poster_path", $couse['poster']);
 
                     // Send the image data to the PHP script
-                    fetch('/backend/api/course/upload_poster.php', {
-                        method: 'POST',
-                        body: formData
-                    }).then(response => {
-                        console.log(response);
-                    }).catch(error => {
-                        console.error(error);
-                    });
+                    axios
+                        .post('/backend/api/course/upload_poster.php', {
+                            body: formData
+                        }).then(response => {
+                            alert(response)
+                        }).catch(error => {
+                            alert(error);
+                        });
                 }
             });
         });

@@ -21,7 +21,7 @@ function editCourse($c_id, $c_coordinator, $description, $file, $file_path, $dur
     global $conn;
     $targetFile = $file_path;
 
-    if ($file['name']) {
+    if (isset($file['name'])) {
         if (isset($file_path)) {
             if (file_exists($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
                 if (!unlink($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
@@ -216,23 +216,51 @@ function getCPublishedState(int $c_id)
     return (bool)$published; // Convert the result to a boolean (true if published, false if not)
 }
 
-function getCourseCoordinators(){
+function editPoster($c_id, $file, $file_path)
+{
+    global $conn;
+    $targetFile = $file_path;
 
-  $coordinators = [];
-  global $conn;
+    if ($file['name']) {
+        if (isset($file_path)) {
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
+                if (!unlink($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
+                    $result = array('error' => "Error uploading the image. Couldn't delete old one" . $_SERVER['DOCUMENT_ROOT'] . $file_path);
+                    return $result;
+                }
+            }
+        }
 
-  // Query to select unique course coordinators from the course table
-  $sql = "SELECT DISTINCT c_coordinator FROM course";
+        $targetDirectory = "/images/course-posters/";
+        $targetFile = $targetDirectory . basename($file["name"]);
 
-  // Execute the query
-  $result = $conn->query($sql);
+        // Check if the file is an image
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+            $result = array('error' => "Only JPG, JPEG, and PNG files are allowed." . $file['name']);
+            return $result;
+        } else {
+            if (move_uploaded_file($file["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $targetFile)) {
+            } else {
+                $result = array('error' => "Error uploading the image.");
+                return $result;
+            }
+        }
+    }
 
-  // Check if the query was successful
-  if ($result && $result->num_rows > 0) {
-      // Fetch course coordinators and add them to the $coordinators array
-      while ($row = $result->fetch_assoc()) {
-          $coordinators[] = $row['c_coordinator'];
-      }
-  }
-  return $coordinators;
+    $stmt = $conn->prepare("UPDATE course SET `poster` = ?,WHERE c_id = ?");
+
+    $stmt->bind_param(
+        "si",
+        $targetFile,
+        $c_id
+    );
+
+    if ($stmt->execute()) {
+        $result = array('message' => "Course Updated Successfully");
+    } else {
+        $result = array('error' => $stmt->error);
+    }
+
+    return $result;
 }
