@@ -127,9 +127,17 @@ function publishCourse(int $c_id)
     mysqli_stmt_bind_param($stmt, "i", $c_id);
 
     $result = array();
+
     // Execute the update query
     if (mysqli_stmt_execute($stmt)) {
-        $result = array('message' => "published succesfully");
+        // Check the current state of the 'published' column
+        $publishedState = getPublishedState($c_id);
+
+        if ($publishedState) {
+            $result = array('message' => 'Course has been published.');
+        } else {
+            $result = array('message' => 'Course has been unpublished.');
+        }
     } else {
         $result = array('error' => mysqli_error($conn));
     }
@@ -137,4 +145,24 @@ function publishCourse(int $c_id)
     // Close the statement
     $stmt->close();
     return $result;
+}
+
+function getPublishedState(int $c_id)
+{
+    global $conn;
+
+    // Query the current state of the 'published' column for the given course
+    $sql = "SELECT published FROM course WHERE c_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $c_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $published);
+
+    // Fetch the result
+    mysqli_stmt_fetch($stmt);
+
+    // Close the statement
+    $stmt->close();
+
+    return (bool)$published; // Convert the result to a boolean (true if published, false if not)
 }
