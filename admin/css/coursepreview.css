@@ -1,24 +1,6 @@
-.haead {
-  padding: 3%;
-  color: #ffffff;
-  font-size: 24px;
-  text-align: center;
-  background-color: brown;
-}
-
-.title {
-  padding: 2rem 0;
-}
-
-/* Style for the course preview container */
 .course-preview {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  text-align: center;
-  margin: 20px;
+  width: 100%;
+  aspect-ratio: 1.8;
 }
 
 .course-preview h2 {
@@ -70,20 +52,45 @@ ul li strong {
 /* Style for the two-column layout when both are available */
 .two-columns {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   align-items: center;
+  gap: 1rem;
+}
+
+.two-columns h3 {
+  font-size: 1.2rem;
+}
+
+.two-columns p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.two-columns .poster {
+  height: 100%;
+  box-shadow: none;
+}
+
+.two-columns .poster img {
+  height: 100%;
+  margin: 0;
+  object-fit: contain;
+  box-shadow: none;
 }
 
 /* Centered style for image or details */
 .centered {
   text-align: center;
   margin: 0 auto;
-  max-width: 600px;
+  height: 100%;
 }
 
 .centered img {
   max-width: 100%;
   border-radius: 10px;
+  height: 100%;
+  object-fit: contain;
+  margin: 0;
 }
 
 /* Style for the course details section */
@@ -93,12 +100,19 @@ ul li strong {
   border: 1px solid #ddd;
   border-radius: 10px;
   background-color: #f9f9f9;
+  height: 100%;
+  width: 100%;
 }
 
 .centered .details h3 {
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 2rem;
   color: #333;
+}
+
+.centered .details p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 ul {

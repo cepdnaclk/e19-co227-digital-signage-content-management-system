@@ -18,7 +18,7 @@ export default function UpcomingEvents() {
           setData(res.data);
           let array = [];
           res.data.forEach((ele) => {
-            array.push("http://localhost:8000" + ele["e_img"]);
+            array.push(axios.defaults.baseURL + ele["e_img"]);
           });
           setInitialImages(array);
           console.log(data);
@@ -68,65 +68,67 @@ export default function UpcomingEvents() {
   );
 
   return (
-    <div className="upcomingevents-container">
-      <div className="image-controls">
-        <button className="left" onClick={handlePrevImage}>
-          &#10094;
-        </button>
-      </div>
-      <div className="center-content">
-        {clickedImageIndex !== null ? (
-          <div>
-            <img
-              className="center-image"
-              src={initialImages[clickedImageIndex]}
-              alt={`UpcomingEvents ${clickedImageIndex + 1}`}
-              onClick={() => handleImageClick(currentImageIndex)}
-            />
-          </div>
-        ) : (
-          <div>
-            <img
-              className="center-image"
-              src={initialImages[currentImageIndex]}
-              alt={initialImages[currentImageIndex]}
-              onClick={() => handleImageClick(currentImageIndex)}
-            />
-          </div>
-        )}
-        {/* <div className="image-title">{data[currentImageIndex]["e_name"]}</div> */}
-      </div>
-      <div className="image-controls">
-        <button className="right" onClick={handleNextImage}>
-          &#10095;
-        </button>
-      </div>
-      <div className="image-list">
-        {displayedImages.map((image, index) => (
-          <div
-            key={index}
-            className={`image-item ${
-              currentImageIndex ===
-                (currentImageIndex + index) % initialImages.length ||
-              clickedImageIndex ===
-                (currentImageIndex + index) % initialImages.length
-                ? "active"
-                : ""
-            }`}
-            onClick={() =>
-              handleImageClick(
-                (currentImageIndex + index) % initialImages.length
-              )
-            }
-          >
-            <img
-              src={image}
-              alt={`UpcomingEvents ${
-                ((currentImageIndex + index) % initialImages.length) + 1
+    <div className="upcoming">
+      <div className="upcomingevents-container">
+        <div className="image-controls">
+          <button className="left" onClick={handlePrevImage}>
+            &#10094;
+          </button>
+        </div>
+        <div className="center-content">
+          {clickedImageIndex !== null ? (
+            <div>
+              <img
+                className="center-image"
+                src={initialImages[clickedImageIndex]}
+                alt={`UpcomingEvents ${clickedImageIndex + 1}`}
+                onClick={() => handleImageClick(currentImageIndex)}
+              />
+            </div>
+          ) : (
+            <div>
+              <img
+                className="center-image"
+                src={initialImages[currentImageIndex]}
+                alt={initialImages[currentImageIndex]}
+                onClick={() => handleImageClick(currentImageIndex)}
+              />
+            </div>
+          )}
+          {/* <div className="image-title">{data[currentImageIndex]["e_name"]}</div> */}
+        </div>
+        <div className="image-controls">
+          <button className="right" onClick={handleNextImage}>
+            &#10095;
+          </button>
+        </div>
+        <div className="image-list">
+          {displayedImages.map((image, index) => (
+            <div
+              key={index}
+              className={`image-item ${
+                currentImageIndex ===
+                  (currentImageIndex + index) % initialImages.length ||
+                clickedImageIndex ===
+                  (currentImageIndex + index) % initialImages.length
+                  ? "active"
+                  : ""
               }`}
-            />
-          </div>
-        ))}
+              onClick={() =>
+                handleImageClick(
+                  (currentImageIndex + index) % initialImages.length
+                )
+              }
+            >
+              <img
+                src={image}
+                alt={`UpcomingEvents ${
+                  ((currentImageIndex + index) % initialImages.length) + 1
+                }`}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

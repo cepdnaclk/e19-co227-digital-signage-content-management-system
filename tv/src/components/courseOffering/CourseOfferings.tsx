@@ -59,67 +59,69 @@ export default function CourseOfferings() {
   );
 
   return (
-    <div className="courseofferings-container">
-      <div className="image-controls">
-        <button className="left" onClick={handlePrevImage}>
-          &#10094;
-        </button>
-      </div>
-      <div className="center-content">
-        {clickedImageIndex !== null ? (
-          <div>
-            <img
-              className="center-image"
-              src={initialImages[clickedImageIndex]}
-              alt={`CourseOfferings ${clickedImageIndex + 1}`}
-              onClick={() => handleImageClick(currentImageIndex)}
-            />
-          </div>
-        ) : (
-          <div>
-            <img
-              className="center-image"
-              src={initialImages[currentImageIndex]}
-              alt={`CourseOfferings ${currentImageIndex + 1}`}
-              onClick={() => handleImageClick(currentImageIndex)}
-            />
-          </div>
-        )}
-        {/* <div className="image-title">
+    <div className="course">
+      <div className="courseofferings-container">
+        <div className="image-controls">
+          <button className="left" onClick={handlePrevImage}>
+            &#10094;
+          </button>
+        </div>
+        <div className="center-content">
+          {clickedImageIndex !== null ? (
+            <div>
+              <img
+                className="center-image"
+                src={initialImages[clickedImageIndex]}
+                alt={`CourseOfferings ${clickedImageIndex + 1}`}
+                onClick={() => handleImageClick(currentImageIndex)}
+              />
+            </div>
+          ) : (
+            <div>
+              <img
+                className="center-image"
+                src={initialImages[currentImageIndex]}
+                alt={`CourseOfferings ${currentImageIndex + 1}`}
+                onClick={() => handleImageClick(currentImageIndex)}
+              />
+            </div>
+          )}
+          {/* <div className="image-title">
           {imageTitles[currentImageIndex]}
         </div> */}
-      </div>
-      <div className="image-controls">
-        <button className="right" onClick={handleNextImage}>
-          &#10095;
-        </button>
-      </div>
-      <div className="image-list">
-        {displayedImages.map((image, index) => (
-          <div
-            key={index}
-            className={`image-item ${
-              currentImageIndex ===
-                (currentImageIndex + index) % initialImages.length ||
-              clickedImageIndex ===
-                (currentImageIndex + index) % initialImages.length
-                ? "active"
-                : ""
-            }`}
-            onClick={() =>
-              handleImageClick(
-                (currentImageIndex + index) % initialImages.length
-              )
-            }
-          >
-            <img
-              src={image}
-              alt={`CourseOfferings ${
-                ((currentImageIndex + index) % initialImages.length) + 1
+        </div>
+        <div className="image-controls">
+          <button className="right" onClick={handleNextImage}>
+            &#10095;
+          </button>
+        </div>
+        <div className="image-list">
+          {displayedImages.map((image, index) => (
+            <div
+              key={index}
+              className={`image-item ${
+                currentImageIndex ===
+                  (currentImageIndex + index) % initialImages.length ||
+                clickedImageIndex ===
+                  (currentImageIndex + index) % initialImages.length
+                  ? "active"
+                  : ""
               }`}
-            />
-          </div>
-        ))}
+              onClick={() =>
+                handleImageClick(
+                  (currentImageIndex + index) % initialImages.length
+                )
+              }
+            >
+              <img
+                src={image}
+                alt={`CourseOfferings ${
+                  ((currentImageIndex + index) % initialImages.length) + 1
+                }`}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

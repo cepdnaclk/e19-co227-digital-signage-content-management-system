@@ -224,7 +224,7 @@ function publishAchivement(int $a_id)
     $result = array();
     // Execute the update query
     if (mysqli_stmt_execute($stmt)) {
-        $publishedState = getPublishedState($a_id);
+        $publishedState = getAPublishedState($a_id);
 
         if ($publishedState) {
             $result = array('message' => 'Achievement has been published successfully.');
@@ -240,7 +240,7 @@ function publishAchivement(int $a_id)
     return $result;
 }
 
-function getPublishedState(int $a_id)
+function getAPublishedState(int $a_id)
 {
     global $conn;
 

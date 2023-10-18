@@ -15,8 +15,17 @@ if (isset($_GET['c_id'])) {
 }
 
 // Check conditions and display course preview
-$hasPoster = !empty($course['Poster_img']);
-$hasDetails = isset($course['duration(months)']) && isset($course['total_fee']);
+if (isset($_GET['mode'])) {
+    $mode = $_GET['mode'];
+    if ($mode == "img")
+        $hasPoster = true;
+    else if ($mode == "des")
+        $hasDetails = true;
+    else {
+        $hasPoster = false;
+        $hasDetails = false;
+    }
+}
 ?>
 
 <!DOCTYPE html>

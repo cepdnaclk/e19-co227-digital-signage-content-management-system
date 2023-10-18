@@ -6,10 +6,28 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/course.php";
 if (isset($_GET['c_id'])) {
     $c_id = $_GET['c_id'];
     $course = getCourse($c_id);
-    if (!$course)
+
+    if (!$course) {
         header("Location: /pages/course");
+    }
 } else {
     header("Location: /pages/course");
+}
+
+$hasPoster = false;
+$hasDetails = false;
+
+// Check conditions and display course preview
+if (isset($_GET['mode'])) {
+    $mode = $_GET['mode'];
+    if ($mode == "img")
+        $hasPoster = true;
+    else if ($mode == "des")
+        $hasDetails = true;
+    else {
+        $hasPoster = true;
+        $hasDetails = true;
+    }
 }
 ?>
 
@@ -20,6 +38,7 @@ if (isset($_GET['c_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/coursemanage.css">
+    <link rel="stylesheet" href="/css/coursepreview.css">
     <title>Course Management</title>
     <style>
         .container {
@@ -62,7 +81,7 @@ if (isset($_GET['c_id'])) {
                     </div>
                 </div>
                 <div class="form-container">
-                    <form action="/backend/api/course/manage.php" method="POST" enctype="multipart/form-data">
+                    <form action="/backend/api/course/manage.php" method="POST" enctype="multipart/form-data" id="formUpload">
                         <!-- Section 1: General Info -->
                         <h3>General Info</h3>
                         <label for="coordinator_name">Course Coordinator Name:</label>
@@ -75,58 +94,106 @@ if (isset($_GET['c_id'])) {
 
                         <!-- Section 2: Public Display Info -->
                         <h3>Public Display Info</h3>
-                        <label>Choose an option:</label>
-                        <input type="radio" name="display_option" id="poster_only" value="poster">
-                        <label for="poster_only">Option 1: Display Only Poster Image</label><br>
-                        <input type="radio" name="display_option" id="manual_only" value="manual">
-                        <label for="manual_only">Option 2: Display Only Poster Details Entered Manually</label><br>
-                        <input type="radio" name="display_option" id="both" value="both">
-                        <label for="both">Option 3: Display Both (Poster Image and Manual Details)</label><br><br>
+                        <p>Choose an option:</p> <br>
+                        <a href="?c_id=<?= $_GET['c_id'] ?>&mode=img">
+                            <input type="radio" name="display_option" id="poster_only" <?= ($hasPoster && !$hasDetails) ? "checked" : "" ?>>
+                            <span>Option 1: Display Only Poster Image</span><br>
+                        </a>
+                        <a href="?c_id=<?= $_GET['c_id'] ?>&mode=des">
+                            <input type="radio" name="display_option" id="manual_only" <?= (!$hasPoster && $hasDetails) ? "checked" : "" ?>>
+                            <span>Option 2: Display Only Poster Details Entered Manually</span><br>
+                        </a>
+                        <a href="?c_id=<?= $_GET['c_id'] ?>&mode=all">
+                            <input type="radio" name="display_option" id="both" <?= ($hasPoster && $hasDetails) ? "checked" : "" ?>>
+                            <span>Option 3: Display Both (Poster Image and Manual Details)</span><br><br>
+                        </a>
 
                         <!-- Option 1: Display Only Poster Image -->
-                        <div id="poster_upload_section">
-                            <label for="poster_image">Select a Poster Image:</label>
-                            <input type="file" name="poster_image" id="poster_image">
-                            <input type="text" name="image_loc" value="<?= $course['Poster_img'] ?>">
-                            <br><br>
-                        </div>
+                        <?php if ($hasPoster && !$hasDetails) { ?>
+                            <div id="poster_upload_section">
+                                <label for="poster_image">Select a Poster Image:</label>
+                                <input type="file" name="poster_image" id="poster_image">
+                                <input type="text" name="image_loc" style="display: none;" value="<?= $course['Poster_img'] ?>">
+                                <br><br>
+                            </div>
+                        <?php } ?>
 
                         <!-- Option 2: Display Only Manual Poster Details -->
-                        <div id="manual_details_section">
-                            <label for="duration">Duration (in months):</label>
-                            <input type="number" name="duration" id="duration" value="<?= $course['duration(months)'] ?>">
-                            <br><br>
-                            <label for="intake_date">New Batch Intake Date:</label>
-                            <input type="date" name="intake_date" id="intake_date" value="<?= $course['new_intake_date'] ?>">
-                            <br><br>
-                            <label for="course_fee">Course Fee (Rs.):</label>
-                            <input type="number" name="course_fee" id="course_fee" value="<?= $course['total_fee'] ?>">
-                            <br><br>
-                            <label for="poster_description">Description:</label>
-                            <textarea name="poster_description" id="poster_description" rows="4"><?= $course['display_description'] ?></textarea>
-                            <br><br>
-                        </div>
+                        <?php if (!$hasPoster && $hasDetails) { ?>
+                            <div id="manual_details_section">
+                                <label for="duration">Duration (in months):</label>
+                                <input type="number" name="duration" id="duration" value="<?= $course['duration(months)'] ?>">
+                                <br><br>
+                                <label for="intake_date">New Batch Intake Date:</label>
+                                <input type="date" name="intake_date" id="intake_date" value="<?= $course['new_intake_date'] ?>">
+                                <br><br>
+                                <label for="course_fee">Course Fee (Rs.):</label>
+                                <input type="number" name="course_fee" id="course_fee" value="<?= $course['total_fee'] ?>">
+                                <br><br>
+                                <label for="poster_description">Description:</label>
+                                <textarea name="poster_description" id="poster_description" rows="4"><?= $course['display_description'] ?></textarea>
+                                <br><br>
+                            </div>
+                        <?php } ?>
 
                         <!-- Option 3: Display Both Poster Image and Manual Details -->
-                        <div id="both_section">
-                            <label for="poster_image_both">Select a Poster Image:</label>
-                            <input type="file" name="image" id="poster_image_both">
-                            <input type="text" name="image_loc" style="display:none" value="<?= $course['Poster_img'] ?>">
-                            <br><br>
-                            <label for="duration_both">Duration (in months):</label>
-                            <input type="number" name="duration" id="duration_both" value="<?= $course['duration(months)'] ?>">
-                            <br><br>
-                            <label for="intake_date_both">New Batch Intake Date:</label>
-                            <input type="date" name="intake_date" id="intake_date_both" value="<?= $course['new_intake_date'] ?>">
-                            <br><br>
-                            <label for="course_fee_both">Course Fee (Rs.):</label>
-                            <input type="number" name="course_fee" id="course_fee_both" value="<?= $course['total_fee'] ?>">
-                            <br><br>
-                            <label for="poster_description_both">Description:</label>
-                            <textarea name="poster_description" id="poster_description_both" rows="4"><?= $course['display_description'] ?></textarea>
-                            <br><br>
-                        </div>
+                        <?php if ($hasPoster && $hasDetails) { ?>
+                            <div id="both_section">
+                                <label for="poster_image">Select a Poster Image:</label>
+                                <input type="file" name="image" id="poster_image">
+                                <input type="text" name="image_loc" style="display:none" value="<?= $course['Poster_img'] ?>">
+                                <br><br>
+                                <label for="duration">Duration (in months):</label>
+                                <input type="number" name="duration" id="duration" value="<?= $course['duration(months)'] ?>">
+                                <br><br>
+                                <label for="intake_date">New Batch Intake Date:</label>
+                                <input type="date" name="intake_date" id="intake_date" value="<?= $course['new_intake_date'] ?>">
+                                <br><br>
+                                <label for="course_fee">Course Fee (Rs.):</label>
+                                <input type="number" name="course_fee" id="course_fee" value="<?= $course['total_fee'] ?>">
+                                <br><br>
+                                <label for="poster_description">Description:</label>
+                                <textarea name="poster_description" id="poster_description" rows="4"><?= $course['display_description'] ?></textarea>
+                                <br><br>
+                            </div>
+                        <?php } ?>
 
+                        <div class="course-preview" id="course_display">
+                            <?php if ($hasPoster && $hasDetails) { ?>
+                                <div class="two-columns">
+                                    <div class="poster">
+                                        <img id="display_img" src="<?= $course['Poster_img'] ?>" alt="Course Poster">
+                                    </div>
+                                    <div class="details">
+                                        <h3><?= $course['c_name'] ?></h3>
+                                        <p><?= $course['c_code'] ?></p>
+                                        <ul>
+                                            <li><strong>Duration:</strong> <span id="display_dur"><?= $course['duration(months)'] ?></span> months</li>
+                                            <li><strong>New Batch Intake Date:</strong><span id="display_int"> <?= date('M d, Y', strtotime($course['new_intake_date'])) ?></span></li>
+                                            <li><strong>Total Course Fee:</strong> Rs.<span id="display_fee"> <?= $course['total_fee'] ?></span></li>
+                                            <li><strong>Description:</strong> <span id="display_des"><?= $course['display_description'] ?></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <?php } elseif ($hasPoster) { ?>
+                                <div class="centered">
+                                    <img id="display_img" src="<?= $course['Poster_img'] ?>" alt="Course Poster">
+                                </div>
+                            <?php } elseif ($hasDetails) { ?>
+                                <div class="centered">
+                                    <div class="details">
+                                        <h3><?= $course['c_name'] ?></h3>
+                                        <p><?= $course['c_code'] ?></p>
+                                        <ul>
+                                            <li><strong>Duration:</strong> <span id="display_dur"><?= $course['duration(months)'] ?></span> months</li>
+                                            <li><strong>New Batch Intake Date:</strong><span id="display_int"> <?= date('M d, Y', strtotime($course['new_intake_date'])) ?></span></li>
+                                            <li><strong>Total Course Fee:</strong> Rs.<span id="display_fee"> <?= $course['total_fee'] ?></span></li>
+                                            <li><strong>Description:</strong> <span id="display_des"><?= $course['display_description'] ?></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
 
                         <input type="hidden" name="c_id" value="<?php echo $c_id; ?>"> <!-- Include the course ID here -->
 
@@ -138,45 +205,75 @@ if (isset($_GET['c_id'])) {
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const posterUploadSection = document.getElementById("poster_upload_section");
-            const manualDetailsSection = document.getElementById("manual_details_section");
-            const bothSection = document.getElementById("both_section");
-            const posterUploadRadio = document.getElementById("poster_only");
-            const manualDetailsRadio = document.getElementById("manual_only");
-            const bothRadio = document.getElementById("both");
+        const imgInput = document.getElementById('poster_image')
+        const description = document.getElementById('poster_description')
+        const duration = document.getElementById('duration')
+        const intakeDate = document.getElementById('intake_date')
+        const courseFee = document.getElementById('course_fee')
 
-            // Initially, make sure all sections are hidden
-            posterUploadSection.style.display = "none";
-            manualDetailsSection.style.display = "none";
-            bothSection.style.display = "none";
+        const imgDisplay = document.getElementById('display_img')
+        const descriptionDis = document.getElementById('display_des')
+        const durationDis = document.getElementById('display_dur')
+        const intakeDateDis = document.getElementById('display_int')
+        const courseFeeDis = document.getElementById('display_fee')
 
-            // Function to hide all sections
-            function hideAllSections() {
-                posterUploadSection.style.display = "none";
-                manualDetailsSection.style.display = "none";
-                bothSection.style.display = "none";
-            }
+        const handleImgChange = (e) => {
+            if (imgDisplay)
+                imgDisplay.src = URL.createObjectURL(e.target.files[0])
+        }
+        const handleDesChange = (e) => {
+            if (descriptionDis)
+                descriptionDis.textContent = e.target.value
+        }
+        const handleDurChange = (e) => {
+            if (durationDis)
+                durationDis.textContent = e.target.value
+        }
+        const handleIntChange = (e) => {
+            if (intakeDateDis)
+                intakeDateDis.textContent = e.target.value
+        }
+        const handleFeeChange = (e) => {
+            if (courseFeeDis)
+                courseFeeDis.textContent = e.target.value
+        }
 
-            posterUploadRadio.addEventListener("change", function() {
-                hideAllSections();
-                posterUploadSection.style.display = "block";
-            });
 
-            manualDetailsRadio.addEventListener("change", function() {
-                hideAllSections();
-                manualDetailsSection.style.display = "block";
-            });
+        if (imgInput)
+            imgInput.addEventListener("change", handleImgChange);
+        if (description)
+            description.addEventListener("input", handleDesChange);
+        if (duration)
+            duration.addEventListener("input", handleDurChange);
+        if (intakeDate)
+            intakeDate.addEventListener("input", handleIntChange);
+        if (courseFee)
+            courseFee.addEventListener("input", handleFeeChange);
 
-            bothRadio.addEventListener("change", function() {
-                hideAllSections();
-                bothSection.style.display = "block";
+        document.getElementById("formUpload").addEventListener("submit", function() {
+            var exportDiv = document.getElementById("course_display");
+            html2canvas(exportDiv, {
+                onrendered: function(canvas) {
+                    var dataURL = canvas.toDataURL("image/png");
+
+                    var formData = new FormData();
+                    formData.append("poster", dataURL);
+                    formData.append("c_id", $course['c_id']);
+                    formData.append("poster_path", $couse['c_id']);
+
+                    // Send the image data to the PHP script
+                    fetch('/backend/api/course/upload_poster.php', {
+                        method: 'POST',
+                        body: formData
+                    }).then(response => {
+                        console.log(response);
+                    }).catch(error => {
+                        console.error(error);
+                    });
+                }
             });
         });
     </script>
-
-
-
 </body>
 
 </html>

@@ -231,7 +231,7 @@ function publishUpcomingEvent(int $event_id)
     $result = array();
     // Execute the update query
     if (mysqli_stmt_execute($stmt)) {
-        $publishedState = getPublishedState($event_id);
+        $publishedState = getUPublishedState($event_id);
 
         if ($publishedState) {
             $result = array('message' => 'Upcoming event has been published successfully.');
@@ -247,7 +247,7 @@ function publishUpcomingEvent(int $event_id)
     return $result;
 }
 
-function getPublishedState(int $event_id)
+function getUPublishedState(int $event_id)
 {
     global $conn;
 

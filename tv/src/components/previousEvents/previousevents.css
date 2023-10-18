@@ -1,11 +1,18 @@
 /* previousevents.css */
 
+.previous {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
 .previousevents-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 1000px; /* Adjust the height as needed */
-  margin-top: 360px;
 }
 
 .previousevents-container .image-list {
@@ -24,8 +31,6 @@
 }
 
 .previousevents-container img {
-  margin-bottom: 10px;
-  margin-left: 100px;
   max-width: 300px;
   height: auto;
   display: block;
@@ -37,10 +42,11 @@
 }
 
 .previousevents-container .center-content .center-image {
-  max-width: 1600px; 
+  max-width: 1600px;
   max-height: 1400px;
-  width: 100%;
-  height: 100%;
+  width: 45vw;
+  height: 60vh;
+  object-fit: contain;
 }
 
 .previousevents-container .center-content .image-title {

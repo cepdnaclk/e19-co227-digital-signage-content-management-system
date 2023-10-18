@@ -180,7 +180,7 @@ function publishCourse(int $c_id)
     // Execute the update query
     if (mysqli_stmt_execute($stmt)) {
         // Check the current state of the 'published' column
-        $publishedState = getPublishedState($c_id);
+        $publishedState = getCPublishedState($c_id);
 
         if ($publishedState) {
             $result = array('message' => 'Course has been published.');
@@ -196,7 +196,7 @@ function publishCourse(int $c_id)
     return $result;
 }
 
-function getPublishedState(int $c_id)
+function getCPublishedState(int $c_id)
 {
     global $conn;
 
