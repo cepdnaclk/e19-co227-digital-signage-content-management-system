@@ -13,7 +13,7 @@
 The **Digital Signage CMS** is not just a project; it's a gateway to a transformative realm. Prepare to embark on a journey that redefines conventional communication and ignites interactive engagement.
 
 <p align="center">
-    <img src="path/to/your/screenshot.png" alt="Digital Signage Screenshot" width="800">
+    <img src="/docs/images/sim.png" alt="Digital Signage Screenshot" width="800">
 </p>
 
 ## Unveil the Four Phases of Empowerment 🚀
