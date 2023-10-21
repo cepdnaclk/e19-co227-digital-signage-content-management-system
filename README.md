@@ -85,7 +85,9 @@ The **Digital Signage CMS** is not just a project; it's a gateway to a transform
 1. **Clone** the repository: `git clone [https://github.com/cepdnaclk/e19-co227-digital-signage-content-management-system/tree/main]`
 2. **Configure** your local environment with PHP and MySQL (e.g., XAMPP, WAMP, LAMP).
 3. **Set up** the `config.php` for seamless database orchestration.
-4. **Navigate** your journey by following the notes within each section's folder.
+4. **Start the Admin Web App** by initially navigating to the directory through `cd /admin` and then start hosting by `php -S localhost:8000`.
+5. **Start the Smart TV App** by initially navigating to the directory through `cd /tv` and then start runining by `npm run dev`.
+6. **Open Browser** and then enter in two separate tabs `http://localhost:8000/`(for Admin Web App) and `http://localhost:5173/` (for Smart TV App).  
 
 ## Appreciation for the Visionaries 🙌
 
@@ -93,9 +95,9 @@ The **Digital Signage CMS** is not just a project; it's a gateway to a transform
 - Dr. Upul Jayasinghe [http://www.ce.pdn.ac.lk/upul/](http://www.ce.pdn.ac.lk/upul/)
 
 **Meet the Team**
-- Kalindu[GitHub](https://github.com/KalinduWijerathna), [(e19446@eng.pdn.ac.lk)]
-- Kavishka[GitHub](https://github.com/Kavishkagaya), [(e19309@eng.pdn.ac.lk)]
-- Inesha[GitHub](https://github.com/inesha21), [(e19090@eng.pdn.ac.lk)]
-- Geethal[GitHub](https://github.com/GeethalWickramasingha), [(e19436@eng.pdn.ac.lk)]
+- Kalindu [GitHub](https://github.com/KalinduWijerathna), [(e19446@eng.pdn.ac.lk)]
+- Kavishka [GitHub](https://github.com/Kavishkagaya), [(e19309@eng.pdn.ac.lk)]
+- Inesha [GitHub](https://github.com/inesha21), [(e19090@eng.pdn.ac.lk)]
+- Geethal [GitHub](https://github.com/GeethalWickramasingha), [(e19436@eng.pdn.ac.lk)]
 
 (*For inquiries and acknowledgments, feel free to contact us*)
