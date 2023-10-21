@@ -10,7 +10,7 @@
 
 ## Welcome to the Future of Public Signage 🌟
 
-The **Digital Signage CMS** is not just a project; it's a gateway to a transformative realm. Prepare to embark on a journey that redefines conventional communication and ignites interactive engagement.
+The **Digital Signage CMS for the IT Center,UOP** is not just a project; it's a gateway to a transformative realm. Prepare to embark on a journey that redefines conventional communication and ignites interactive engagement.
 
 <p align="center">
     <img src="/docs/images/sim.png" alt="Digital Signage Screenshot" width="800">
