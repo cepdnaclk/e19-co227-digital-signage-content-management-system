@@ -23,3 +23,18 @@ $clearenceStatus = [
     'admin' => 1,
     'course_c' => 0
 ];
+
+function hasClearence(int $level, $callback, $customHeader = null)
+{
+    global $clearenceStatus;
+
+    if ($clearenceStatus[$_SESSION['clearense']] >= $level)
+        $callback();
+    else {
+        if (isset($customHeader)) {
+            header($customHeader);
+        } else {
+            header("/?error='You're not Authorized for that action'");
+        }
+    }
+}
