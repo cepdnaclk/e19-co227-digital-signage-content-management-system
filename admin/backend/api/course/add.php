@@ -7,34 +7,38 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $c_code = $_POST["c_code"];
-    $c_name = $_POST["c_name"];
-    $c_coordinator = $_POST["c_coordinator"];
-    $description = $_POST["description"];
+    hasClearence(1, function () {
 
-    // Validate and sanitize form data (you can add more validation as needed)
-    // $c_code = filter_var($c_code, FILTER_SANITIZE_STRING);
-    // $c_name = filter_var($c_name, FILTER_SANITIZE_STRING);
-    // $c_coordinator = filter_var($c_coordinator, FILTER_SANITIZE_STRING);
-    // $description = filter_var($description, FILTER_SANITIZE_STRING);
+        global $conn;
 
-    // Perform database insertion
-    $stmt = $conn->prepare("INSERT INTO course (c_code, c_name, c_coordinator,description) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $c_code, $c_name, $c_coordinator, $description);
+        // Retrieve form data
+        $c_code = $_POST["c_code"];
+        $c_name = $_POST["c_name"];
+        $c_coordinator = $_POST["c_coordinator"];
+        $description = $_POST["description"];
 
-    if ($stmt->execute()) {
-        // Course added successfully
-        header("Location: /pages/course?success=1");
-        exit();
-    } else {
-        // Error occurred
-        header("Location: /pages/course?error=1");
-        exit();
-    }
+        // Validate and sanitize form data (you can add more validation as needed)
+        // $c_code = filter_var($c_code, FILTER_SANITIZE_STRING);
+        // $c_name = filter_var($c_name, FILTER_SANITIZE_STRING);
+        // $c_coordinator = filter_var($c_coordinator, FILTER_SANITIZE_STRING);
+        // $description = filter_var($description, FILTER_SANITIZE_STRING);
+
+        // Perform database insertion
+        $stmt = $conn->prepare("INSERT INTO course (c_code, c_name, c_coordinator,description) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $c_code, $c_name, $c_coordinator, $description);
+
+        if ($stmt->execute()) {
+            // Course added successfully
+            header("Location: /pages/course?success=1");
+            exit();
+        } else {
+            // Error occurred
+            header("Location: /pages/course?error=1");
+            exit();
+        }
+    });
 } else {
     // Handle invalid request method
     header("Location: /pages/course");
     exit();
 }
-?>
