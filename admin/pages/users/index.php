@@ -105,7 +105,7 @@ if (!isset($users))
                                     <li>
                                         <p><?= $admin['user_name'] ?></p>
                                         <?php if ($clearenceStatus[$_SESSION['clearense']] > 1) { ?>
-                                            <a class="btn btn-danger" href="/backend/api/users/get.php?delete=<?= $admin['u_id'] ?>">DELETE</a>
+                                            <a class="btn btn-danger" href="/backend/api/users/delete.php?delete=<?= $admin['u_id'] ?>">DELETE</a>
                                         <?php } ?>
                                         <?php if ($_SESSION['user_id'] == $admin['u_id']) { ?>
                                             <a class="btn btn-success" href="/pages/users/edit.php">EDIT</a>
@@ -127,7 +127,7 @@ if (!isset($users))
                                     <li>
                                         <p><?= $cc['user_name'] ?></p>
                                         <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
-                                            <a class="btn btn-danger" href="/backend/api/users/get.php?delete=<?= $cc['u_id'] ?>">DELETE</a>
+                                            <a class="btn btn-danger" href="/backend/api/users/delete.php?delete=<?= $cc['u_id'] ?>">DELETE</a>
                                         <?php } ?>
                                         <?php if ($_SESSION['user_id'] == $cc['u_id']) { ?>
                                             <a class="btn btn-success" href="/pages/users/edit.php">EDIT</a>
