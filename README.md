@@ -86,11 +86,11 @@ The **Digital Signage CMS for the IT Center,UOP** is not just a project; it's a 
     <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=plastic" alt="JavaScript Badge">
     <img src="https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=fff&style=plastic" alt="PHP Badge">
 
-    <h4>Front-End: Smart TV App</h4>
+<h4>Front-End: Smart TV App</h4>
     <img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=plastic" alt="React Badge">
     <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=plastic" alt="TypeScript Badge">
 
-    <h4>Common Back-End</h4>
+<h4>Common Back-End</h4>
     <img src="https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=fff&style=plastic" alt="PHP Badge">
     <img src="https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff&style=plastic" alt="MySQL Badge">
 </div>
