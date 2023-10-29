@@ -79,7 +79,7 @@ The **Digital Signage CMS for the IT Center,UOP** is not just a project; it's a 
                    | TypeScript          |
                    +---------------------+
 ```
-<div style="background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); text-align: center;">
+<div style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); text-align: center;">
     <div>
         <h4>Front-End: Admin Web</h4>
         <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=plastic" alt="HTML5 Badge">
