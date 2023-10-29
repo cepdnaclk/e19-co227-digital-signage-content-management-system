@@ -1,6 +1,6 @@
 ---
 layout: home
-permalink: index.html
+permalink: 
 
 # Please update this with your repository name and title
 repository-name: e19-co227-digital-signage-content-management-system
