@@ -95,9 +95,9 @@ The **Digital Signage CMS for the IT Center,UOP** is not just a project; it's a 
 - Dr. Upul Jayasinghe [http://www.ce.pdn.ac.lk/upul/](http://www.ce.pdn.ac.lk/upul/)
 
 **Meet the Team**
-- Kalindu [GitHub](https://github.com/KalinduWijerathna), [(e19446@eng.pdn.ac.lk)]
-- Kavishka [GitHub](https://github.com/Kavishkagaya), [(e19309@eng.pdn.ac.lk)]
-- Inesha [GitHub](https://github.com/inesha21), [(e19090@eng.pdn.ac.lk)]
-- Geethal [GitHub](https://github.com/GeethalWickramasingha), [(e19436@eng.pdn.ac.lk)]
+- Kalindu [GitHub](https://github.com/KalinduWijerathna), [E-mail](e19446@eng.pdn.ac.lk)
+- Kavishka [GitHub](https://github.com/Kavishkagaya), [E-mail](e19309@eng.pdn.ac.lk)
+- Inesha [GitHub](https://github.com/inesha21), [E-mail](e19090@eng.pdn.ac.lk)
+- Geethal [GitHub](https://github.com/GeethalWickramasingha), [E-mail](e19436@eng.pdn.ac.lk)
 
 (*For inquiries and acknowledgments, feel free to contact us*)
