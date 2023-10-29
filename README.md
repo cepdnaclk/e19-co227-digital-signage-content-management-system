@@ -79,7 +79,25 @@ The **Digital Signage CMS for the IT Center,UOP** is not just a project; it's a 
                    | TypeScript          |
                    +---------------------+
 ```
-![Card Background](/docs/images/white.jpg)
+![Card Background](https://dummyimage.com/600x400/ffffff/ffffff.png&text=+) 
+
+<div>
+    <h4>Front-End: Admin Web</h4>
+    <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=plastic" alt="HTML5 Badge">
+    <img src="https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=plastic" alt="CSS3 Badge">
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=plastic" alt="JavaScript Badge">
+    <img src="https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=fff&style=plastic" alt="PHP Badge">
+</div>
+<div>
+    <h4>Front-End: Smart TV App</h4>
+    <img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=plastic" alt="React Badge">
+    <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=plastic" alt="TypeScript Badge">
+</div>
+<div>
+    <h4>Common Back-End</h4>
+    <img src="https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=fff&style=plastic" alt="PHP Badge">
+    <img src="https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff&style=plastic" alt="MySQL Badge">
+</div>
 
 <div>
     <h4>Front-End: Admin Web</h4>
