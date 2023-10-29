@@ -79,9 +79,26 @@ The **Digital Signage CMS for the IT Center,UOP** is not just a project; it's a 
                    | TypeScript          |
                    +---------------------+
 ```
-**Front-End: Admin Web    :**   ![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=plastic) ![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=plastic) ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=plastic) ![PHP Badge](https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=fff&style=plastic)  <br>
-**Front-End: Smart TV App :**   ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=plastic) ![TypeScript Badge](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=plastic) <br>
-**Common Back-End         :**   ![PHP Badge](https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=fff&style=plastic) ![MySQL Badge](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff&style=plastic) <br>
+<div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); text-align: center;">
+    <div>
+        <h3>Front-End: Admin Web</h3>
+        <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=plastic" alt="HTML5 Badge">
+        <img src="https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=plastic" alt="CSS3 Badge">
+        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=plastic" alt="JavaScript Badge">
+        <img src="https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=fff&style=plastic" alt="PHP Badge">
+    </div>
+    <div>
+        <h3>Front-End: Smart TV App</h3>
+        <img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=plastic" alt="React Badge">
+        <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=plastic" alt="TypeScript Badge">
+    </div>
+    <div>
+        <h3>Common Back-End</h3>
+        <img src="https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=fff&style=plastic" alt="PHP Badge">
+        <img src="https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff&style=plastic" alt="MySQL Badge">
+    </div>
+</div>
+
 
 
 
@@ -89,7 +106,7 @@ The **Digital Signage CMS for the IT Center,UOP** is not just a project; it's a 
 
 1. **Clone** the repository: `git clone [https://github.com/cepdnaclk/e19-co227-digital-signage-content-management-system/tree/main]`
 2. **Configure** your local environment with PHP and MySQL (e.g., XAMPP, WAMP, LAMP).
-3. **Set up** the `config.php` for seamless database orchestration.
+3. **Set up** the `/admin/config.php` for seamless database orchestration.
 4. **Start the Admin Web App** by initially navigating to the directory through `cd /admin` and then start hosting by `php -S localhost:8000`.
 5. **Start the Smart TV App** by initially navigating to the directory through `cd /tv` and then start runining by `npm run dev`.
 6. **Open Browser** and then enter in two separate tabs `http://localhost:8000/`(for Admin Web App) and `http://localhost:5173/` (for Smart TV App).  
