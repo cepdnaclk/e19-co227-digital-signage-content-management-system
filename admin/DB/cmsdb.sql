@@ -616,6 +616,31 @@ VALUES
     1
   );
 
+--
+-- Table structure for table `map`
+--
+
+DROP TABLE IF EXISTS `map`;
+CREATE TABLE IF NOT EXISTS `map` (
+  `m_id` int NOT NULL AUTO_INCREMENT,
+  `m_name` varchar(100) NOT NULL,
+  `m_file` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `m_desc` text,
+  `added_by` int NOT NULL,
+  PRIMARY KEY (`m_id`),
+  KEY `fk_admin_id` (`added_by`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `map`
+--
+
+INSERT INTO `map` (`m_id`, `m_name`, `m_file`, `m_desc`, `added_by`) VALUES
+(1, 'Map 1', '/images/maps/map1.mp4', 'This is the firstuihdhdjhwohjedklwnxowhxlkjwsjndxowdkjkwhxiedw;ncorieuoncoweifcnbedlewmxerhrfeddxneowchbewouhbcowehcdnworhfochneowehcxwoneohowjcxnoejpvcpejcnwpiepfhcodsnbwoheoneowbgcwuhegbweixbwurhfoeijfriyvfhrfhvcrelwcfkpoewedeiufbekwqlefhgceirufidcgoeq;efyeo[fdheofheowfbckehwqirhfeytfrurifg1fip1epfdhecbevcbe1gqgpwgergf934ggdieufeowihrfiehfdeigcgieuwqegfdeidbciewqedheohvoerferyigfcbedcq;wedoeiuyf374gekbceufhye4yfegbdcxbedwilu map', 1),
+(2, 'Map 2', '/images/maps/map2.mp4', 'A description of the second map', 2),
+(3, 'Map 3', '/images/maps/map3.mp4', 'The third map with some details', 1);
+
+COMMIT;
 -- --------------------------------------------------------
 --
 -- Table structure for table `user`

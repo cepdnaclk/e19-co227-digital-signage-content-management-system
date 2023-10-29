@@ -1,0 +1,77 @@
+/* Reset default margin and padding */
+.add-map body,
+h2,
+form {
+  margin: 0;
+  padding: 0;
+}
+
+/* Center the entire form vertically and horizontally */
+.add-map  .form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 100%;
+  background-color: #f0f0f0; /* Set a background color */
+  margin: 0px;
+}
+
+/* Style the form container */
+.add-map  form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  width: 500px;
+}
+
+/* Style form elements */
+.add-map  h2 {
+  padding: 3%;
+  color: #ffffff;
+  font-size: 24px;
+  text-align: center;
+  background-color: brown;
+}
+
+.add-map  label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.add-map  input[type="text"],
+.add-map  input[type="number"],
+.add-map  input[type="date"],
+.add-map  textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-map  input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.add-map  input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px auto; /* Add this line to horizontally center the button */
+  display: block;
+}
+
