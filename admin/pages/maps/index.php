@@ -52,7 +52,7 @@ if (isset($maps['error']))
                                     <source src='<?= $row["m_file"] ?>'  type="video/mp4">
                                     Your browser does not support the video tag.
                                     </video> 
-                                    <img src='<?= $row["m_file"] ?>' alt='Add Event Image'>
+                                    
                                     <p class='card-description'>
                                         <?= $row["m_desc"] ?>
                                     </p>
