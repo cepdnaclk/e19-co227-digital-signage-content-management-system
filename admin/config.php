@@ -1,4 +1,8 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 const APP_ROOT = __DIR__;
 
 // Database Configuration
