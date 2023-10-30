@@ -151,41 +151,41 @@ function addMap($m_name, $m_file, $m_desc, $added_by)
 //     return $result;
 // }
 
-// function deleteAchivement(int $a_id)
-// {
-//     global $conn;
+function deleteMap(int $m_id)
+{
+    global $conn;
 
-//     $sql = "SELECT * FROM achievement WHERE a_id= $a_id";
-//     $result = mysqli_query($conn, $sql);
-//     $row = mysqli_fetch_assoc($result);
+    $sql = "SELECT * FROM map WHERE m_id= $m_id";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
 
-//     $event_img = $_SERVER['DOCUMENT_ROOT'] . $row['a_img'];
-//     if (file_exists($event_img)) {
-//         if (!unlink($event_img)) {
-//             echo "Failed to delete the image.";
-//         }
-//     } else {
-//         echo "Image file does not exist.";
-//     }
+    $m_file = $_SERVER['DOCUMENT_ROOT'] . $row['m_file'];
+    if (file_exists($m_file)) {
+        if (!unlink($m_file)) {
+            echo "Failed to delete the video.";
+        }
+    } else {
+        echo "Video file does not exist.";
+    }
 
 
-//     $sql = "DELETE FROM achievement WHERE a_id = ?";
-//     $stmt = mysqli_prepare($conn, $sql);
+    $sql = "DELETE FROM map WHERE m_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
 
-//     mysqli_stmt_bind_param($stmt, "i", $a_id);
+    mysqli_stmt_bind_param($stmt, "i", $m_id);
 
-//     $result = 0;
+    $result = 0;
 
-//     if (mysqli_stmt_execute($stmt)) {
-//         $result = true;
-//     } else {
-//         $result =  array('error' => mysqli_error($conn));
-//     }
+    if (mysqli_stmt_execute($stmt)) {
+        $result = true;
+    } else {
+        $result =  array('error' => mysqli_error($conn));
+    }
 
-//     mysqli_stmt_close($stmt);
+    mysqli_stmt_close($stmt);
 
-//     return $result;
-// }
+    return $result;
+}
 
 
 
