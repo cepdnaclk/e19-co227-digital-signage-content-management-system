@@ -112,3 +112,15 @@ a:hover {
 .team{
     padding-left: 40px;
 }
+.intro-video{
+    padding-left: 170px;
+}
+
+.intro-video video {
+    width: 80%;
+    height: auto;
+    border: 5px solid #555; /* Add a border around the video */
+    border-radius: 10px; /* Add rounded corners to the border */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow to the video */
+    margin: 20px auto; /* Center the video on the page with some margin */
+}
