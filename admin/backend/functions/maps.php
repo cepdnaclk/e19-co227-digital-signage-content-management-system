@@ -21,11 +21,11 @@ function getMaps()
     return $result;
 }
 
-function getmapById(int $m_id)
+function getMapById(int $m_id)
 {
     global $conn;
 
-    $sql = "SELECT * FROM map WHERE a_id= $m_id";
+    $sql = "SELECT * FROM map WHERE m_id= $m_id";
     $res = mysqli_query($conn, $sql);
 
     $result = array();
@@ -94,62 +94,61 @@ function addMap($m_name, $m_file, $m_desc, $added_by)
 }
 
 
-// function editAchivement($a_name, $a_desc, $a_date, $file, $file_path, $added_by, $a_id)
-// {
-//     global $conn;
-//     $result = array();
-//     $targetFile = $file_path;
+function editMap($m_id, $m_name,$m_desc, $m_file,$m_file_path,$added_by )
+{
+    global $conn;
+    $result = array();
+    $targetFile = $m_file_path;
 
-//     if ($file['name']) {
-//         if (isset($file_path)) {
-//             if (file_exists($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
-//                 if (!unlink($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
-//                     $result = array('error' => "Error uploading the image. Couldn't delete old one" . $_SERVER['DOCUMENT_ROOT'] . $file_path);
-//                     return $result;
-//                 }
-//             }
-//         }
+    if ($m_file['name']) {
+        if (isset($m_file_path)) {
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $m_file_path)) {
+                if (!unlink($_SERVER['DOCUMENT_ROOT'] . $m_file_path)) {
+                    $result = array('error' => "Error uploading the video. Couldn't delete old one" . $_SERVER['DOCUMENT_ROOT'] . $m_file_path);
+                    return $result;
+                }
+            }
+        }
 
-//         $targetDirectory = "/images/upcoming-event-posters/";
-//         $targetFile = $targetDirectory . basename($file["name"]);
+        $targetDirectory = "/images/maps/";
+        $targetFile = $targetDirectory . basename($m_file["name"]);
 
-//         // Check if the file is an image
-//         $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-//         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-//             $result = array('error' => "Only JPG, JPEG, and PNG files are allowed." . $file['name']);
-//             return $result;
-//         } else {
-//             if (move_uploaded_file($file["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $targetFile)) {
-//             } else {
-//                 $result = array('error' => "Error uploading the image.");
-//                 return $result;
-//             }
-//         }
-//     }
+        // Check if the file is an image
+        $Filetype = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+        if ($Filetype != "mp4") {
+            $result = array('error' => "Only mp4 files are allowed." . $m_file['name']);
+            return $result;
+        } else {
+            if (move_uploaded_file($m_file["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $targetFile)) {
+            } else {
+                $result = array('error' => "Error uploading the video.");
+                return $result;
+            }
+        }
+    }
 
-//     // Prepare and execute the SQL query to insert data into the 'upcoming_event' table
-//     $sql = "UPDATE achievement
-//             SET a_name = ?, 
-//                 a_desc = ?, 
-//                 a_date = ?, 
-//                 a_img = ?, 
-//                 added_by = ?
-//             WHERE a_id = ?";
-//     $stmt = mysqli_prepare($conn, $sql);
+    // Prepare and execute the SQL query to insert data into the 'upcoming_event' table
+    $sql = "UPDATE map
+            SET m_name = ?, 
+                m_desc = ?,
+                m_file = ?, 
+                added_by = ?
+            WHERE m_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
 
-//     // Bind parameters
-//     mysqli_stmt_bind_param($stmt, "ssssii", $a_name, $a_desc, $a_date, $targetFile, $added_by, $a_id);
+    // Bind parameters
+    mysqli_stmt_bind_param($stmt, "sssii", $m_name, $m_desc, $targetFile, $added_by, $m_id);
 
-//     if (mysqli_stmt_execute($stmt)) {
-//         $result = array('message' => "Upcoming Event Updated");
-//     } else {
-//         $result = array('error' => mysqli_error($conn));
-//     }
+    if (mysqli_stmt_execute($stmt)) {
+        $result = array('message' => "Map Updated");
+    } else {
+        $result = array('error' => mysqli_error($conn));
+    }
 
-//     mysqli_stmt_close($stmt);
+    mysqli_stmt_close($stmt);
 
-//     return $result;
-// }
+    return $result;
+}
 
 function deleteMap(int $m_id)
 {

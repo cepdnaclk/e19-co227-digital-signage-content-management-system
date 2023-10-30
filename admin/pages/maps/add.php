@@ -51,7 +51,7 @@
                         <input type="file" name="m_file" id="m_file" required>
                         <br>
                         <label for="m_name">Map Title:</label>
-                        <input type="text" name="m_name" id="m_name">
+                        <input type="text" name="m_name" id="m_name" required>
                         <br>
                         <label for="m_desc">Description:</label>
                         <textarea name="m_desc" id="m_desc" rows="6"></textarea>
