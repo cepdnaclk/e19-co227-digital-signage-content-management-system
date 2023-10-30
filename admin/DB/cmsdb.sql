@@ -271,22 +271,25 @@ VALUES
 --
 DROP TABLE IF EXISTS `facility`;
 
+
 CREATE TABLE IF NOT EXISTS `facility` (
-  `f_id` int(11) NOT NULL AUTO_INCREMENT,
+  `f_id` int NOT NULL AUTO_INCREMENT,
   `f_name` varchar(50) NOT NULL,
+  `total_seats` int NOT NULL,
+  `price` int NOT NULL,
   PRIMARY KEY (`f_id`)
-) ENGINE = MyISAM AUTO_INCREMENT = 5 DEFAULT CHARSET = latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `facility`
 --
-INSERT INTO
-  `facility` (`f_id`, `f_name`)
-VALUES
-  (1, 'Seminar Room'),
-  (2, 'Lab 1'),
-  (3, 'Lab 2'),
-  (4, 'CCNA Lab');
+
+INSERT INTO `facility` (`f_id`, `f_name`, `total_seats`, `price`) VALUES
+(1, 'Seminar Room', 100, 100),
+(2, 'Lab 1', 50, 50),
+(3, 'Lab 2', 50, 50),
+(4, 'CCNA Lab', 20, 150);
+
 
 -- --------------------------------------------------------
 --
