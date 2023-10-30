@@ -1,6 +1,6 @@
 <div align="center">
-    <img src="tv\src\assets\UOPLogo.svg" alt="Logo 1" width="100">
-    <img src="tv\src\assets\ITCenterLogo.svg" alt="Logo 2" width="100">
+    <img src="tv\src\assets\UOPLogo.svg" alt="Logo 1" width="150">
+    <img src="tv\src\assets\ITCenterLogo.svg" alt="Logo 2" width="150">
     <h1>Digital Signage Content Management System</h1>
     <p>Empowering Communication, Inspiring Engagement!</p>
 </div>
