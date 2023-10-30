@@ -88,7 +88,7 @@ a {
   position: fixed;
   z-index: 100;
   padding: 1rem 2rem;
-  top: 8rem;
+  top: -5rem;
   left: calc(50% + 150px);
   transform: translate(-50%, -50%);
   color: white;
@@ -108,31 +108,35 @@ a {
 
 @keyframes alert {
   0% {
-    transform: translate(-50%, -100%);
+    top: -5rem;
+    transform: translateX(-50%);
     opacity: 0;
   }
   5% {
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
+    top: 8rem;
     opacity: 1;
   }
   6% {
-    transform: translate(-51%, -50%);
+    transform: translateX(-51%);
   }
   7% {
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
   }
   8% {
-    transform: translate(-49%, -50%);
+    transform: translateX(-49%);
   }
   9% {
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
   }
   90% {
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     opacity: 1;
+    top: 8rem;
   }
   100% {
-    transform: translate(-50%, -100%);
+    transform: translateX(-50%);
     opacity: 0;
+    top: -5rem;
   }
 }
