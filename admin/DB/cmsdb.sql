@@ -705,6 +705,31 @@ VALUES
     'admin'
   );
 
+-- ---------------------------------------------------------------------
+DROP TABLE IF EXISTS `booking`;
+CREATE TABLE IF NOT EXISTS `booking` (
+  `b_id` int NOT NULL AUTO_INCREMENT,
+  `f_id` int NOT NULL,
+  `b_date` date NOT NULL,
+  `b_timeslot` varchar(20) NOT NULL,
+  `b_seats` int NOT NULL,
+  `b_for` varchar(100) NOT NULL,
+  `b_by` int NOT NULL,
+  PRIMARY KEY (`b_id`),
+  KEY `fk_admin_id` (`b_by`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+ALTER TABLE `booking`
+ADD CONSTRAINT `fk_facility_id`
+FOREIGN KEY (`f_id`) REFERENCES `facility` (`f_id`);
+
+INSERT INTO `booking` (`f_id`, `b_date`, `b_timeslot`, `b_seats`, `b_for`, `b_by`)
+VALUES
+(1, '2023-11-01', '08:00 - 09:00 AM', 2, 'John Doe', 1),
+(2, '2023-11-02', '09:00 - 10:00 AM', 3, 'Alice Smith', 2),
+(3, '2023-11-03', '10:00 - 11:00 AM', 1, 'Bob Johnson', 3),
+(4, '2023-11-04', '11:00 - 12:00 PM', 4, 'Eva White', 4);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
