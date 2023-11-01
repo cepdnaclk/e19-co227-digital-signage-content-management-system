@@ -714,6 +714,7 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `b_timeslot` varchar(20) NOT NULL,
   `b_seats` int NOT NULL,
   `b_for` varchar(100) NOT NULL,
+  `b_contact` varchar(15) NOT NULL,
   `b_by` int NOT NULL,
   PRIMARY KEY (`b_id`),
   KEY `fk_admin_id` (`b_by`)
@@ -723,12 +724,12 @@ ALTER TABLE `booking`
 ADD CONSTRAINT `fk_facility_id`
 FOREIGN KEY (`f_id`) REFERENCES `facility` (`f_id`);
 
-INSERT INTO `booking` (`f_id`, `b_date`, `b_timeslot`, `b_seats`, `b_for`, `b_by`)
+INSERT INTO `booking` (`f_id`, `b_date`, `b_timeslot`, `b_seats`, `b_for`,`b_contact`, `b_by`)
 VALUES
-(1, '2023-11-01', '08:00 - 09:00 AM', 2, 'John Doe', 1),
-(2, '2023-11-02', '09:00 - 10:00 AM', 3, 'Alice Smith', 2),
-(3, '2023-11-03', '10:00 - 11:00 AM', 1, 'Bob Johnson', 3),
-(4, '2023-11-04', '11:00 - 12:00 PM', 4, 'Eva White', 4);
+(1, '2023-11-01', '08:00 - 09:00 AM', 2, 'John Doe', '0123456789',1),
+(2, '2023-11-02', '09:00 - 10:00 AM', 3, 'Alice Smith','0123456789', 2),
+(3, '2023-11-03', '10:00 - 11:00 AM', 1, 'Bob Johnson','0123456789', 3),
+(4, '2023-11-04', '11:00 - 12:00 PM', 4, 'Eva White', '0123456789',4);
 
 COMMIT;
 
