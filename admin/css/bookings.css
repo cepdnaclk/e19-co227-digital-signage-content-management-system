@@ -50,6 +50,7 @@
     font-weight: 1500;
     padding-bottom: 20px;
     
+    
   }
   
   .bookings .card-description {
@@ -95,6 +96,7 @@
   
   /* Style the edit, publish and delete buttons */
   .bookings .edit-button,
+  .bookings .display-button,
   .bookings .delete-button {
     padding: 10px;
     color: white;
@@ -111,11 +113,13 @@
     font-size: 12px;
   }
   
-  .bookings .edit-button {
+  .bookings .edit-button,
+  .bookings .display-button {
     background-color: var(--color-4);
     width: 100px;
   }
-  
+
+
 
   .bookings .delete-button {
     background-color: var(--color-1);
@@ -124,8 +128,7 @@
   
   .bookings .edit-button:hover,
   .bookings .delete-button:hover,
-  .previousevents .publish-button:hover,
-  .previousevents .unpublish-button:hover {
+  .bookings .display-button:hover {
     filter: brightness(1.2);
   }
   
