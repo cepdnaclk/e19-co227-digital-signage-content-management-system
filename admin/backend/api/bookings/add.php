@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if the form fields are set and not empty
+   
     hasClearence(1, function () {
 
             // Get form data

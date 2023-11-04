@@ -69,10 +69,3 @@ form {
   display: block;
 }
 
-/* Style the uploaded image */
-.add-booking img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 20px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
