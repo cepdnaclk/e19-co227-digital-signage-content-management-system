@@ -34,13 +34,8 @@ if (isset($_POST["f_id"]) && isset($_POST["date"]) && isset($_POST["timeslot"]))
         }
     } else {
         $bookedSeats = 0;
-    }
-    
-    
-    
-    print_r($bookedSeats);
-
-    
+    } 
+    //print_r($bookedSeats); 
     
 }
 
@@ -83,14 +78,15 @@ if (isset($_POST["f_id"]) && isset($_POST["date"]) && isset($_POST["timeslot"]))
                                         <?= $row["f_name"] ?>
                                     </h2>
                                     <p class='card-description'>
-                                        Total Seats: <?= $row["total_seats"] ?>
+                                        <?php $Total_seats= $row["total_seats"] ?>
+                                        Total Seats: <?= $Total_seats ?>
                                     </p>
 
                                     <form action="" method="post">
                                         <input type="hidden" name="f_id" value="<?= $row["f_id"] ?>">
                                         <p class='card-description'>
-                                            <label for="date">Select a date (YYYY-MM-DD):</label>
-                                            <input type="text" name="date" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" required>
+                                            <label for="date">Select a date:</label>
+                                            <input type="date" name="date"  required>
 
                                         </p>
                                         <p class='card-description'>
@@ -125,7 +121,8 @@ if (isset($_POST["f_id"]) && isset($_POST["date"]) && isset($_POST["timeslot"]))
 
                                     <?php if ($post_f_id == $row["f_id"]) { ?>
                                         <p class='card-description'>
-                                        Available Seats: <?= $row["total_seats"] - $bookedSeats ?>
+                                            <?php $Available_Seats=$row["total_seats"] - $bookedSeats ?>
+                                        Available Seats: <?= $Available_Seats ?>
                                         </p>
                                     <?php } else { ?>
                                         <p class='card-description'>
@@ -135,7 +132,7 @@ if (isset($_POST["f_id"]) && isset($_POST["date"]) && isset($_POST["timeslot"]))
                                 </div>
                                 <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
                                     <div class='card-actions'>
-                                        <a href="add.php">
+                                        <a href="add.php?f_id=<?= $row['f_id'] ?> & total_seats=<?= $Total_seats?>">
                                             <button class="edit-button">
                                                 <span class="icon">&#9998;</span>
                                                 + Booking
