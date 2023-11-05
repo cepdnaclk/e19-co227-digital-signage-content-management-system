@@ -26,3 +26,30 @@ function addBooking($f_id, $b_date, $b_timeslot, $b_seats,$b_for,$b_contact, $b_
     return $result;
 }
 }
+
+
+
+function displayall(int $f_id)
+{
+    global $conn;
+
+    $sql = "SELECT * FROM booking WHERE f_id= ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $f_id);
+    $result = array();
+
+    if (mysqli_stmt_execute($stmt)) {
+        $res = mysqli_stmt_get_result($stmt);
+
+        while ($row = mysqli_fetch_assoc($res)) {
+            $result[] = $row;
+        }
+    } else {
+        $result = array('error' => mysqli_error($conn));
+    }
+
+    // Close the statement
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}
