@@ -70,7 +70,7 @@ if (isset($_POST["f_id"]) && isset($_POST["date"]) && isset($_POST["timeslot"]))
                         
                     </div>
                     <div class="card-container">
-                        <?php if (isset($facilities[0]['f_name']))
+                        <?php if (isset($facilities[0]['f_name'])) //Creating display cards for the number of facilities
                             foreach ($facilities as $key => $row) { ?>
                             <div class='card'>
                                 <div class='card-content'>
@@ -140,10 +140,10 @@ if (isset($_POST["f_id"]) && isset($_POST["date"]) && isset($_POST["timeslot"]))
                                         </a>
 
 
-                                        <a href="/backend/api/bookings/delete.php?delete_id=<?= $row['f_id'] ?>">
+                                        <a href="/backend/api/bookings/displayall.php?f_id=<?= $row['f_id'] ?>">
                                             <button class="delete-button">
                                                 <span class="icon">&#128465;</span>
-                                                - Booking
+                                                Display All
                                             </button>
                                         </a>
                                     </div>
