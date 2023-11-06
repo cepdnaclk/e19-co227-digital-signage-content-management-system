@@ -132,7 +132,7 @@ if (isset($_POST["f_id"]) && isset($_POST["date"]) && isset($_POST["timeslot"]))
                                 </div>
                                 <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
                                     <div class='card-actions'>
-                                        <a href="add.php?f_id=<?= $row['f_id'] ?> & total_seats=<?= $Total_seats?>">
+                                        <a href="add.php?f_id=<?= $row['f_id'] ?> & total_seats=<?= $Total_seats?> & f_name=<?=$row["f_name"]?> ">
                                             <button class="edit-button">
                                                 <span class="icon">&#9998;</span>
                                                 + Booking

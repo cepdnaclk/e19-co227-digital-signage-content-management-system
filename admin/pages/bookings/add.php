@@ -2,7 +2,8 @@
 
 <?php if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $f_id = $_GET["f_id"];
-    $total_seats = $_GET["total_seats"];} ?>
+    $total_seats = $_GET["total_seats"];
+    $f_name = $_GET["f_name"];} ?>
 <!DOCTYPE html>
 <html>
 
@@ -46,7 +47,7 @@
                     <div class="title">
                         <div>
                             <h1><a href="./">Bookings ></a>Add Booking</h1>
-                            <p>Add a new booking</p>
+                            <p>Add a New Booking to <?php echo $f_name?></p>
                         </div>
                     </div>
                 </div>
