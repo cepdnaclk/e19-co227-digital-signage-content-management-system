@@ -33,7 +33,7 @@ function displayall(int $f_id)
 {
     global $conn;
 
-    $sql = "SELECT * FROM booking WHERE f_id= ?";
+    $sql = "SELECT * FROM booking WHERE f_id= ? ORDER BY b_date ASC, b_timeslot ASC";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "i", $f_id);
     $result = array();
