@@ -2,23 +2,33 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/bookings.php";
 
-if (isset($_GET['result'])) {
+if (isset($_GET['resultencoded'])) {
     // Decode the URL parameter
-    $result_encoded = $_GET['result'];
+    $result_encoded = $_GET['resultencoded'];
+    
     
     // Decode the JSON string to get the original data
-    $result = json_decode(urldecode($result_encoded), true);
+    
+    $resultarr = json_decode(urldecode($result_encoded), true);
+    
+//     echo (is_array($resultarr));
+//     echo(isset($resultarr));
+//     print_r($resultarr);
+//     print_r($resultarr[0]['b_date']); //Debug
+//     foreach ($resultarr as $row) {
+//         print_r($row['b_date']);}
 
     
-}
+ }
 ?>
+
 <!DOCTYPE html>
             <html lang="en">
 
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="stylesheet" href="/css/bookings.css"> 
+                <link rel="stylesheet" href="/css/displayall.css"> 
                 <title>IT Center | Bookings</title>
             </head>
 
@@ -38,45 +48,49 @@ if (isset($_GET['result'])) {
                         <main class="bookings">
                             <div class="container">
                                 <h1>All Bookings</h1>
-                                
-
-                    
-                                <div class="title">
+                               
                                     <div class="title">
                                         <h2></h2>
                                     
-                                    </div>
+                                
                                 </div>
                                 <table class="bookings-table">
-                                    
+                                        <div class="table-headers">
                                         <tr>
-                                            <th>f_id</th>
-                                            <th>b_date</th>
-                                            <th>b_timeslot</th>
-                                            <th>b_for</th>
-                                            <th>b_contact</th>
+                                            
+                                            <th>Date</th>
+                                            <th>Timeslot</th>
+                                            <th>No of Seats</th>
+                                            <th>Reserved For</th>
+                                            <th>Contact No</th>
+                                            <th>Added By</th>
                                            
                                         </tr>
+                                        </div>
                                     
                                     <tbody>
                                 
                                     <?php 
                                     
-                                    if (is_array($result)) {
+                                    if (isset($resultarr)) {
                                         
-                                        foreach ($result as $row) {
+                                        foreach ($resultarr as $row) {
+                                            
                                             ?>
                                                     <div class='card-content'>
                                                     <tr>
+                                                    
                                                         
-                                                        <td><?= $row["f_id"] ?></td>
+                                                        
                                                         <td><?= $row["b_date"] ?></td>
                                                         <td><?= $row["b_timeslot"] ?></td>
                                                         <td><?= $row["b_seats"] ?></td>
                                                         <td><?= $row["b_for"] ?></td>
+                                                        <td><?= $row["b_contact"] ?></td>
+                                                        <td><?= $row["b_by"] ?></td>
                                                         
-                                                        <td><a href="add.php?id=<?= $row['b_id'] ?>" role="button">Edit</a></td>
-                                                        <td><a href="/backend/api/labslots/delete.php?delete_id=<?= $row['b_id'] ?>" role="button">Delete</a></td>
+                                                        <td><a href="editbooking.php?id=<?= $row['b_id'] ?>" class="btn btn-edit" >Edit</a></td>
+                                                        <td><a href="/backend/api/labslots/delete.php?delete_id=<?= $row['b_id'] ?>" class="btn btn-delete" role="button">Delete</a></td>
                                                     </tr>
                                                     </div>
                                             <?php
