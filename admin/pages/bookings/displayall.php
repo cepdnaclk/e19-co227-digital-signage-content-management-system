@@ -90,7 +90,7 @@ if (isset($_GET['resultencoded'])) {
                                                         <td><?= $row["b_by"] ?></td>
                                                         
                                                         <td><a href="editbooking.php?id=<?= $row['b_id'] ?>" class="btn btn-edit" >Edit</a></td>
-                                                        <td><a href="/backend/api/labslots/delete.php?delete_id=<?= $row['b_id'] ?>" class="btn btn-delete" role="button">Delete</a></td>
+                                                        <td><a href="/backend/api/bookings/delete.php?delete_id=<?= $row['b_id'] ?>" class="btn btn-delete" role="button">Delete</a></td>
                                                     </tr>
                                                     </div>
                                             <?php
