@@ -7,13 +7,13 @@ if (session_status() == PHP_SESSION_NONE) {
 
 // Include the core header
 include $_SERVER['DOCUMENT_ROOT'] . "/includes/header_core.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "config.php";//g
+
 
 // Check if the user is logged in
 if (isset($_SESSION['user_id'])) {
   // Fetch user information from the database based on the user_id
   $user_id = $_SESSION['user_id'];
-  global $conn;//g
+
 
   // Use your database connection and query to fetch user data
   // Replace 'your_query_here' with the actual SQL query to fetch user data
