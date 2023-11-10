@@ -122,7 +122,7 @@
 
 
   .bookings .delete-button {
-    background-color: var(--color-1);
+    background-color:#007BFF;
     width: 100px;
   }
   
