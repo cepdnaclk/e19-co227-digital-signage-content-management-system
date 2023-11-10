@@ -35,7 +35,7 @@ if (isset($_POST["f_id"]) && isset($_POST["date"]) && isset($_POST["timeslot"]))
     } else {
         $bookedSeats = 0;
     } 
-    //print_r($bookedSeats); 
+    //print_r($bookedSeats); debug
     
 }
 
@@ -48,6 +48,7 @@ if (isset($_POST["f_id"]) && isset($_POST["date"]) && isset($_POST["timeslot"]))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bookings.css">
+ 
     <title>IT Center | Bookings</title>
 </head>
 
@@ -142,8 +143,8 @@ if (isset($_POST["f_id"]) && isset($_POST["date"]) && isset($_POST["timeslot"]))
 
                                         <a href="/backend/api/bookings/displayall.php?f_id=<?= $row['f_id'] ?>">
                                             <button class="delete-button">
-                                                <span class="icon">&#128465;</span>
-                                                Display All
+                                                <span class="icon">&#128065;</span>
+                                                See All
                                             </button>
                                         </a>
                                     </div>
