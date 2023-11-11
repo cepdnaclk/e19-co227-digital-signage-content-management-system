@@ -1,30 +1,30 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 
-function addBooking($f_id, $b_date, $b_timeslot, $b_seats,$b_for,$b_contact, $b_by){
+function addBooking($f_id, $b_date, $b_timeslot, $b_seats, $b_for, $b_contact, $b_by)
+{
     global $conn;
-    if(!is_numeric($f_id) || !is_numeric($b_seats) || !is_numeric($b_by) ){
+    if (!is_numeric($f_id) || !is_numeric($b_seats) || !is_numeric($b_by)) {
         return false;
-    }
-    else{
-    $result = array();
-
-    $sql = "INSERT INTO booking (f_id, b_date, b_timeslot, b_seats, b_for, b_contact, b_by) VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-    $stmt = mysqli_prepare($conn, $sql);
-    
-    // Bind parameters
-    mysqli_stmt_bind_param($stmt, "ississi", $f_id, $b_date, $b_timeslot, $b_seats,$b_for,$b_contact, $b_by);
-
-    if (mysqli_stmt_execute($stmt)) {
-        $result = array('message' => "Booking Added Successfully");
     } else {
-        $result = array('error' => mysqli_error($conn));
-    }
-    mysqli_stmt_close($stmt);
+        $result = array();
 
-    return $result;
-}
+        $sql = "INSERT INTO booking (f_id, b_date, b_timeslot, b_seats, b_for, b_contact, b_by) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = mysqli_prepare($conn, $sql);
+
+        // Bind parameters
+        mysqli_stmt_bind_param($stmt, "ississi", $f_id, $b_date, $b_timeslot, $b_seats, $b_for, $b_contact, $b_by);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = array('message' => "Booking Added Successfully");
+        } else {
+            $result = array('error' => mysqli_error($conn));
+        }
+        mysqli_stmt_close($stmt);
+
+        return $result;
+    }
 }
 
 
@@ -54,7 +54,8 @@ function displayall(int $f_id)
     return $result;
 }
 
-function getBookingById(int $b_id) {
+function getBookingById(int $b_id)
+{
     global $conn;
 
     $sql = 'SELECT * FROM booking WHERE b_id = ?';
@@ -66,10 +67,10 @@ function getBookingById(int $b_id) {
 
     mysqli_stmt_bind_param($stmt, 'i', $b_id);
 
-    
+
     mysqli_stmt_execute($stmt);
 
-    
+
     $res = mysqli_stmt_get_result($stmt);
 
     $result = array();
@@ -92,29 +93,56 @@ function getBookingById(int $b_id) {
 }
 
 
-function editBooking($b_id, $b_date, $b_timeslot, $b_seats,$b_for,$b_contact, $b_by){
+function editBooking($b_id, $b_date, $b_timeslot, $b_seats, $b_for, $b_contact, $b_by)
+{
     global $conn;
-    if(!is_numeric($b_seats) || !is_numeric($b_by) ){
+    if (!is_numeric($b_seats) || !is_numeric($b_by)) {
         return false;
-    }
-    else{
-    $result = array();
-
-
-    $sql = "UPDATE booking SET b_date= ?, b_timeslot = ?, b_seats = ?, b_for = ? ,b_contact = ?, b_by = ? WHERE b_id = ?";
-
-    $stmt = mysqli_prepare($conn, $sql);
-    
-    // Bind parameters
-    mysqli_stmt_bind_param($stmt, "ssissii", $b_date, $b_timeslot, $b_seats,$b_for,$b_contact, $b_by,$b_id);
-
-    if (mysqli_stmt_execute($stmt)) {
-        $result = array('message' => "Booking Updated Successfully");
     } else {
-        $result = array('error' => mysqli_error($conn));
-    }
-    mysqli_stmt_close($stmt);
+        $result = array();
 
-    return $result;
+
+        $sql = "UPDATE booking SET b_date= ?, b_timeslot = ?, b_seats = ?, b_for = ? ,b_contact = ?, b_by = ? WHERE b_id = ?";
+
+        $stmt = mysqli_prepare($conn, $sql);
+
+        // Bind parameters
+        mysqli_stmt_bind_param($stmt, "ssissii", $b_date, $b_timeslot, $b_seats, $b_for, $b_contact, $b_by, $b_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = array('message' => "Booking Updated Successfully");
+        } else {
+            $result = array('error' => mysqli_error($conn));
+        }
+        mysqli_stmt_close($stmt);
+
+        return $result;
+    }
 }
+
+function deleteBooking(int $b_id)
+{
+    global $conn;
+    if (!is_numeric($b_id)) {
+        return false;
+    } else {
+
+        $result = array();
+        $sql = "DELETE FROM booking WHERE b_id = ?";
+
+        $stmt = mysqli_prepare($conn, $sql);
+
+        // Bind parameters
+        mysqli_stmt_bind_param($stmt, "i", $b_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $result = array('message' => "Booking Deleted Successfully");
+        } else {
+            $result = array('error' => mysqli_error($conn));
+        }
+        mysqli_stmt_close($stmt);
+
+        return $result;
+
+    }
 }
