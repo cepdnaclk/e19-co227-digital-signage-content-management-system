@@ -68,7 +68,7 @@
 
                 <a href="/pages/general.php" class="link <?php echo $index == 5 ? 'active' : '' ?>">
                     <div class="link-main">
-                        <img src="/images/darhboard_alt.svg" alt="">
+                        <img src="/images/info.svg" alt="">
                         <p>General Info</p>
                     </div>
                 </a>
@@ -87,7 +87,7 @@
 
                 <a href="/pages/bookings/" class="link <?php echo $index == 6 ? 'active' : '' ?>">
                     <div class="link-main">
-                        <img src="/images/Mortarboard.svg" alt="">
+                        <img src="/images/book.svg" alt="">
                         <p>Lab Bookings</p>
                     </div>
                 </a>
