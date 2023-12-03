@@ -65,3 +65,49 @@ function addFacility($f_name, $total_seats, $price, $floor, $in_charge)
 
     return $result;
 }
+
+function getFacilityById(int $f_id)
+{
+    global $conn;
+
+    $sql = "SELECT * FROM facility WHERE f_id= $f_id";
+    $res = mysqli_query($conn, $sql);
+
+    $result = array();
+
+    if (mysqli_num_rows($res) > 0) {
+        $row = mysqli_fetch_assoc($res);
+        $result = $row;
+    } else {
+        $result = array('error' => mysqli_error($conn));
+    }
+
+    return $result;
+}
+
+function editFacility($f_name, $total_seats, $price, $floor, $in_charge, $f_id)
+{
+    global $conn;
+    $sql = "UPDATE facility
+            SET f_name = ?, 
+                total_seats = ?,
+                price = ?, 
+                floor = ?,
+                in_charge = ?
+            WHERE f_id = ?";
+
+    $stmt = mysqli_prepare($conn, $sql);
+
+    // Bind parameters
+    mysqli_stmt_bind_param($stmt, "siissi", $f_name, $total_seats, $price, $floor, $in_charge, $f_id);
+
+    if (mysqli_stmt_execute($stmt)) {
+        $result = array('message' => "Lab Info Updated Successfully");
+    } else {
+        $result = array('error' => mysqli_error($conn));
+    }
+
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}

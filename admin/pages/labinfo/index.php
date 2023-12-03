@@ -74,7 +74,7 @@ if (isset($facilities['error']))
                                     </div>
                                     <?php if ($clearenceStatus[$_SESSION['clearense']] > 1) { ?>
                                         <div class='card-actions'>
-                                            <a href="edit.php?f_id=<?= $row['f_id'] ?> ">
+                                            <a href="edit.php?edit_id=<?= $row['f_id'] ?> ">
                                                 <button class="edit-button">
                                                     <span class="icon">&#9998;</span>
                                                     Edit
