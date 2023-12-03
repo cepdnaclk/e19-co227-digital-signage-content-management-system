@@ -10,6 +10,7 @@ import CourseOfferings from "./components/courseOffering/CourseOfferings";
 import UpcomingEvents from "./components/upcomingEvents/UpcomingEvents";
 import PreviousEvents from "./components/previousEvents/PreviousEvents";
 import Achievements from "./components/achivements/Achievements";
+import Maps from "./components/maps/Maps";
 import { redirect } from "../node_modules/react-router-dom/dist/index";
 
 const Root = () => {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "/achivements",
         element: <Achievements />,
+      },
+      {
+        path: "/maps",
+        element: <Maps />,
       },
     ],
   },
