@@ -4,7 +4,11 @@ import { useState } from "react";
 import "./sidebar.css";
 import { Link, useMatch } from "react-router-dom";
 import labslotsImg from "/src/assets/labslotsimg.svg";
-import achivementImg from "/src/assets/Star_fill.svg";
+import CourseOfferingsImg from "/src/assets/courseoffering.svg";
+import upcomingImg from "/src/assets/upcoming.svg";
+import previousImg from "/src/assets/previous.svg";
+import achivementImg from "/src/assets/star.svg";
+import mapsImg from "/src/assets/map.svg";
 
 function Sidebar() {
   return (
@@ -32,19 +36,19 @@ function Sidebar() {
         </li>
         <li className={useMatch("/courses") ? "selected" : ""}>
           <Link to="/courses">
-            <img src={labslotsImg} alt="" />
+            <img src={CourseOfferingsImg} alt="" />
             Course Offerings
           </Link>
         </li>
         <li className={useMatch("/upcoming") ? "selected" : ""}>
           <Link to="/upcoming">
-            <img src={labslotsImg} alt="" />
+            <img src={upcomingImg} alt="" />
             Upcoming Events
           </Link>
         </li>
         <li className={useMatch("/previous") ? "selected" : ""}>
           <Link to="/previous">
-            <img src={labslotsImg} alt="" />
+            <img src={previousImg} alt="" />
             Previous Events
           </Link>
         </li>
@@ -56,7 +60,7 @@ function Sidebar() {
         </li>
         <li className={useMatch("/maps") ? "selected" : ""}>
           <Link to="/maps">
-            <img src={achivementImg} alt="" />
+            <img src={mapsImg} alt="" />
             Maps
           </Link>
         </li>
