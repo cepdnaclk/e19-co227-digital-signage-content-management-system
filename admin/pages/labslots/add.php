@@ -48,6 +48,10 @@ if ($clearenceStatus[$_SESSION['clearense']] > 0)
 else {
     $courses = getCoursesCo($_SESSION['user_id']);
 }
+
+if (!$courses)
+    header("Location: /pages/labslots/?error=You have no Courses");
+
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +80,9 @@ else {
                 <div class="container">
                     <div class="title">
                         <div>
-                            <h1><a href="./">Lab Allocation ></a>Add a Lab slot : <?= isset($_GET['lab']) ? getLab($_GET['lab']) : '' ?></h1>
+                            <h1><a href="./">Lab Allocation ></a>Add a Lab slot :
+                                <?= isset($_GET['lab']) ? getLab($_GET['lab']) : '' ?>
+                            </h1>
                             <p>Create a labslot for a course</p>
                         </div>
                     </div>
@@ -85,14 +91,17 @@ else {
                             <select name="course" id="course" v-model="course">
                                 <?php $i = 0;
                                 foreach ($courses as $key => $course) { ?>
-                                    <option :value="'<?= $course['c_code'] ?>'"><?= $course['c_code'] ?></option>
-                                <?php $i++;
+                                    <option :value="'<?= $course['c_code'] ?>'">
+                                        <?= $course['c_code'] ?>
+                                    </option>
+                                    <?php $i++;
                                 } ?>
                             </select>
                         </div>
                         <div class="option">
                             <label for="date">select date </label>
-                            <select name="date" id="date" v-model="date" :style="isonedate ? 'pointer-events: none; opacity: 0.8': ''">
+                            <select name="date" id="date" v-model="date"
+                                :style="isonedate ? 'pointer-events: none; opacity: 0.8': ''">
                                 <option value="0">Monday</option>
                                 <option value="1">Tuesday</option>
                                 <option value="2">Wednesday</option>
@@ -104,20 +113,28 @@ else {
                         </div>
                         <div class="option">
                             <label for="isonedate">Only this day </label>
-                            <input type="checkbox" name="isoneday" id="isonedate" v-model="isonedate" @change="handleIsOneDateChange">
-                            <input type="date" name="oneday" id="onedate" v-model="onedate" :disabled="!isonedate" @change="handleOneDateChange" min="<?= date("Y-m-d") ?>">
+                            <input type="checkbox" name="isoneday" id="isonedate" v-model="isonedate"
+                                @change="handleIsOneDateChange">
+                            <input type="date" name="oneday" id="onedate" v-model="onedate" :disabled="!isonedate"
+                                @change="handleOneDateChange" min="<?= date("Y-m-d") ?>">
                         </div>
                         <div class="option">
                             <label for="stime">Select the Start time : </label>
-                            <input type="time" name="stime" id="stime" v-model="start" @change="handleStartChange" min="08:00:00" max="16:00:00">
+                            <input type="time" name="stime" id="stime" v-model="start" @change="handleStartChange"
+                                min="08:00:00" max="16:00:00">
                         </div>
                         <div class="option">
                             <label for="stime">Select the End time : </label>
-                            <input type="time" name="etime" id="etime" v-model="end" @change="handleEndChange" min="09:00:00" max="17:00:00">
+                            <input type="time" name="etime" id="etime" v-model="end" @change="handleEndChange"
+                                min="09:00:00" max="17:00:00">
                         </div>
-                        <input type="text" name="lab" id="lab" style="display: none;" value="<?= isset($_GET['lab']) ? $_GET['lab'] : '' ?>">
-                        <input type="text" name="update_id" id="updateid" style="display: none;" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>">
-                        <button type="submit" class="add"><?= !isset($_GET['id']) ? 'CREATE SLOT' : 'UPDATE SLOT' ?></button>
+                        <input type="text" name="lab" id="lab" style="display: none;"
+                            value="<?= isset($_GET['lab']) ? $_GET['lab'] : '' ?>">
+                        <input type="text" name="update_id" id="updateid" style="display: none;"
+                            value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>">
+                        <button type="submit" class="add">
+                            <?= !isset($_GET['id']) ? 'CREATE SLOT' : 'UPDATE SLOT' ?>
+                        </button>
                     </form>
                     <div class="timetable">
                         <div class="time-caption">
@@ -128,8 +145,12 @@ else {
                                 <?php
                                 $day = new DateTime($date);
                                 ?>
-                                <p><?= $day->format('l') ?></p>
-                                <h3><?= $day->format("Y/m/d") ?></h3>
+                                <p>
+                                    <?= $day->format('l') ?>
+                                </p>
+                                <h3>
+                                    <?= $day->format("Y/m/d") ?>
+                                </h3>
                             </div>
                         <?php } ?>
                         <?php
@@ -137,11 +158,13 @@ else {
                         $endTime = new DateTime("17.00");
 
                         while ($startTime < $endTime) {
-                        ?>
+                            ?>
                             <div class="time-slot">
-                                <p><?= $startTime->format('h:i') . " - " . $startTime->modify("+1 hour")->format('h:i') ?></p>
+                                <p>
+                                    <?= $startTime->format('h:i') . " - " . $startTime->modify("+1 hour")->format('h:i') ?>
+                                </p>
                             </div>
-                        <?php
+                            <?php
                         }
                         ?>
                         <?php
@@ -227,12 +250,12 @@ else {
                     const start = ref("<?= "08:00" ?>");
                     const end = ref("<?= "10:00" ?>");
                     const date = ref(<?php
-                                        $day = (new DateTime($today))->format('w');
-                                        if ($day == 0)
-                                            echo 6;
-                                        else
-                                            echo $day - 1;
-                                        ?>)
+                    $day = (new DateTime($today))->format('w');
+                    if ($day == 0)
+                        echo 6;
+                    else
+                        echo $day - 1;
+                    ?>)
                     const isonedate = ref(<?= isset($_GET['date']) ? 'true' : 'false' ?>);
                     const onedate = ref("<?= $today ?>");
                 <?php } else { ?>
