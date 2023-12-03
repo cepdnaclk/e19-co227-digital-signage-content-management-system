@@ -1,5 +1,5 @@
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
-<?php session_start(); ?>
+<!-- <?php session_start(); ?> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,6 +55,7 @@
                 </div>
                 <p>Forgot your password? <a href="">Forgot Password</a></p>
                 <button type="submit" name="login">LOGIN</button>
+                <button type="submit" name="guest" onclick="window.location.href='/index.php'">LOGIN AS GUEST</button>
             </form>
         </div>
     </div>
