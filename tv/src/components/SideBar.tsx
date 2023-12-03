@@ -54,6 +54,12 @@ function Sidebar() {
             Achivements
           </Link>
         </li>
+        <li className={useMatch("/maps") ? "selected" : ""}>
+          <Link to="/maps">
+            <img src={achivementImg} alt="" />
+            Maps
+          </Link>
+        </li>
       </ul>
     </nav>
   );
