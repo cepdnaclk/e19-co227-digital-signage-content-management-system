@@ -176,6 +176,7 @@ CREATE TABLE
         `duration(months)` int(11) DEFAULT NULL,
         `new_intake_date` date DEFAULT NULL,
         `total_fee` int(11) DEFAULT NULL,
+        `display_option` int(3) DEFAULT 1,
         `display_description` text DEFAULT NULL,
         `published` tinyint(4) NOT NULL DEFAULT 0,
         `poster` varchar(500) DEFAULT NULL,

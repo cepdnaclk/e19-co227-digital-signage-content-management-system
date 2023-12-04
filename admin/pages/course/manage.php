@@ -91,7 +91,6 @@ if (isset($_GET['mode'])) {
                         <textarea name="description" id="description" rows="4" required><?= $course['description'] ?></textarea>
                         <br><br>
 
-
                         <!-- Section 2: Public Display Info -->
                         <h3>Public Display Info</h3>
                         <p>Choose an option:</p> <br>
@@ -126,156 +125,132 @@ if (isset($_GET['mode'])) {
                                 <br><br>
                                 <label for="intake_date">New Batch Intake Date:</label>
                                 <input type="date" name="intake_date" id="intake_date" value="<?= $course['new_intake_date'] ?>">
-                                <br><br>
-                                <label for="course_fee">Course Fee (Rs.):</label>
-                                <input type="number" name="course_fee" id="course_fee" value="<?= $course['total_fee'] ?>">
-                                <br><br>
-                                <label for="poster_description">Description:</label>
-                                <textarea name="poster_description" id="poster_description" rows="4"><?= $course['display_description'] ?></textarea>
-                                <br><br>
-                            </div>
-                        <?php } ?>
+<br><br>
+<label for="course_fee">Course Fee (Rs.):</label>
+<input type="number" name="course_fee" id="course_fee" value="<?= $course['total_fee'] ?>">
+<br><br>
+<label for="poster_description">Description:</label>
+<textarea name="poster_description" id="poster_description" rows="4"><?= $course['display_description'] ?></textarea>
+<br><br>
+</div>
+<?php } ?>
 
-                        <!-- Option 3: Display Both Poster Image and Manual Details -->
+                    <!-- Option 3: Display Both Poster Image and Manual Details -->
+                    <?php if ($hasPoster && $hasDetails) { ?>
+                        <div id="both_section">
+                            <label for="poster_image">Select a Poster Image:</label>
+                            <input type="file" name="image" id="poster_image">
+                            <input type="text" name="image_loc" style="display:none" value="<?= $course['Poster_img'] ?>">
+                            <br><br>
+                            <label for="duration">Duration (in months):</label>
+                            <input type="number" name="duration" id="duration" value="<?= $course['duration(months)'] ?>">
+                            <br><br>
+                            <label for="intake_date">New Batch Intake Date:</label>
+                            <input type="date" name="intake_date" id="intake_date" value="<?= $course['new_intake_date'] ?>">
+                            <br><br>
+                            <label for="course_fee">Course Fee (Rs.):</label>
+                            <input type="number" name="course_fee" id="course_fee" value="<?= $course['total_fee'] ?>">
+                            <br><br>
+                            <label for="poster_description">Description:</label>
+                            <textarea name="poster_description" id="poster_description" rows="4"><?= $course['display_description'] ?></textarea>
+                            <br><br>
+                        </div>
+                    <?php } ?>
+
+                    <div class="course-preview" id="course_display">
                         <?php if ($hasPoster && $hasDetails) { ?>
-                            <div id="both_section">
-                                <label for="poster_image">Select a Poster Image:</label>
-                                <input type="file" name="image" id="poster_image">
-                                <input type="text" name="image_loc" style="display:none" value="<?= $course['Poster_img'] ?>">
-                                <br><br>
-                                <label for="duration">Duration (in months):</label>
-                                <input type="number" name="duration" id="duration" value="<?= $course['duration(months)'] ?>">
-                                <br><br>
-                                <label for="intake_date">New Batch Intake Date:</label>
-                                <input type="date" name="intake_date" id="intake_date" value="<?= $course['new_intake_date'] ?>">
-                                <br><br>
-                                <label for="course_fee">Course Fee (Rs.):</label>
-                                <input type="number" name="course_fee" id="course_fee" value="<?= $course['total_fee'] ?>">
-                                <br><br>
-                                <label for="poster_description">Description:</label>
-                                <textarea name="poster_description" id="poster_description" rows="4"><?= $course['display_description'] ?></textarea>
-                                <br><br>
-                            </div>
-                        <?php } ?>
-
-                        <div class="course-preview" id="course_display">
-                            <?php if ($hasPoster && $hasDetails) { ?>
-                                <div class="two-columns">
-                                    <div class="poster">
-                                        <img id="display_img" src="<?= $course['Poster_img'] ?>" alt="Course Poster">
-                                    </div>
-                                    <div class="details">
-                                        <h3><?= $course['c_name'] ?></h3>
-                                        <p><?= $course['c_code'] ?></p>
-                                        <ul>
-                                            <li><strong>Duration:</strong> <span id="display_dur"><?= $course['duration(months)'] ?></span> months</li>
-                                            <li><strong>New Batch Intake Date:</strong><span id="display_int"> <?= date('M d, Y', strtotime($course['new_intake_date'])) ?></span></li>
-                                            <li><strong>Total Course Fee:</strong> Rs.<span id="display_fee"> <?= $course['total_fee'] ?></span></li>
-                                            <li><strong>Description:</strong> <span id="display_des"><?= $course['display_description'] ?></span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            <?php } elseif ($hasPoster) { ?>
-                                <div class="centered">
+                            <div class="two-columns">
+                                <div class="poster">
                                     <img id="display_img" src="<?= $course['Poster_img'] ?>" alt="Course Poster">
                                 </div>
-                            <?php } elseif ($hasDetails) { ?>
-                                <div class="centered">
-                                    <div class="details">
-                                        <h3><?= $course['c_name'] ?></h3>
-                                        <p><?= $course['c_code'] ?></p>
-                                        <ul>
-                                            <li><strong>Duration:</strong> <span id="display_dur"><?= $course['duration(months)'] ?></span> months</li>
-                                            <li><strong>New Batch Intake Date:</strong><span id="display_int"> <?= date('M d, Y', strtotime($course['new_intake_date'])) ?></span></li>
-                                            <li><strong>Total Course Fee:</strong> Rs.<span id="display_fee"> <?= $course['total_fee'] ?></span></li>
-                                            <li><strong>Description:</strong> <span id="display_des"><?= $course['display_description'] ?></span></li>
-                                        </ul>
-                                    </div>
+                                <div class="details">
+                                    <h3><?= $course['c_name'] ?></h3>
+                                    <p><?= $course['c_code'] ?></p>
+                                    <ul>
+                                        <li><strong>Duration:</strong> <span id="display_dur"><?= $course['duration(months)'] ?></span> months</li>
+                                        <?php if (!empty($course['new_intake_date'])) { ?>
+    <li><strong>New Batch Intake Date:</strong><span id="display_int"> <?= date('M d, Y', strtotime($course['new_intake_date'])) ?></span></li>
+<?php } ?>
+                                        <li><strong>Total Course Fee:</strong> Rs.<span id="display_fee"> <?= $course['total_fee'] ?></span></li>
+                                        <li><strong>Description:</strong> <span id="display_des"><?= $course['display_description'] ?></span></li>
+                                    </ul>
                                 </div>
-                            <?php } ?>
-                        </div>
+                            </div>
+                        <?php } elseif ($hasPoster) { ?>
+                            <div class="centered">
+                                <img id="display_img" src="<?= $course['Poster_img'] ?>" alt="Course Poster">
+                            </div>
+                        <?php } elseif ($hasDetails) { ?>
+                            <div class="centered">
+                                <div class="details">
+                                    <h3><?= $course['c_name'] ?></h3>
+                                    <p><?= $course['c_code'] ?></p>
+                                    <ul>
+                                        <li><strong>Duration:</strong> <span id="display_dur"><?= $course['duration(months)'] ?></span> months</li>
+                                        <?php if (!empty($course['new_intake_date'])) { ?>
+    <li><strong>New Batch Intake Date:</strong><span id="display_int"> <?= date('M d, Y', strtotime($course['new_intake_date'])) ?></span></li>
+<?php } ?>
+                                        <li><strong>Total Course Fee:</strong> Rs.<span id="display_fee"> <?= $course['total_fee'] ?></span></li>
+                                        <li><strong>Description:</strong> <span id="display_des"><?= $course['display_description'] ?></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
 
-                        <input type="hidden" name="c_id" value="<?php echo $c_id; ?>"> <!-- Include the course ID here -->
-
-                        <input type="submit" value="Submit">
-
-                    </form>
-                </div>
+                    <input type="hidden" name="c_id" value="<?php echo $c_id; ?>"> <!-- Include the course ID here -->
+                    <center><input type="submit" value="Submit"></center>
+                </form>
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js" integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        const imgInput = document.getElementById('poster_image')
-        const description = document.getElementById('poster_description')
-        const duration = document.getElementById('duration')
-        const intakeDate = document.getElementById('intake_date')
-        const courseFee = document.getElementById('course_fee')
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js" integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    const imgInput = document.getElementById('poster_image')
+    const description = document.getElementById('poster_description')
+    const duration = document.getElementById('duration')
+    const intakeDate = document.getElementById('intake_date')
+    const courseFee = document.getElementById('course_fee')
 
-        const imgDisplay = document.getElementById('display_img')
-        const descriptionDis = document.getElementById('display_des')
-        const durationDis = document.getElementById('display_dur')
-        const intakeDateDis = document.getElementById('display_int')
-        const courseFeeDis = document.getElementById('display_fee')
+    const imgDisplay = document.getElementById('display_img')
+    const descriptionDis = document.getElementById('display_des')
+    const durationDis = document.getElementById('display_dur')
+    const intakeDateDis = document.getElementById('display_int')
+    const courseFeeDis = document.getElementById('display_fee')
 
-        const handleImgChange = (e) => {
-            if (imgDisplay)
-                imgDisplay.src = URL.createObjectURL(e.target.files[0])
-        }
-        const handleDesChange = (e) => {
-            if (descriptionDis)
-                descriptionDis.textContent = e.target.value
-        }
-        const handleDurChange = (e) => {
-            if (durationDis)
-                durationDis.textContent = e.target.value
-        }
-        const handleIntChange = (e) => {
-            if (intakeDateDis)
-                intakeDateDis.textContent = e.target.value
-        }
-        const handleFeeChange = (e) => {
-            if (courseFeeDis)
-                courseFeeDis.textContent = e.target.value
-        }
+    const handleImgChange = (e) => {
+        if (imgDisplay)
+            imgDisplay.src = URL.createObjectURL(e.target.files[0])
+    }
+    const handleDesChange = (e) => {
+        if (descriptionDis)
+            descriptionDis.textContent = e.target.value
+    }
+    const handleDurChange = (e) => {
+        if (durationDis)
+            durationDis.textContent = e.target.value
+    }
+    const handleIntChange = (e) => {
+        if (intakeDateDis)
+            intakeDateDis.textContent = e.target.value
+    }
+    const handleFeeChange = (e) => {
+        if (courseFeeDis)
+            courseFeeDis.textContent = e.target.value
+    }
 
+    if (imgInput)
+        imgInput.addEventListener("change", handleImgChange);
+    if (description)
+        description.addEventListener("input", handleDesChange);
+    if (duration)
+        duration.addEventListener("input", handleDurChange);
+    if (intakeDate)
+        intakeDate.addEventListener("input", handleIntChange);
+    if (courseFee)
+        courseFee.addEventListener("input", handleFeeChange);
+</script>
 
-        if (imgInput)
-            imgInput.addEventListener("change", handleImgChange);
-        if (description)
-            description.addEventListener("input", handleDesChange);
-        if (duration)
-            duration.addEventListener("input", handleDurChange);
-        if (intakeDate)
-            intakeDate.addEventListener("input", handleIntChange);
-        if (courseFee)
-            courseFee.addEventListener("input", handleFeeChange);
-
-        document.getElementById("formUpload").addEventListener("submit", function(e) {
-            var exportDiv = document.getElementById("course_display");
-            html2canvas(exportDiv, {
-                onrendered: function(canvas) {
-                    var dataURL = canvas.toDataURL("image/png");
-
-                    var formData = new FormData();
-                    formData.append("c_id", $course['c_id']);
-                    formData.append("poster", dataURL);
-                    formData.append("poster_path", $couse['poster']);
-
-                    // Send the image data to the PHP script
-                    axios
-                        .post('/backend/api/course/upload_poster.php', {
-                            body: formData
-                        }).then(response => {
-                            alert(response)
-                        }).catch(error => {
-                            alert(error);
-                        });
-                }
-            });
-        });
-    </script>
 </body>
-
 </html>

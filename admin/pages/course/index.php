@@ -72,7 +72,6 @@
                             <a href="/backend/api/course/publish.php?c_id=${course.c_id}" class="btn btn-publish" data-course-id="${course.c_id}">
                                 ${course.published == 1 ? 'Unpublish' : 'Publish'}
                             </a>&nbsp;
-                            <a href="/pages/course/preview.php?c_id=${course.c_id}" class="btn btn-preview" data-course-id="${course.c_id}">Preview</a>&nbsp;
                             <a href="/pages/course/coursemanage.php" class="btn btn-manage" data-course-id="${course.c_id}">Manage</a>&nbsp;
                             <a href="/pages/course/delete.php?c_id=${course.c_id}" class="btn btn-delete" data-course-id="${course.c_id}">Delete</a>
                         </td>
@@ -85,30 +84,6 @@
                                 const courseId = this.getAttribute('data-course-id');
                                 this.href = `/pages/course/manage.php?c_id=${courseId}`;
                             });
-
-                            // Add click event listener to the "Publish" button
-                            // const publishButton = row.querySelector('.btn-publish');
-                            // publishButton.addEventListener('click', function() {
-                            //     const courseId = this.getAttribute('data-course-id');
-                            //     const isPublished = course.published === '1';
-
-                            //     // console.log(courseId,isPublished);
-                            //     // Toggle the publish state and update the button text
-                            //     course.published = isPublished ? '0' : '1';
-                            //     this.textContent = isPublished ? 'Publish' : 'Unpublish';
-
-                            //     // Make an AJAX request to update the database
-                            //     fetch(`/backend/api/course/publish.php?c_id=${courseId}&published=${isPublished}`)
-                            //         .then(response => {
-                            //             if (!response.ok) {
-                            //                 throw new Error('Network response was not ok');
-                            //             }
-                            //             return response.json();
-                            //         })
-                            //         .catch(error => {
-                            //             console.error('There was a problem with the fetch operation:', error);
-                            //         });
-                            // });
                         });
                     }
                 })
