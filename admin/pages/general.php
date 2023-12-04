@@ -33,7 +33,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
                     <div class="card-body">
                         <h5 class="card-title">Maps</h5>
                         <p class="card-text">Explore our IT Center: maps.</p>
-                        <center><a href="/pages/maps" class="btn">Go to Maps</a></center>
+                        <center><a href="/pages/maps/" class="btn">Go to Maps</a></center>
                     </div>
                 </div>
 
@@ -42,7 +42,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
                     <div class="card-body">
                         <h5 class="card-title">Lab Info</h5>
                         <p class="card-text">Get information about our labs.</p>
-                        <center><a href="/pages/labinfo" class="btn">Go to Lab Info</a></center>
+                        <center><a href="/pages/labinfo/" class="btn">Go to Lab Info</a></center>
                     </div>
                 </div>
             </div>
