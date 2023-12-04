@@ -159,7 +159,8 @@ if (isset($data['error']))
             <div class="dashboard-widget" id="log-history-widget">
             <div>
             <h2 class="widget-title">&nbsp;Recent User Log History</h2>
-            <a href="/logs/user_activity.log">&emsp;View Full Log History</a>
+            <br>
+            <a href="/logs/user_activity.log">&emsp;View Full Log History &#128462;</a>
             </div>
             <br>    
             <div class="log-history-content" id="log-content">
@@ -170,6 +171,7 @@ if (isset($data['error']))
                 $content = file($file);
                 $start = max(0, count($content) - $lines);
                 $output = array_slice($content, $start);
+                $reversedOutput = array_reverse($output); 
                 return implode("<br>", $output);
             }
 
