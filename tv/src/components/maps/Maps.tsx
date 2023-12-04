@@ -30,14 +30,29 @@ export default function Maps() {
       });
   }, []);
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (clickedVideoIndex === null) {
+  //       setCurrentVideoIndex(
+  //         (prevIndex) => (prevIndex + 1) % initialVideos.length
+  //       );
+  //     }
+  //   }, 10000); // Change video every 10 seconds (10000 milliseconds)
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (clickedVideoIndex === null) {
-        setCurrentVideoIndex(
-          (prevIndex) => (prevIndex + 1) % initialVideos.length
-        );
+        // Check if the current video has reached the end
+        const currentVideo = document.getElementById("center-video");
+        if (currentVideo.currentTime === currentVideo.duration) {
+          handleNextVideo();
+        } else {
+          setCurrentVideoIndex(
+            (prevIndex) => (prevIndex + 1) % initialVideos.length
+          );
+        }
       }
-    }, 10000); // Change video every 10 seconds (10000 milliseconds)
+    }, 20000); // Change video every 20 seconds (20000 milliseconds)
 
     return () => {
       clearInterval(interval);
@@ -79,9 +94,12 @@ export default function Maps() {
         <div className="center-content">
           <video
             className="center-video"
-            controls
+            autoPlay 
+            muted
             src={initialVideos[currentVideoIndex]}
             onClick={() => handleVideoClick(currentVideoIndex)}
+            onEnded={handleNextVideo}
+
           />
         </div>
         <div className="video-controls">
@@ -107,7 +125,7 @@ export default function Maps() {
                 )
               }
             >
-              <video controls src={video} />
+              <video autoPlay muted src={video} />
             </div>
           ))}
         </div>

@@ -2,13 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./courseofferings.css";
 import axios from "axios";
 
-// const imageTitles = [
-//   "NBQSA -The National Best Quality Software Awards",
-//   "6th International Conference on Industrial and Information Systems, ICIIS 2021",
-//   "PREVET 2023 for VET Undergraduates",
-//   "Certificate-Based Computer Skills program (CBCS) -Batch 1",
-//   "SITSEP- Staff IT Skills Development Programme- 2022 – Batch 2- Poster Presentation"
-// ];
 
 export default function CourseOfferings() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
