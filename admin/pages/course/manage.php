@@ -342,7 +342,10 @@ if (isset($_GET['mode'])) {
                         console.log(response);
 
                         // After your function has completed, submit the form
-                        form.submit();
+                        if (duration)
+                            form.submit();
+                        else
+                            window.location.href = "/pages/course?success=Course Updated Successfully";
                     }).catch(error => {
                         console.error(error);
                     });
