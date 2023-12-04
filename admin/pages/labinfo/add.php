@@ -1,4 +1,12 @@
-<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
+<?php
+
+include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/users.php";
+
+// Fetch the list of course coordinators from the course table
+$users = getUsers();
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -41,8 +49,7 @@
                     <div class="title">
                         <div>
                             <h1><a href="./">Lab Info ></a>Add New Lab</h1>
-
-
+                            <p>Add a lab with info</p>
                         </div>
                     </div>
                 </div>
@@ -62,7 +69,15 @@
                         <input type="text" name="floor" id="floor" required>
                         <br>
                         <label for="in_charge">In charge of the Lab:</label>
-                        <input type="text" name="in_charge" id="in_charge" required>
+                        <select id="coordinator-dropdown" name="in_charge">
+                            <option value="">Select a User</option>
+                            <?php
+                            $coordinators = get_coordinators(); // Fetch course coordinators using your function
+                            foreach ($coordinators as $coordinator) {
+                                echo "<option value='$coordinator'>$coordinator</option>";
+                            }
+                            ?>
+                        </select>
                         <br>
 
                         <br>

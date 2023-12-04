@@ -45,7 +45,8 @@ form {
 .add-lab input[type="text"],
 .add-lab input[type="number"],
 .add-lab input[type="date"],
-.add-lab input[type="time"] {
+.add-lab input[type="time"],
+.add-lab select {
   width: 100%;
   padding: 8px;
   margin-bottom: 15px;
@@ -73,4 +74,3 @@ form {
   margin: 10px auto; /* Add this line to horizontally center the button */
   display: block;
 }
-
