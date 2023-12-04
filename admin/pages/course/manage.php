@@ -1,6 +1,8 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/course.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/users.php";
+
 
 // Ensure that 'c_id' is provided as a query parameter
 if (isset($_GET['c_id'])) {
@@ -87,34 +89,24 @@ if (isset($_GET['mode'])) {
                         id="formUpload">
                         <!-- Section 1: General Info -->
                         <h3>General Info</h3>
-                        
-                       
-                        <?php
-                        
-                        // Query to fetch distinct users with clearense=course_c
-                        $coordinatorQuery = "SELECT DISTINCT user_name FROM user WHERE clearense = 'course_c'";
-                        $coordinatorResult = mysqli_query($conn, $coordinatorQuery);
 
-                        // Check if the query was successful
-                        if ($coordinatorResult) {
-                            echo '<label for="courseCoordinator">Select Course Coordinator:</label>';
-                            echo '<select id="courseCoordinator" name="courseCoordinator">';
-
-                            // Loop through the users and add options to the select menu
-                             while ($row = mysqli_fetch_assoc($coordinatorResult)) {
-                             echo '<option value="' . $row['user_name'] . '">' . $row['user_name'] . '</option>';
+                        <label for="courseCoordinator">Select Course Coordinator:</label>
+                        <select id="courseCoordinator" name="coordinator_name">
+                            <option value="">Select Coordinator</option>
+                            <?php
+                            $coordinators = get_coordinators(); // Fetch course coordinators using your function
+                            foreach ($coordinators as $coordinator) {
+                                if ($coordinator == $course['c_coordinator'])
+                                    echo "<option value='$coordinator' selected>$coordinator</option>";
+                                else
+                                    echo "<option value='$coordinator'>$coordinator</option>";
                             }
-
-                            echo '</select>';
-                        } else {
-                            echo "Error: " . mysqli_error($conn);
-                        }
-                        ?>
-                        
+                            ?>
+                        </select>
                         <br><br>
                         <label for="description">Description:</label>
                         <textarea name="description" id="description" rows="4"
-                            required><?= $course['description'] ?></textarea> 
+                            required><?= $course['description'] ?></textarea>
                         <br><br>
 
                         <!-- Section 2: Public Display Info -->
@@ -283,9 +275,13 @@ if (isset($_GET['mode'])) {
         const intakeDateDis = document.getElementById('display_int')
         const courseFeeDis = document.getElementById('display_fee')
 
+        let imgChange = false
+
         const handleImgChange = (e) => {
-            if (imgDisplay)
+            if (imgDisplay) {
                 imgDisplay.src = URL.createObjectURL(e.target.files[0])
+                imgChange = true
+            }
         }
         const handleDesChange = (e) => {
             if (descriptionDis)
@@ -327,51 +323,52 @@ if (isset($_GET['mode'])) {
             var div = document.getElementById('course_display');
 
             // Use html2canvas to capture the div
-            html2canvas(div, {
-                allowTaint: true,
-                useCors: true
-            }).then(canvas => {
-                // Convert the canvas to a Blob object
-                canvas.toBlob(blob => {
-                    // Create a new File object from the Blob
-                    var file = new File([blob], `image${Date.now()}.png`, { type: "image/png" });
+            if (imgChange)
+                html2canvas(div, {
+                    allowTaint: true,
+                    useCors: true
+                }).then(canvas => {
+                    // Convert the canvas to a Blob object
+                    canvas.toBlob(blob => {
+                        // Create a new File object from the Blob
+                        var file = new File([blob], `image${Date.now()}.png`, { type: "image/png" });
 
-                    // Create a new FormData instance
-                    var formData = new FormData();
+                        // Create a new FormData instance
+                        var formData = new FormData();
 
-                    console.log(file)
+                        // Append the file object to the FormData instance
+                        formData.append('c_id', document.querySelector('input[name="c_id"]').value);
+                        formData.append('poster', file);
+                        formData.append('poster_path', document.querySelector('input[name="image_loc"]').value);
 
-                    // Append the file object to the FormData instance
-                    formData.append('c_id', document.querySelector('input[name="c_id"]').value);
-                    formData.append('poster', file);
-                    formData.append('poster_path', document.querySelector('input[name="image_loc"]').value);
-
-                    for (var pair of formData.entries()) {
-                        console.log(pair[0] + ', ' + pair[1]);
-                    }
+                        for (var pair of formData.entries()) {
+                            console.log(pair[0] + ', ' + pair[1]);
+                        }
 
 
-                    // Send the FormData instance to the server
-                    // You can use fetch or axios to do this
-                    // This is an example using fetch
-                    fetch('/backend/api/course/upload_poster.php', {
-                        method: 'POST',
-                        body: formData
-                    }).then(response => {
-                        return response.text();  // Parse the response body as JSON
-                    }).then(response => {
-                        console.log(response);
+                        // Send the FormData instance to the server
+                        // You can use fetch or axios to do this
+                        // This is an example using fetch
+                        fetch('/backend/api/course/upload_poster.php', {
+                            method: 'POST',
+                            body: formData
+                        }).then(response => {
+                            return response.text();  // Parse the response body as JSON
+                        }).then(response => {
+                            console.log(response);
 
-                        // After your function has completed, submit the form
-                        if (duration)
-                            form.submit();
-                        else
-                            window.location.href = "/pages/course?success=Course Updated Successfully";
-                    }).catch(error => {
-                        console.error(error);
+                            // After your function has completed, submit the form
+                            if (duration)
+                                form.submit();
+                            else
+                                window.location.href = "/pages/course?success=Course Updated Successfully";
+                        }).catch(error => {
+                            console.error(error);
+                        });
                     });
                 });
-            });
+            else
+                form.submit();
         });
     </script>
 
