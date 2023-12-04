@@ -98,14 +98,14 @@
 #course_display {
   background-color: #f2f2f2f2;
   aspect-ratio: unset;
-  padding: 2rem;
-  margin-bottom: 2rem;
   border-radius: 0.5rem;
 }
 
 #course_display .two-columns {
   gap: 2rem;
   align-items: center;
+  padding: 2rem;
+  margin-bottom: 2rem;
 }
 
 #course_display .two-columns .poster {
@@ -118,7 +118,6 @@
   object-fit: contain;
   object-position: center;
 }
-
 
 /* Style for the select container */
 select {

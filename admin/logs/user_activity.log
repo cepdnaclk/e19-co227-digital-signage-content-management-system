@@ -17,3 +17,18 @@
 2023-12-04 08:15:36 - User 9, test1, course_c (::1): login
 2023-12-04 08:23:43 - User 9, test1, course_c (::1): publish_course_poster
 2023-12-04 08:23:55 - User 9, test1, course_c (::1): publish_course_poster
+2023-12-04 09:01:21 - User 7, SuperAdmin, super_admin (::1): logout
+2023-12-04 09:01:28 - User , ,  (::1): login
+2023-12-04 09:01:48 - User 9, test1, course_c (::1): logout
+2023-12-04 09:01:53 - User , ,  (::1): login
+2023-12-04 09:03:40 - User 10, admin1, admin (::1): logout
+2023-12-04 09:03:46 - User , ,  (::1): login
+2023-12-04 09:06:46 - User 9, test1, course_c (::1): logout
+2023-12-04 09:06:51 - User , ,  (::1): login
+2023-12-04 09:24:31 - User 10, admin1, admin (::1): upload_course_poster
+2023-12-04 09:25:49 - User 10, admin1, admin (::1): upload_course_poster
+2023-12-04 09:32:26 - User 10, admin1, admin (::1): upload_course_poster
+2023-12-04 09:32:52 - User 10, admin1, admin (::1): upload_course_poster
+2023-12-04 09:37:36 - User 10, admin1, admin (::1): upload_course_poster
+2023-12-04 09:37:47 - User 10, admin1, admin (::1): logout
+2023-12-04 09:37:53 - User , ,  (::1): login
