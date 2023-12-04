@@ -4,6 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/previousevents.php"
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/upcomingevents.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/course.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/achivements.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/maps.php";
 
 function getTimes()
 {
@@ -58,15 +59,17 @@ function getDashboardData()
     $previousRows = sizeof(getPreviousEvents());
     $achivementRows = sizeof(getAchivements());
     $courseRows = sizeof(getCourses());
+    $mapsRows = sizeof(getMaps());
 
     $upcomingPRows = sizeof(getUpcomingEventsDisplay());
     $previousPRows = sizeof(getPreviousEventsDisplay());
     $achivementPRows = sizeof(getAchivementDisplay());
     $coursePRows = sizeof(getCoursesDisplay());
+    $mapsPRows = sizeof(getMaps());
 
     $result = getTimes();
-    $totalPages = 1 + $upcomingRows + $previousRows + $achivementRows + $courseRows;
-    $totalPagesP = 1 + $upcomingPRows + $previousPRows + $achivementPRows + $coursePRows;
+    $totalPages = 1 + $upcomingRows + $previousRows + $achivementRows + $courseRows + $mapsRows;
+    $totalPagesP = 1 + $upcomingPRows + $previousPRows + $achivementPRows + $coursePRows + $mapsPRows;
     $totalTime = 0;
     $pages = array(
         'Lab Slots' => 1,
@@ -74,6 +77,7 @@ function getDashboardData()
         'Upcoming Events' => $upcomingRows,
         'Previous Events' => $previousRows,
         'Achievements' => $achivementRows,
+        'Maps' => $mapsRows,
     );
 
     $pagesP = array(
@@ -82,6 +86,7 @@ function getDashboardData()
         'Upcoming Events' => $upcomingPRows,
         'Previous Events' => $previousPRows,
         'Achievements' => $achivementPRows,
+        'Maps' => $mapsPRows,
     );
 
     foreach ($result as $key => $time) {

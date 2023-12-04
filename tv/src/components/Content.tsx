@@ -1,6 +1,6 @@
 // Content.tsx
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import "./content.css";
 
@@ -45,6 +45,10 @@ const Content = () => {
       path: "/achivements",
       name: "Achievements",
     },
+    {
+      path: "/maps",
+      name: "Maps",
+    },
   ];
 
   useEffect(() => {
@@ -52,11 +56,12 @@ const Content = () => {
       .get(`/backend/api/dashboard/get.php`)
       .then((res) => {
         setData(res.data.features);
+        console.log("data", res.data.features);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [currentIndex]);
 
   const handleUserActivity = () => {
     if (timerId) {
@@ -75,7 +80,7 @@ const Content = () => {
     const { path } = routes[currentIndex];
     const { name } =
       routes[currentIndex > 0 ? currentIndex - 1 : routes.length - 1];
-    const time = data[name] ? data[name].time : 100000000;
+    const time = data[name] ? data[name].time : 10;
 
     if (!active) {
       const timeoutId = setTimeout(() => {
