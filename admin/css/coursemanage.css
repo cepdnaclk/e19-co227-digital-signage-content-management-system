@@ -31,7 +31,7 @@
   margin-bottom: 1rem;
 }
 
-.course-manage a {
+.course-manage .form-container a {
   display: block;
   font-weight: bold;
   color: #333333;
