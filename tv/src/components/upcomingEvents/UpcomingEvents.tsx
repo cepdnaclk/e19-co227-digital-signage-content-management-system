@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import "./upcomingevents.css";
 
 export default function UpcomingEvents() {
@@ -22,6 +22,8 @@ export default function UpcomingEvents() {
           });
           setInitialImages(array);
           console.log(data);
+        } else {
+          setInitialImages([`${axios.defaults.baseURL}/images/notFound.png`]);
         }
       })
       .catch((err) => {

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import "./previousevents.css"; // CSS file
 import axios from "axios";
+import { useEffect, useState } from "react";
+import "./previousevents.css"; // CSS file
 
 export default function PreviousEvents() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -19,6 +19,8 @@ export default function PreviousEvents() {
             array.push(axios.defaults.baseURL + ele["e_img"]);
           });
           setInitialImages(array);
+        } else {
+          setInitialImages([`${axios.defaults.baseURL}/images/notFound.png`]);
         }
       })
       .catch((err) => {
