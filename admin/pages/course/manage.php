@@ -87,13 +87,34 @@ if (isset($_GET['mode'])) {
                         id="formUpload">
                         <!-- Section 1: General Info -->
                         <h3>General Info</h3>
-                        <label for="coordinator_name">Course Coordinator Name:</label>
-                        <input type="text" name="coordinator_name" id="coordinator_name"
-                            value="<?= $course['c_coordinator'] ?>" required>
+                        
+                       
+                        <?php
+                        
+                        // Query to fetch distinct users with clearense=course_c
+                        $coordinatorQuery = "SELECT DISTINCT user_name FROM user WHERE clearense = 'course_c'";
+                        $coordinatorResult = mysqli_query($conn, $coordinatorQuery);
+
+                        // Check if the query was successful
+                        if ($coordinatorResult) {
+                            echo '<label for="courseCoordinator">Select Course Coordinator:</label>';
+                            echo '<select id="courseCoordinator" name="courseCoordinator">';
+
+                            // Loop through the users and add options to the select menu
+                             while ($row = mysqli_fetch_assoc($coordinatorResult)) {
+                             echo '<option value="' . $row['user_name'] . '">' . $row['user_name'] . '</option>';
+                            }
+
+                            echo '</select>';
+                        } else {
+                            echo "Error: " . mysqli_error($conn);
+                        }
+                        ?>
+                        
                         <br><br>
                         <label for="description">Description:</label>
                         <textarea name="description" id="description" rows="4"
-                            required><?= $course['description'] ?></textarea>
+                            required><?= $course['description'] ?></textarea> 
                         <br><br>
 
                         <!-- Section 2: Public Display Info -->
