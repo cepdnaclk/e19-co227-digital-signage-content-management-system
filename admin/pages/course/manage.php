@@ -125,15 +125,15 @@ if (isset($_GET['mode'])) {
                                 <br><br>
                                 <label for="intake_date">New Batch Intake Date:</label>
                                 <input type="date" name="intake_date" id="intake_date" value="<?= $course['new_intake_date'] ?>">
-<br><br>
-<label for="course_fee">Course Fee (Rs.):</label>
-<input type="number" name="course_fee" id="course_fee" value="<?= $course['total_fee'] ?>">
-<br><br>
-<label for="poster_description">Description:</label>
-<textarea name="poster_description" id="poster_description" rows="4"><?= $course['display_description'] ?></textarea>
-<br><br>
-</div>
-<?php } ?>
+                                <br><br>
+                                <label for="course_fee">Course Fee (Rs.):</label>
+                                <input type="number" name="course_fee" id="course_fee" value="<?= $course['total_fee'] ?>">
+                                <br><br>
+                                <label for="poster_description">Description:</label>
+                                <textarea name="poster_description" id="poster_description" rows="4"><?= $course['display_description'] ?></textarea>
+                                <br><br>
+                                </div>
+                                <?php } ?>
 
                     <!-- Option 3: Display Both Poster Image and Manual Details -->
                     <?php if ($hasPoster && $hasDetails) { ?>
