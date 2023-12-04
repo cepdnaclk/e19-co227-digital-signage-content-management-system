@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] .  "/config.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 
 // Function to add a new course
 function addCourse($c_code, $c_name)
@@ -16,41 +16,12 @@ function addCourse($c_code, $c_name)
 }
 
 // Function to edit an existing course
-function editCourse($c_id, $c_coordinator, $description, $file, $file_path, $duration, $intake_date, $course_fee, $poster_description)
+function editCourse($c_id, $c_coordinator, $description, $duration, $intake_date, $course_fee, $poster_description)
 {
     global $conn;
-    $targetFile = $file_path;
 
-    if (isset($file['name'])) {
-        if ($file_path != "") {
-            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
-                if (!unlink($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
-                    $result = array('error' => "Error uploading the image. Couldn't delete old one" . $_SERVER['DOCUMENT_ROOT'] . $file_path);
-                    return $result;
-                }
-            }
-        }
-
-        $targetDirectory = "/images/course-posters/";
-        $targetFile = $targetDirectory . basename($file["name"]);
-
-        // Check if the file is an image
-        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-            $result = array('error' => "Only JPG, JPEG, and PNG files are allowed." . $file['name']);
-            return $result;
-        } else {
-            if (move_uploaded_file($file["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $targetFile)) {
-            } else {
-                $result = array('error' => "Error uploading the image.");
-                return $result;
-            }
-        }
-    }
-
-    $stmt = $conn->prepare("UPDATE course SET c_coordinator = ?, 
+    $stmt = $conn->prepare("UPDATE course SET c_coordinator = ?,
     `description` = ?,
-    `Poster_img` = ?,
     `duration(months)` = ?,
     new_intake_date = ?,
     total_fee = ?,
@@ -58,10 +29,9 @@ function editCourse($c_id, $c_coordinator, $description, $file, $file_path, $dur
     WHERE c_id = ?");
 
     $stmt->bind_param(
-        "sssisisi",
+        "ssisisi",
         $c_coordinator,
         $description,
-        $targetFile,
         $duration,
         $intake_date,
         $course_fee,
@@ -213,7 +183,7 @@ function getCPublishedState(int $c_id)
     // Close the statement
     $stmt->close();
 
-    return (bool)$published; // Convert the result to a boolean (true if published, false if not)
+    return (bool) $published; // Convert the result to a boolean (true if published, false if not)
 }
 
 function editPoster($c_id, $file, $file_path)
@@ -248,7 +218,7 @@ function editPoster($c_id, $file, $file_path)
         }
     }
 
-    $stmt = $conn->prepare("UPDATE course SET `poster` = ?,WHERE c_id = ?");
+    $stmt = $conn->prepare("UPDATE course SET `Poster_img` = ? WHERE c_id = ?");
 
     $stmt->bind_param(
         "si",
@@ -257,7 +227,7 @@ function editPoster($c_id, $file, $file_path)
     );
 
     if ($stmt->execute()) {
-        $result = array('message' => "Course Updated Successfully");
+        $result = array('message' => $targetFile);
     } else {
         $result = array('error' => $stmt->error);
     }
