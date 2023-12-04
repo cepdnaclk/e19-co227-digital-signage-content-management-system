@@ -150,6 +150,8 @@ if (isset($data['error']))
                         <h1>Welcome <?= $_SESSION['user_name'] ?></h1>
                         <p>Manage Your Courses and labslots</p>
                         <a href="/pages/course/"> My Courses >></a>
+                        <br/>
+                        <a href="/pages/preview"> Prview Public Display >></a>
                     </div>
                 </div>
 

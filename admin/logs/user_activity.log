@@ -1,0 +1,17 @@
+2023-12-04 05:42:34 - User 10, admin1, admin (::1): logout
+2023-12-04 05:42:45 - User , ,  (::1): login
+2023-12-04 05:43:16 - User 9, test1, course_c (::1): login
+2023-12-04 05:43:31 - User 9, test1, course_c (::1): logout
+2023-12-04 05:44:17 - User , ,  (::1): login
+2023-12-04 05:44:45 - User 10, admin1, admin (::1): login
+2023-12-04 05:44:54 - User 10, admin1, admin (::1): login
+2023-12-04 05:45:02 - User 9, test1, course_c (::1): login
+2023-12-04 05:45:15 - User 10, admin1, admin (::1): login
+2023-12-04 06:32:59 - User 10, admin1, admin (::1): logout
+2023-12-04 06:33:05 - User , ,  (::1): login
+2023-12-04 06:33:15 - User , ,  (::1): login
+2023-12-04 06:33:22 - User 10, admin1, admin (::1): login
+2023-12-04 08:14:48 - User 10, admin1, admin (::1): logout
+2023-12-04 08:15:15 - User , ,  (::1): login
+2023-12-04 08:15:30 - User 9, test1, course_c (::1): login
+2023-12-04 08:15:36 - User 9, test1, course_c (::1): login
