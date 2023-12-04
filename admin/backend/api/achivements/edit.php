@@ -2,6 +2,9 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/achivements.php";
+// Include the session details logger
+include $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/log.php";
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -20,7 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = editAchivement($a_name, $a_desc, $a_date, $file, $file_path, $added_by, $a_id);
         if (isset($result['error'])) {
             header("Location: /pages/achievements/?error={$result['error']}");
-        } else
+        } else{
+            logUserActivity("edit_achivement");
             header("Location: /pages/achievements/?success={$result['message']}");
+        }
     });
 }

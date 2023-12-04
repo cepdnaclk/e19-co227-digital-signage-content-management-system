@@ -1,6 +1,9 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/users.php";
+// Include the session details logger
+include $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/log.php";
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -29,8 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = addUser($username, $user_role, $email, $contact, $password, $confirm_password);
             if (isset($result['error'])) {
                 header("Location: /pages/users/adduser.php?error={$result['error']}");
-            } else
+            } else{
+                logUserActivity("add_new_user");
                 header("Location: /pages/users/?success={$result['message']}");
+            }
         } else {
             header("Location: /pages/users/?error=Please fill all the required fields");
         }

@@ -2,6 +2,8 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/course.php";
+// Include the session details logger
+include $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/log.php";
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -30,8 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || "PUT") {
 
         if (isset($result['error']))
             header("Location: /pages/course/?error={$result['error']}");
-        else
+        else{
+            logUserActivity("upload_course_poster");
             header("Location: /pages/course/?success={$result['message']}");
+        }
     } else {
         header("Location: /pages/course/?error='coordinator_name', 'description', 'display_option', and 'c_id' are required fields");
     }

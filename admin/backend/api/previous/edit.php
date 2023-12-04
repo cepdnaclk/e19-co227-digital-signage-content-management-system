@@ -2,6 +2,10 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/previousevents.php";
+// Include the session details logger
+include $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/log.php";
+
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -28,8 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = editPreviousEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_path, $display_from, $display_to, $added_by, $e_id);
             if (isset($result['error'])) {
                 header("Location: /pages/previous/?error={$result['error']} {$_SESSION["user_id"]}");
-            } else
+            } else{
+                logUserActivity("edit_previous_event");
                 header("Location: /pages/previous/?success={$result['message']}");
+            }
         } else {
             header("Location: /pages/previous/?error='event_image,display_from display_to are required fields'");
         }

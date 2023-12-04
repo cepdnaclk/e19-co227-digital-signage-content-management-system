@@ -2,6 +2,10 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/maps.php";
+// Include the session details logger
+include $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/log.php";
+
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -19,7 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = editMap( $m_id,$m_name, $m_desc, $m_file, $m_file_path, $added_by);
         if (isset($result['error'])) {
             header("Location: /pages/maps/?error={$result['error']}");
-        } else
+        } else{
+            logUserActivity("edit_map");
             header("Location: /pages/maps/?success={$result['message']}");
+        }
     });
 }

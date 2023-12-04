@@ -6,6 +6,10 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+// Include the session details logger
+include $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/log.php";
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     hasClearence(1, function () {
 
@@ -30,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             // Course added successfully
             header("Location: /pages/course?success=1");
+            logUserActivity("add_course");
             exit();
         } else {
             // Error occurred

@@ -89,8 +89,7 @@ if (isset($data['error']))
                                         </p>
                                     <?php } ?>
                                     <div class="widget-buttons">
-                                        <button class="preview-button">Preview</button>
-                                        <button class="manage-button">Manage</button>
+                                        <!-- <button class="manage-button">Manage</button> -->
                                         <button type="submit" class="update-button">Update</button>
                                     </div>
                                 </form>
@@ -108,6 +107,11 @@ if (isset($data['error']))
 
                     // Check if the query was successful
                     if ($result) {
+                        echo '<script>';
+                        echo 'function reorderRow(element) {';
+                        echo '  $(element).appendTo(".custom-large-card");';
+                        echo '}';
+                        echo '</script>';
                         echo '<div class="custom-large-card">';
                         echo "<h2><i>Complaints and Messages From Other CMS Handlers</i></h2>";
 
@@ -120,9 +124,14 @@ if (isset($data['error']))
                             echo '</div>';
                             echo '<p>' . $row['message'] . '</p>';
                             echo '<div class="checkbox">';
-                            echo '<label for="checked">Checked</label>';
-                            echo '<input type="checkbox" id="checked" name="checked">';
+                            echo '<label for="checked_' . $row['id'] . '">Checked</label>';
+                            
+                            // Set the initial state of the checkbox based on the 'checked' field value
+                            $isChecked = $row['checked'] == 1 ? 'checked' : '';
+                            
+                            echo '<input type="checkbox" id="checked_' . $row['id'] . '" name="checked" ' . $isChecked . '>';
                             echo '</div>';
+
                             echo '</div>';
                         }
 

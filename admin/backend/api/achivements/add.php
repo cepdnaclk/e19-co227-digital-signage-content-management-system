@@ -2,6 +2,9 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/achivements.php";
+// Include the session details logger
+include $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/log.php";
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -23,8 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = addAchivement($a_name, $a_desc, $a_date, $file, $added_by, $published);
             if (isset($result['error'])) {
                 header("Location: /pages/achievements/?error={$result['error']}");
-            } else
+            } else{
+                logUserActivity("add_achievement");
                 header("Location: /pages/achievements/?success={$result['message']}");
+            }
         } else {
             header("Location: /pages/achievements/?error='acheivement_image is required field'");
         }

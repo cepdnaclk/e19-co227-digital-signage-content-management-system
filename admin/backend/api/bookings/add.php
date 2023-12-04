@@ -3,6 +3,9 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/bookings.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/facilities.php";
+// Include the session details logger
+include $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/log.php";
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -45,8 +48,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $result = addBooking($f_id, $b_date, $b_timeslot, $b_seats,$b_for,$b_contact, $b_by);
                     if (isset($result['error'])) {
                         header("Location: /pages/bookings/?error={$result['error']}");
-                    } else
+                    } else{
+                        logUserActivity("add_booking");
                         header("Location: /pages/bookings/?success={$result['message']}");
+                    }
             }
             else {
                 header("Location: /pages/bookings/?error=Not Enough Available Seats!");

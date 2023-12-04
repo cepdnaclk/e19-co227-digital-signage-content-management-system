@@ -2,6 +2,10 @@
 include_once "../config.php";
 session_start();
 
+// Include the session details logger
+include $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/log.php";
+logUserActivity("login");
+
 header("Access-Control-Allow-Origin: *");
 // Allow specific HTTP methods (e.g., GET, POST, OPTIONS)
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");

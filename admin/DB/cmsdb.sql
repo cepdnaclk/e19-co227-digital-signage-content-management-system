@@ -117,6 +117,7 @@ CREATE TABLE
         `name` varchar(100) DEFAULT NULL,
         `email` varchar(100) DEFAULT NULL,
         `message` text DEFAULT NULL,
+        `checked` TINYINT DEFAULT NULL,
         PRIMARY KEY (`id`)
     ) ENGINE = MyISAM AUTO_INCREMENT = 9 DEFAULT CHARSET = latin1;
 

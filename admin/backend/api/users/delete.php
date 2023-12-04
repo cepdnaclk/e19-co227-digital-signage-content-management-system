@@ -1,6 +1,9 @@
 <?php
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/users.php";
+// Include the session details logger
+include $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/log.php";
+
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     hasClearence(1, function () {
@@ -14,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             }
             if ($clearenceStatus[$user['clearense']] < $clearenceStatus[$_SESSION['clearense']]) {
                 if (deleteUser($_GET['delete'])) {
+                    logUserActivity("delete_booking");
                     header('Location: /pages/users/?success=succesfully deleted the user');
                 } else {
                     header('Location: /pages/users/?error=Unable to delete the user');

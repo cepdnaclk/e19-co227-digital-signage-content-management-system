@@ -1,6 +1,8 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/maps.php";
+// Include the session details logger
+include $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/log.php";
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -23,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($result['error'])) {
                 header("Location: /pages/maps/?error={$result['error']}");
             } else {
+                logUserActivity("add_map");
                 header("Location: /pages/maps/?success={$result['message']}");
             }
         } else {

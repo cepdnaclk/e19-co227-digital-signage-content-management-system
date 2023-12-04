@@ -2,6 +2,9 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/facilities.php";
+// Include the session details logger
+include $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/log.php";
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -28,8 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = addFacility($f_name, $total_seats, $price, $floor, $in_charge);
             if (isset($result['error'])) {
                 header("Location: /pages/labinfo/?error={$result['error']}");
-            } else
+            } else{
+                logUserActivity("add_facility(lab,seminarroom)");
                 header("Location: /pages/labinfo/?success={$result['message']}");
+            }
         }
 
 
