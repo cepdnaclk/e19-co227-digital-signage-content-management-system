@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 04, 2023 at 08:05 AM
+-- Generation Time: Dec 04, 2023 at 08:15 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 SET
@@ -353,19 +353,10 @@ CREATE TABLE IF NOT EXISTS `facility` (
     `f_name` varchar(50) NOT NULL,
     `total_seats` int(11) NOT NULL,
     `price` int(11) NOT NULL,
+    `floor` varchar(20) DEFAULT NULL,
+    `in_charge` varchar(30) DEFAULT NULL,
     PRIMARY KEY (`f_id`)
 ) ENGINE = MyISAM AUTO_INCREMENT = 5 DEFAULT CHARSET = latin1;
-
---
--- Dumping data for table `facility`
---
-INSERT INTO
-    `facility` (`f_id`, `f_name`, `total_seats`, `price`)
-VALUES
-    (1, 'Seminar Room', 100, 100),
-    (2, 'Lab 1', 50, 50),
-    (3, 'Lab 2', 50, 50),
-    (4, 'CCNA Lab', 20, 150);
 
 -- --------------------------------------------------------
 --
