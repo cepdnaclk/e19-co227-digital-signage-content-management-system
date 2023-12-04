@@ -21,20 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || "PUT") {
         $c_coordinator = $_POST["coordinator_name"];
         $description = $_POST["description"];
         $display_option = $_POST["display_option"];
-        if (isset($_FILES["poster_image"]))
-            $file = $_FILES["poster_image"];
-        else
-            $file = "";
-        if (isset($_POST["image_loc"]))
-            $file_name = $_POST["image_loc"];
-        else
-            $file_name = "";
         $duration = $_POST["duration"];
         $intake_date = $_POST["intake_date"];
         $course_fee = $_POST["course_fee"];
         $poster_description = $_POST["poster_description"];
 
-        $result = editCourse($c_id, $c_coordinator, $description, $file, $file_name, $duration, $intake_date, $course_fee, $poster_description);
+        $result = editCourse($c_id, $c_coordinator, $description, $duration, $intake_date, $course_fee, $poster_description);
 
         if (isset($result['error']))
             header("Location: /pages/course/?error={$result['error']}");

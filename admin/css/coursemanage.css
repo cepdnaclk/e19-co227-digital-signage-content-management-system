@@ -94,3 +94,11 @@
   font-weight: bold;
   color: var(--color-3);
 }
+
+#course_display {
+  background-color: #ffffff;
+}
+
+#course_display img {
+  max-height: 400px;
+}
