@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import "./achievements.css";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import "./achievements.css";
 
 export default function Achievements() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -23,6 +23,8 @@ export default function Achievements() {
           });
           setInitialImages(array);
           console.log(data);
+        } else {
+          setInitialImages([`${axios.defaults.baseURL}/images/notFound.png`]);
         }
       })
       .catch((err) => {
