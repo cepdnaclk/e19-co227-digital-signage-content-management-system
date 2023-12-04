@@ -15,3 +15,8 @@
 2023-12-04 08:15:15 - User , ,  (::1): login
 2023-12-04 08:15:30 - User 9, test1, course_c (::1): login
 2023-12-04 08:15:36 - User 9, test1, course_c (::1): login
+2023-12-04 08:36:41 - User 7, SuperAdmin, super_admin (::1): edit facility
+2023-12-04 08:43:16 - User 7, SuperAdmin, super_admin (::1): publish_course_poster
+2023-12-04 08:45:27 - User 7, SuperAdmin, super_admin (::1): upload_course_poster
+2023-12-04 08:47:49 - User 7, SuperAdmin, super_admin (::1): upload_course_poster
+2023-12-04 08:48:47 - User 7, SuperAdmin, super_admin (::1): upload_course_poster

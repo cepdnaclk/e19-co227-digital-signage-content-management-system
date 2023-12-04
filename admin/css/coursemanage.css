@@ -96,9 +96,25 @@
 }
 
 #course_display {
-  background-color: #ffffff;
+  background-color: #f2f2f2f2;
+  aspect-ratio: unset;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+}
+
+#course_display .two-columns {
+  gap: 2rem;
+  align-items: center;
+}
+
+#course_display .two-columns .poster {
+  display: flex;
+  justify-content: center;
 }
 
 #course_display img {
   max-height: 400px;
+  object-fit: contain;
+  object-position: center;
 }
