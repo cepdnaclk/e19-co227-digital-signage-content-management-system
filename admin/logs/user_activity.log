@@ -15,3 +15,5 @@
 2023-12-04 08:15:15 - User , ,  (::1): login
 2023-12-04 08:15:30 - User 9, test1, course_c (::1): login
 2023-12-04 08:15:36 - User 9, test1, course_c (::1): login
+2023-12-04 08:23:43 - User 9, test1, course_c (::1): publish_course_poster
+2023-12-04 08:23:55 - User 9, test1, course_c (::1): publish_course_poster

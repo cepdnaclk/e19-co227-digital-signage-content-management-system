@@ -102,3 +102,22 @@
 #course_display img {
   max-height: 400px;
 }
+
+
+/* Style for the select container */
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+/* Style for the options within the dropdown */
+select option {
+  background-color: #fff;
+  color: #333;
+}
