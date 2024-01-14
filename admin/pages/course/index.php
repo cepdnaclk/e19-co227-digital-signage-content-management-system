@@ -14,7 +14,7 @@
         <div class="left">
             <?php
             include_once(APP_ROOT . "/includes/sidebar.php");
-            sidebar(1,0);
+            sidebar(1, 0);
             ?>
         </div>
         <div class="right">
@@ -28,7 +28,8 @@
                             <h1>Courses</h1>
                             <p>Currently Offered Courses by Us</p>
                         </div>
-                        <a href="/pages/course/add.php" class="btn btn-success"><img src="/images/Add_round.svg" alt=""> Add New Course</a>
+                        <a href="/pages/course/add.php" class="btn btn-success"><img src="/images/Add_round.svg" alt="">
+                            Add New Course</a>
                     </div>
 
                     <div class="table-container">
@@ -51,7 +52,7 @@
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             // Fetch courses data from the backend
             fetch('/backend/api/course/index.php')
                 .then(response => {
@@ -80,9 +81,9 @@
 
                             // Add click event listener to the "Manage" button
                             const manageButton = row.querySelector('.btn-manage');
-                            manageButton.addEventListener('click', function() {
+                            manageButton.addEventListener('click', function () {
                                 const courseId = this.getAttribute('data-course-id');
-                                this.href = `/pages/course/manage.php?c_id=${courseId}`;
+                                this.href = `/pages/course/manage.php?c_id=${courseId}&mode=img`;
                             });
                         });
                     }
@@ -96,7 +97,7 @@
         // Add click event listener to the "Delete" button
         const deleteButtons = document.querySelectorAll('.btn-delete');
         deleteButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
+            button.addEventListener('click', function (e) {
                 e.preventDefault();
                 const courseId = this.getAttribute('data-course-id');
                 const courseName = this.closest('tr').querySelector('.text-left').textContent;
@@ -105,8 +106,8 @@
                 if (confirm(`Are you sure you want to delete the course "${courseName}"?`)) {
                     // If the user confirms, send a DELETE request to delete the course
                     fetch(`/backend/api/course/index.php?c_id=${courseId}`, {
-                            method: 'DELETE',
-                        })
+                        method: 'DELETE',
+                    })
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error('Network response was not ok');

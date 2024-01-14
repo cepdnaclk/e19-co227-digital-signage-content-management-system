@@ -96,9 +96,43 @@
 }
 
 #course_display {
-  background-color: #ffffff;
+  background-color: #f2f2f2f2;
+  aspect-ratio: unset;
+  border-radius: 0.5rem;
+}
+
+#course_display .two-columns {
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+#course_display .two-columns .poster {
+  display: flex;
+  justify-content: center;
 }
 
 #course_display img {
   max-height: 400px;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Style for the select container */
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+/* Style for the options within the dropdown */
+select option {
+  background-color: #fff;
+  color: #333;
 }

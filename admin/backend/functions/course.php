@@ -97,7 +97,7 @@ function getCoursesCo(string $user)
 {
     global $conn;
 
-    $result = $conn->query("SELECT * FROM course WHERE c_coordinator = " . $user);
+    $result = $conn->query("SELECT * FROM course WHERE c_coordinator = '" . $user . "'");
     if ($result === false) {
         return false; // Error in query execution
     }

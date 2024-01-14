@@ -36,24 +36,36 @@ if (isset($data['error']))
             <!-- Dashboard Content -->
             <?php
             if ($clearenceStatus[$_SESSION['clearense']] > 0) {
-            ?>
+                ?>
                 <div class="dashboard-content">
-
+                    <img src="/images/PublicDisplayBackground.svg" alt="" class="bg">
                     <!-- Summary Widget -->
-                    <div class="widget elegant-widget" id="overview-widget">
-                        <h2 class="widget-title">Overview</h2>
-                        <p class="widget-info" id="total-pages">Total Pages:
-                            <?= $data['total']['pages'] ?>
-                        </p>
-                        <p class="widget-info" id="total-published-pages">Total Published Pages:
-                            <?= $data['total']['pagesP'] ?>
-                        </p>
-                        <p class="widget-info" id="total-time-for-cycle">Total Time for One Cycle:
-                            <?= $data['total']['time'] ?>s
-                        </p>
+                    <div class="elegant-widget" id="overview-widget">
+                        <h2 class="widget-title">Welcome
+                            <?= $_SESSION['user_name'] ?>
+                            <span>
+                                <?= $_SESSION['clearense'] ?>
+                            </span>
+                        </h2>
+                        <div class="row">
+                            <p class="widget-info" id="total-pages"><span>
+                                    <?= $data['total']['pages'] ?>
+                                </span> Total Pages </p>
+                            <p class="widget-info" id="total-published-pages">
+                                <span>
+                                    <?= $data['total']['pagesP'] ?>
+                                </span>
+                                Total Published Pages
+                            </p>
+                            <p class="widget-info" id="total-time-for-cycle">
+                                <span>
+                                    <?= $data['total']['time'] ?>s
+                                </span>
+                                Total Time per Cycle
+                            </p>
+                        </div>
                         <div class="widget-buttons">
-                            <a href="/pages/preview"><button class="preview-button">Preview</button></a>
-
+                            <a href="/pages/preview"><button class="preview-button">Public View &nbsp; >> </button></a>
                         </div>
                     </div>
 
@@ -61,7 +73,7 @@ if (isset($data['error']))
                     <div class="dashboard-widgets">
                         <?php
                         foreach ($data['features'] as $key => $feature) {
-                        ?>
+                            ?>
                             <div class="widget">
                                 <h2 class="widget-title">
                                     <?= $key ?>
@@ -78,13 +90,15 @@ if (isset($data['error']))
                                     <input type="hidden" name="feature" value="<?php echo $key; ?>">
                                     <p class="widget-info">
                                         Allocated Time per Cycle:
-                                        <input type="number" name="time" value="<?= $feature['time'] ?>" class="allocated-time-input">
+                                        <input type="number" name="time" value="<?= $feature['time'] ?>"
+                                            class="allocated-time-input">
                                         <span class="time-unit">s</span>
                                     </p>
                                     <?php if ($key != 'Lab Slots') { ?>
                                         <p class="widget-info">
                                             Allocated Time Per Page:
-                                            <input type="number" name="time_slide" min="1" value="<?= $feature['time_slide'] ?>" class="allocated-time-input">
+                                            <input type="number" name="time_slide" min="1" value="<?= $feature['time_slide'] ?>"
+                                                class="allocated-time-input">
                                             <span class="time-unit">s</span>
                                         </p>
                                     <?php } ?>
@@ -94,7 +108,7 @@ if (isset($data['error']))
                                     </div>
                                 </form>
                             </div>
-                        <?php
+                            <?php
                         }
                         ?>
                     </div>
@@ -125,10 +139,10 @@ if (isset($data['error']))
                             echo '<p>' . $row['message'] . '</p>';
                             echo '<div class="checkbox">';
                             echo '<label for="checked_' . $row['id'] . '">Checked</label>';
-                            
+
                             // Set the initial state of the checkbox based on the 'checked' field value
                             $isChecked = $row['checked'] == 1 ? 'checked' : '';
-                            
+
                             echo '<input type="checkbox" id="checked_' . $row['id'] . '" name="checked" ' . $isChecked . '>';
                             echo '</div>';
 
@@ -141,19 +155,49 @@ if (isset($data['error']))
                     }
                     ?>
                 </div>
-            <?php
+                <?php
             } else {
-            ?>
+                ?>
                 <div class="course">
                     <img src="/images/PublicDisplayBackground.svg" alt="">
                     <div class="container">
-                        <h1>Welcome <?= $_SESSION['user_name'] ?></h1>
+                        <h1>Welcome
+                            <?= $_SESSION['user_name'] ?>
+                        </h1>
                         <p>Manage Your Courses and labslots</p>
                         <a href="/pages/course/"> My Courses >></a>
+                        <br />
+                        <a href="/pages/preview"> Prview Public Display >></a>
                     </div>
                 </div>
 
             <?php } ?>
+            <div class="dashboard-widget" id="log-history-widget">
+                <div>
+                    <h2 class="widget-title">&nbsp;Recent User Log History</h2>
+                    <br>
+                    <a href="/logs/user_activity.log">&emsp;View Full Log History &#128462;</a>
+                </div>
+                <br>
+                <div class="log-history-content" id="log-content">
+                    <?php
+                    // Function to read last 15 lines from the log file
+                    function readLastLines($file, $lines)
+                    {
+                        $content = file($file);
+                        $start = max(0, count($content) - $lines);
+                        $output = array_slice($content, $start);
+                        $reversedOutput = array_reverse($output);
+                        return implode("<br>", $reversedOutput);
+                    }
+
+                    $logFile = $_SERVER['DOCUMENT_ROOT'] . "\logs\user_activity.log";
+                    $logEntries = readLastLines($logFile, 15);
+
+                    echo "<p>{$logEntries}</p>";
+                    ?>
+                </div>
+            </div>
 
         </div>
         <script src="./js/dashboard.js"></script>

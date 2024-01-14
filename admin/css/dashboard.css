@@ -1,6 +1,19 @@
 /* Style the dashboard content */
 .dashboard-content {
   padding: 20px;
+  position: relative;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+.dashboard-content .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  transform: scaleX(-1) scaleY(1.5) translate(-40%, -40%);
+  z-index: -1;
 }
 
 /* Style dashboard widgets */
@@ -57,7 +70,6 @@
   margin-top: auto;
 }
 
-.preview-button,
 .manage-button,
 .update-button {
   background-color: var(--color-5);
@@ -79,45 +91,75 @@
 
 /* Add styles for the elegant widget */
 .elegant-widget {
-  background: linear-gradient(to bottom, #fdf1ec, #ffdada);
   border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px;
   padding: 30px;
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-  text-align: center;
-}
-
-.elegant-widget:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .elegant-widget h2 {
   color: #333;
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 10px;
-  font-weight: bold;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
-.elegant-widget p {
-  color: #666;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  line-height: 1.4;
+.elegant-widget h2 span {
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 5px 8px;
+  background-color: var(--color-1);
+  color: white;
+  border-radius: 3px;
+}
+
+.elegant-widget .row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.elegant-widget .row p {
+  font-size: 0.9rem;
+  padding: 1rem;
+  border-radius: 5px;
+  color: white;
+}
+
+.elegant-widget .row p:nth-child(1) {
+  background-color: var(--color-1);
+}
+
+.elegant-widget .row p:nth-child(2) {
+  background-color: var(--color-4);
+}
+
+.elegant-widget .row p:nth-child(3) {
+  background-color: var(--color-3);
+}
+
+.elegant-widget .row p span {
+  font-size: 2.5rem;
+  font-weight: 500;
 }
 
 .elegant-widget .widget-buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
+  display: block;
+}
+
+.elegant-widget .widget-buttons a {
+  margin: 0;
 }
 
 /* Style buttons as needed */
-.elegant-widget .preview-button,
-.elegant-widget .manage-button {
-  background-color: #9d170e;
+.elegant-widget .preview-button {
+  background-color: var(--color-3);
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -125,11 +167,6 @@
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s;
-}
-
-.elegant-widget .preview-button:hover,
-.elegant-widget .manage-button:hover {
-  background-color: var(--color-4);
 }
 
 /* Style the time slot input */
@@ -301,4 +338,29 @@ tr:hover {
   width: max-content;
   border-radius: 5px;
   color: white;
+}
+
+/* Add this to your existing CSS or create a new CSS file */
+#log-history-widget {
+  padding-top: 10px;
+  margin: 20px;
+}
+
+.log-history-content {
+  padding: 10px;
+  max-height: 400px; /* Set a maximum height for the log history */
+  overflow-y: auto; /* Enable vertical scroll if content exceeds the height */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.log-history-content p {
+  margin: 0;
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+  font-size: 18px;
+}
+` #log-history-widget a {
+  padding: 10px;
 }
