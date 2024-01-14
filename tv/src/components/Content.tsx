@@ -1,16 +1,17 @@
 // Content.tsx
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import TimingContext from "../context/TimingContext";
 import "./content.css";
 
 const Content = () => {
-  const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
   const [timerId, setTimerId] = useState(null);
   const [active, setActive] = useState(false);
   const [activeTimer, setActiveTimer] = useState(false);
+
+  const { timings, setTimings } = useContext(TimingContext);
 
   const routes = [
     {
@@ -51,18 +52,6 @@ const Content = () => {
     },
   ];
 
-  useEffect(() => {
-    axios
-      .get(`/backend/api/dashboard/get.php`)
-      .then((res) => {
-        setData(res.data.features);
-        console.log("data", res.data.features);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [currentIndex]);
-
   const handleUserActivity = () => {
     if (timerId) {
       clearTimeout(timerId);
@@ -80,7 +69,7 @@ const Content = () => {
     const { path } = routes[currentIndex];
     const { name } =
       routes[currentIndex > 0 ? currentIndex - 1 : routes.length - 1];
-    const time = data[name] ? data[name].time : 10;
+    const time = timings[name] ? timings[name].time : 10;
 
     if (!active) {
       const timeoutId = setTimeout(() => {
@@ -95,7 +84,7 @@ const Content = () => {
 
       return () => clearTimeout(timeoutId);
     }
-  }, [currentIndex, data, active]);
+  }, [currentIndex, active]);
 
   useEffect(() => {
     // Attach event listeners for user activity
