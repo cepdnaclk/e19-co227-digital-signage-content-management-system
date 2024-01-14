@@ -36,7 +36,7 @@
   width: 180px;
 }
 
-.addlabslots .options .option select {
+.addlabslots .options .option input[type="text"] {
   width: 250px;
 }
 
