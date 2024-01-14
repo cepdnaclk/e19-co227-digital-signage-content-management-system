@@ -17,6 +17,9 @@
 
 .achievements-container .image-list {
   width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .achievements-container .image-item {
@@ -24,6 +27,11 @@
   transition: opacity 0.3s ease-in-out;
   margin: auto 1px;
   opacity: 0.5;
+}
+
+.achievements-container .image-item img {
+  aspect-ratio: 1.3;
+  object-fit: contain;
 }
 
 .achievements-container .image-item.active {

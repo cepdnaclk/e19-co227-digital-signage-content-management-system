@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import TimingContext from "../../context/TimingContext";
 import "./upcomingevents.css";
 
 export default function UpcomingEvents() {
@@ -8,23 +9,24 @@ export default function UpcomingEvents() {
     null
   );
   const [initialImages, setInitialImages] = useState([]);
-  const [data, setData] = useState([]);
+  const { timings, setTimings, imageIndex, setImageIndex } =
+    useContext(TimingContext);
 
   useEffect(() => {
     axios
       .get(`/backend/api/upcoming/get.php`)
       .then((res) => {
         if (res.data.length >= 1) {
-          setData(res.data);
           let array = [];
           res.data.forEach((ele) => {
             array.push(axios.defaults.baseURL + ele["e_img"]);
           });
           setInitialImages(array);
-          console.log(data);
         } else {
           setInitialImages([`${axios.defaults.baseURL}/images/notFound.png`]);
         }
+
+        setCurrentImageIndex(imageIndex["Upcoming Events"] || 0);
       })
       .catch((err) => {
         console.log(err);
@@ -38,12 +40,18 @@ export default function UpcomingEvents() {
           (prevIndex) => (prevIndex + 1) % initialImages.length
         );
       }
-    }, 10000); // Change image every 10 seconds (10000 milliseconds)
+    }, timings["Upcoming Events"]["time_slide"] * 1000); // Change image every 10 seconds (10000 milliseconds)
 
     return () => {
       clearInterval(interval);
     };
   }, [clickedImageIndex, initialImages]);
+
+  useEffect(() => {
+    const indexData = { ...imageIndex };
+    indexData["Upcoming Events"] = currentImageIndex;
+    setImageIndex(indexData);
+  }, [currentImageIndex]);
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prevIndex) =>

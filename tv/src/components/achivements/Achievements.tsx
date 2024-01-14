@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import TimingContext from "../../context/TimingContext";
 import "./achievements.css";
 
 export default function Achievements() {
@@ -9,23 +10,23 @@ export default function Achievements() {
   );
 
   const [initialImages, setInitialImages] = useState([]);
-  const [data, setData] = useState([]);
+  const { timings, setTimings, imageIndex, setImageIndex } =
+    useContext(TimingContext);
 
   useEffect(() => {
     axios
       .get(`/backend/api/achivements/get.php`)
       .then((res) => {
         if (res.data.length >= 1) {
-          setData(res.data);
           let array = [];
           res.data.forEach((ele) => {
             array.push(axios.defaults.baseURL + ele["a_img"]);
           });
           setInitialImages(array);
-          console.log(data);
         } else {
           setInitialImages([`${axios.defaults.baseURL}/images/notFound.png`]);
         }
+        setCurrentImageIndex(imageIndex["Achievements"] || 0);
       })
       .catch((err) => {
         console.log(err);
@@ -39,12 +40,18 @@ export default function Achievements() {
           (prevIndex) => (prevIndex + 1) % initialImages.length
         );
       }
-    }, 10000); // Change image every 10 seconds (10000 milliseconds)
+    }, timings["Achievements"]["time_slide"] * 1000); // Change image every 10 seconds (10000 milliseconds)
 
     return () => {
       clearInterval(interval);
     };
   }, [clickedImageIndex, initialImages]);
+
+  useEffect(() => {
+    const indexData = { ...imageIndex };
+    indexData["Achievements"] = currentImageIndex;
+    setImageIndex(indexData);
+  }, [currentImageIndex]);
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prevIndex) =>

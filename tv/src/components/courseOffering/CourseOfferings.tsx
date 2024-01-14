@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import "./courseofferings.css";
 import axios from "axios";
-
+import { useContext, useEffect, useState } from "react";
+import TimingContext from "../../context/TimingContext";
+import "./courseofferings.css";
 
 export default function CourseOfferings() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -10,6 +10,8 @@ export default function CourseOfferings() {
   );
 
   const [initialImages, setInitialImages] = useState([]);
+  const { timings, setTimings, imageIndex, setImageIndex } =
+    useContext(TimingContext);
 
   useEffect(() => {
     axios
@@ -21,7 +23,11 @@ export default function CourseOfferings() {
             array.push(axios.defaults.baseURL + ele["Poster_img"]);
           });
           setInitialImages(array);
+        } else {
+          setInitialImages([`${axios.defaults.baseURL}/images/notFound.png`]);
         }
+
+        setCurrentImageIndex(imageIndex["Course Offerings"] || 0);
       })
       .catch((err) => {
         console.log(err);
@@ -35,12 +41,18 @@ export default function CourseOfferings() {
           (prevIndex) => (prevIndex + 1) % initialImages.length
         );
       }
-    }, 10000); // Change image every 10 seconds (10000 milliseconds)
+    }, timings["Course Offerings"]["time_slide"] * 1000); // Change image every 10 seconds (10000 milliseconds)
 
     return () => {
       clearInterval(interval);
     };
   }, [clickedImageIndex, initialImages]);
+
+  useEffect(() => {
+    const indexData = { ...imageIndex };
+    indexData["Course Offerings"] = currentImageIndex;
+    setImageIndex(indexData);
+  }, [currentImageIndex]);
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prevIndex) =>

@@ -20,34 +20,24 @@
 .dashboard-widgets {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  padding: 0 30px;
+  gap: 5px;
 }
 
 .widget {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer; /* Add pointer cursor to indicate interactivity */
   display: flex;
   flex-direction: column;
-}
-
-.widget:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  background-color: #eee;
 }
 
 .widget h2 {
-  color: black; /* Red color */
   font-size: 1.5rem;
   margin-bottom: 10px;
   font-weight: bold; /* Make widget titles bold */
 }
 
 .widget p {
-  color: #555; /* Slightly darker text color */
   font-size: 1rem;
   margin-bottom: 10px;
   line-height: 1.4; /* Improve text readability with increased line height */
@@ -93,7 +83,13 @@
 .elegant-widget {
   border-radius: 15px;
   margin-bottom: 15px;
-  padding: 30px;
+  padding: 0 30px;
+}
+
+.elegant-widget:nth-child(2) {
+  display: flex;
+  align-items: center;
+  height: 50vh;
 }
 
 .elegant-widget h2 {
@@ -102,14 +98,20 @@
   margin-bottom: 10px;
   font-weight: 500;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.elegant-widget:nth-child(2) h2 {
+  font-size: 3rem;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.5rem;
 }
 
 .elegant-widget h2 span {
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   padding: 5px 8px;
   background-color: var(--color-1);
   color: white;
@@ -130,6 +132,13 @@
   padding: 1rem;
   border-radius: 5px;
   color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.elegant-widget .row p i {
+  font-size: 1.75rem;
 }
 
 .elegant-widget .row p:nth-child(1) {
@@ -147,6 +156,10 @@
 .elegant-widget .row p span {
   font-size: 2.5rem;
   font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .elegant-widget .widget-buttons {

@@ -47,29 +47,37 @@ if (isset($data['error']))
                                 <?= $_SESSION['clearense'] ?>
                             </span>
                         </h2>
+                    </div>
+
+                    <!-- Widgets -->
+                    <div class="elegant-widget">
+                        <h2>
+                            Overview
+                            <div class="widget-buttons">
+                                <a href="/pages/preview"><button class="preview-button">Public View &nbsp; >> </button></a>
+                            </div>
+                        </h2>
                         <div class="row">
                             <p class="widget-info" id="total-pages"><span>
+                                    <i class="fa-regular fa-note-sticky"></i>
                                     <?= $data['total']['pages'] ?>
                                 </span> Total Pages </p>
                             <p class="widget-info" id="total-published-pages">
                                 <span>
+                                    <i class="fa-regular fa-note-sticky"></i>
                                     <?= $data['total']['pagesP'] ?>
                                 </span>
                                 Total Published Pages
                             </p>
                             <p class="widget-info" id="total-time-for-cycle">
                                 <span>
+                                    <i class="fa-regular fa-clock"></i>
                                     <?= $data['total']['time'] ?>s
                                 </span>
                                 Total Time per Cycle
                             </p>
                         </div>
-                        <div class="widget-buttons">
-                            <a href="/pages/preview"><button class="preview-button">Public View &nbsp; >> </button></a>
-                        </div>
                     </div>
-
-                    <!-- Widgets -->
                     <div class="dashboard-widgets">
                         <?php
                         foreach ($data['features'] as $key => $feature) {
