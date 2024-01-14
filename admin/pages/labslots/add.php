@@ -88,7 +88,8 @@ if (!$courses)
                     </div>
                     <form class="options" method="post" action="/backend/api/labslots/add_update.php">
                         <div class="option">
-                            <select name="course" id="course" v-model="course">
+                            <input type="text" name="course" list="courses" id="course" v-model="course">
+                            <datalist id="courses">
                                 <?php $i = 0;
                                 foreach ($courses as $key => $course) { ?>
                                     <option :value="'<?= $course['c_code'] ?>'">
@@ -96,7 +97,7 @@ if (!$courses)
                                     </option>
                                     <?php $i++;
                                 } ?>
-                            </select>
+                            </datalist>
                         </div>
                         <div class="option">
                             <label for="date">select date </label>
