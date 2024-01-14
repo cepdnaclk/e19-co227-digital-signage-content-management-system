@@ -27,10 +27,6 @@ export default function PreviousEvents() {
         }
 
         setCurrentImageIndex(imageIndex["Previous Events"] || 0);
-        console.log(
-          "PreviousEvents: ",
-          timings["Previous Events"]["time_slide"]
-        );
       })
       .catch((err) => {
         console.log(err);
