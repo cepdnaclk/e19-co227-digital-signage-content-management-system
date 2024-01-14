@@ -22,6 +22,10 @@ export default function PreviousEvents() {
         } else {
           setInitialImages([`${axios.defaults.baseURL}/images/notFound.png`]);
         }
+
+        setCurrentImageIndex(
+          parseInt(localStorage.getItem("PreviousEventsIndex") || "0")
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -33,6 +37,10 @@ export default function PreviousEvents() {
       if (clickedImageIndex === null) {
         setCurrentImageIndex(
           (prevIndex) => (prevIndex + 1) % initialImages.length
+        );
+        localStorage.setItem(
+          "PreviousEventsIndex",
+          currentImageIndex.toString()
         );
       }
     }, 10000); // Change image every 10 seconds (10000 milliseconds)
@@ -46,17 +54,20 @@ export default function PreviousEvents() {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === 0 ? initialImages.length - 1 : prevIndex - 1
     );
+    localStorage.setItem("PreviousEventsIndex", currentImageIndex.toString());
   };
 
   const handleNextImage = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === initialImages.length - 1 ? 0 : prevIndex + 1
     );
+    localStorage.setItem("PreviousEventsIndex", currentImageIndex.toString());
   };
 
   const handleImageClick = (index: number) => {
     setCurrentImageIndex(index);
     setClickedImageIndex(null); // Reset clickedImageIndex to null to exit full-screen mode
+    localStorage.setItem("PreviousEventsIndex", currentImageIndex.toString());
   };
 
   // Determine the number of images to display in the list
