@@ -26,3 +26,6 @@
 2024-01-14 03:06:06 - User 7, SuperAdmin, super_admin (::1): edit_previous_event
 2024-01-14 03:06:17 - User 7, SuperAdmin, super_admin (::1): edit_previous_event
 2024-01-14 03:14:51 - User 7, SuperAdmin, super_admin (::1): add_previous_event
+2024-01-14 06:28:41 - User 7, SuperAdmin, super_admin (::1): logout
+2024-01-14 06:28:49 - User , ,  (::1): login
+2024-01-14 06:37:22 - User 7, SuperAdmin, super_admin (::1): update_timer_settings
