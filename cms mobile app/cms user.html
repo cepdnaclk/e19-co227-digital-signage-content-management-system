@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CMS User app</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/cms user.css">
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Poppins">
+        <style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+</style>
+    </head>
+    <body>
+
+        <!-- Sidebar/menu -->
+        <nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding"
+            style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+            <a href="javascript:void(0)" onclick="w3_close()"
+                class="w3-button w3-hide-large "
+                style="margin-right: 2px;margin-left: auto;">☰</a>
+            <div class="w3-container">
+                <h3 class="w3-padding-64"><b>CMS <br>IT Center</b></h3>
+            </div>
+            <div class="w3-bar-block">
+                <a href="#" onclick="w3_close()"
+                    class="w3-bar-item w3-button w3-hover-yellow w3-round-large">Home</a>
+                <a href="#lab-info" onclick="w3_close()"
+                    class="w3-bar-item w3-button w3-hover-yellow w3-round-large">Labs</a>
+                <a href="#events" onclick="w3_close()"
+                    class="w3-bar-item w3-button w3-hover-yellow w3-round-large">Events</a>
+
+                <a href="#contact" onclick="w3_close()"
+                    class="w3-bar-item w3-button w3-hover-yellow w3-round-large">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Top menu on small screens -->
+        <header
+            class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+            <a href="javascript:void(0)"
+                class="w3-button w3-red w3-margin-right"
+                onclick="w3_open()">☰</a>
+            <span>CMS - IT Center</span>
+        </header>
+
+        <!-- Overlay effect when opening sidebar on small screens -->
+        <div class="w3-overlay w3-hide-large" onclick="w3_close()"
+            style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main w3-padding-left"
+            style="margin-left:300px;margin-right:0px; background-color: #f9db08;">
+
+            <!-- Header -->
+            <div class="w3-container"
+                style="padding-top:80px; "
+                id="home">
+                <div
+                    style="display: flex; align-items: center;">
+                    <img src="./images/ITCenterLogo.svg" alt="Logo"
+                        style="margin-right: 20px; max-width: 80px;">
+
+                    <h1 style="margin-bottom:20px"
+                        class="w3-xxxlarge w3-text-black"><b>Welcome to IT
+                            Center -
+                            UoP</b></h1></div>
+            </div>
+            <div class="w3-container" id="lab-info" style="margin-top:75px">
+                <h1 class="w3-xxxlarge w3-text-red "><b>About
+                        Us</b></h1>
+                <hr style="width:50px;border:5px solid #9d170e"
+                    class="w3-round">
+                <p>Something about IT Center</p>
+            </div>
+
+            <!-- Lab info -->
+            <div class="w3-container" id="lab-info" style="margin-top:75px">
+                <h1 class="w3-xxxlarge w3-text-red"><b>Lab-info</b></h1>
+                <hr style="width:50px;border:5px solid #9d170e"
+                    class="w3-round">
+                <p>You can find the maps and general info about our labs
+                    here</p>
+
+                <p><b></b></p>
+            </div>
+
+            <div class="w3-row-padding w3-grayscale ">
+                <!-- Lab1-->
+                <div class="w3-col m4 w3-margin-bottom">
+                    <div class="w3-light-grey">
+
+                        <video id="lab1" class="w3-video"
+                            src="./maps/360vid.mp4"
+                            controls></video>
+
+                        <div class="w3-container">
+                            <h3>Lab name</h3>
+                            <p class="w3-opacity">Lab location</p>
+                            <p><ul>
+                                    <li>Lab Capacity:
+                                    </li>
+                                    <li>Pricing:
+                                    </li>
+                                </ul></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Lab2-->
+                <div class="w3-col m4 w3-margin-bottom">
+                    <div class="w3-light-grey">
+
+                        <video id="lab1" class="w3-video"
+                            src="./maps/360vid.mp4"
+                            controls></video>
+
+                        <div class="w3-container">
+                            <h3>Lab name</h3>
+                            <p class="w3-opacity">Lab location</p>
+                            <p><ul>
+                                    <li>Lab Capacity:
+                                    </li>
+                                    <li>Pricing:
+                                    </li>
+                                </ul></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Lab3-->
+                <div class="w3-col m4 w3-margin-bottom">
+                    <div class="w3-light-grey">
+
+                        <video id="lab1" class="w3-video"
+                            src="./maps/360vid.mp4"
+                            controls></video>
+
+                        <div class="w3-container">
+                            <h3>Lab name</h3>
+                            <p class="w3-opacity">Lab location</p>
+                            <p><ul>
+                                    <li>Lab Capacity:
+                                    </li>
+                                    <li>Pricing:
+                                    </li>
+                                </ul></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Lab4-->
+                <div class="w3-col m4 w3-margin-bottom">
+                    <div class="w3-light-grey">
+
+                        <video id="lab1" class="w3-video"
+                            src="./maps/360vid.mp4"
+                            controls></video>
+
+                        <div class="w3-container">
+                            <h3>Lab name</h3>
+                            <p class="w3-opacity">Lab location</p>
+                            <p><ul>
+                                    <li>Lab Capacity:
+                                    </li>
+                                    <li>Pricing:
+                                    </li>
+                                </ul></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events -->
+            <div class="w3-container" id="events" style="margin-top:75px">
+                <h1 class="w3-xxxlarge w3-text-red"><b>Events</b></h1>
+                <hr style="width:50px;border:5px solid #9d170e"
+                    class="w3-round">
+                <p>Coming soon...</p>
+
+                <p><b></b></p>
+            </div>
+
+            <!-- Contact -->
+            <div class="w3-container" id="contact" style="margin-top:75px">
+                <h1 class="w3-xxxlarge w3-text-red"><b>Contact and
+                        Support</b></h1>
+                <hr style="width:50px;border:5px solid #9d170e"
+                    class="w3-round">
+                <p>If you have any questions or need assistance, please feel
+                    free to get in touch with the Director or admins at the IT
+                    Center.</p>
+
+                <!-- Contact Form -->
+                <form action method="post">
+                    <div class="w3-section">
+                        <label for="name">Your Name:</label>
+                        <input class="w3-input w3-border" type="text" id="name"
+                            name="name" required>
+
+                        <label for="email">Your Email:</label>
+                        <input class="w3-input w3-border" type="email"
+                            id="email" name="email" required>
+
+                        <label for="message">Your Message/Complaint:</label>
+                        <textarea class="w3-input w3-border w3-margin-bottom"
+                            id="message"
+                            name="message" rows="4"
+                            required></textarea>
+
+                        <input
+                            class="w3-button w3-block w3-padding-large w3-round-large w3-red w3-margin-bottom"
+                            type="submit" value="Send Message">
+                    </div>
+                </form>
+
+                <!-- Contact Details Grid -->
+                <div style="margin-top: 50px;">
+                    <div class="contact-address">
+                        <h3>Contact Address</h3>
+                        <address>
+                            <p>Information Technology Center</p>
+                            <p>University of Peradeniya</p>
+                            <p>Peradeniya</p>
+                            <p>Sri Lanka</p>
+                        </address>
+                    </div>
+                    <div style="margin-top: 50px;">
+                        <div class="tele-icon">
+                            <h3>Telephone</h3>
+                            <img src="./images/tele.svg" alt="Telephone Icon">
+                        </div>
+                        <ul>
+                            <li>+94 123 123 123</li>
+                            <li>+94 456 456 456</li>
+                            <li>+94 789 789 789</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 50px;">
+                        <div class="email-icon">
+                            <h3>Email</h3>
+                            <img src="./images/email.svg" alt="Email Icon">
+                        </div>
+                        <p class="email">info@cert.pdn.ac.lk</p>
+                    </div>
+                    <div style="margin-top: 50px;">
+                        <div class="web-icon">
+                            <h3>Website</h3>
+                            <img src="./images/web.svg" alt="Website Icon">
+                        </div>
+                        <p class="link"><a
+                                href="https://www.ceit.pdn.ac.lk">www.ceit.pdn.ac.lk</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End page content -->
+        </div>
+
+        <script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+</script>
+
+    </body>
+</html>
