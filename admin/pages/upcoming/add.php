@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-container">
                     <form action="/backend/api/upcoming/add.php" method="POST" enctype="multipart/form-data">
-                        <input type="file" name="e_img" id="e_img" required>
+                        <input type="file" name="e_img" id="e_img" accept="image/*" required>
                         <label for="e_img">
                             <p>Select a Image</p>
                             <img src="" alt="">
