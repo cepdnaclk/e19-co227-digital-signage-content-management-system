@@ -4,7 +4,6 @@ session_start();
 
 // Include the session details logger
 include $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/log.php";
-logUserActivity("login");
 
 header("Access-Control-Allow-Origin: *");
 // Allow specific HTTP methods (e.g., GET, POST, OPTIONS)
@@ -34,6 +33,7 @@ if (isset($_POST["login"])) {
         $_SESSION["user_id"] = $row["u_id"]; // Set user_id in the session
         $_SESSION["user_name"] = $row["user_name"];
         $_SESSION["clearense"] = $row["clearense"]; // Store user role in the session
+        logUserActivity("Logged in successfully as {$row['user_name']} with clearence {$row['clearense']} from device {$_SERVER['HTTP_USER_AGENT']} ");
         header("Location: /");
         exit();
     } else {
