@@ -8,7 +8,7 @@ function readLastLines($file, $lines)
     $start = max(0, count($content) - $lines);
     $output = array_slice($content, $start);
     $reversedOutput = array_reverse($output); // Reverse the array
-    return implode("<br>", $reversedOutput);
+    return implode("<br><br>", $reversedOutput);
 }
 
 echo readLastLines($logFile, 10);

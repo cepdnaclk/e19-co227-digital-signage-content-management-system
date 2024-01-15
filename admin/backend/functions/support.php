@@ -47,4 +47,26 @@ function checkMessage($id)
     return $result;
 }
 
+function addMessage($name, $email, $message)
+{
+    global $conn;
+    $result = array();
+
+    $sql = "INSERT INTO contactsupport(`name`, `email`, `message`) VALUES (?,?,?)";
+    $stmt = mysqli_prepare($conn, $sql);
+
+    // Bind parameters
+    mysqli_stmt_bind_param($stmt, "sss", $name, $email, $message);
+
+    if (mysqli_stmt_execute($stmt)) {
+        $result = array('message' => "Message Sent");
+    } else {
+        $result = array('error' => mysqli_error($conn));
+    }
+
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}
+
 ?>
