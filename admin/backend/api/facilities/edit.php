@@ -33,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = editFacility($f_name, $total_seats, $price, $floor, $in_charge, $f_id);
             if (isset($result['error'])) {
                 header("Location: /pages/labinfo/?error={$result['error']}");
-            } else{
-                logUserActivity("edit facility");
+            } else {
+                logUserActivity("Edited facility with id: {$result['id']}");
                 header("Location: /pages/labinfo/?success={$result['message']}");
             }
         }

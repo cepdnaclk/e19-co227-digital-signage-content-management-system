@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $f_id = $_GET["delete_id"];
         $result = deleteFacility($f_id);
         if ($result) {
-            logUserActivity("delete_facility(lab,etc..)");
+            logUserActivity("Deleted facility with id: $f_id");
             header("Location: /pages/labinfo/?success=successfully deleted the Lab");
         } else {
             header("Location: /pages/labinfo/?error=$result");

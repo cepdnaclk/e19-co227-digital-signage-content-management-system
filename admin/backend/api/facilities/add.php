@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = addFacility($f_name, $total_seats, $price, $floor, $in_charge);
             if (isset($result['error'])) {
                 header("Location: /pages/labinfo/?error={$result['error']}");
-            } else{
-                logUserActivity("add_facility(lab,seminarroom)");
+            } else {
+                logUserActivity("Added facility with id: {$result['id']}");
                 header("Location: /pages/labinfo/?success={$result['message']}");
             }
         }
