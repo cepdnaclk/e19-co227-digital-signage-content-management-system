@@ -64,6 +64,7 @@ form {
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .add-events input[type="file"] + label p {
