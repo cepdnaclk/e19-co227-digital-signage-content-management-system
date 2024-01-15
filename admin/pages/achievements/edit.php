@@ -21,7 +21,7 @@ if (isset($a_id)) {
 <html>
 
 <head>
-    <link rel="stylesheet" href="/css/editachievement.css">
+    <link rel="stylesheet" href="/css/addachievement.css">
     <title>Edit Achievement Information Form</title>
     <style>
         .container {
@@ -54,12 +54,14 @@ if (isset($a_id)) {
         include_once(APP_ROOT . "/includes/header.php");
         ?>
         <div class="right">
-            <div class="edit-achievement">
+            <div class="add-achievement">
                 <div class="container">
                     <div class="title">
                         <div>
                             <h1><a href="./">Achievements ></a>Edit Achivement</h1>
-                            <p>Edit a <?= $a_name; ?> Achievement</p>
+                            <p>Edit a
+                                <?= $a_name; ?> Achievement
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -67,8 +69,11 @@ if (isset($a_id)) {
                     <form action="/backend/api/achivements/edit.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="a_id" id="a_id" value="<?= $a_id; ?>">
                         <br>
-                        <label for="a_img">Select an Image:</label>
-                        <input type="file" name="a_img" id="a_img"> <!--Debug -- Image path not loading to form-->
+                        <input type="file" name="a_img" id="a_img" accept="image/*" required>
+                        <label for="a_img">
+                            <p>Select a Image</p>
+                            <img src="<?= $a_img ?>" alt="">
+                        </label> <!--Debug -- Image path not loading to form-->
                         <input type="text" name="a_img_loc" style="display:none" value="<?= $a_img ?>">
                         <br>
                         <label for="a_name">Achievement Title:</label>
@@ -86,6 +91,27 @@ if (isset($a_id)) {
             </div>
         </div>
     </div>
+    <script>
+        const imageInput = document.querySelector('#a_img')
+        const previewImage = document.querySelector('#a_img + label img')
+        const imageInputText = document.querySelector('#a_img + label p')
+
+        previewImage.style.display = "block"
+        imageInputText.classList.add("active")
+
+        imageInput.addEventListener('input', (e) => {
+            if (e.target.files.length) {
+                const file = e.target.files[0];
+                previewImage.style.display = "block"
+                imageInputText.classList.add("active")
+                previewImage.src = URL.createObjectURL(file)
+            }
+            else {
+                previewImage.style.display = "none"
+                imageInputText.classList.remove("active")
+            }
+        })
+    </script>
 </body>
 
 </html>
