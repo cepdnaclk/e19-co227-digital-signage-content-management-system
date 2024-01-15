@@ -7,11 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     hasClearence(0, function () {
         if (isset($_GET['delete_id'])) {
             $result = deleteLabSlot($_GET['delete_id']);
-            if ($result === true){
-                logUserActivity("delete_labslot");
+            if ($result === true) {
+                logUserActivity("Deleted labslot with id: {$_GET['delete_id']}");
                 header("Location: /pages/labslots/?success=successfully deleted lab slot");
-            }
-            else
+            } else
                 header("Location: /pages/labslots/?error=$result");
         }
     });
