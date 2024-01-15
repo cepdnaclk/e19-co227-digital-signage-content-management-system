@@ -184,32 +184,36 @@ if (isset($support['error']))
                 </div>
 
             <?php } ?>
-            <div class="dashboard-widget" id="log-history-widget">
-                <div>
-                    <h2 class="widget-title">&nbsp;Recent User Log History</h2>
+            <?php
+            if ($clearenceStatus[$_SESSION['clearense']] > 0) {
+                ?>
+                <div class="dashboard-widget" id="log-history-widget">
+                    <div>
+                        <h2 class="widget-title">&nbsp;Recent User Log History</h2>
+                        <br>
+                        <a href="/logs/user_activity.log">&emsp;View Full Log History &#128462;</a>
+                    </div>
                     <br>
-                    <a href="/logs/user_activity.log">&emsp;View Full Log History &#128462;</a>
-                </div>
-                <br>
-                <div class="log-history-content" id="log-content">
-                    <?php
-                    // Function to read last 15 lines from the log file
-                    function readLastLines($file, $lines)
-                    {
-                        $content = file($file);
-                        $start = max(0, count($content) - $lines);
-                        $output = array_slice($content, $start);
-                        $reversedOutput = array_reverse($output);
-                        return implode("<br>", $reversedOutput);
-                    }
+                    <div class="log-history-content" id="log-content">
+                        <?php
+                        // Function to read last 15 lines from the log file
+                        function readLastLines($file, $lines)
+                        {
+                            $content = file($file);
+                            $start = max(0, count($content) - $lines);
+                            $output = array_slice($content, $start);
+                            $reversedOutput = array_reverse($output);
+                            return implode("<br>", $reversedOutput);
+                        }
 
-                    $logFile = $_SERVER['DOCUMENT_ROOT'] . "\logs\user_activity.log";
-                    $logEntries = readLastLines($logFile, 15);
+                        $logFile = $_SERVER['DOCUMENT_ROOT'] . "\logs\user_activity.log";
+                        $logEntries = readLastLines($logFile, 15);
 
-                    echo "<p>{$logEntries}</p>";
-                    ?>
+                        echo "<p>{$logEntries}</p>";
+                        ?>
+                    </div>
                 </div>
-            </div>
+            <?php } ?>
 
         </div>
         <script src="./js/dashboard.js"></script>
