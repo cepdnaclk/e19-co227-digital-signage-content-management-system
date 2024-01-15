@@ -47,8 +47,11 @@
                 </div>
                 <div class="form-container">
                     <form action="/backend/api/achivements/add.php" method="POST" enctype="multipart/form-data">
-                        <label for="a_img">Select an Image:</label>
-                        <input type="file" name="a_img" id="a_img" required>
+                        <input type="file" name="a_img" id="a_img" accept="image/*" required>
+                        <label for="a_img">
+                            <p>Select a Image</p>
+                            <img src="" alt="">
+                        </label>
                         <br>
                         <label for="a_name">Achievement Title:</label>
                         <input type="text" name="a_name" id="a_name">
@@ -68,6 +71,24 @@
             </div>
         </div>
     </div>
+    <script>
+        const imageInput = document.querySelector('#a_img')
+        const previewImage = document.querySelector('#a_img + label img')
+        const imageInputText = document.querySelector('#a_img + label p')
+
+        imageInput.addEventListener('input', (e) => {
+            if (e.target.files.length) {
+                const file = e.target.files[0];
+                previewImage.style.display = "block"
+                imageInputText.classList.add("active")
+                previewImage.src = URL.createObjectURL(file)
+            }
+            else {
+                previewImage.style.display = "none"
+                imageInputText.classList.remove("active")
+            }
+        })
+    </script>
 </body>
 
 </html>

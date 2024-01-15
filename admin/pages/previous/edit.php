@@ -60,7 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     <div class="title">
                         <div>
                             <h1><a href="./">Previous Events ></a>Edit Event</h1>
-                            <p>edit the <?php echo $event_name; ?> event</p>
+                            <p>edit the
+                                <?php echo $event_name; ?> event
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -68,8 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     <form action="/backend/api/previous/edit.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="e_id" id="e_id" value="<?php echo $event_id; ?>">
                         <br><br>
-                        <label for="e_img">Select an Image:</label>
-                        <input type="file" name="e_img" id="e_img">
+                        <input type="file" name="e_img" id="e_img" accept="image/*" required>
+                        <label for="e_img">
+                            <p>Select a Image</p>
+                            <img src="<?= $event_img ?>" alt="">
+                        </label>
                         <input type="text" name="e_img_loc" style="display:none" value="<?= $event_img ?>">
                         <br><br>
                         <label for="e_name">Name:</label>
@@ -85,10 +90,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                         <input type="text" name="e_venue" id="e_venue" value="<?php echo $event_venue; ?>">
                         <br><br>
                         <label for="display_from">Display from:</label>
-                        <input type="date" name="display_from" id="display_from" value="<?php echo $event_display_from; ?>" required>
+                        <input type="date" name="display_from" id="display_from"
+                            value="<?php echo $event_display_from; ?>" required>
                         <br><br>
                         <label for="display_to">Display to:</label>
-                        <input type="date" name="display_to" id="display_to" value="<?php echo $event_display_to; ?>" required>
+                        <input type="date" name="display_to" id="display_to" value="<?php echo $event_display_to; ?>"
+                            required>
                         <br><br>
                         <input type="submit" value="Update">
                     </form>
@@ -96,6 +103,27 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             </div>
         </div>
     </div>
+    <script>
+        const imageInput = document.querySelector('#e_img')
+        const previewImage = document.querySelector('#e_img + label img')
+        const imageInputText = document.querySelector('#e_img + label p')
+
+        previewImage.style.display = "block"
+        imageInputText.classList.add("active")
+
+        imageInput.addEventListener('input', (e) => {
+            if (e.target.files.length) {
+                const file = e.target.files[0];
+                previewImage.style.display = "block"
+                imageInputText.classList.add("active")
+                previewImage.src = URL.createObjectURL(file)
+            }
+            else {
+                previewImage.style.display = "none"
+                imageInputText.classList.remove("active")
+            }
+        })
+    </script>
 </body>
 
 </html>

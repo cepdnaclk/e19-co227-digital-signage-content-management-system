@@ -55,12 +55,41 @@ form {
 }
 
 .add-previous-event input[type="file"] {
+  display: none;
+}
+
+.add-previous-event input[type="file"] + label {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f9f9f9;
+  aspect-ratio: 1.3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.add-previous-event input[type="file"] + label p {
+  position: absolute;
+  font-weight: 400;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.add-previous-event input[type="file"] + label p.active {
+  opacity: 0;
+  transition: 0.5s opacity ease-in-out;
+}
+
+.add-previous-event input[type="file"] + label:hover p.active {
+  opacity: 1;
+}
+
+.add-previous-event input[type="file"] + label img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  display: none;
 }
 
 .add-previous-event input[type="submit"] {
@@ -73,12 +102,4 @@ form {
   font-size: 16px;
   margin: 10px auto; /* Add this line to horizontally center the button */
   display: block;
-}
-
-/* Style the uploaded image */
-.add-previous-event img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 20px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }

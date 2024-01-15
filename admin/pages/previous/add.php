@@ -47,8 +47,11 @@
                 </div>
                 <div class="form-container">
                     <form action="/backend/api/previous/add.php" method="POST" enctype="multipart/form-data">
-                        <label for="e_img">Select an Image:</label>
-                        <input type="file" name="e_img" id="e_img" required>
+                        <input type="file" name="e_img" id="e_img" accept="image/*" required>
+                        <label for="e_img">
+                            <p>Select a Image</p>
+                            <img src="" alt="">
+                        </label>
                         <br>
                         <label for="e_name">Name:</label>
                         <input type="text" name="e_name" id="e_name">
@@ -79,6 +82,24 @@
             </div>
         </div>
     </div>
+    <script>
+        const imageInput = document.querySelector('#e_img')
+        const previewImage = document.querySelector('#e_img + label img')
+        const imageInputText = document.querySelector('#e_img + label p')
+
+        imageInput.addEventListener('input', (e) => {
+            if (e.target.files.length) {
+                const file = e.target.files[0];
+                previewImage.style.display = "block"
+                imageInputText.classList.add("active")
+                previewImage.src = URL.createObjectURL(file)
+            }
+            else {
+                previewImage.style.display = "none"
+                imageInputText.classList.remove("active")
+            }
+        })
+    </script>
 </body>
 
 </html>
