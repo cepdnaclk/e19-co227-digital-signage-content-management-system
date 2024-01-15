@@ -156,7 +156,7 @@ if (isset($support['error']))
                                 echo '<input type="checkbox" id="checked_' . $row['id'] . '" name="checked" ' . $isChecked . ' onclick="checkMessage(' . $row['id'] . ')">';
                                 echo '<label for="checked_' . $row['id'] . '">Mark as Done</label>';
                                 echo '</div>';
-                                echo '<a href="mailto:' . $row['name'] . '?subject=Reply from IT center">Reply <i class="fa-solid fa-share"></i></a>';
+                                echo '<a href="mailto:' . $row['email'] . '?subject=Reply from IT center">Reply <i class="fa-solid fa-share"></i></a>';
 
                                 echo '</div>';
 
