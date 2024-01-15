@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $event_id = $_GET["delete_id"];
         $result = deletePreviousEvent($event_id);
         if ($result) {
-            logUserActivity("delete_previous_event");
+            logUserActivity("Deleted previous event with id: $event_id");
             header("Location: /pages/previous/?success=successfully added lab slot=1");
         } else {
             header("Location: /pages/previous/?error=$result");

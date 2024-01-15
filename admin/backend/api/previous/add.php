@@ -28,11 +28,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $added_by = $_SESSION["user_id"];
         $published = $_POST["published"] ? 1 : 0;
 
-        $result = addPreviousEvents($e_name, $e_date, $e_time, $e_venue, $file,  $display_from, $display_to, $added_by, $published);
+        $result = addPreviousEvents($e_name, $e_date, $e_time, $e_venue, $file, $display_from, $display_to, $added_by, $published);
         if (isset($result['error'])) {
             header("Location: /pages/previous/?error={$result['error']}");
-        } else{
-            logUserActivity("add_previous_event");
+        } else {
+            logUserActivity("Added a new previous event with id: {$result['id']}");
             header("Location: /pages/previous/?success={$result['message']}");
         }
     } else {
