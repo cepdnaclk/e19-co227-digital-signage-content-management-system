@@ -24,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = editBooking($b_id, $b_date, $b_timeslot, $b_seats, $b_for, $b_contact, $b_by);
         if (isset($result['error'])) {
             header("Location: /pages/bookings/?error={$result['error']}");
-        } else{
-            logUserActivity("edit_booking");
+        } else {
+            logUserActivity("Edited booking with id: {$result['id']}");
             header("Location: /pages/bookings/?success={$result['message']}");
         }
     });

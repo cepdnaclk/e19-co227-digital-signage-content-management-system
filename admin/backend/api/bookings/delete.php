@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $booking_id = $_GET["delete_id"];
         $result = deleteBooking($booking_id);
         if ($result) {
-            logUserActivity("delete_booking");
+            logUserActivity("Deleted booking with id: $booking_id");
             header("Location: /pages/bookings/?success=successfully deleted the booking");
         } else {
             header("Location: /pages/bookings/?error=$result");
