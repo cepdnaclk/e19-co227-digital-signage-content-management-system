@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || "PUT") {
 
         if (isset($result['error']))
             header("Location: /pages/course/?error={$result['error']}");
-        else{
-            logUserActivity("upload_course_poster");
+        else {
+            logUserActivity("Edited course with id: {$result['id']}");
             header("Location: /pages/course/?success={$result['message']}");
         }
     } else {

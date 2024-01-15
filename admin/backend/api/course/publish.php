@@ -12,8 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Execute the update query
     if (isset($result['error'])) {
         header("Location: /pages/course?error={$result['error']}");
-    } else{
-        logUserActivity("publish_course_poster");
+    } else {
+        logUserActivity("Published course with id: $c_id");
         header("Location: /pages/course?success={$result['message']}");
     }
 }
