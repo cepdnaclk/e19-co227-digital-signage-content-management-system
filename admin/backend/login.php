@@ -20,7 +20,7 @@ if (isset($_POST["login"])) {
     $hashed_password = hash('sha256', $password);
 
     // Create a prepared statement
-    $stmt = $conn->prepare("SELECT u_id, user_name, clearense FROM `user` WHERE `user_name`=? AND `password`=?");
+    $stmt = $conn->prepare("SELECT u_id, user_name, clearense FROM `user` WHERE BINARY `user_name`=? AND `password`=?");
 
     // Bind the parameters and execute
     $stmt->bind_param("ss", $user_name, $hashed_password);
