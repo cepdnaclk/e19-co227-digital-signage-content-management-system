@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($result['error'])) {
             header("Location: /?error={$result['error']}");
         } else {
-            logUserActivity("Updated total time for feature: $feature");
+            logUserActivity("Updated time allocation for feature: $feature");
             header("Location: /?success={$result['message']}");
         }
     });
