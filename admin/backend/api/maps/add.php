@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($result['error'])) {
                 header("Location: /pages/maps/?error={$result['error']}");
             } else {
-                logUserActivity("add_map");
+                logUserActivity("Added map with id: {$result['id']}");
                 header("Location: /pages/maps/?success={$result['message']}");
             }
         } else {

@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $m_id = $_GET["delete_id"];
         $result = deleteMap($m_id);
         if ($result) {
-            logUserActivity("delete_map");
+            logUserActivity("Deleted map with id: $m_id");
             header("Location: /pages/maps/?success=successfully deleted the map");
 
         } else {

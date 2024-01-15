@@ -20,11 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $added_by = $_SESSION["user_id"];
         $m_id = $_POST["m_id"];
 
-        $result = editMap( $m_id,$m_name, $m_desc, $m_file, $m_file_path, $added_by);
+        $result = editMap($m_id, $m_name, $m_desc, $m_file, $m_file_path, $added_by);
         if (isset($result['error'])) {
             header("Location: /pages/maps/?error={$result['error']}");
-        } else{
-            logUserActivity("edit_map");
+        } else {
+            logUserActivity("Edited map with id: {$result['id']}");
             header("Location: /pages/maps/?success={$result['message']}");
         }
     });
