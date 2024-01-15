@@ -12,8 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = updateTotalTime($feature, $time, $timeSlide);
         if (isset($result['error'])) {
             header("Location: /?error={$result['error']}");
-        } else{
-            logUserActivity("update_timer_settings");
+        } else {
+            logUserActivity("Updated total time for feature: $feature");
             header("Location: /?success={$result['message']}");
         }
     });
