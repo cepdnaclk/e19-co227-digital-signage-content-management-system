@@ -2,11 +2,18 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . "/config.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/dashboard.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/support.php";
 
 $data = getDashboardData();
 if (isset($data['error']))
     if (!isset($_GET['error']))
         header("Location: ?error={$data['error']}");
+
+$support = getMessages();
+if (isset($support['error']))
+    if (!isset($_GET['error']))
+        header("Location: ?error={$support['error']}");
+
 ?>
 
 <!DOCTYPE html>
@@ -123,12 +130,9 @@ if (isset($data['error']))
                 </div>
                 <div class="contact-support">
                     <?php
-                    // Query to fetch data from the supports table
-                    $query = "SELECT * FROM `contactsupport`";
-                    $result = mysqli_query($conn, $query);
 
                     // Check if the query was successful
-                    if ($result) {
+                    if ($support) {
                         echo '<script>';
                         echo 'function reorderRow(element) {';
                         echo '  $(element).appendTo(".custom-large-card");';
@@ -138,7 +142,7 @@ if (isset($data['error']))
                         echo "<h2><i>Complaints and Messages From Other CMS Handlers</i></h2>";
 
                         // Loop through the rows of data
-                        while ($row = mysqli_fetch_assoc($result)) {
+                        foreach ($support as $key => $row) {
                             echo '<div class="custom-card">';
                             echo '<div class="name-email">';
                             echo '<h3>' . $row['name'] . '</h3>';
@@ -151,7 +155,7 @@ if (isset($data['error']))
                             // Set the initial state of the checkbox based on the 'checked' field value
                             $isChecked = $row['checked'] == 1 ? 'checked' : '';
 
-                            echo '<input type="checkbox" id="checked_' . $row['id'] . '" name="checked" ' . $isChecked . '>';
+                            echo '<input type="checkbox" id="checked_' . $row['id'] . '" name="checked" ' . $isChecked . ' onclick="checkMessage(' . $row['id'] . ')">';
                             echo '</div>';
 
                             echo '</div>';
