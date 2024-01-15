@@ -26,8 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = addAchivement($a_name, $a_desc, $a_date, $file, $added_by, $published);
             if (isset($result['error'])) {
                 header("Location: /pages/achievements/?error={$result['error']}");
-            } else{
-                logUserActivity("add_achievement");
+            } else {
+                logUserActivity("Added a new achivement with id: {$result['id']}");
                 header("Location: /pages/achievements/?success={$result['message']}");
             }
         } else {

@@ -23,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = editAchivement($a_name, $a_desc, $a_date, $file, $file_path, $added_by, $a_id);
         if (isset($result['error'])) {
             header("Location: /pages/achievements/?error={$result['error']}");
-        } else{
-            logUserActivity("edit_achivement");
+        } else {
+            logUserActivity("Edited achivement with id: {$result['id']}");
             header("Location: /pages/achievements/?success={$result['message']}");
         }
     });

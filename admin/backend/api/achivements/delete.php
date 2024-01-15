@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $achivement = $_GET["delete_id"];
         $result = deleteAchivement($achivement);
         if ($result) {
-            logUserActivity("delete_achievement");
+            logUserActivity("deleted achivement with id: $achivement");
             header("Location: /pages/achievements/?success=successfully deleted the achievement");
         } else {
             header("Location: /pages/achievements/?error=$result");

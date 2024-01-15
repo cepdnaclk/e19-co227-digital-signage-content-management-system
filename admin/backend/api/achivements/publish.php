@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         // Execute the update query
         if (isset($result['error'])) {
             header("Location: /pages/achievements/?error={$result['error']}");
-        } else{
-            logUserActivity("publish_achievement");
+        } else {
+            logUserActivity("Published achivement with id: $achivement");
             header("Location: /pages/achievements/?success={$result['message']}");
         }
     });
