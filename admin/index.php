@@ -169,26 +169,6 @@ if (isset($support['error']))
                         }
                         ?>
                     </div>
-                    <?php
-            } else {
-                ?>
-                    <div class="course">
-                        <img src="/images/PublicDisplayBackground.svg" alt="">
-                        <div class="container">
-                            <h1>Welcome
-                                <?= $_SESSION['user_name'] ?>
-                            </h1>
-                            <p>Manage Your Courses and labslots</p>
-                            <a href="/pages/course/"> My Courses >></a>
-                            <br />
-                            <a href="/pages/preview"> Prview Public Display >></a>
-                        </div>
-                    </div>
-
-                <?php } ?>
-                <?php
-                if ($clearenceStatus[$_SESSION['clearense']] > 0) {
-                    ?>
                     <div class="dashboard-widget" id="log-history-widget">
                         <div>
                             <h2 class="widget-title">&nbsp;Recent User Log History</h2>
@@ -215,9 +195,26 @@ if (isset($support['error']))
                             ?>
                         </div>
                     </div>
-                <?php } ?>
+                </div>
+                <?php
+            } else {
+                ?>
+                <div class="course">
+                    <img src="/images/PublicDisplayBackground.svg" alt="">
+                    <div class="container">
+                        <h1>Welcome
+                            <?= $_SESSION['user_name'] ?>
+                        </h1>
+                        <p>Manage Your Courses and labslots</p>
+                        <a href="/pages/course/"> My Courses >></a>
+                        <br />
+                        <a href="/pages/preview"> Prview Public Display >></a>
+                    </div>
+                </div>
 
-            </div>
+            <?php } ?>
+
+
         </div>
         <script src="./js/dashboard.js"></script>
 

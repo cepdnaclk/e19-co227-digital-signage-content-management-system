@@ -331,7 +331,7 @@ th,
   font-size: 0.8rem;
 }
 
-.dashboard-content .course {
+.course {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 4rem);
@@ -339,7 +339,7 @@ th,
   overflow: hidden;
 }
 
-.dashboard-content .course > img {
+.course > img {
   position: absolute;
   height: 120%;
   width: 120%;
@@ -347,22 +347,22 @@ th,
   z-index: -1;
 }
 
-.dashboard-content .course .container {
+.course .container {
   margin-top: 10%;
 }
 
-.dashboard-content .course .container h1 {
+.course .container h1 {
   font-size: 3rem;
   font-weight: 500;
   color: var(--color-1);
 }
 
-.dashboard-content .course .container p {
-  margin: 0.5rem 0;
+.course .container p {
+  margin: 0.5rem 0 2rem;
   font-size: 1.2rem;
 }
 
-.dashboard-content .course .container a {
+.course .container a {
   display: block;
   padding: 0.5rem 1rem;
   background-color: var(--color-5);
