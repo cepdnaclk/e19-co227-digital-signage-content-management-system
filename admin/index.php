@@ -127,94 +127,97 @@ if (isset($support['error']))
                         }
                         ?>
                     </div>
-                </div>
-                <div class="contact-support">
-                    <?php
-
-                    // Check if the query was successful
-                    if ($support) {
-                        echo '<script>';
-                        echo 'function reorderRow(element) {';
-                        echo '  $(element).appendTo(".custom-large-card");';
-                        echo '}';
-                        echo '</script>';
-                        echo '<div class="custom-large-card">';
-                        echo "<h2><i>Complaints and Messages From Other CMS Handlers</i></h2>";
-
-                        // Loop through the rows of data
-                        foreach ($support as $key => $row) {
-                            echo '<div class="custom-card">';
-                            echo '<div class="name-email">';
-                            echo '<h3>' . $row['name'] . '</h3>';
-                            echo '<h5>' . $row['email'] . '</h5>';
-                            echo '</div>';
-                            echo '<p>' . $row['message'] . '</p>';
-                            echo '<div class="checkbox">';
-                            echo '<label for="checked_' . $row['id'] . '">Checked</label>';
-
-                            // Set the initial state of the checkbox based on the 'checked' field value
-                            $isChecked = $row['checked'] == 1 ? 'checked' : '';
-
-                            echo '<input type="checkbox" id="checked_' . $row['id'] . '" name="checked" ' . $isChecked . ' onclick="checkMessage(' . $row['id'] . ')">';
-                            echo '</div>';
-
-                            echo '</div>';
-                        }
-
-                        echo '</div>'; // Close the large card
-                    } else {
-                        echo "Error: " . mysqli_error($conn);
-                    }
-                    ?>
-                </div>
-                <?php
-            } else {
-                ?>
-                <div class="course">
-                    <img src="/images/PublicDisplayBackground.svg" alt="">
-                    <div class="container">
-                        <h1>Welcome
-                            <?= $_SESSION['user_name'] ?>
-                        </h1>
-                        <p>Manage Your Courses and labslots</p>
-                        <a href="/pages/course/"> My Courses >></a>
-                        <br />
-                        <a href="/pages/preview"> Prview Public Display >></a>
-                    </div>
-                </div>
-
-            <?php } ?>
-            <?php
-            if ($clearenceStatus[$_SESSION['clearense']] > 0) {
-                ?>
-                <div class="dashboard-widget" id="log-history-widget">
-                    <div>
-                        <h2 class="widget-title">&nbsp;Recent User Log History</h2>
-                        <br>
-                        <a href="/logs/user_activity.log">&emsp;View Full Log History &#128462;</a>
-                    </div>
-                    <br>
-                    <div class="log-history-content" id="log-content">
+                    <div class="contact-support">
                         <?php
-                        // Function to read last 15 lines from the log file
-                        function readLastLines($file, $lines)
-                        {
-                            $content = file($file);
-                            $start = max(0, count($content) - $lines);
-                            $output = array_slice($content, $start);
-                            $reversedOutput = array_reverse($output);
-                            return implode("<br>", $reversedOutput);
+
+                        // Check if the query was successful
+                        if ($support) {
+                            echo '<script>';
+                            echo 'function reorderRow(element) {';
+                            echo '  $(element).appendTo(".custom-large-card");';
+                            echo '}';
+                            echo '</script>';
+                            echo '<div class="custom-large-card">';
+                            echo "<h2><i>Complaints and Messages From Other CMS Handlers</i></h2>";
+
+                            // Loop through the rows of data
+                            foreach ($support as $key => $row) {
+                                echo '<div class="custom-card">';
+                                echo '<div class="name-email">';
+                                echo '<h3>' . $row['name'] . '</h3>';
+                                echo '<h5>' . $row['email'] . '</h5>';
+                                echo '</div>';
+                                echo '<p>' . $row['message'] . '</p>';
+                                echo '<div class="buttons">';
+                                echo '<div class="checkbox">';
+                                // Set the initial state of the checkbox based on the 'checked' field value
+                                $isChecked = $row['checked'] == 1 ? 'checked' : '';
+
+                                echo '<input type="checkbox" id="checked_' . $row['id'] . '" name="checked" ' . $isChecked . ' onclick="checkMessage(' . $row['id'] . ')">';
+                                echo '<label for="checked_' . $row['id'] . '">Mark as Done</label>';
+                                echo '</div>';
+                                echo '<a href="mailto:' . $row['name'] . '?subject=Reply from IT center">Reply <i class="fa-solid fa-share"></i></a>';
+
+                                echo '</div>';
+
+                                echo '</div>';
+                            }
+
+                            echo '</div>'; // Close the large card
+                        } else {
+                            echo "Error: " . mysqli_error($conn);
                         }
-
-                        $logFile = $_SERVER['DOCUMENT_ROOT'] . "\logs\user_activity.log";
-                        $logEntries = readLastLines($logFile, 15);
-
-                        echo "<p>{$logEntries}</p>";
                         ?>
                     </div>
-                </div>
-            <?php } ?>
+                    <?php
+            } else {
+                ?>
+                    <div class="course">
+                        <img src="/images/PublicDisplayBackground.svg" alt="">
+                        <div class="container">
+                            <h1>Welcome
+                                <?= $_SESSION['user_name'] ?>
+                            </h1>
+                            <p>Manage Your Courses and labslots</p>
+                            <a href="/pages/course/"> My Courses >></a>
+                            <br />
+                            <a href="/pages/preview"> Prview Public Display >></a>
+                        </div>
+                    </div>
 
+                <?php } ?>
+                <?php
+                if ($clearenceStatus[$_SESSION['clearense']] > 0) {
+                    ?>
+                    <div class="dashboard-widget" id="log-history-widget">
+                        <div>
+                            <h2 class="widget-title">&nbsp;Recent User Log History</h2>
+                            <br>
+                            <a href="/logs/user_activity.log">&emsp;View Full Log History &#128462;</a>
+                        </div>
+                        <br>
+                        <div class="log-history-content" id="log-content">
+                            <?php
+                            // Function to read last 15 lines from the log file
+                            function readLastLines($file, $lines)
+                            {
+                                $content = file($file);
+                                $start = max(0, count($content) - $lines);
+                                $output = array_slice($content, $start);
+                                $reversedOutput = array_reverse($output);
+                                return implode("<br>", $reversedOutput);
+                            }
+
+                            $logFile = $_SERVER['DOCUMENT_ROOT'] . "\logs\user_activity.log";
+                            $logEntries = readLastLines($logFile, 15);
+
+                            echo "<p>{$logEntries}</p>";
+                            ?>
+                        </div>
+                    </div>
+                <?php } ?>
+
+            </div>
         </div>
         <script src="./js/dashboard.js"></script>
 
