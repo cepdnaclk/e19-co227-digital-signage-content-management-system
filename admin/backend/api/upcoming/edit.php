@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = editUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $file_path, $display_from, $display_to, $added_by, $e_id);
             if (isset($result['error'])) {
                 header("Location: /pages/upcoming/?error={$result['error']} {$_SESSION["user_id"]}");
-            } else{
-                logUserActivity("edit_upcoming_event");
+            } else {
+                logUserActivity("Edited upcoming event with id: {$result['id']}");
                 header("Location: /pages/upcoming/?success={$result['message']}");
             }
         } else {

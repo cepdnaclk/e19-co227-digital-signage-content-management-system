@@ -15,8 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         // Execute the update query
         if (isset($result['error'])) {
             header("Location: /pages/upcoming/?error={$result['error']}");
-        } else{
-            logUserActivity("publish_upcoming_event");
+        } else {
+            logUserActivity("Published upcoming event with id: $event_id");
             header("Location: /pages/upcoming/?success={$result['message']}");
         }
     });

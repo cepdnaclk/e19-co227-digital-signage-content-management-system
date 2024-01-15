@@ -29,11 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $added_by = $_SESSION["user_id"];
             $published = $_POST["published"] ? 1 : 0;
 
-            $result = addUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file,  $display_from, $display_to, $added_by, $published);
+            $result = addUpcomingEvents($e_name, $e_date, $e_time, $e_venue, $file, $display_from, $display_to, $added_by, $published);
             if (isset($result['error'])) {
                 header("Location: /pages/upcoming/?error={$result['error']}");
-            } else{
-                logUserActivity("add_upcoming_event");
+            } else {
+                logUserActivity("Added a new upcoming event with id: {$result['id']}");
                 header("Location: /pages/upcoming/?success={$result['message']}");
             }
         } else {

@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $event_id = $_GET["delete_id"];
         $result = deleteUpcomingEvent($event_id);
         if ($result) {
-            logUserActivity("delete_upcoming_event");
+            logUserActivity("deleted upcoming event with id: $event_id");
             header("Location: /pages/upcoming/?success=successfully deleted the event");
         } else {
             header("Location: /pages/upcoming/?error=$result");
