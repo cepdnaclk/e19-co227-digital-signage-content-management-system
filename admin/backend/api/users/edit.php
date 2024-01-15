@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = editUser($_POST['u_id'], $_POST['email'], $_POST['contact']);
     if (isset($result['error'])) {
         header("Location: /pages/users/?error={$result['error']}");
-    } else{
-        logUserActivity("edit_booking");
+    } else {
+        logUserActivity("Edited user with id: {$result['id']}");
         header("Location: /pages/users/?success={$result['message']}");
     }
 }

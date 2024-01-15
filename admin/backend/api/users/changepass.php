@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = changePass($_POST['old_password'], $_POST['password'], $_POST['confirm_password'], $_POST['u_id']);
     if (isset($result['error'])) {
         header("Location: /pages/users/?error={$result['error']}");
-    } else{
-        logUserActivity("change_user-password");
+    } else {
+        logUserActivity("Changed password for user with id: {$result['id']}");
         header("Location: /pages/users/?success={$result['message']}");
     }
 }

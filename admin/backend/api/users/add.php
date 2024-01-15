@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = addUser($username, $user_role, $email, $contact, $password, $confirm_password);
             if (isset($result['error'])) {
                 header("Location: /pages/users/adduser.php?error={$result['error']}");
-            } else{
-                logUserActivity("add_new_user");
+            } else {
+                logUserActivity("Added a new user with id: {$result['id']}");
                 header("Location: /pages/users/?success={$result['message']}");
             }
         } else {
