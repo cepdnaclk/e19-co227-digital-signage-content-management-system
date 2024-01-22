@@ -6,9 +6,9 @@ if (session_status() == PHP_SESSION_NONE) {
 const APP_ROOT = __DIR__;
 
 // Database Configuration
-const DB_HOST = 'localhost:3308';
-const DB_USER = 'root';
-const DB_PASSWORD = '';
+const DB_HOST = 'localhost';
+const DB_USER = 'cms';
+const DB_PASSWORD = 'cms@database';
 const DB_NAME = 'cmsdb';
 
 // Create a database connection
