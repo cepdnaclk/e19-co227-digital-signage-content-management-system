@@ -52,9 +52,15 @@ if (!isset($_SESSION['user_id'])) {
       </ul>
     </div>
     <div class="profile">
-      <div class="img"><?php echo isset($username) ? strtoupper(substr($username, 0, 1)) : 'G'; ?></div>
-      <h5><?php echo isset($username) ? $username : 'Guest'; ?></h5>
-      <p><?php echo isset($role) ? $role : 'Guest'; ?></p>
+      <div class="img">
+        <?php echo isset($username) ? strtoupper(substr($username, 0, 1)) : 'G'; ?>
+      </div>
+      <h5>
+        <?php echo isset($username) ? $username : 'Guest'; ?>
+      </h5>
+      <p>
+        <?php echo isset($role) ? $role : 'Guest'; ?>
+      </p>
       <div class="profile-dropdown">
         <ul>
           <li><a href="/backend/logout.php">⟫ Logout</a></li>
@@ -62,16 +68,20 @@ if (!isset($_SESSION['user_id'])) {
       </div>
     </div>
   </header>
-  <?php if (isset($_GET['error'])) { ?>
+  <?php if (isset($_GET['error']) && $_GET['error'] != "") { ?>
     <div class="alert error">
       <h4>Error :</h4>
-      <p><?= $_GET['error'] ?></p>
+      <p>
+        <?= $_GET['error'] ?>
+      </p>
     </div>
   <?php } ?>
-  <?php if (isset($_GET['success'])) { ?>
+  <?php if (isset($_GET['success']) && $_GET['success'] != "") { ?>
     <div class="alert success">
       <h4>Success :</h4>
-      <p><?= $_GET['success'] ?></p>
+      <p>
+        <?= $_GET['success'] ?>
+      </p>
     </div>
   <?php } ?>
   <script src="/js/header.js"></script>

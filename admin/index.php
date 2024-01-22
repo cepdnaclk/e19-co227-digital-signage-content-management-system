@@ -131,7 +131,7 @@ if (isset($support['error']))
                         <?php
 
                         // Check if the query was successful
-                        if ($support) {
+                        if (!isset($support['error'])) {
                             echo '<script>';
                             echo 'function reorderRow(element) {';
                             echo '  $(element).appendTo(".custom-large-card");';
@@ -164,8 +164,6 @@ if (isset($support['error']))
                             }
 
                             echo '</div>'; // Close the large card
-                        } else {
-                            echo "Error: " . mysqli_error($conn);
                         }
                         ?>
                     </div>

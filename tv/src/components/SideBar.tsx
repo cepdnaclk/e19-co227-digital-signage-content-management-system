@@ -17,7 +17,7 @@ function Sidebar() {
         <li className={useMatch("/labslots/:lab") ? "selected" : ""}>
           <Link to="/labslots/all">
             <img src={labslotsImg} alt="" />
-            Lab Slot
+            Laborataries
           </Link>
           <ul className="sublinks">
             <li className={useMatch("/labslots/lab1") ? "active" : ""}>
