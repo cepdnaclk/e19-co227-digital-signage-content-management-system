@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             // Course added successfully
-            header("Location: /pages/course?success=1");
+            header("Location: /pages/course?success=Added course with code: $c_code");
             logUserActivity("Added course with code: $c_code");
             exit();
         } else {
