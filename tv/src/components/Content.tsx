@@ -15,39 +15,39 @@ const Content = () => {
 
   const routes = [
     {
-      path: "/labslots/all",
+      path: "/tv/labslots/all",
       name: "Lab Slots",
     },
     {
-      path: "/courses",
+      path: "/tv/courses",
       name: "Course Offerings",
     },
     {
-      path: "/labslots/all",
+      path: "/tv/labslots/all",
       name: "Lab Slots",
     },
     {
-      path: "/upcoming",
+      path: "/tv/upcoming",
       name: "Upcoming Events",
     },
     {
-      path: "/labslots/all",
+      path: "/tv/labslots/all",
       name: "Lab Slots",
     },
     {
-      path: "/previous",
+      path: "/tv/previous",
       name: "Previous Events",
     },
     {
-      path: "/labslots/all",
+      path: "/tv/labslots/all",
       name: "Lab Slots",
     },
     {
-      path: "/achivements",
+      path: "/tv/achivements",
       name: "Achievements",
     },
     {
-      path: "/maps",
+      path: "/tv/maps",
       name: "Maps",
     },
   ];

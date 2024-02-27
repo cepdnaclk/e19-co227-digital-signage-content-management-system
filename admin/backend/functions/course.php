@@ -192,7 +192,7 @@ function editPoster($c_id, $file, $file_path)
     $targetFile = $file_path;
 
     if ($file['name']) {
-        if (isset($file_path)) {
+        if (isset($file_path) && $file_path != "") {
             if (file_exists($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
                 if (!unlink($_SERVER['DOCUMENT_ROOT'] . $file_path)) {
                     $result = array('error' => "Error uploading the image. Couldn't delete old one" . $_SERVER['DOCUMENT_ROOT'] . $file_path);

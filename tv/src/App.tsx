@@ -34,33 +34,33 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: "/",
+        path: "/tv/",
         loader: () => {
-          return redirect("/labslots/all");
+          return redirect("/tv/labslots/all");
         },
       },
       {
-        path: "/labslots/:lab",
+        path: "/tv/labslots/:lab",
         element: <LabSlots />,
       },
       {
-        path: "/courses",
+        path: "/tv/courses",
         element: <CourseOfferings />,
       },
       {
-        path: "/upcoming",
+        path: "/tv/upcoming",
         element: <UpcomingEvents />,
       },
       {
-        path: "/previous",
+        path: "/tv/previous",
         element: <PreviousEvents />,
       },
       {
-        path: "/achivements",
+        path: "/tv/achivements",
         element: <Achievements />,
       },
       {
-        path: "/maps",
+        path: "/tv/maps",
         element: <Maps />,
       },
     ],

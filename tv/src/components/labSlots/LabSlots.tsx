@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useMatch } from "react-router-dom";
 import "./labslots.css";
 import Slot from "./slot";
-import axios from "axios";
 
 const LabSlots: React.FC = () => {
   const [data, setData] = useState([]);
   const [date, setDate] = useState(new Date());
-  const param = useMatch("/labslots/:lab").params.lab;
+  const param = useMatch("/tv/labslots/:lab").params.lab;
   const timeSlots: string[] = [
     "08.00-09.00",
     "09.00-10.00",
