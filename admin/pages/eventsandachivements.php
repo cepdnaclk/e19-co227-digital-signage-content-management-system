@@ -58,7 +58,7 @@ $achivements = array_slice($achivements, 0, 4);
                         <a href="/pages/upcoming/">See All</a>
                     </div>
                     <div class="card-container">
-                        <?php if (!isset($_GET['error']))
+                        <?php if (isset($events[0]['e_name']))
                             foreach ($uevents as $key => $row) { ?>
                                 <div class='card'>
                                     <img src='<?= $row["e_img"] ?>' alt='Add Event Image'>
@@ -126,7 +126,7 @@ $achivements = array_slice($achivements, 0, 4);
                         <a href="/pages/previous/">See All</a>
                     </div>
                     <div class="card-container">
-                        <?php if (!isset($_GET['error']))
+                        <?php if (isset($events[0]['e_name']))
                             foreach ($pevents as $key => $row) { ?>
                                 <div class='card'>
                                     <img src='<?= $row["e_img"] ?>' alt='Add Event Image'>
@@ -193,7 +193,7 @@ $achivements = array_slice($achivements, 0, 4);
                         <a href="/pages/achievements/">See All</a>
                     </div>
                     <div class="card-container">
-                        <?php if (!isset($_GET['error']))
+                        <?php if (isset($events[0]['e_name']))
                             foreach ($achivements as $key => $row) { ?>
                                 <div class='card'>
                                     <img src='<?= $row["a_img"] ?>' alt='Add Event Image'>
