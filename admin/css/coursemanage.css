@@ -104,21 +104,32 @@
   border-radius: 0.5rem;
 }
 
+#course_display:has(.two-columns){
+  aspect-ratio: none;
+}
+
 #course_display .two-columns {
   gap: 2rem;
   align-items: center;
   padding: 2rem;
   margin-bottom: 2rem;
+  height: 100%;
 }
 
 #course_display .two-columns .poster {
   display: flex;
   justify-content: center;
+  height: 100%;
+}
+
+#course_display .two-columns .details{
+  min-width: 300px;
 }
 
 #course_display img {
   object-fit: contain;
   object-position: center;
+  height: 100%;
 }
 
 /* Style for the select container */
