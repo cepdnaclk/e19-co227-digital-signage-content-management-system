@@ -1,16 +1,25 @@
-// window.addEventListener('scroll', function() {
-//     var landingPage = document.getElementById('landing-page');
-//     var content = document.getElementById('content');
-    
-//     if (window.scrollY > window.innerHeight) {
-//         landingPage.style.display = 'none';
-//         content.style.display = 'block';
-//     } else {
-//         landingPage.style.display = 'flex';
-//         content.style.display = 'none';
-//     }
+// document.addEventListener('DOMContentLoaded', function() {
+//     const categories = document.querySelectorAll('.category');
 
-//     // Changing background color based on scroll position
-//     var bgColor = window.scrollY > window.innerHeight ? '--color-2' : '--color-shade-1';
-//     document.body.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue(bgColor);
+//     categories.forEach(function(category) {
+//         category.addEventListener('click', function(event) {
+//             event.preventDefault(); // Prevent default behavior of anchor elements
+
+//             // Toggle active class for the clicked category
+//             category.classList.toggle('active');
+
+//             // Toggle display of the corresponding sub-menu
+//             const subMenu = category.querySelector('.sub-menu');
+//             if (subMenu) {
+//                 subMenu.style.display = category.classList.contains('active') ? 'block' : 'none';
+//             }
+//         });
+//          // Prevent propagation of click events on sub-menu links
+//          const subMenuLinks = category.querySelectorAll('.sub-menu a');
+//          subMenuLinks.forEach(function(link) {
+//              link.addEventListener('click', function(event) {
+//                  event.stopPropagation();
+//              });
+//          });
+//     });
 // });
