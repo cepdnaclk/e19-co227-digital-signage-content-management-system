@@ -24,8 +24,10 @@ include(APP_ROOT . "/includes/header_contactNSupport.php");
             <main class="contact-support">
                 <div class="container">
                     <h1>Contact and Support</h1>
+
                     <p>If you have any questions or need assistance, please feel free to get in touch with the Director
                         or admins at the IT Center.</p>
+
 
                     <!-- Contact Form -->
                     <form action="/backend/api/support/send.php" method="post">
@@ -40,6 +42,16 @@ include(APP_ROOT . "/includes/header_contactNSupport.php");
 
                         <input type="submit" value="Send Message">
                     </form>
+                    
+                    <!-- Redirect to User Manual -->
+                    <div class="manual">
+                    <h2>Admin's and Coordinator's User Manual</h2>
+                    </br>
+                    <a href="/pages/contactNsupport/super_admin.php">Go To User Manual</a>
+                    </br>
+                    </div>
+
+
 
                     <!-- Contact Details Grid -->
                     <h2>Contact Details</h2>

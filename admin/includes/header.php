@@ -48,7 +48,7 @@ if (!isset($_SESSION['user_id'])) {
   <header>
     <div class="menu">
       <ul>
-        <li><a href="/pages/contactNsupport.php">Contact & Support</a></li>
+        <li><a href="/pages/contactNsupport">Contact & Support</a></li>
       </ul>
     </div>
     <div class="profile">
