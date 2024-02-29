@@ -89,13 +89,13 @@
                         </a>
                     </li>
                 </ul>
-
+<!-- 
                 <a href="/pages/bookings/" class="link <?php echo $index == 6 ? 'active' : '' ?>">
                     <div class="link-main">
                         <img src="/images/book.svg" alt="">
                         <p>Lab Bookings</p>
                     </div>
-                </a>
+                </a> -->
             </div>
         </div>
     <?php } ?>

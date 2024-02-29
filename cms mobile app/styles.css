@@ -87,15 +87,21 @@ p {
     background-color: var(--color-2); /* Background color after scrolling */
     padding: 50px 0;
     text-align: center;
+    align-items: center;
 }
 
 .menu {
     text-align: center;
 }
 
-.menu a {
+.category {
     display: block;
-    margin: 10px auto; /* Center the menu items vertically */
+    margin-bottom: 20px;
+}
+
+.category a {
+    font-size: 3rem;
+    display: block;
     padding: 10px 20px;
     text-decoration: none;
     background-color: #f9db08; /* Button background color */
@@ -104,9 +110,54 @@ p {
     transition: background-color 0.3s ease;
 }
 
-.menu a:hover {
-    background-color: #e0c800; /* Button background color on hover */
+.category a:hover {
+    background-color: #c6b40c; /* Button background color on hover */
 }
+
+.menu-picture {
+    width: 100%;
+}
+
+/* Footer Styles */
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0px;
+}
+
+.menu-picture {
+    width: 75%;
+    max-width: 75%;
+}
+
+.footer {
+    width: 25%;
+    max-width: 25%;
+}
+
+.footer-links a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-links {
+    text-align: center;
+}
+
+.copyright {
+    color: var(--color-text-2);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
 
 
 
@@ -131,6 +182,10 @@ p {
     .scroll-down img {
         width: 1.8rem; 
     }
+
+    .category a {
+        font-size: 1rem;
+    }
 }
 
 @media only screen and (min-width: 351px) and (max-width: 425px) { /* medium smart phone*/
@@ -150,6 +205,9 @@ p {
     }
     .scroll-down img {
         width: 2rem; 
+    }
+    .category a {
+        font-size: 1.5rem;
     }
 }
 
@@ -171,6 +229,9 @@ p {
     .scroll-down img {
         width: 2.5rem; 
     }
+    .category a {
+        font-size: 2rem;
+    }
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1024px) { /*Medium-Small Laptop*/
@@ -191,6 +252,10 @@ p {
     .scroll-down img {
         width: 3rem; 
     }
+
+    .category a {
+        font-size: 2.5rem;
+    }
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1440px) { /*Std. Laptop => Defualt*/ 
@@ -207,6 +272,10 @@ p {
     }
     .scroll-down img {
         width: 4rem; 
+    }
+
+    .category a {
+        font-size: 3rem;
     }
     
     
@@ -228,5 +297,8 @@ p {
         width: 6rem; 
     }
 
+    .category a {
+        font-size: 5rem;
+    }
     
 }
