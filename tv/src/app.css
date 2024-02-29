@@ -35,6 +35,6 @@
 .App > .container {
   display: flex;
   justify-content: space-between;
-  height: 90%;
+  height: 88%;
   gap: 3rem;
 }

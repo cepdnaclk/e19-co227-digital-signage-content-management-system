@@ -34,20 +34,6 @@ export default function UpcomingEvents() {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (clickedImageIndex === null) {
-        setCurrentImageIndex(
-          (prevIndex) => (prevIndex + 1) % initialImages.length
-        );
-      }
-    }, timings["Upcoming Events"]["time_slide"] * 1000); // Change image every 10 seconds (10000 milliseconds)
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [clickedImageIndex, initialImages]);
-
-  useEffect(() => {
     const indexData = { ...imageIndex };
     indexData["Upcoming Events"] = currentImageIndex;
     setImageIndex(indexData);
@@ -69,6 +55,54 @@ export default function UpcomingEvents() {
     setCurrentImageIndex(index);
     setClickedImageIndex(null); // Reset clickedImageIndex to null to exit full-screen mode
   };
+
+  let intervalId = null;
+
+  useEffect(() => {
+    const centerContent = document.querySelector(".center-content");
+    let startX = 0;
+
+    if (!intervalId) {
+      intervalId = setInterval(() => {
+        handleNextImage();
+      }, timings["Upcoming Events"]["time_slide"] * 1000);
+    }
+
+    const handleTouchStart = (e) => {
+      startX = e.touches[0].clientX; // Store initial touch position
+
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+
+    const handleTouchEnd = (e) => {
+      const swipeDistance = e.changedTouches[0].clientX - startX; // Calculate swipe distance
+      if (swipeDistance > 50 && !clickedImageIndex) {
+        // Minimum swipe distance threshold (adjust as needed)
+        handleNextImage();
+      } else if (swipeDistance < -50 && !clickedImageIndex) {
+        handlePrevImage();
+      }
+      startX = 0; // Reset startX on touch end
+      if (!intervalId) {
+        intervalId = setInterval(() => {
+          handleNextImage();
+        }, timings["Upcoming Events"]["time_slide"] * 1000);
+      }
+    };
+
+    centerContent.addEventListener("touchstart", handleTouchStart);
+    centerContent.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      centerContent.removeEventListener("touchstart", handleTouchStart);
+      centerContent.removeEventListener("touchend", handleTouchEnd);
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [handlePrevImage, handleNextImage, clickedImageIndex]);
 
   // Determine the number of images to display in the list
   const numImagesToDisplay = Math.min(6, initialImages.length);
