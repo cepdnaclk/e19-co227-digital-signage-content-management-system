@@ -32,10 +32,10 @@ include(APP_ROOT . "/includes/header_contactNSupport.php");
                     <!-- Contact Form -->
                     <form action="/backend/api/support/send.php" method="post">
                         <label for="name">Your Name:</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" placeholder="Leave It Anonymous">
 
                         <label for="email">Your Email:</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" placeholder="Leave It Anonymous">
 
                         <label for="message">Your Message/Complaint:</label>
                         <textarea id="message" name="message" rows="4" required></textarea>
@@ -47,7 +47,23 @@ include(APP_ROOT . "/includes/header_contactNSupport.php");
                     <div class="manual">
                     <h2>Admin's and Coordinator's User Manual</h2>
                     </br>
-                    <a href="/pages/contactNsupport/super_admin.php">Go To User Manual</a>
+                    <center>
+                    <?php
+                        // Set the default URL
+                        $userManualUrl = "/pages/contactNsupport/coordinator.php";
+                        
+                        // Check the user's role and update the URL accordingly
+                        if ($role === "admin") {
+                            $userManualUrl = "/pages/contactNsupport/admin.php";
+                        } elseif ($role === "super_admin") {
+                            $userManualUrl = "/pages/contactNsupport/super_admin.php";
+                        }
+
+                        // Output the link with the dynamically determined URL
+                        echo "<a href=\"$userManualUrl\">Go To User Manual</a>";
+                    ?>
+
+                    </center>
                     </br>
                     </div>
 

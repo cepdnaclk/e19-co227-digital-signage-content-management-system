@@ -1,0 +1,45 @@
+/* Style for the super admin manual page */
+.manual {
+    background-color: #f7f7f7;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style for the accordion buttons */
+.accordion {
+    background-color: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    font-weight: 800;
+    font-size: 15px;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: background-color 0.3s;
+  }
+  
+  /* Style for the active (highlighted) accordion button */
+  .activ, .accordion:hover {
+    background-color: #ddd;
+  }
+  
+  /* Style for the content panels */
+  .panel {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: white;
+  }
+  
+  /* Style for the visible content panel */
+  .panel.show {
+    display: block;
+  }
+  
