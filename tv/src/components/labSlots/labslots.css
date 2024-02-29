@@ -1,6 +1,6 @@
 /* labSlots.css */
 .labslots {
-  padding: 4rem;
+  padding: 2rem 4rem;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -8,12 +8,13 @@
 }
 
 .labslots .legend {
-  width: 80%;
-  font-size: 2.2rem;
+  width: 87%;
+  font-size: 2.5rem;
   font-weight: 600;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
-  justify-content: center;
+  margin: 2rem 0;
   gap: 10%;
 }
 
@@ -21,6 +22,7 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  margin: auto;
 }
 
 .labslots .legend-bit .color-box {
@@ -45,10 +47,10 @@
 }
 
 .labslots .date {
-  width: 80%;
+  width: 87%;
   padding: 2rem 0;
   background-color: var(--color-2);
-  margin: 4rem 0 2rem;
+  margin: 2rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,30 +59,21 @@
 }
 
 .labslots .date h3 {
-  font-size: 3.5rem;
+  font-size: 4rem;
 }
 
-.labslots .date p {
-  font-size: 2.5rem;
-  margin-top: 1.5rem;
-}
-
-.labslots .datepicker {
+.labslots .date input {
   font-size: 3rem;
+  margin-top: 1.5rem;
   background: none;
   border: none;
-}
-
-.labslots .datepicker input {
-  font-size: 3rem;
-  margin-left: 1rem;
 }
 
 .labslots .timetable {
   width: 100%;
   height: calc(100% - 25rem);
   display: grid;
-  grid-template-columns: repeat(5, 20%);
+  grid-template-columns: 13% repeat(4, 22%);
   grid-template-rows: repeat(9, calc(100% / 9));
   position: relative;
 }

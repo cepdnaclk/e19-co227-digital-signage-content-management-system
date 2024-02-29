@@ -119,6 +119,15 @@ const LabSlots: React.FC = () => {
 
   return (
     <div className="labslots">
+      <div className="date">
+        <h3>{isToday(date) ? "Today" : shortMonthDateFormatter(date)}</h3>
+        <input
+          type="date"
+          id="date-picker"
+          onChange={(e) => setDate(new Date(e.target.value))}
+          value={dateFormatter(date)}
+        />
+      </div>
       <div className="legend">
         <div className="legend-bit lab1">
           <div className="color-box"></div>
@@ -137,27 +146,18 @@ const LabSlots: React.FC = () => {
           <p>Seminar Room</p>
         </div>
       </div>
-      <div className="date">
-        <h3>{isToday(date) ? "Today" : shortMonthDateFormatter(date)}</h3>
-        <p>{isToday(date) ? shortMonthDateFormatter(date) : ""}</p>
-      </div>
-      <div className="datepicker">
-        <label htmlFor="">Choose date</label>
-        <input
-          type="date"
-          onChange={(e) => setDate(new Date(e.target.value))}
-          value={dateFormatter(date)}
-        />
-      </div>
       <div className="timetable">
         {timeSlots.map((slot, index) => (
           <div key={index} className="time-slot">
             <p>{slot}</p>
-            {index > 0 && (
+            {index >= 0 && (
               <div className="line" style={{ gridRow: index + 1 }}></div>
             )}
           </div>
         ))}
+        <div className="time-slot">
+          <div className="line" style={{ gridRow:  10 }}></div>
+        </div>
         {allocations.map((lab, index) => (
           <Slot details={lab} key={index} />
         ))}

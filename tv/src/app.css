@@ -21,8 +21,8 @@
 
 .App {
   background-image: url("./assets/PublicDisplayBackground.svg");
-  background-position: center center;
-  background-size: cover;
+  background-position: right;
+  background-size: 180%;
   width: 100%;
   height: 100vh; /* Use 100vh for full viewport height */
   overflow: hidden; /* Prevents vertical scroll bars */
@@ -35,6 +35,6 @@
 .App > .container {
   display: flex;
   justify-content: space-between;
-  height: 80%;
+  height: 90%;
   gap: 3rem;
 }
