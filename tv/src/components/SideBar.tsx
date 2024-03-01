@@ -4,7 +4,7 @@ import { Link, useMatch } from "react-router-dom";
 import "./sidebar.css";
 import CourseOfferingsImg from "/src/assets/courseoffering.svg";
 import labslotsImg from "/src/assets/labslotsimg.svg";
-import mapsImg from "/src/assets/map.svg";
+import mapsImg from "/src/assets/info.svg";
 import previousImg from "/src/assets/previous.svg";
 import achivementImg from "/src/assets/star.svg";
 import upcomingImg from "/src/assets/upcoming.svg";
@@ -60,7 +60,7 @@ function Sidebar() {
         <li className={useMatch("/tv/maps") ? "selected" : ""}>
           <Link to="/tv/maps">
             <img src={mapsImg} alt="" />
-            Maps
+            More Info
           </Link>
         </li>
       </ul>
