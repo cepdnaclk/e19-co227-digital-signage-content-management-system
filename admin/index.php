@@ -186,7 +186,7 @@ if (isset($support['error']))
                                 return implode("<br>", $reversedOutput);
                             }
 
-                            $logFile = $_SERVER['DOCUMENT_ROOT'] . "\logs\user_activity.log";
+                            $logFile = $_SERVER['DOCUMENT_ROOT'] . "/logs/user_activity.log";
                             $logEntries = readLastLines($logFile, 15);
 
                             echo "<p>{$logEntries}</p>";
