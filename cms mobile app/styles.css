@@ -117,9 +117,14 @@ p {
 .menu-picture {
     width: 100%;
 }
+.menu-picture-2{
+    width: 0%;
+}
 
 /* Footer Styles */
 .footer-container {
+    padding-left: 15px;
+    padding-bottom: 15px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -194,6 +199,10 @@ p {
         width: 0%;
         max-width: 0%;
     }
+
+    .menu-picture-2{
+        width: 100%;
+    }
     
     .footer {
         font-size: 0.8rem;
@@ -228,6 +237,9 @@ p {
     .menu-picture {
         width: 0%;
         max-width: 0%;
+    }
+    .menu-picture-2{
+        width: 100%;
     }
     
     .footer {
