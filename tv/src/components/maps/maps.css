@@ -1,74 +1,29 @@
 /* upcomingvideos.css */
-.map-videos {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-  }
-  
-  .mapvideos-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 1000px; /* Adjust the height as needed */
-  }
-  
-  .mapvideos-container .video-list {
-    width: 30%;
-  }
-  
-  .mapvideos-container .video-item {
-    margin-bottom: 20px; /* Adjust the spacing between videos */
-    transition: opacity 0.3s ease-in-out;
-    margin: auto 1px;
-    opacity: 0.5;
-  }
-  
-  .mapvideos-container .video-item.active {
-    opacity: 1;
-  }
-  
-  .mapvideos-container video {
-    max-width: 300px;
-    height: auto;
-    display: block;
-  }
-  
-  .mapvideos-container .center-content {
-    width: 100%; /* Adjust the width of the center video */
-    position: relative;
-  }
-  
-  .mapvideos-container .center-content .center-video {
-    max-width: 1600px;
-    max-height: 1400px;
-    width: 45vw;
-    height: 60vh;
-    object-fit: contain;
-  }
-  
-  .mapvideos-container .video-controls button {
-    font-size: 100px;
-    color: #989494;
-    background: none;
-    border: none;
-    padding: 0px 20px;
-    cursor: pointer;
-    font-weight: 900;
-  }
-  
-  .mapvideos-container .left {
-    margin-left: 120px;
-    margin-right: 0px;
-  }
-  
-  .mapvideos-container .right {
-    margin-right: 50px;
-    margin-left: 0px;
-  }
-  
-  .mapvideos-container .video-controls button:hover {
-    color: #000;
-  }
-  
+.more-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.more-info h3 {
+  font-size: 6rem;
+  margin-bottom: 1rem;
+}
+
+.more-info img{
+  width: 1000px;
+  margin-top: 2rem;
+}
+
+.more-info .link {
+  margin-top: 2rem;
+  font-size: 3rem;
+  color: #174a79;
+}
+
+.more-info p{
+  font-size: 3rem;
+}
