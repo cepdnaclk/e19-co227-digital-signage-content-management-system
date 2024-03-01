@@ -23,13 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $result = addMessage($name, $email, $message);
         if (isset($result['error'])) {
-            header("Location: /pages/contactNsupport.php?error={$result['error']}");
+            header("Location: /pages/contactNsupport/?error={$result['error']}");
         } else {
             logUserActivity("Added new message from {$name}");
-            header("Location: /pages/contactNsupport.php?success={$result['message']}");
+            header("Location: /pages/contactNsupport/?success={$result['message']}");
         }
     } else {
-        header("Location: /pages/contactNsupport.php?error=Missing form data");
+        header("Location: /pages/contactNsupport/?error=Missing form data");
     }
 }
 exit();
