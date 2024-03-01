@@ -129,19 +129,19 @@ const LabSlots: React.FC = () => {
         />
       </div>
       <div className="legend">
-        <div className="legend-bit lab1">
+        <div className="legend-bit lab1" style={{ opacity: param !== 'lab1' && param !== 'all' ? 0 : 1 }}>
           <div className="color-box"></div>
           <p>Lab 1</p>
         </div>
-        <div className="legend-bit lab2">
+        <div className="legend-bit lab2" style={{ opacity: param !== 'lab2' && param !== 'all' ? 0 : 1 }}>
           <div className="color-box"></div>
           <p>Lab 2</p>
         </div>
-        <div className="legend-bit lab3">
+        <div className="legend-bit lab3" style={{ opacity: param !== 'ccna' && param !== 'all' ? 0 : 1 }}>
           <div className="color-box"></div>
           <p>CCNA Lab</p>
         </div>
-        <div className="legend-bit sr">
+        <div className="legend-bit sr" style={{ opacity: param !== 'sr' && param !== 'all' ? 0 : 1 }}>
           <div className="color-box"></div>
           <p>Seminar Room</p>
         </div>
