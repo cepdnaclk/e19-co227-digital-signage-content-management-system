@@ -36,7 +36,9 @@ if (isset($maps['error']))
                 <div class="container">
                     <div class="title">
                         <h1>Maps</h1>
-                        <a href="add.php"><img src="/images/Add_round.svg" alt=""> Add New Map</a>
+                        <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
+                            <a href="add.php"><img src="/images/Add_round.svg" alt=""> Add New Map</a>
+                                <?php } ?>
                     </div>
                     <div class="card-container">
                         <?php if (isset($maps[0]['m_name']))

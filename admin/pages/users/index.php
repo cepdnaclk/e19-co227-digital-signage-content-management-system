@@ -37,7 +37,9 @@ if (!isset($users))
                             <h1>Users</h1>
                             <p>Currently active users in charge of CMS handling</p>
                         </div>
-                        <a href="/pages/users/adduser.php"><img src="/images/Add_round.svg" alt=""> Register New User</a>
+                        <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
+                            <a href="/pages/users/adduser.php"><img src="/images/Add_round.svg" alt=""> Register New User</a>
+                                <?php } ?>
                     </div>
 
                     <!-- User Role Icons and Counts -->
