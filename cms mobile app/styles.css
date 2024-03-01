@@ -128,13 +128,15 @@ p {
 }
 
 .menu-picture {
-    width: 75%;
-    max-width: 75%;
+    width: 50%;
+    max-width: 50%;
 }
 
 .footer {
-    width: 25%;
-    max-width: 25%;
+    color: white;
+    margin-right: 4rem;
+    width: 40%;
+    max-width: 40%;
 }
 
 .footer-links a {
@@ -153,7 +155,7 @@ p {
 }
 
 .copyright {
-    color: var(--color-text-2);
+    color: var(--color-2);
     font-size: 0.8rem;
     text-align: center;
 }
@@ -186,6 +188,19 @@ p {
     .category a {
         font-size: 1rem;
     }
+
+    
+    .menu-picture {
+        width: 0%;
+        max-width: 0%;
+    }
+    
+    .footer {
+        font-size: 0.8rem;
+        margin-right: 2rem;
+        width: 80%;
+        max-width: 80%;
+    }
 }
 
 @media only screen and (min-width: 351px) and (max-width: 425px) { /* medium smart phone*/
@@ -209,6 +224,18 @@ p {
     .category a {
         font-size: 1.5rem;
     }
+
+    .menu-picture {
+        width: 0%;
+        max-width: 0%;
+    }
+    
+    .footer {
+        font-size: 0.8rem;
+        margin-right: 3rem;
+        width: 80%;
+        max-width: 80%;
+    }
 }
 
 @media only screen and (min-width: 426px) and (max-width: 768px) { /* Tab */
@@ -231,6 +258,18 @@ p {
     }
     .category a {
         font-size: 2rem;
+    }
+
+    .menu-picture {
+        width: 50%;
+        max-width: 50%;
+    }
+    
+    .footer {
+        margin-right: 2.5rem;
+        width: 40%;
+        max-width: 40%;
+        font-size: 0.6rem;
     }
 }
 
@@ -256,6 +295,18 @@ p {
     .category a {
         font-size: 2.5rem;
     }
+
+    .menu-picture {
+        width: 50%;
+        max-width: 50%;
+    }
+    
+    .footer {
+        font-size: 0.8rem;
+        margin-right: 3rem;
+        width: 40%;
+        max-width: 40%;
+    }
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1440px) { /*Std. Laptop => Defualt*/ 
@@ -276,6 +327,17 @@ p {
 
     .category a {
         font-size: 3rem;
+    }
+
+    .menu-picture {
+        width: 50%;
+        max-width: 50%;
+    }
+    
+    .footer {
+        margin-right: 4rem;
+        width: 40%;
+        max-width: 40%;
     }
     
     
@@ -300,5 +362,18 @@ p {
     .category a {
         font-size: 5rem;
     }
+
+    .menu-picture {
+        width: 50%;
+        max-width: 50%;
+    }
+    
+    .footer {
+        margin-right: 4rem;
+        width: 40%;
+        max-width: 40%;
+    }
+
+  
     
 }
