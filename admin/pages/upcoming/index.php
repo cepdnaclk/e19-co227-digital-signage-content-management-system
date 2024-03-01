@@ -94,9 +94,9 @@ if (isset($events['error']))
                                     <?php } ?>
                                 </div>
                             <?php } else { ?>
-                            <p style="width:400px">No Achivements Found.
+                            <p style="width:400px">No Upcoming Events Found.
                                 <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
-                                    <a style="text-decoration:underline" href="add.php">Add Achievements</a>
+                                    <a style="text-decoration:underline" href="add.php">Add Upcoming Events</a>
                                 <?php } ?>
                             </p>
                         <?php } ?>
