@@ -1,6 +1,6 @@
 <?php
 // get-log.php
-$logFile = $_SERVER['DOCUMENT_ROOT'] . "\logs\user_activity.log";
+$logFile = $_SERVER['DOCUMENT_ROOT'] . "/logs/user_activity.log";
 
 function readLastLines($file, $lines)
 {
