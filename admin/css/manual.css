@@ -46,3 +46,7 @@
   img{
     max-width: 100%;
   }
+
+  .manual .links p{
+    padding-top: 20px;
+  }

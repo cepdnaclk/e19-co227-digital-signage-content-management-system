@@ -28,8 +28,11 @@
                             <h1>Courses</h1>
                             <p>Currently Offered Courses by Us</p>
                         </div>
-                        <a href="/pages/course/add.php" class="btn btn-success"><img src="/images/Add_round.svg" alt="">
+                        <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
+                                    
+                            <a href="/pages/course/add.php" class="btn btn-success"><img src="/images/Add_round.svg" alt="">
                             Add New Course</a>
+                            <?php } ?>
                     </div>
 
                     <div class="table-container">

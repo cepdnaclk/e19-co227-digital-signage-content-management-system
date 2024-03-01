@@ -7,7 +7,7 @@ include(APP_ROOT . "/includes/header_contactNSupport.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/manual_super_admin.css">
+    <link rel="stylesheet" href="/css/manual.css">
     <title>IT Center | Super Admin's User Manaul</title>
 </head>
 
@@ -24,7 +24,7 @@ include(APP_ROOT . "/includes/header_contactNSupport.php");
 
             <main class="manual">
                 <div class="container">
-                    <h2>Super Admin User Manual</h2>
+                    <h2>Super Admin's User Manual</h2>
                     </br>
 
                     <!-- Button 1: Getting an Overview of the Dashboard -->
@@ -80,8 +80,17 @@ include(APP_ROOT . "/includes/header_contactNSupport.php");
                         <img src="/images/Manual/super_admin/10.png" alt="edit_sa2">
                         </br>
                     </div>
+
+                    <div class="links">
+                    <p>Additional References: &emsp;
+                    <a href="/pages/contactNsupport/admin.php"><u><i>Admin's User Manual</i></u></a> &emsp;
+                    <a href="/pages/contactNsupport/coordinator.php"><u><i>Course Coordinator's User Manual</i></u></a>
+
+                </p>
+                    </div>
                 </div>
             </main>
+
 
         </div>
     </div>

@@ -37,7 +37,9 @@ if (isset($facilities['error']))
                 <div class="container">
                     <div class="title">
                         <h1>Lab Info</h1>
-                        <a href="add.php"><img src="/images/Add_round.svg" alt=""> Add a Lab Info</a>
+                        <?php if ($clearenceStatus[$_SESSION['clearense']] > 0) { ?>
+                            <a href="add.php"><img src="/images/Add_round.svg" alt=""> Add a Lab Info</a>
+                                <?php } ?>
 
                     </div>
                     <div class="card-container">
