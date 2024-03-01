@@ -17,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         isset($_FILES['message'])
     ) {
         // Get form data
-        $name = $_POST["name"];
-        $email = $_POST["email"];
+        $name = $_POST["name"] == " " ? "Anonymous" : $_POST["name"];
+        $email = $_POST["email"] == " " ? "Anonymous" : $_POST["email"];
         $message = $_POST["message"];
 
         $result = addMessage($name, $email, $message);
