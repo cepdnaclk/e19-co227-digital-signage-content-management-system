@@ -13,16 +13,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         // Data inserted successfully
-        header("Location: /pages/contactNsupport.php?success=1");
+        header("Location: /pages/contactNsupport/?success=1");
         exit;
     } else {
         // Error occurred while inserting data
-        header("Location: contactNsupport.php?error=1");
+        header("Location: /pages/contactNsupport/?error=1");
         exit;
     }
 } else {
     // Redirect to the contactNsupport.php page if the form was not submitted
-    header("Location: contactNsupport.php");
+    header("Location: /pages/contactNsupport/");
     exit;
 }
 ?>
