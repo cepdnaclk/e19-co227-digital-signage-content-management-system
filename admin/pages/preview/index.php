@@ -16,6 +16,7 @@
 
 <body style="overflow:hidden">
     <a href="../" style="
+    display:block;
     background-color: #305fa6;
   color: #fff;
   border: none;
