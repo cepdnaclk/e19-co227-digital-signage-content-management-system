@@ -49,9 +49,6 @@ else {
     $courses = getCoursesCo($_SESSION['user_id']);
 }
 
-if (!$courses)
-    header("Location: /pages/labslots/?error=You have no Courses");
-
 ?>
 
 <!DOCTYPE html>
