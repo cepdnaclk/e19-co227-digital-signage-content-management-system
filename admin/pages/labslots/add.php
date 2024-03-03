@@ -43,7 +43,7 @@ function getLab(string $lab)
 }
 
 $labslots = getLabSlots($_GET['lab'], $dates[0], $dates[6]);
-if ($clearenceStatus[$_SESSION['clearense']] > 0)
+if ($clearenceStatus[$_SESSION['clearense']] >= 0)
     $courses = getCourses();
 else {
     $courses = getCoursesCo($_SESSION['user_id']);
