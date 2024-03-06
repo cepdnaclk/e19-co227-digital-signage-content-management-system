@@ -277,9 +277,12 @@ if (isset($_GET['mode'])) {
 
         let imgChange = false
 
+        let imageFile = "";
+
         const handleImgChange = (e) => {
             if (imgDisplay) {
                 imgDisplay.src = URL.createObjectURL(e.target.files[0])
+                imageFile = e.target.files[0]
                 imgChange = true
             }
         }
@@ -323,50 +326,89 @@ if (isset($_GET['mode'])) {
             var div = document.getElementById('course_display');
 
             // Use html2canvas to capture the div
-            if (imgChange)
-                html2canvas(div, {
-                    allowTaint: true,
-                    useCors: true
-                }).then(canvas => {
-                    // Convert the canvas to a Blob object
-                    canvas.toBlob(blob => {
-                        // Create a new File object from the Blob
-                        var file = new File([blob], `image${Date.now()}.png`, { type: "image/png" });
+            if (imgChange) {
+                var url = window.location.href;
+                var urlParams = new URLSearchParams(url.search);
+                var mode = urlParams.get('mode');
+                if (mode == "img") {
+                    html2canvas(div, {
+                        allowTaint: true,
+                        useCors: true
+                    }).then(canvas => {
+                        // Convert the canvas to a Blob object
+                        canvas.toBlob(blob => {
+                            // Create a new File object from the Blob
+                            var file = new File([blob], `image${Date.now()}.png`, { type: "image/png" });
 
-                        // Create a new FormData instance
-                        var formData = new FormData();
+                            // Create a new FormData instance
+                            var formData = new FormData();
 
-                        // Append the file object to the FormData instance
-                        formData.append('c_id', document.querySelector('input[name="c_id"]').value);
-                        formData.append('poster', file);
-                        formData.append('poster_path', document.querySelector('input[name="image_loc"]').value);
+                            // Append the file object to the FormData instance
+                            formData.append('c_id', document.querySelector('input[name="c_id"]').value);
+                            formData.append('poster', file);
+                            formData.append('poster_path', document.querySelector('input[name="image_loc"]').value);
 
-                        for (var pair of formData.entries()) {
-                            console.log(pair[0] + ', ' + pair[1]);
-                        }
+                            for (var pair of formData.entries()) {
+                                console.log(pair[0] + ', ' + pair[1]);
+                            }
 
 
-                        // Send the FormData instance to the server
-                        // You can use fetch or axios to do this
-                        // This is an example using fetch
-                        fetch('/backend/api/course/upload_poster.php', {
-                            method: 'POST',
-                            body: formData
-                        }).then(response => {
-                            return response.text();  // Parse the response body as JSON
-                        }).then(response => {
-                            console.log(response);
+                            // Send the FormData instance to the server
+                            // You can use fetch or axios to do this
+                            // This is an example using fetch
+                            fetch('/backend/api/course/upload_poster.php', {
+                                method: 'POST',
+                                body: formData
+                            }).then(response => {
+                                return response.text();  // Parse the response body as JSON
+                            }).then(response => {
+                                console.log(response);
 
-                            // After your function has completed, submit the form
-                            if (duration)
-                                form.submit();
-                            else
-                                window.location.href = "/pages/course?success=Course Updated Successfully";
-                        }).catch(error => {
-                            console.error(error);
+                                // After your function has completed, submit the form
+                                if (duration)
+                                    form.submit();
+                                else
+                                    window.location.href = "/pages/course?success=Course Updated Successfully";
+                            }).catch(error => {
+                                console.error(error);
+                            });
                         });
                     });
-                });
+                }
+                else {
+                    var formData = new FormData();
+
+                    // Append the file object to the FormData instance
+                    formData.append('c_id', document.querySelector('input[name="c_id"]').value);
+                    formData.append('poster', imageFile);
+                    formData.append('poster_path', document.querySelector('input[name="image_loc"]').value);
+
+                    for (var pair of formData.entries()) {
+                        console.log(pair[0] + ', ' + pair[1]);
+                    }
+
+
+                    // Send the FormData instance to the server
+                    // You can use fetch or axios to do this
+                    // This is an example using fetch
+                    fetch('/backend/api/course/upload_poster.php', {
+                        method: 'POST',
+                        body: formData
+                    }).then(response => {
+                        return response.text();  // Parse the response body as JSON
+                    }).then(response => {
+                        console.log(response);
+
+                        // After your function has completed, submit the form
+                        if (duration)
+                            form.submit();
+                        else
+                            window.location.href = "/pages/course?success=Course Updated Successfully";
+                    }).catch(error => {
+                        console.error(error);
+                    });
+                }
+            }
             else
                 form.submit();
         });
