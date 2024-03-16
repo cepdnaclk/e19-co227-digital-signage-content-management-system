@@ -1,17 +1,17 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . "/config.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
+include_once ($_SERVER['DOCUMENT_ROOT'] . "/config.php");
+include_once ($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/dashboard.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/support.php";
 
-$data = getDashboardData();
-if (isset($data['error']))
-    if (!isset($_GET['error']))
-        header("Location: ?error={$data['error']}");
+// $data = getDashboardData();
+// if (isset($data['error']))
+//     if (!isset($_GET['error']))
+//         header("Location: ?error={$data['error']}");
 
 $support = getMessages();
-if (isset($support['error']))
-    if (!isset($_GET['error']))
+if (isset ($support['error']))
+    if (!isset ($_GET['error']))
         header("Location: ?error={$support['error']}");
 
 ?>
@@ -31,13 +31,13 @@ if (isset($support['error']))
     <div class="flex-box">
         <div class="left">
             <?php
-            include_once(APP_ROOT . "/includes/sidebar.php");
+            include_once (APP_ROOT . "/includes/sidebar.php");
             sidebar(0, 0);
             ?>
         </div>
         <div class="right">
             <?php
-            include_once(APP_ROOT . "/includes/header.php");
+            include_once (APP_ROOT . "/includes/header.php");
             ?>
 
             <!-- Dashboard Content -->
@@ -131,7 +131,7 @@ if (isset($support['error']))
                         <?php
 
                         // Check if the query was successful
-                        if (!isset($support['error'])) {
+                        if (!isset ($support['error'])) {
                             echo '<script>';
                             echo 'function reorderRow(element) {';
                             echo '  $(element).appendTo(".custom-large-card");';

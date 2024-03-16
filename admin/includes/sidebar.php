@@ -34,34 +34,6 @@
                         <p>Lab Allocations</p>
                     </div>
                 </a>
-
-                <a href="/pages/general.php" class="link <?php echo $index == 5 ? 'active' : '' ?>">
-                    <div class="link-main">
-                        <img src="/images/info.svg" alt="">
-                        <p>General Info</p>
-                    </div>
-                </a>
-                <ul>
-                    <li>
-                        <a href="/pages/maps/" class="link <?php echo $index == 5 ? 'active' : '' ?>">
-                            Maps
-                            <?php echo $index == 5 && $subindex == 1 ? ' <b>|</b>' : '' ?>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/pages/labinfo/" class="link <?php echo $index == 5 ? 'active' : '' ?>">
-                            Lab Info
-                            <?php echo $index == 5 && $subindex == 2 ? ' <b>|</b>' : '' ?>
-                        </a>
-                    </li>
-                </ul>
-                <!-- 
-                <a href="/pages/bookings/" class="link <?php echo $index == 6 ? 'active' : '' ?>">
-                    <div class="link-main">
-                        <img src="/images/book.svg" alt="">
-                        <p>Lab Bookings</p>
-                    </div>
-                </a> -->
             </div>
         </div>
     <?php } ?>
