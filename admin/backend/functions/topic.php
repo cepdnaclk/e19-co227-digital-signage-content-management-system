@@ -91,3 +91,20 @@ function deleteTopic(int $topic_id)
 
     return array("error" => "You are not admin of this board");
 }
+
+function deleteTopicsBoard(int $board_id)
+{
+    if (isOwner($board_id)) {
+        global $conn;
+
+        $stmt = $conn->prepare("DELETE FROM topics WHERE board_id = ?");
+        $stmt->bind_param('i', $board_id);
+
+        if (!$stmt->execute())
+            return array("error" => $stmt->error);
+        else
+            return array("message" => "Delete Topics Succesfully");
+    }
+
+    return array("error" => "You are not owner of this board");
+}
