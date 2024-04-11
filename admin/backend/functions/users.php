@@ -105,15 +105,12 @@ function addUser(string $username, string $email, string $contact, string $passw
     }
 }
 
-function editUser(int $u_id, string $email, string $contact)
+function editMe(string $email, string $contact)
 {
-    if (!isset($u_id))
-        return array("error" => "Bad Request");
-
     global $conn;
 
     $stmt = $conn->prepare("UPDATE user SET email = COALESCE(?, ''), contact = COALESCE(?, '') WHERE u_id = ?");
-    $stmt->bind_param("ssi", $email, $contact, $u_id);
+    $stmt->bind_param("ssi", $email, $contact, $_SESSION['u_id']);
 
     if (!$stmt->execute())
         return array("error" => $stmt->error);
@@ -121,18 +118,18 @@ function editUser(int $u_id, string $email, string $contact)
         return array("message" => "Update Succesfully");
 }
 
-function changePass(string $opass, string $npass, string $cpass, int $u_id)
+function changePass(string $opass, string $npass, string $cpass)
 {
     global $conn;
 
-    if (!isset($u_id) || !(isset($opass) && isset($npass) && isset($cpass)))
+    if (!(isset($opass) && isset($npass) && isset($cpass)))
         return array("error" => "Bad Request");
 
     if ($npass != $cpass)
         return array("error" => "Password and Confirm Password must same");
 
     $oldPass = hash('sha256', $opass);
-    $user = getUser($u_id);
+    $user = getUser($_SESSION['u_id']);
     if (isset($user['error']))
         return array("error" => "Unable to fetch user data");
 
@@ -142,14 +139,12 @@ function changePass(string $opass, string $npass, string $cpass, int $u_id)
     $npass = hash('sha256', $npass);
 
     $stmt = $conn->prepare("UPDATE user SET password = ? WHERE u_id = ?");
-    $stmt->bind_param("si", $npass, $u_id);
+    $stmt->bind_param("si", $npass, $_SESSION['u_id']);
 
     if (!$stmt->execute())
         return array("error" => $stmt->error);
     else
         return array("message" => "Update Password Succesfully");
-
-    $stmt->close();
 }
 
 function deleteUser(int $userId)
