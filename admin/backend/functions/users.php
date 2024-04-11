@@ -4,12 +4,15 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-function getUsers()
+function getUsers(int $board_id)
 {
     global $conn;
 
     // Prepare the SQL query
-    $stmt = $conn->prepare("SELECT clearense, u_id, user_name FROM user");
+    $stmt = $conn->prepare("SELECT u.u_id, u.user_name, u.email, u.contact, c.level FROM user u INNER JOIN clearence c ON u.u_id = c.user_id WHERE c.board_id = ? ");
+
+    // bind params
+    $stmt->bind_param('i', $board_id);
 
     // Execute the prepared statement
     $stmt->execute();
@@ -20,7 +23,7 @@ function getUsers()
     // Fetch and return the data
     $users = array();
     while ($row = $result->fetch_assoc()) {
-        $clearence = $row['clearense'];
+        $clearence = $row['level'];
 
         if (!isset($users[$clearence])) {
             $users[$clearence] = array();
@@ -35,27 +38,48 @@ function getUsers()
     return $users;
 }
 
+function getUser(int $user_id)
+{
+    global $conn;
 
-function getUser(int $userId)
+    // Prepare the SQL query
+    $stmt = $conn->prepare("SELECT * FROM user WHERE u_id = ?");
+
+    // bind params
+    $stmt->bind_param('i', $user_id);
+
+    // Execute the prepared statement
+    $stmt->execute();
+
+    // Get the result set
+    $result = $stmt->get_result();
+
+    // Fetch and return the data
+    $user = $result->fetch_assoc();
+
+    // Close the statement
+    $stmt->close();
+
+    return $user;
+
+}
+
+function getme()
 {
     global $conn;
 
     $stmt = $conn->prepare("SELECT * FROM user WHERE u_id = ?");
-    $stmt->bind_param("i", $userId);
-
+    $stmt->bind_param('i', $_SESSION['u_id']);
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    if (!isset($user))
-        return array("error" => $stmt->error);
-
     $stmt->close();
 
     return $user;
 }
 
 
-function addUser(string $username, string $user_role, string $email, string $contact, string $password, string $confirm_password)
+function addUser(string $username, string $email, string $contact, string $password, string $confirm_password)
 {
     global $conn;
 
@@ -68,27 +92,17 @@ function addUser(string $username, string $user_role, string $email, string $con
     // Hash the password before storing it in the database
     $hashed_password = hash('sha256', $password);
 
-
-    // Additional fields for Course Coordinator
-    $coordination_count = isset($_POST["coordination_count"]) ? $_POST["coordination_count"] : null;
-    // You can process the course coordinator's course selection here
-
-    // Add more fields as needed
-
     // Insert user data into the database
-    $sql = "INSERT INTO `user` (`user_name`, `email`, `contact`, `password`, `clearense`) VALUES (?, COALESCE(?, ''), COALESCE(?, ''), ?, ?)";
+    $sql = "INSERT INTO `user` (`user_name`, `email`, `contact`, `password`) VALUES (?, COALESCE(?, ''), COALESCE(?, ''), ?)";
     $stmt = mysqli_prepare($conn, $sql);
 
     // Bind parameters and execute the query
-    mysqli_stmt_bind_param($stmt, "sssss", $username, $email, $contact, $hashed_password, $user_role);
+    mysqli_stmt_bind_param($stmt, "ssss", $username, $email, $contact, $hashed_password);
     if (mysqli_stmt_execute($stmt)) {
         return array("message" => "User Adding Success");
     } else {
         return array("error" => mysqli_error($conn));
     }
-
-    // Close the statement
-    mysqli_stmt_close($stmt);
 }
 
 function editUser(int $u_id, string $email, string $contact)
@@ -105,8 +119,6 @@ function editUser(int $u_id, string $email, string $contact)
         return array("error" => $stmt->error);
     else
         return array("message" => "Update Succesfully");
-
-    $stmt->close();
 }
 
 function changePass(string $opass, string $npass, string $cpass, int $u_id)
@@ -144,37 +156,13 @@ function deleteUser(int $userId)
 {
     global $conn;
 
-    $stmt = $conn->prepare("DELETE FROM user WHERE u_id = ?");
+    $stmt = $conn->prepare("DELETE FROM user WHERE u_id = ?; DELETE FROM clearence WHERE user_id = ?;");
 
-    $stmt->bind_param('i', $userId);
+    $stmt->bind_param('ii', $userId, $userId);
 
     if ($stmt->execute()) {
         return array("message" => "Delete Succesfully");
     } else {
         return array("error" => $stmt->error);
     }
-}
-
-function get_coordinators(){
-    global $conn;
-    $coordinators = [];
-
-    // Use a prepared statement to prevent SQL injection
-    $sql = $conn->prepare("SELECT user_name FROM user WHERE clearense = 'course_c'");
-
-    // Execute the query
-    $sql->execute();
-    
-    // Get the result set
-    $result = $sql->get_result();
-
-    // Check if the query was successful
-    if ($result && $result->num_rows > 0) {
-        // Fetch course coordinators and add them to the $coordinators array
-        while ($row = $result->fetch_assoc()) {
-            $coordinators[] = $row['user_name'];
-        }
-    }
-
-    return $coordinators;
 }

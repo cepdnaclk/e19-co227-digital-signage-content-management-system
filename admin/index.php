@@ -4,10 +4,10 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/dashboard.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/support.php";
 
-// $data = getDashboardData();
-// if (isset($data['error']))
-//     if (!isset($_GET['error']))
-//         header("Location: ?error={$data['error']}");
+$data = getSummery();
+if (isset ($data['error']))
+    if (!isset ($_GET['error']))
+        header("Location: ?error={$data['error']}");
 
 $support = getMessages();
 if (isset ($support['error']))
@@ -67,19 +67,19 @@ if (isset ($support['error']))
                         <div class="row">
                             <p class="widget-info" id="total-pages"><span>
                                     <i class="fa-regular fa-note-sticky"></i>
-                                    <?= $data['total']['pages'] ?>
+                                    <?= $data['totalSlideCount'] ?>
                                 </span> Total Pages </p>
                             <p class="widget-info" id="total-published-pages">
                                 <span>
                                     <i class="fa-regular fa-note-sticky"></i>
-                                    <?= $data['total']['pagesP'] ?>
+                                    <?= $data['totalSlideCountPublished'] ?>
                                 </span>
                                 Total Published Pages
                             </p>
                             <p class="widget-info" id="total-time-for-cycle">
                                 <span>
                                     <i class="fa-regular fa-clock"></i>
-                                    <?= $data['total']['time'] ?>s
+                                    <?= $data['totalTime'] ?>s
                                 </span>
                                 Total Time per Cycle
                             </p>
