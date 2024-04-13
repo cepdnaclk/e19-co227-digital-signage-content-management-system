@@ -7,18 +7,22 @@ if (session_status() == PHP_SESSION_NONE) {
 include_once $_SERVER['DOCUMENT_ROOT'] . '/backend/functions/boards.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/backend/functions/topic.php';
 
-function getTopicSlide(int $slide_id)
+function isAdminSlide($slide_no)
 {
     global $conn;
 
-    $stmt = $conn->prepare("SELECT * FROM slides WHERE Id = ?");
-    $stmt->bind_param('i', $slide_id);
+    $stmt = $conn->prepare("SELECT * FROM slides WHERE slide_id = ? AND topic IN (SELECT topic_id FROM topics WHERE board_id IN (SELECT board_id FROM clearence WHERE user_id = ?))");
+    $stmt->bind_param('ii', $slide_no, $_SESSION['user_id']);
     $stmt->execute();
     $result = $stmt->get_result();
-    $slide = $result->fetch_assoc();
+    $row = $result->fetch_assoc();
     $stmt->close();
 
-    return $slide;
+    if ($row) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function getSlides($topic)
@@ -74,9 +78,7 @@ function getSlideCountPublished($topic)
 
 function addSlide(int $topic_id, string $image, string $from_date, string $to_date, bool $published)
 {
-    $board_id = getTopicBoard($topic_id);
-
-    if (isAdmin($board_id)) {
+    if (isAdminTopic($topic_id)) {
         global $conn;
 
         $stmt = $conn->prepare("INSERT INTO slides (topic, image, from_date, to_date, published) VALUES (?, ?, ?, ?, ?)");
@@ -92,10 +94,7 @@ function addSlide(int $topic_id, string $image, string $from_date, string $to_da
 
 function removeSlide(int $slide_id)
 {
-    $topic_id = getTopicBoard($slide_id);
-    $board_id = getTopicBoard($topic_id);
-
-    if (isAdmin($board_id)) {
+    if (isAdminSlide($slide_id)) {
         global $conn;
 
         $stmt = $conn->prepare("DELETE FROM slides WHERE slide_id = ?");
@@ -111,10 +110,7 @@ function removeSlide(int $slide_id)
 
 function updateSlide(int $slide_id, string $image, string $from_date, string $to_date, bool $published)
 {
-    $topic_id = getTopicBoard($slide_id);
-    $board_id = getTopicBoard($topic_id);
-
-    if (isAdmin($board_id)) {
+    if (isAdminSlide($slide_id)) {
         global $conn;
 
         $stmt = $conn->prepare("UPDATE slides SET image = ?, from_date = ?, to_date = ?, published = ? WHERE slide_id = ?");
@@ -130,10 +126,7 @@ function updateSlide(int $slide_id, string $image, string $from_date, string $to
 
 function publishSlide(int $slide_id)
 {
-    $topic_id = getTopicBoard($slide_id);
-    $board_id = getTopicBoard($topic_id);
-
-    if (isAdmin($board_id)) {
+    if (isAdminSlide($slide_id)) {
         global $conn;
 
         $stmt = $conn->prepare("UPDATE slides SET published = 1 WHERE slide_id = ?");
