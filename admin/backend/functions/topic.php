@@ -74,13 +74,13 @@ function getTopicBoard(int $topic_id)
     return $topic;
 }
 
-function addTopic(int $board_id, string $title, string $icon)
+function addTopic(int $board_id, string $title, string $icon, int $type)
 {
     if (isAdminBoard($board_id)) {
         global $conn;
 
-        $stmt = $conn->prepare("INSERT INTO topics (board_id, title, icon) VALUES (?, ?, ?)");
-        $stmt->bind_param('iss', $board_id, $title, $icon);
+        $stmt = $conn->prepare("INSERT INTO topics (`board_id`, `title`, `icon`, `type`) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param('iss', $board_id, $title, $icon, $type);
 
         if (!$stmt->execute())
             return array("error" => $stmt->error);
