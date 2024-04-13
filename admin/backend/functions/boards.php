@@ -9,7 +9,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/backend/functions/topic.php';
 // boards(board_id,board_name,theme)
 
 // check is owner of a board
-function isOwner(int $board_id)
+function isOwnerBoard(int $board_id)
 {
     global $conn;
 
@@ -28,7 +28,7 @@ function isOwner(int $board_id)
 }
 
 // check is admin of a board
-function isAdmin(int $board_id)
+function isAdminBoard(int $board_id)
 {
     global $conn;
 
@@ -68,7 +68,7 @@ function createBoard(string $board_name, string $theme)
 
 function manageBoard(string $board_name, string $theme, int $board_id)
 {
-    if (isOwner($board_id)) {
+    if (isAdminBoard($board_id)) {
         global $conn;
 
         $stmt = $conn->prepare("UPDATE boards SET board_name = ?, theme = ? WHERE board_id = ?");
@@ -85,7 +85,7 @@ function manageBoard(string $board_name, string $theme, int $board_id)
 
 function deleteBoard(int $board_id)
 {
-    if (isOwner($board_id)) {
+    if (isOwnerBoard($board_id)) {
         deleteTopicsBoard($board_id);
 
         global $conn;
