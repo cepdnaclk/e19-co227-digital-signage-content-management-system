@@ -15,6 +15,11 @@ header {
   padding: 0 1rem;
 }
 
+header .logo h3 {
+  font-weight: 600;
+  margin: 0;
+}
+
 /* Style the menu cntainer */
 .menu {
   display: flex;
@@ -26,6 +31,8 @@ header {
   list-style: none;
   display: flex;
   gap: 1.2rem;
+  margin: 0;
+  padding: 0;
 }
 
 .menu ul li {
@@ -79,12 +86,14 @@ header {
 .profile h5 {
   font-weight: 500;
   font-size: 1rem;
+  margin: 0;
 }
 
 .profile p {
   grid-column: 2;
   font-size: 0.8rem;
   color: var(--color-text-2);
+  margin: 0;
 }
 
 .profile .img {
@@ -101,41 +110,7 @@ header {
   color: var(--color-1);
 }
 
-
-/* Dropdown styles */
-.profile-dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  margin-right: 2px;
-  background-color: #fff;
-  box-shadow: 0px 4px 6px rgba(162, 80, 80, 0.1);
-  border-radius: 3px;
-  padding: 4px 2px;
-  margin: 2px 4px ;
-}
-
-
-
-/* Dropdown list styles */
-.profile-dropdown ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.profile-dropdown ul li {
-  padding: 10px;
-}
-
-.profile-dropdown ul li a {
-  text-decoration: none;
-  color: #333;
-  display: block;
-  transition: background-color 0.2s ease-in-out;
-}
-
-/* Highlight on hover */
-.profile-dropdown ul li a:hover {
-  background-color: #f0f0f0;
+.profile .logout {
+  font-size: 0.8rem;
+  padding: 2px 5px;
 }

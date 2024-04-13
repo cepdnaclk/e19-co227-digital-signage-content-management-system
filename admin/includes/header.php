@@ -17,7 +17,7 @@ if (isset($_SESSION['user_id'])) {
 
   // Use your database connection and query to fetch user data
   // Replace 'your_query_here' with the actual SQL query to fetch user data
-  $sql = "SELECT user_name, clearense FROM user WHERE u_id = ?";
+  $sql = "SELECT user_name FROM user WHERE u_id = ?";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("i", $user_id);
   $stmt->execute();
@@ -26,7 +26,6 @@ if (isset($_SESSION['user_id'])) {
   if ($row = $result->fetch_assoc()) {
     // User data found, retrieve information
     $username = $row['user_name'];
-    $role = $row['clearense'];
   }
 }
 if (!isset($_SESSION['user_id'])) {
@@ -46,6 +45,9 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
   <header>
+    <div class="logo">
+      <h3>DIGISIGNAGE</h3>
+    </div>
     <div class="menu">
       <ul>
         <li><a href="/pages/contactNsupport">Contact & Support</a></li>
@@ -59,13 +61,8 @@ if (!isset($_SESSION['user_id'])) {
         <?php echo isset($username) ? $username : 'Guest'; ?>
       </h5>
       <p>
-        <?php echo isset($role) ? $role : 'Guest'; ?>
+        <a class="btn btn-danger logout" href="/backend/logout.php">Log out</a>
       </p>
-      <div class="profile-dropdown">
-        <ul>
-          <li><a href="/backend/logout.php">⟫ Logout</a></li>
-        </ul>
-      </div>
     </div>
   </header>
   <?php if (isset($_GET['error']) && $_GET['error'] != "") { ?>
