@@ -13,36 +13,32 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 // Allow specific HTTP headers in requests
 header("Access-Control-Allow-Headers: Content-Type");
 
-if (isset($_POST["login"])) {
+if (isset($_POST["register"])) {
     $user_name = $_POST["user_name"];
     $password = $_POST["password"];
+    $rpassword = $_POST["rpassword"];
+    $email = $_POST["email"];
+    $contact = $_POST["contact"];
+
+    // Check if the passwords match
+    if ($password != $rpassword) {
+        header("Location: /pages/register.php?error=Passwords do not match");
+        exit();
+    }
 
     // Hash the provided password
     $hashed_password = hash('sha256', $password);
 
     // Create a prepared statement
-    $stmt = $conn->prepare("SELECT u_id, user_name, `password` FROM `user` WHERE `user_name`=?");
+    $stmt = $conn->prepare("INSERT INTO `user` (user_name, `password`, email, contact) VALUES (?, ?, ?, ?)");
 
     // Bind the parameters and execute
-    $stmt->bind_param("s", $user_name);
-    $stmt->execute();
-
-    // Get the result
-    $result = $stmt->get_result();
-
-    if ($row = $result->fetch_assoc()) {
-        if ($row['password'] == $hashed_password) {
-            // Authentication successful
-            $_SESSION["user_id"] = $row["u_id"]; // Set user_id in the session
-            $_SESSION["user_name"] = $row["user_name"];
-            header("Location: /");
-            exit();
-        } else {
-            header("Location: /pages/login.php?error=Password Incorrect");
-        }
+    $stmt->bind_param("ssss", $user_name, $hashed_password, $email, $contact);
+    if ($stmt->execute()) {
+        header("Location: /pages/login.php?message=Registration successful. Please login to continue");
+        exit();
     } else {
-        // Authentication failed
-        header("Location: /pages/login.php?error=No user found with this username");
+        header("Location: /pages/register.php?error=" . $stmt->error);
         exit();
     }
 } else {

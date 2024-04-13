@@ -1,5 +1,5 @@
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php" ?>
-<!-- <?php session_start(); ?> -->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/login.css">
     <?php include APP_ROOT . "/includes/header_core.php" ?>
-    <title>IT Center | Login</title>
+    <title>IT Center | Register</title>
     <style>
         .alert {
             left: 50%;
@@ -42,22 +42,29 @@
         </div>
         <div class="content">
 
-            <form action="/backend/login.php" method="POST">
-                <h1>Login</h1>
+            <form action="/backend/register.php" method="POST">
+                <h1>Register</h1>
                 <div class="login-input">
-
                     <label for="user_name">Username</label>
-                    <input type="text" id="user_name" name="user_name" placeholder="John Doe">
+                    <input type="text" id="user_name" name="user_name" placeholder="John Doe" required>
                 </div>
                 <div class="login-input">
-
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="xxxxxxxx">
+                    <input type="password" id="password" name="password" placeholder="xxxxxxxx" required>
                 </div>
-                <p>Forgot your password? <a href="">Forgot Password</a></p>
-                <button type="submit" name="login">LOGIN</button>
-                <hr>
-                <p>Don't have an account? <a href="./register.php">Register</a></p>
+                <div class="login-input">
+                    <label for="rpassword">Confirm Password</label>
+                    <input type="password" id="rpassword" name="rpassword" placeholder="xxxxxxxx" required>
+                </div>
+                <div class="login-input">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="email" required>
+                </div>
+                <div class="login-input">
+                    <label for="contact">Contact</label>
+                    <input type="contact" id="contact" name="contact" placeholder="contact" required>
+                </div>
+                <button type="submit" name="register">Register</button>
             </form>
         </div>
     </div>
