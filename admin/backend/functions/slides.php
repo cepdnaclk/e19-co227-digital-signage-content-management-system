@@ -139,3 +139,18 @@ function publishSlide(int $slide_id)
         return array("error" => "You are not admin of this board");
     }
 }
+
+function getSlidesImages()
+{
+    global $conn;
+
+    $slides = array();
+
+    $result = $conn->query("SELECT image FROM slides");
+
+    while ($row = $result->fetch_assoc()) {
+        $slides[] = $row;
+    }
+
+    return $slides;
+}
