@@ -1,5 +1,12 @@
 <?php
+// timing(timing_Id,topic,per_page,per_slide)
+
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/backend/functions/topic.php';
 
 function getTimes()
 {
@@ -16,33 +23,34 @@ function getTimes()
     return $timing;
 }
 
-// Function to update the "Total Time" field in the database
-function updateTotalTime($id, $totalTime, $slideTime)
+function getTiming($topic)
 {
+    $timing = getTimes();
+
+    return $timing[$topic];
+}
+
+function addTiming($topic, $per_page, $per_slide)
+{
+    if (isAdminTopic($topic)) {
+        global $conn;
+
+        $stmt = $conn->prepare("INSERT INTO timing (topic, per_page, per_slide) VALUES (?, ?, ?)");
+        $stmt->bind_param('sii', $topic, $per_page, $per_slide);
+        if ($stmt->execute()) {
+            return array("message" => "Timing added");
+        } else {
+            return array("error" => "Error adding timing");
+        }
+    } else {
+        return array("error" => "You are not admin of this topic");
+    }
+}
+
+function removeTimings(){
     global $conn;
-    $result = array();
 
-    $totalTime = (int) $totalTime;
-
-    // Check if $slideTime is null, and set the appropriate placeholder
-    if ($slideTime === null) {
-        $sql = "UPDATE `timing` SET `per_page` = ?, `per_slide` = NULL WHERE `Id` = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("is", $totalTime, $id);
-    } else {
-        $slideTime = (int) $slideTime;
-        $sql = "UPDATE `timing` SET `per_page` = ?, `per_slide` = ? WHERE `Id` = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("iis", $totalTime, $slideTime, $id);
-    }
-
-    if ($stmt->execute()) {
-        $result = array('message' => "Data updated Successfully");
-    } else {
-        $result = array('error' => $stmt->error);
-    }
-
+    $stmt = $conn->prepare("DELETE FROM timing");
+    $stmt->execute();
     $stmt->close();
-
-    return $result;
 }
