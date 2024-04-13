@@ -6,6 +6,24 @@ if (session_status() == PHP_SESSION_NONE) {
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/backend/functions/boards.php';
 
+function isAdminTopic(int $topic_id)
+{
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM topics WHERE topic_id = ? AND board_id IN (SELECT board_id FROM clearence WHERE user_id = ?)");
+    $stmt->bind_param('ii', $topic_id, $_SESSION['user_id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+
+    if ($row) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function getTopics(int $board_id)
 {
     global $conn;
@@ -30,7 +48,7 @@ function getTopics(int $board_id)
 
 function getTopicCount(int $board_id)
 {
-    if (isAdmin($board_id)) {
+    if (isAdminBoard($board_id)) {
         $topics = getTopics($board_id);
         return count($topics);
     }
@@ -58,7 +76,7 @@ function getTopicBoard(int $topic_id)
 
 function addTopic(int $board_id, string $title, string $icon)
 {
-    if (isAdmin($board_id)) {
+    if (isAdminBoard($board_id)) {
         global $conn;
 
         $stmt = $conn->prepare("INSERT INTO topics (board_id, title, icon) VALUES (?, ?, ?)");
@@ -73,11 +91,26 @@ function addTopic(int $board_id, string $title, string $icon)
     return array("error" => "You are not admin of this board");
 }
 
+function editTopic(int $topic_id, string $title, string $icon)
+{
+    if (isAdminTopic($topic_id)) {
+        global $conn;
+
+        $stmt = $conn->prepare("UPDATE topics SET title = ?, icon = ? WHERE topic_id = ?");
+        $stmt->bind_param('ssi', $title, $icon, $topic_id);
+
+        if (!$stmt->execute())
+            return array("error" => $stmt->error);
+        else
+            return array("message" => "Edit Topic Succesfully");
+    }
+
+    return array("error" => "You are not admin of this board");
+}
+
 function deleteTopic(int $topic_id)
 {
-    $board_id = getTopicBoard($topic_id);
-
-    if (isAdmin($board_id)) {
+    if (isAdminTopic($topic_id)) {
         global $conn;
 
         $stmt = $conn->prepare("DELETE FROM topics WHERE topic_id = ?");
@@ -94,17 +127,13 @@ function deleteTopic(int $topic_id)
 
 function deleteTopicsBoard(int $board_id)
 {
-    if (isOwner($board_id)) {
-        global $conn;
+    global $conn;
 
-        $stmt = $conn->prepare("DELETE FROM topics WHERE board_id = ?");
-        $stmt->bind_param('i', $board_id);
+    $stmt = $conn->prepare("DELETE FROM topics WHERE board_id = ?");
+    $stmt->bind_param('i', $board_id);
 
-        if (!$stmt->execute())
-            return array("error" => $stmt->error);
-        else
-            return array("message" => "Delete Topics Succesfully");
-    }
-
-    return array("error" => "You are not owner of this board");
+    if (!$stmt->execute())
+        return array("error" => $stmt->error);
+    else
+        return array("message" => "Delete Topics Succesfully");
 }
