@@ -15,6 +15,16 @@ header {
   padding: 0 1rem;
 }
 
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+header .logo img {
+  height: 30px;
+}
+
 header .logo h3 {
   font-weight: 600;
   margin: 0;

@@ -46,6 +46,7 @@ if (!isset($_SESSION['user_id'])) {
 <body>
   <header>
     <div class="logo">
+      <img src="/images/signage.png" alt="">
       <h3>DIGISIGNAGE</h3>
     </div>
     <div class="menu">
