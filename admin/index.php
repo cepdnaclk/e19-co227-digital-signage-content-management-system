@@ -4,16 +4,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/support.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/boards.php";
 
-
-if (isset($data['error']))
-    if (!isset($_GET['error']))
-        header("Location: ?error={$data['error']}");
-
-$support = getMessages();
-if (isset($support['error']))
-    if (!isset($_GET['error']))
-        header("Location: ?error={$support['error']}");
-
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +18,24 @@ if (isset($support['error']))
 </head>
 
 <body>
-    <div class="container"></div>
+    <div class="container mt-5 pt-5">
+        <div class="d-flex align-items-center justify-content-between">
+            <h3>Your Boards</h3>
+            <a href="/pages/board.php" class="btn btn-primary"><i class="fa-solid fa-plus me-2"></i> New Board</a>
+        </div>
+        <div class="row-cols-1 row-cols-md-3 row-cols-lg-5 mt-4">
+            <div class="col">
+                <div class="card">
+                    <img src="https://placehold.co/800?text=IT+center&font=raleway" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">IT center</h5>
+                        <p class="card-text">by Kavishkagaya</p>
+                        <a href="#" class="btn btn-success">Manage</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
