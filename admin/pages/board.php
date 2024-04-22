@@ -18,22 +18,22 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
         <h3>Create a Board</h3>
         <div class="row pt-3">
             <div class="col-md-6">
-                <form action="/backend/" method="post">
+                <form action="/backend/api/boards/add.php" method="post">
                     <div class="mb-3">
                         <label for="boardName" class="form-label">Board Name</label>
-                        <input type="text" class="form-control" id="boardName" name="boardName" placeholder="Ex:- Myboard">
+                        <input type="text" class="form-control" id="boardName" name="boardName" placeholder="Ex:- Myboard" required>
                     </div>
                     <div class="mb-3">
                         <label for="logofile" class="form-label">Select a logo</label>
-                        <input class="form-control" type="file" id="logofile" name="logofile">
+                        <input class="form-control" type="file" id="logofile" name="logofile" required>
                     </div>
                     <div class="mb-3">
                         <label for="orgname" class="form-label">Organization name</label>
-                        <input type="text" class="form-control" id="orgname" name="orgname" placeholder="Ex:- My organization">
+                        <input type="text" class="form-control" id="orgname" name="orgname" placeholder="Ex:- My organization" required>
                     </div>
                     <div class="mb-3">
                         <label for="bgfile" class="form-label">Select a background</label>
-                        <input class="form-control" type="file" id="bgfile" name="bgfile">
+                        <input class="form-control" type="file" id="bgfile" name="bgfile" required>
                         <p><em>If you select image that similer to public display aspect ratio will better</em></p>
                     </div>
                     <div class="d-flex gap-5">
