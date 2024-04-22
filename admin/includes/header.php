@@ -82,7 +82,6 @@ if (!isset($_SESSION['user_id'])) {
       </p>
     </div>
   <?php } ?>
-  <script src="/js/header.js"></script>
 </body>
 
 </html>
