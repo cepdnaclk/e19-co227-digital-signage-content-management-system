@@ -1,0 +1,100 @@
+input[type="color"] {
+  width: 30px;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  outline: none;
+}
+
+.preview {
+  --primary-color: #e80909;
+  --secondary-color: #e0d90c;
+  width: 100%;
+  aspect-ratio: 12/9;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px #0000003f;
+  padding: 1rem;
+  background-image: url("/images/sample-background.avif");
+  background-size: cover;
+  position: relative;
+}
+
+.preview .header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  background-color: white;
+  width: max-content;
+}
+
+.preview .header .logo {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
+}
+
+.preview .header .logo-text {
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.preview .sidebar {
+  position: absolute;
+  top: 15%;
+  left: 1rem;
+  height: 80%;
+  width: 30%;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px #0000003f;
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.preview .sidebar .item {
+  height: 30px;
+  width: 100%;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.preview .sidebar .item::before {
+  border-radius: 1rem;
+  content: "";
+  display: block;
+  height: 14px;
+  width: 100%;
+  background: linear-gradient(to right, rgb(153, 153, 153), transparent);
+}
+
+.preview .sidebar .item.active {
+  background-color: var(--primary-color);
+}
+
+.preview .sidebar .item.item.active::before {
+  background: linear-gradient(to right, white, transparent);
+}
+
+.preview .content {
+  position: absolute;
+  top: 15%;
+  left: 35%;
+  height: 80%;
+  width: 60%;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px #0000003f;
+  background-color: white;
+  padding: 1rem;
+}
+
+.preview .content .bar {
+  height: 50px;
+  width: 100%;
+  border-radius: 1rem;
+  background-color: var(--secondary-color);
+}
