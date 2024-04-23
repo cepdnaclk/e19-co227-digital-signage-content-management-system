@@ -14,7 +14,6 @@ input[type="color"] {
   border-radius: 1rem;
   box-shadow: 0 0 10px #0000003f;
   padding: 1rem;
-  background-image: url("/images/sample-background.avif");
   background-size: cover;
   position: relative;
 }
