@@ -46,6 +46,30 @@ function isAdminBoard(int $board_id)
     }
 }
 
+function getBoards()
+{
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT b.*, u.user_name AS `owner` FROM boards b LEFT JOIN clearence c ON b.board_id = c.board_id LEFT JOIN user u ON c.user_id = u.u_id WHERE c.level = 1 AND c.board_id IN (SELECT board_id FROM clearence WHERE user_id = ?)");
+
+    $stmt->bind_param('i', $_SESSION['user_id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+
+    $boards = array();
+    while ($row = $result->fetch_assoc()) {
+        $boards[] = array(
+            "board_id" => $row['board_id'],
+            "board_name" => $row['board_name'],
+            "owner" => $row['owner'],
+            "theme" => json_decode($row['theme'], true)
+        );
+    }
+
+    return $boards;
+}
+
 function createBoard(string $board_name, string $theme)
 {
     global $conn;
