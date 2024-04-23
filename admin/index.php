@@ -38,7 +38,7 @@ $boards = getBoards();
                         <div class="card-body">
                             <h5 class="card-title"><?= $board["board_name"] ?></h5>
                             <p class="card-text"><?= $board["owner"] ?></p>
-                            <a href="#" class="btn btn-success">Manage</a>
+                            <a href="/pages/manage-board.php?name=<?= $board["board_name"] ?>&id=<?= $board['board_id'] ?>" class="btn btn-success">Manage</a>
                         </div>
                     </div>
                 </div>
