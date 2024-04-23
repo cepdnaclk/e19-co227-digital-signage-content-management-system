@@ -1,0 +1,71 @@
+.manage-board .row {
+  margin: 0;
+  height: 100vh;
+}
+
+.manage-board .navbar {
+  display: block;
+  padding: 5rem 1rem 0;
+}
+
+.manage-board .navbar .navbar-brand {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.manage-board .navbar .navbar-brand a {
+  color: white;
+  margin-right: 0.5rem;
+}
+
+.manage-board .navbar .nav-link {
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.manage-board .navbar .nav-link.active {
+  background-color: #f8f9fa;
+  color: #141517;
+  font-weight: 600;
+}
+
+.manage-board .col-md-9 {
+  height: 100vh;
+  overflow-y: scroll;
+  padding-top: 6rem;
+}
+
+.manage-board .edit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.manage-board .users-list {
+  padding: 0;
+  list-style: none;
+}
+
+.manage-board .users-list li {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.manage-board .users-list li.titles {
+  background-color: rgb(38, 39, 49);
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.manage-board .users-list li:nth-child(even) {
+  background-color: #e6e6e6;
+}
+
+.manage-board .users-list li span:last-child {
+  margin-left: auto;
+}

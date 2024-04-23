@@ -26,17 +26,17 @@ if (isset($_GET['id'])) {
 
 <body>
     <div class="container mt-5 py-5">
-        <h3>Edit board: <?= $board['board_name'] ?></h3>
+        <h3><?= isset($_GET['id']) ? "Edit board:" . $board['board_name'] : "Create a Board" ?></h3>
         <div class="row pt-3">
             <div class="col-md-6">
-                <form action="<?= isset($_GET['id']) ? "/backend/api/boards/add.php" : "/backend/api/boards/edit.php" ?>" method="post" enctype="multipart/form-data">
+                <form action="<?= !isset($_GET['id']) ? "/backend/api/boards/add.php" : "/backend/api/boards/update.php" ?>" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="boardName" class="form-label">Board Name</label>
                         <input type="text" class="form-control" id="boardName" name="boardName" placeholder="Ex:- Myboard" value="<?= isset($board['board_name']) ? $board['board_name'] : "" ?>" required>
                     </div>
                     <div class="mb-3">
                         <label for="logofile" class="form-label">Select a logo</label>
-                        <input class="form-control" type="file" id="logofile" name="logofile" required>
+                        <input class="form-control" type="file" id="logofile" name="logofile" <?= isset($_GET['id']) ? "" : "required" ?>>
                     </div>
                     <div class="mb-3">
                         <label for="orgname" class="form-label">Organization name</label>
@@ -60,6 +60,7 @@ if (isset($_GET['id'])) {
                     <?php if (isset($_GET['id'])) { ?>
                         <input type="text" class="d-none" name="oldlogofile" value="<?= $board['theme']['logo'] ?>">
                         <input type="text" class="d-none" name="oldbgfile" value="<?= $board['theme']['bg'] ?>">
+                        <input type="text" class="d-none" name="board-id" value="<?= $_GET['id'] ?>">
                     <?php } ?>
                     <button type="submit" class="btn btn-success w-100 mt-3">
                         <h6 class="my-1"><?= isset($_GET['id']) ? "Update" : "Create" ?></h6>
