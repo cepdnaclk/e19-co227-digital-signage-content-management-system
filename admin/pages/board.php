@@ -33,7 +33,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
                     </div>
                     <div class="mb-3">
                         <label for="bgfile" class="form-label">Select a background</label>
-                        <input class="form-control" type="file" id="bgfile" name="bgfile" required>
+                        <input class="form-control" type="file" id="bgfile" name="bgfile">
                         <p><em>If you select image that similer to public display aspect ratio will better</em></p>
                     </div>
                     <div class="d-flex gap-5">

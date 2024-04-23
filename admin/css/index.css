@@ -1,0 +1,8 @@
+.card {
+  width: 100%;
+}
+
+.card img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}

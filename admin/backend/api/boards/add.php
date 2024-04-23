@@ -8,15 +8,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $boardName = $_POST['boardName'];
     $orgname = $_POST['orgname'];
     $colorPrimary = $_POST['color-primary'];
+
     $colorSecondary = $_POST['color-secondary'];
-    $logofile = $_FILES['logofile'];
+    if ($logofile = $_FILES['logofile'])
+        header('Location: /?error=No logo file selected');
     $bgfile = $_FILES['bgfile'];
+
+    if (isset($bgfile) && $bgfile['size'] != 0) {
+        $bgname = $bgfile['name'];
+        $bgpath = "/images/backgrounds/" . $bgname;
+        if (move_uploaded_file($bgfile['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $bgpath))
+            header('Location: /?error=Error uploading background file');
+    }
+
     $logoname = $logofile['name'];
-    $bgname = $bgfile['name'];
     $logopath =  "/images/logos/" . $logoname;
-    $bgpath = "/images/backgrounds/" . $bgname;
-    move_uploaded_file($logofile['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $logopath);
-    move_uploaded_file($bgfile['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $bgpath);
+    if (move_uploaded_file($logofile['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $logopath))
+        header('Location: /?error=Error uploading logo file');
 
     $theme = json_encode([
         'logo' => $logopath,
