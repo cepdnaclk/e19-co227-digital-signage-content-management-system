@@ -46,6 +46,28 @@ function isAdminBoard(int $board_id)
     }
 }
 
+function getBoard(int $board_id)
+{
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM boards WHERE board_id = ?");
+    $stmt->bind_param('i',  $board_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+
+    $row = $result->fetch_assoc();
+    if ($row) {
+        return array(
+            "board_id" => $row['board_id'],
+            "board_name" => $row['board_name'],
+            "theme" => json_decode($row['theme'], true)
+        );
+    } else {
+        return array("error" => "Board not found");
+    }
+}
+
 function getBoards()
 {
     global $conn;
