@@ -18,7 +18,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
         <h3>Create a Board</h3>
         <div class="row pt-3">
             <div class="col-md-6">
-                <form action="/backend/api/boards/add.php" method="post">
+                <form action="/backend/api/boards/add.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="boardName" class="form-label">Board Name</label>
                         <input type="text" class="form-control" id="boardName" name="boardName" placeholder="Ex:- Myboard" required>

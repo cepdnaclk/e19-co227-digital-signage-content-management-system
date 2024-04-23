@@ -13,8 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $bgfile = $_FILES['bgfile'];
     $logoname = $logofile['name'];
     $bgname = $bgfile['name'];
-    $logopath =  "/images/" . $logoname;
-    $bgpath = "/images/" . $bgname;
+    $logopath =  "/images/logos/" . $logoname;
+    $bgpath = "/images/backgrounds/" . $bgname;
     move_uploaded_file($logofile['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $logopath);
     move_uploaded_file($bgfile['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $bgpath);
 
