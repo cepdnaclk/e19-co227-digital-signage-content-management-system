@@ -20,6 +20,16 @@ if (isset($_POST["register"])) {
     $email = $_POST["email"];
     $contact = $_POST["contact"];
 
+    // check if username is used
+    $stmt = $conn->prepare("SELECT * FROM `user` WHERE user_name = ?");
+    $stmt->bind_param("s", $user_name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        header("Location: /pages/register.php?error=Username already exists");
+        exit();
+    }
+
     // Check if the passwords match
     if ($password != $rpassword) {
         header("Location: /pages/register.php?error=Passwords do not match");

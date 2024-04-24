@@ -2,7 +2,9 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/backend/functions/users.php");
 
+$users = getUsers((int) $_GET['id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,8 +38,10 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
                     </div>
                     <div id="users">
                         <h4 class="mt-5 mb-3">Users</h4>
-                        <form action="" class="mb-3 d-flex gap-3">
-                            <input type="text" class="form-control" placeholder="Enter username">
+                        <form action="/backend/api/boards/assign_user.php" method="post" class="mb-3 d-flex gap-3">
+                            <input type="text" name="user_name" class="form-control" placeholder="Enter username">
+                            <input type="text" name="board_name" class="d-none" value="<?= $_GET['name'] ?>">
+                            <input type="text" name="board_id" class="d-none" value="<?= $_GET['id'] ?>">
                             <button class="btn btn-success w-25">Add User</button>
                         </form>
                         <ul class="users-list">
@@ -47,30 +51,16 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
                                 <span>Contact</span>
                                 <span>Actions</span>
                             </li>
-                            <li>
-                                <span>John Doe</span>
-                                <span>samplemail.com</span>
-                                <span>1234567890</span>
-                                <span>
-                                    <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>John Doe</span>
-                                <span>samplemail.com</span>
-                                <span>1234567890</span>
-                                <span>
-                                    <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>John Doe</span>
-                                <span>samplemail.com</span>
-                                <span>1234567890</span>
-                                <span>
-                                    <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
-                                </span>
-                            </li>
+                            <?php foreach ($users as $key => $user) { ?>
+                                <li>
+                                    <span><?= $user['user_name'] ?></span>
+                                    <span><?= $user['email'] ?></span>
+                                    <span><?= $user['contact'] ?></span>
+                                    <span>
+                                        <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                    </span>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>

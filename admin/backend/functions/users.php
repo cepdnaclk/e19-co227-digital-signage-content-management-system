@@ -1,5 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php"; // Include your database connection
+include_once $_SERVER['DOCUMENT_ROOT'] . "/backend/functions/boards.php";
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -9,7 +11,7 @@ function getUsers(int $board_id)
     global $conn;
 
     // Prepare the SQL query
-    $stmt = $conn->prepare("SELECT u.u_id, u.user_name, u.email, u.contact, c.level FROM user u INNER JOIN clearence c ON u.u_id = c.user_id WHERE c.board_id = ? ");
+    $stmt = $conn->prepare("SELECT u.u_id, u.user_name, u.email, u.contact FROM user u INNER JOIN clearence c ON u.u_id = c.user_id WHERE c.board_id = ? AND c.level = 0 ORDER BY u.user_name ASC");
 
     // bind params
     $stmt->bind_param('i', $board_id);
@@ -23,13 +25,7 @@ function getUsers(int $board_id)
     // Fetch and return the data
     $users = array();
     while ($row = $result->fetch_assoc()) {
-        $clearence = $row['level'];
-
-        if (!isset($users[$clearence])) {
-            $users[$clearence] = array();
-        }
-
-        $users[$clearence][] = $row;
+        $users[] = $row;
     }
 
     // Close the statement
@@ -61,7 +57,6 @@ function getUser(int $user_id)
     $stmt->close();
 
     return $user;
-
 }
 
 function getme()
@@ -160,4 +155,31 @@ function deleteUser(int $userId)
     } else {
         return array("error" => $stmt->error);
     }
+}
+
+function assignBoard(int $board_id, string $user_name)
+{
+    if (isOwnerBoard($board_id)) {
+        global $conn;
+
+        $stmt = $conn->prepare("SELECT u_id FROM user WHERE user_name = ?");
+        $stmt->bind_param('s', $user_name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+
+        if (!isset($user['u_id'])) {
+            return array("error" => "User not found");
+        }
+
+        $stmt = $conn->prepare("INSERT INTO clearence (user_id, board_id, `level`) VALUES (?, ?, 0)");
+        $stmt->bind_param('ii', $user['u_id'], $board_id);
+        if ($stmt->execute()) {
+            return array("message" => "User assigned to board");
+        } else {
+            return array("error" => $stmt->error);
+        }
+    }
+    return array("error" => "You are not the owner of this board");
 }
