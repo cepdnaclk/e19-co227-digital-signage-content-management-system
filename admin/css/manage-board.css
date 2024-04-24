@@ -1,4 +1,4 @@
-.manage-board .row {
+.manage-board > .row {
   margin: 0;
   height: 100vh;
 }

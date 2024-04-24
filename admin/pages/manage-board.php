@@ -3,8 +3,13 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/backend/functions/users.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/backend/functions/topic.php");
 
 $users = getUsers((int) $_GET['id']);
+$topics = getTopics((int) $_GET['id']);
+
+$images = array("timetable_theme", "slider_theme", "image_theme", "video_theme", "qr_theme");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +39,17 @@ $users = getUsers((int) $_GET['id']);
                         <div class="d-flex justify-content-between">
                             <h4>Topics</h4>
                             <a href="/pages/topic.php?id=<?= $_GET['id'] ?>&name=<?= $_GET['name'] ?>" class="btn btn-warning"><i class="fa-solid fa-plus me-2"></i> New Topic</a>
+                        </div>
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 my-3">
+                            <?php foreach ($topics as $key => $topic) { ?>
+                                <div class="col">
+                                    <div class="card p-3">
+                                        <img src="/images/<?= $images[$topic['type']] ?>" alt="">
+                                        <h5 class="py-3"><i class="<?= $topic['icon'] ?>"></i> <?= $topic['title'] ?></h5>
+                                        <a href="" class="btn btn-success">Manage</a>
+                                    </div>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div id="users">
