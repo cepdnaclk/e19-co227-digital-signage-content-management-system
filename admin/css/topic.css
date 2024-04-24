@@ -1,0 +1,70 @@
+.topic .icons #itemList {
+  padding: 0;
+  margin: 0;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  margin-top: 5px;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  grid-gap: 1rem;
+  list-style: none;
+  height: 50vh;
+  overflow-y: scroll;
+}
+
+.topic .icons input[type="radio"] {
+  display: none;
+}
+
+.topic .icons #itemList label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  height: 50px;
+  width: 50px;
+  aspect-ratio: 1;
+  box-shadow: 0 0 0 1px #ced4da;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+.topic .icons #itemList input:checked + label {
+  border: 3px solid #007bff;
+}
+
+.topic .themes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+  gap: 1.5rem;
+}
+
+.topic .themes .theme input {
+  display: none;
+}
+
+.topic .themes .theme label {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+
+.topic .themes .theme label img {
+  box-shadow: 0 0 5px 1px #ced4da;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.topic .themes .theme input:checked + label img {
+  box-shadow: 0 0 5px 1px #007bff;
+}
+
+.topic .themes .theme input:checked + label p {
+  color: #007bff;
+}

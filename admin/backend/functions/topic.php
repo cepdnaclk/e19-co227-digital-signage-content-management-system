@@ -80,7 +80,7 @@ function addTopic(int $board_id, string $title, string $icon, int $type)
         global $conn;
 
         $stmt = $conn->prepare("INSERT INTO topics (`board_id`, `title`, `icon`, `type`) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param('iss', $board_id, $title, $icon, $type);
+        $stmt->bind_param('issi', $board_id, $title, $icon, $type);
 
         if (!$stmt->execute())
             return array("error" => $stmt->error);

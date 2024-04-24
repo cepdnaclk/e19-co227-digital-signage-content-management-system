@@ -33,7 +33,7 @@ $users = getUsers((int) $_GET['id']);
                     <div id="topics">
                         <div class="d-flex justify-content-between">
                             <h4>Topics</h4>
-                            <a href="" class="btn btn-warning"><i class="fa-solid fa-plus me-2"></i> New Topic</a>
+                            <a href="/pages/topic.php?board_id=<?= $_GET['id'] ?>" class="btn btn-warning"><i class="fa-solid fa-plus me-2"></i> New Topic</a>
                         </div>
                     </div>
                     <div id="users">
