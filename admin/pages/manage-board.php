@@ -37,7 +37,7 @@ $users = getUsers((int) $_GET['id']);
                         </div>
                     </div>
                     <div id="users">
-                        <h4 class="mt-5 mb-3">Users</h4>
+                        <h4 class="mt-5 mb-3">Admins</h4>
                         <form action="/backend/api/boards/assign_user.php" method="post" class="mb-3 d-flex gap-3">
                             <input type="text" name="user_name" class="form-control" placeholder="Enter username">
                             <input type="text" name="board_name" class="d-none" value="<?= $_GET['name'] ?>">
@@ -57,7 +57,7 @@ $users = getUsers((int) $_GET['id']);
                                     <span><?= $user['email'] ?></span>
                                     <span><?= $user['contact'] ?></span>
                                     <span>
-                                        <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                        <a href="/backend/api/boards/kick_user.php?user_name=<?= $user['user_name'] ?>&board_id=<?= $_GET['id'] ?>&board_name=<?= $_GET['name'] ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                                     </span>
                                 </li>
                             <?php } ?>

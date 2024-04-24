@@ -99,7 +99,7 @@ a {
 }
 
 .alert.error {
-  background-color: var(--color-1);
+  background-color: #c11609;
 }
 
 .alert.success {

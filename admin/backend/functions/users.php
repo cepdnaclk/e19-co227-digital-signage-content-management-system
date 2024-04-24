@@ -157,7 +157,38 @@ function deleteUser(int $userId)
     }
 }
 
-function assignBoard(int $board_id, string $user_name)
+function assignUser(int $board_id, string $user_name)
+{
+    if (isOwnerBoard($board_id)) {
+        global $conn;
+
+        $stmt = $conn->prepare("SELECT u_id FROM user WHERE user_name = ?");
+        $stmt->bind_param('s', $user_name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+
+        if ($user['u_id'] == null) {
+            return array("error" => "User not found");
+        }
+
+        if ($user['u_id'] == $_SESSION['user_id']) {
+            return array("error" => "You can't assign yourself to the board");
+        }
+
+        $stmt = $conn->prepare("INSERT INTO clearence (user_id, board_id, `level`) VALUES (?, ?, 0)");
+        $stmt->bind_param('ii', $user['u_id'], $board_id);
+        if ($stmt->execute()) {
+            return array("message" => "User assigned to board");
+        } else {
+            return array("error" => $stmt->error);
+        }
+    }
+    return array("error" => "You are not the owner of this board");
+}
+
+function kickUser(int $board_id, string $user_name)
 {
     if (isOwnerBoard($board_id)) {
         global $conn;
@@ -173,10 +204,10 @@ function assignBoard(int $board_id, string $user_name)
             return array("error" => "User not found");
         }
 
-        $stmt = $conn->prepare("INSERT INTO clearence (user_id, board_id, `level`) VALUES (?, ?, 0)");
+        $stmt = $conn->prepare("DELETE FROM clearence WHERE user_id = ? AND board_id = ?");
         $stmt->bind_param('ii', $user['u_id'], $board_id);
         if ($stmt->execute()) {
-            return array("message" => "User assigned to board");
+            return array("message" => "User kicked from board");
         } else {
             return array("error" => $stmt->error);
         }
