@@ -76,7 +76,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/backend/functions/topic.php");
                 </div>
             </div>
             <div class="d-none">
-                <input type="text" name="board_id" value="<?= $_GET['board_id'] ?>">
+                <input type="text" name="board_id" value="<?= $_GET['id'] ?>">
+                <input type="text" name="board_name" value="<?= $_GET['name'] ?>">
             </div>
         </form>
     </div>

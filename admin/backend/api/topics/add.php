@@ -7,11 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $icon = $_POST['icon'];
     $theme = $_POST['theme'];
     $board_id = $_POST['board_id'];
+    $board_name = $_POST['board_name'];
 
     $topic = addTopic($board_id, $title, $icon, $theme);
     if ($topic['error']) {
-        header("Location: /pages/manage-board.php?board_id=$board_id&error=" . $topic['error']);
+        header("Location: /pages/manage-board.php?id=$board_id&name=$board_name&error=" . $topic['error']);
     } else {
-        header("Location: /pages/manage-board.php?board_id=$board_id&success=" . $topic['message']);
+        header("Location: /pages/manage-board.php?id=$board_id&name=$board_name&success=" . $topic['message']);
     }
 }
