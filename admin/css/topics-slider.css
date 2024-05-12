@@ -19,3 +19,31 @@
 .manage-topic-slide #sidebar form{
     color: white;
 }
+
+.manage-topic-slide .image-table{
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.manage-topic-slide .image-table .image-row{
+    display: grid;
+    grid-template-columns: 5fr 2fr 2fr 1fr 1fr 1fr;
+    align-items: center;
+    height: 5rem;
+    padding: 1rem;
+    background-color: #f5f5ff;
+    border-radius: 0.5rem;
+}
+
+.manage-topic-slide .image-row img{
+    height: 3rem;
+    object-fit: contain;
+}
+
+.manage-topic-slide .image-row p{
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+}

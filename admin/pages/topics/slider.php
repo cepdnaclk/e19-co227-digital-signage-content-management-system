@@ -19,7 +19,8 @@
 
     // Fetch images from directory
     $image_directory = "../../images/$name/$title/";
-    $images = getImages($image_directory);
+    // sample data for images(id, image, from_date, to_date, order)
+    $images = array(array('id' => 1, 'image' => 'image1.jpg', 'from_date' => '2021-10-01', 'to_date' => '2021-10-10', 'order' => 1), array('id' => 2, 'image' => 'image2.jpg', 'from_date' => '2021-10-11', 'to_date' => '2021-10-20', 'order' => 2), array('id' => 3, 'image' => 'image3.jpg', 'from_date' => '2021-10-21', 'to_date' => '2021-10-30', 'order' => 3));
     ?>
 
     <!DOCTYPE html>
@@ -43,12 +44,20 @@
 
                             <!-- Display uploaded images in table format -->
                             <div class="image-table">
+                                <div class="bg-dark text-light image-row">
+                                    <p>Image</p>
+                                    <p>From date</p>
+                                    <p>To date</p>
+                                    <p class="text-center" style="grid-column: 4/6;">Order</p>
+                                </div>
                                 <?php foreach ($images as $key => $image) { ?>
                                     <div class="image-row">
-                                        <img src="https://placehold.co/500x300?text=Select a image" alt="">
+                                        <img src="https://placehold.co/500x300?text=<?= $image['image'] ?>" alt="">
                                         <p class="from"><?= $image['from_date'] ?></p>
                                         <p class="to"><?= $image['to_date'] ?></p>
-                                        <button class="btn up">i</button>
+                                        <button class="btn up text-success fs-3"><i class="fa-solid fa-caret-up"></i></button>
+                                        <button class="btn up text-info fs-3"><i class="fa-solid fa-caret-down"></i></button>
+                                        <button class="btn up text-danger"><i class="fa-solid fa-trash"></i></button>
                                     </div>
                                 <?php } ?>
                             </div>
