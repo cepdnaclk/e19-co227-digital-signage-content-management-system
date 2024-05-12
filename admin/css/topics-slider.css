@@ -44,7 +44,7 @@ label {
     background-color: #e9e9e9;
 }
 
-input[type="submit"] {
+/* input[type="submit"] {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -57,4 +57,32 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #0056b3;
-}
+} */
+
+ /* Style for the label */
+ label {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    display: block;
+
+  }
+
+  /* Style for the file input */
+  input[type="file"] {
+    margin-bottom: 10px;
+  }
+
+  /* Style for the submit button */
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 7px 7px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }

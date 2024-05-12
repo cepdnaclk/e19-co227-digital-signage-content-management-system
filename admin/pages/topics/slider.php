@@ -56,9 +56,10 @@
                                 <input type="hidden" name="topic_title" value="<?= $title ?>">
                                 <label for="file">Choose up to 10 images to upload:</label>
                                 <input type="file" name="files[]" id="file" multiple accept="image/*">
-                                <input type="submit" value="Upload Images" name="submit">
+                                <br>
+                                <input type="submit" value="Upload Chosen Images" name="submit">
                                 </form>
-
+                                <hr>
                                 <h4>Uploaded Images</h4>
                                 
                             <!-- Display uploaded images in table format -->
