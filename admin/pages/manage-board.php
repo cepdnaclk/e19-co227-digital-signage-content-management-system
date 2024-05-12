@@ -18,14 +18,14 @@ $images = array("timetable_theme", "slider_theme", "image_theme", "video_theme",
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/manage-board.css">
-    <title>Admin panel | manage <?= $_GET['name'] ?> </title>
+    <title>Admin Panel | Manage <?= $_GET['name'] ?> </title>
 </head>
 
 <body>
     <div class="manage-board">
         <div class="row">
             <nav id="sidebar" class="navbar navbar-dark bg-dark col-md-3">
-                <p class="navbar-brand"><a href="/"><i class="fa-solid fa-circle-left"></i></a> Manage <?= $_GET['name'] ?></p>
+                <p class="navbar-brand"><a href="/"><i class="fa-solid fa-circle-left"></i></a> Manage <b><?= $_GET['name'] ?></b></p>
                 <nav class="nav nav-pills flex-column">
                     <a class="nav-link" href="#topics">Topics</a>
                     <a class="nav-link" href="#admins">Admins</a>
@@ -46,7 +46,7 @@ $images = array("timetable_theme", "slider_theme", "image_theme", "video_theme",
                                     <div class="card p-3">
                                         <img src="/images/<?= $images[$topic['type']] ?>" alt="">
                                         <h5 class="py-3"><i class="<?= $topic['icon'] ?>"></i> <?= $topic['title'] ?></h5>
-                                        <a href="" class="btn btn-success">Manage</a>
+                                        <a href="/pages/topics/slider.php?id=<?= $_GET['id'] ?>&name=<?= $_GET['name'] ?>&type=<?=$topic['type']?>&topic=<?=$topic['title']?>" class="btn btn-success">Manage</a>
                                     </div>
                                 </div>
                             <?php } ?>

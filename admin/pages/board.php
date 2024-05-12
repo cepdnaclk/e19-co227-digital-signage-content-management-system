@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/board.css">
-    <title>Admin panel | <?= $_GET['id'] ? "Edit " . $board['board_name'] : "Create board" ?></title>
+    <title>Admin panel | <?= isset($_GET['id']) ? "Edit " . $board['board_name'] : "Create board" ?></title>
 </head>
 
 <body>
