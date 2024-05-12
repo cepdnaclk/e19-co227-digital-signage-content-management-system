@@ -9,6 +9,7 @@ $users = getUsers((int) $_GET['id']);
 $topics = getTopics((int) $_GET['id']);
 
 $images = array("timetable_theme", "slider_theme", "image_theme", "video_theme", "qr_theme");
+$types = array("timetable","slider","image","video","qr");
 
 ?>
 <!DOCTYPE html>
@@ -46,7 +47,7 @@ $images = array("timetable_theme", "slider_theme", "image_theme", "video_theme",
                                     <div class="card p-3">
                                         <img src="/images/<?= $images[$topic['type']] ?>" alt="">
                                         <h5 class="py-3"><i class="<?= $topic['icon'] ?>"></i> <?= $topic['title'] ?></h5>
-                                        <a href="/pages/topics/slider.php?id=<?= $_GET['id'] ?>&name=<?= $_GET['name'] ?>&type=<?=$topic['type']?>&topic=<?=$topic['title']?>" class="btn btn-success">Manage</a>
+                                        <a href="/pages/topics/<?= $types[$topic['type']] ?>.php?id=<?= $_GET['id'] ?>&name=<?= $_GET['name'] ?>&type=<?=$topic['type']?>&topic=<?=$topic['title']?>" class="btn btn-success">Manage</a>
                                     </div>
                                 </div>
                             <?php } ?>

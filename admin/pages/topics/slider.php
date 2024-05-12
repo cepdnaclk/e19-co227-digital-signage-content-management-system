@@ -2,7 +2,7 @@
 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/config.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/header.php");
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/backend/api/topics/slider/upload.php");
+    // include_once($_SERVER['DOCUMENT_ROOT'] . "/backend/api/topics/slider/upload.php");
     // include_once($_SERVER['DOCUMENT_ROOT'] . "/backend/api/topics/slider/get.php");
 
 
@@ -11,7 +11,8 @@
     $name = $_GET['name'];
     $type = $_GET['type'];
     $title = $_GET['topic'];
-    function getImages($directory) {
+    function getImages($directory)
+    {
         $images = glob($directory . "*.{jpg,jpeg,png,gif}", GLOB_BRACE);
         return $images;
     }
@@ -33,120 +34,69 @@
     </head>
 
     <body>
-        <div class="manage-board">
+        <div class="manage-board manage-topic-slide">
             <div class="row">
-                <nav id="sidebar" class="navbar navbar-dark bg-dark col-md-3">
-                    <p class="navbar-brand"><a href="/"><i class="fa-solid fa-circle-left"></i></a> Manage <b><?= $name ?></b></p>
-                    <nav class="nav nav-pills flex-column">
-                        <a class="nav-link" href="#topics">Topics</a>
-                        <a class="nav-link" href="#admins">Admins</a>
-                    </nav>
-                </nav>
-                    <div data-bs-spy="scroll" data-bs-target="#sidebar" data-bs-offset="0" tabindex="0" class="col-md-9">
+                <div class="col-md-9">
                     <div class="container">
                         <div id="topics-slider">
-                            <div class="d-flex justify-content-between">
-                                <h4>Slider Theme Topic -  <?=$title?></h4>
-                            </div>
-                                <!-- Form to upload images -->
-                                <form action="/backend/api/topics/slider/upload.php" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="topic_id" value="<?= $id ?>">
-                                <input type="hidden" name="board_name" value="<?= $name ?>">
-                                <input type="hidden" name="topic_type" value="<?= $type ?>">
-                                <input type="hidden" name="topic_title" value="<?= $title ?>">
-                                <label for="file">Choose up to 10 images to upload:</label>
-                                <input type="file" name="files[]" id="file" multiple accept="image/*">
-                                <br>
-                                <input type="submit" value="Upload Chosen Images" name="submit">
-                                </form>
-                                <hr>
-                                <h4>Uploaded Images</h4>
-                                
+                            <h4>Slides</h4>
+
                             <!-- Display uploaded images in table format -->
                             <div class="image-table">
-                            <div class="image-row">
-                                <div class="image-cell"><strong></strong></div>
-                                <div class="image-cell"><strong><center>Image</center></strong></div>
+                                <?php foreach ($images as $key => $image) { ?>
+                                    <div class="image-row">
+                                        <img src="https://placehold.co/500x300?text=Select a image" alt="">
+                                        <p class="from"><?= $image['from_date'] ?></p>
+                                        <p class="to"><?= $image['to_date'] ?></p>
+                                        <button class="btn up">i</button>
+                                    </div>
+                                <?php } ?>
                             </div>
-                            <?php foreach ($images as $index => $image): ?>
-                                <div class="image-row" draggable="true" data-index="<?= $index ?>">
-                                    <div class="image-cell"><center><?= $index + 1 ?></center></div>
-                                    <div class="image-cell"><center><img src="<?= $image ?>" alt="Uploaded Image"></center></div>
-                                </div>
-                            <?php endforeach; ?>
                         </div>
-
-                        <!-- JavaScript to handle drag-and-drop -->
-                        <script>
-                            const imageTable = document.querySelector('.image-table');
-
-                            // Drag start event listener
-                            imageTable.addEventListener('dragstart', (event) => {
-                                const draggedRow = event.target.closest('.image-row');
-                                draggedRow.classList.add('dragging');
-                                event.dataTransfer.setData('text/plain', draggedRow.dataset.index);
-                            });
-
-                            // Drag over event listener
-                            imageTable.addEventListener('dragover', (event) => {
-                                event.preventDefault();
-                                const draggedIndex = event.dataTransfer.getData('text/plain');
-                                const draggedRow = document.querySelector(`.image-row[data-index="${draggedIndex}"]`);
-                                const afterRow = getDragAfterElement(imageTable, event.clientY);
-                                if (afterRow == null) {
-                                    imageTable.appendChild(draggedRow);
-                                } else {
-                                    imageTable.insertBefore(draggedRow, afterRow);
-                                }
-                            });
-
-                            // Drag end event listener
-                            imageTable.addEventListener('dragend', () => {
-                                document.querySelectorAll('.image-row').forEach(row => {
-                                    row.classList.remove('dragging');
-                                });
-                            });
-
-                            // Function to get element after which the dragged element should be inserted
-                            function getDragAfterElement(container, y) {
-                                const draggableElements = [...container.querySelectorAll('.image-row:not(.dragging)')];
-                                return draggableElements.reduce((closest, child) => {
-                                    const box = child.getBoundingClientRect();
-                                    const offset = y - box.top - box.height / 2;
-                                    if (offset < 0 && offset > closest.offset) {
-                                        return {
-                                            offset: offset,
-                                            element: child
-                                        };
-                                    } else {
-                                        return closest;
-                                    }
-                                }, {
-                                    offset: Number.NEGATIVE_INFINITY
-                                }).element;
-                            }
-                        </script>
-
-                                <!-- JavaScript to handle image order
-                                <script>
-                                    const imageOrderInputs = document.querySelectorAll('input[name="image_order[]"]');
-                                    imageOrderInputs.forEach((input, index) => {
-                                        input.addEventListener('change', () => {
-                                            // Update image order when input value changes
-                                            console.log(`Image ${index + 1} order: ${input.value}`);
-                                        });
-                                    });
-                                </script> -->
-                        </div>
-                    </div>
                     </div>
                 </div>
-
-
-            
-        
+                <nav id="sidebar" class="navbar navbar-dark bg-dark col-md-3">
+                    <p class="navbar-brand"><a href="/">Add new Slide</p>
+                    <form action="/backend/api/topics/slider/upload.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="topic_id" value="<?= $id ?>">
+                        <input type="hidden" name="board_name" value="<?= $name ?>">
+                        <input type="hidden" name="topic_type" value="<?= $type ?>">
+                        <input type="hidden" name="topic_title" value="<?= $title ?>">
+                        <div class="mb-3">
+                            <input type="file" name="files" id="file" accept="image/*">
+                            <label for="file">
+                                <img src="https://placehold.co/500x300?text=Select a image" alt="">
+                            </label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="from_date" class="form-label">From</label>
+                            <input type="date" class="form-control" id="from_date" name="from_date" value="<?= date('Y-m-d') ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="to_date" class="form-label">To</label>
+                            <input type="date" class="form-control" id="to_date" name="to_date" value="<?= $new_date = date('Y-m-d', strtotime(date('Y-m-d') . ' +' . 10 . ' days')); ?>" required>
+                        </div>
+                        <button class="btn btn-success w-100" type="submit">Add Slide</button>
+                    </form>
+                </nav>
+            </div>
         </div>
-        
+        <script>
+            const imageFilePreview = document.querySelector('.manage-topic-slide form label img')
+            const imageFile = document.querySelector('.manage-topic-slide form input[type="file"]')
+
+            imageFile.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function() {
+                        imageFilePreview.src = `${reader.result}`;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        </script>
+
     </body>
 
     </html>
