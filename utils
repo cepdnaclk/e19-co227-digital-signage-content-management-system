@@ -1,0 +1,28 @@
+# Install Node.js 12.22.9
+curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install -y nodejs=12.22.9-1nodesource1
+
+# Verify Node.js and npm
+node -v  # Should output v12.22.9
+npm -v   # Check the current npm version
+
+# Install npm 8.5.1
+sudo npm install -g npm@8.5.1
+npm -v  # Should output 8.5.1
+
+# Add PHP repository
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+
+# Install PHP 8.3
+sudo apt-get install -y php8.3
+
+# Verify PHP Installation
+php -v  # Should output 8.3.2
+
+# Install Apache2
+sudo apt-get update
+sudo apt-get install -y apache2
+
+# Verify Apache2 Installation
+apache2 -v  # Should output the Apache version
