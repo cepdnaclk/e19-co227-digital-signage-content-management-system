@@ -24,10 +24,14 @@ jobs:
           npm install
           npm run build
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.0'
+      - name: Install PHP dependencies
+        working-directory: ./admin
+        run: composer install
+        env:
+          COMPOSER_PROCESS_TIMEOUT: 0
+          COMPOSER_NO_INTERACTION: 1
+          COMPOSER_NO_AUDIT: 1
+
 
       - name: Install PHP dependencies
         run: |
