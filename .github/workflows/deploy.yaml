@@ -70,6 +70,10 @@ jobs:
           
           # Add the server to the known hosts
           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+
+          # Set ownership of the SSH key to the user who runs the script
+          chown $USER:$USER ~/.ssh/id_rsa
+
           
           # Debug: Print the contents of ~/.ssh/known_hosts after adding the server
           cat ~/.ssh/known_hosts
