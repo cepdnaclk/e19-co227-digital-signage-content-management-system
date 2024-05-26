@@ -66,6 +66,7 @@ jobs:
           chmod 777 ~/.ssh/id_rsa
           
           # Debug: Print the contents of ~/.ssh/id_rsa to verify it's correct
+          echo "Contents of ~/.ssh/known_hosts:"
           cat ~/.ssh/id_rsa
           
           # Add the server to the known hosts
