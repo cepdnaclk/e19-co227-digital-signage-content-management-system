@@ -63,7 +63,7 @@ jobs:
           ls -la ~/.ssh
           
           # Set permissions for the SSH key
-          chmod 600 ~/.ssh/id_rsa
+          chmod 777 ~/.ssh/id_rsa
           
           # Debug: Print the contents of ~/.ssh/id_rsa to verify it's correct
           cat ~/.ssh/id_rsa
