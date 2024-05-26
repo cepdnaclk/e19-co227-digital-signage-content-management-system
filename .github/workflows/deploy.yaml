@@ -48,10 +48,12 @@ jobs:
           set -e  # Exit on error
 
 
+          
+          # Ensure the directory ~/.ssh exists
+          mkdir -p ~/.ssh
 
           # Save the SSH key to a file
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
 
           # Add the server to the known hosts
           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
