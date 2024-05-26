@@ -45,7 +45,6 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           SERVER_IP: ${{ secrets.SERVER_IP }}
         run: |
-          set -e  # Exit on error
           
           # Debug: Print the value of SSH_PRIVATE_KEY
           echo "SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY"
