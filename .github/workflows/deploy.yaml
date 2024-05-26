@@ -1,0 +1,69 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - deploy
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Node.js dependencies
+        run: |
+          cd tv
+          npm install
+          npm run build
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+
+      - name: Install PHP dependencies
+        run: |
+          cd admin
+          composer install
+
+      - name: Deploy to server
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+        run: |
+          set -e  # Exit on error
+
+          # Save the SSH key to a file
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+          # Add the server to the known hosts
+          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+
+          # Create a backup of the existing database
+          ssh ubuntu@$SERVER_IP 'mysqldump -u $DB_USER -p$DB_PASSWORD cmsdb > /var/www/html/admin/db/backup.sql'
+
+          # Deploy the PHP app
+          scp -r admin/* ubuntu@$SERVER_IP:/var/www/html/
+
+          # Deploy the React app
+          scp -r tv/build/* ubuntu@$SERVER_IP:/var/www/html/tv
+
+          # Deploy the database files
+          scp -r admin/db/* ubuntu@$SERVER_IP:/var/www/html/admin/db/
+
+          # Restore the database
+          ssh ubuntu@$SERVER_IP 'mysql -u $DB_USER -p$DB_PASSWORD cmsdb < /var/www/html/admin/db/latest.sql'
+
+          # Optionally, restart the server or run other deployment scripts
+          ssh ubuntu@$SERVER_IP 'sudo systemctl restart apache2'
