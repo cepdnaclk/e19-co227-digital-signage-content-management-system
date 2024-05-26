@@ -59,7 +59,7 @@ jobs:
           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
 
           # Create a backup of the existing database
-          ssh ubuntu@$SERVER_IP 'mysqldump -u $DB_USER -p$DB_PASSWORD cmsdb > /var/www/html/admin/db/backup.sql'
+          # ssh ubuntu@$SERVER_IP 'mysqldump -u $DB_USER -p$DB_PASSWORD cmsdb > /var/www/html/admin/db/backup.sql'
 
           # Deploy the PHP app
           scp -r admin/* ubuntu@$SERVER_IP:/var/www/html/
