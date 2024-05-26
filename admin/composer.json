@@ -1,0 +1,9 @@
+{
+  "name": "ITC/CMS",
+  "description": "testing deploying with CI/CD",
+  "require": {
+    "php": ">=8.3",
+  }
+
+  
+}
