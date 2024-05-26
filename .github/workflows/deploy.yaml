@@ -46,32 +46,64 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}
         run: |
           set -e  # Exit on error
-
-
+          
+          # Debug: Print the value of SSH_PRIVATE_KEY
+          echo "SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY"
           
           # Ensure the directory ~/.ssh exists
           mkdir -p ~/.ssh
-
+          
+          # Debug: Check the contents of ~/.ssh before saving the SSH key
+          ls -la ~/.ssh
+          
           # Save the SSH key to a file
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-
+          
+          # Debug: Check the contents of ~/.ssh after saving the SSH key
+          ls -la ~/.ssh
+          
+          # Set permissions for the SSH key
+          chmod 600 ~/.ssh/id_rsa
+          
+          # Debug: Print the contents of ~/.ssh/id_rsa to verify it's correct
+          cat ~/.ssh/id_rsa
+          
           # Add the server to the known hosts
           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
-
+          
+          # Debug: Print the contents of ~/.ssh/known_hosts after adding the server
+          cat ~/.ssh/known_hosts
+          
           # Create a backup of the existing database
+          # Debug: Uncomment the following line to enable database backup
           # ssh ubuntu@$SERVER_IP 'mysqldump -u $DB_USER -p$DB_PASSWORD cmsdb > /var/www/html/admin/db/backup.sql'
-
+          
           # Deploy the PHP app
           scp -r admin/* ubuntu@$SERVER_IP:/var/www/html/
-
+          
+          # Debug: List the contents of /var/www/html on the server after deploying PHP app
+          ssh ubuntu@$SERVER_IP 'ls -la /var/www/html/'
+          
           # Deploy the React app
           scp -r tv/build/* ubuntu@$SERVER_IP:/var/www/html/tv
-
+          
+          # Debug: List the contents of /var/www/html/tv on the server after deploying React app
+          ssh ubuntu@$SERVER_IP 'ls -la /var/www/html/tv'
+          
           # Deploy the database files
           scp -r admin/db/* ubuntu@$SERVER_IP:/var/www/html/admin/db/
-
+          
+          # Debug: List the contents of /var/www/html/admin/db on the server after deploying database files
+          ssh ubuntu@$SERVER_IP 'ls -la /var/www/html/admin/db/'
+          
           # Restore the database
           ssh ubuntu@$SERVER_IP 'mysql -u $DB_USER -p$DB_PASSWORD cmsdb < /var/www/html/admin/db/latest.sql'
-
+          
+          # Debug: Print a message indicating database restoration completion
+          echo "Database restoration completed."
+          
           # Optionally, restart the server or run other deployment scripts
           ssh ubuntu@$SERVER_IP 'sudo systemctl restart apache2'
+          
+          # Debug: Print a message indicating server restart completion
+          echo "Server restart completed."
