@@ -65,7 +65,7 @@ jobs:
           chmod 777 ~/.ssh/id_rsa
           
           # Debug: Print the contents of ~/.ssh/id_rsa to verify it's correct
-          echo "Contents of ~/.ssh/known_hosts:"
+          echo "Before adding the server to known hosts, contents of ~/.ssh/known_hosts:"
           cat ~/.ssh/id_rsa
           
           # Add the server to the known hosts
@@ -76,6 +76,7 @@ jobs:
 
           
           # Debug: Print the contents of ~/.ssh/known_hosts after adding the server
+          echo "After adding the server to known hosts, contents of ~/.ssh/known_hosts:"
           cat ~/.ssh/known_hosts
           
           # Create a backup of the existing database
