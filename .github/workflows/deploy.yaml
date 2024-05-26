@@ -47,8 +47,6 @@ jobs:
         run: |
           set -e  # Exit on error
 
-          # Ensure the directory ~/.ssh exists
-          mkdir -p ~/.ssh
 
 
           # Save the SSH key to a file
