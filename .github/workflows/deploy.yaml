@@ -66,7 +66,10 @@ jobs:
 
           # Set ownership of the SSH key to the user who runs the script
           sudo chown $USER:$USER ~/.ssh/id_rsa
-          
+
+          # Ensure the known_hosts file exists
+          touch ~/.ssh/known_hosts
+
           # Check if known_hosts file exists and print its permissions
           echo "Checking known_hosts file:"
           ls -la ~/.ssh/known_hosts
