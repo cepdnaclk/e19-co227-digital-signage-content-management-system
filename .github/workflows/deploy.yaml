@@ -79,8 +79,8 @@ jobs:
           cat ~/.ssh/id_rsa
           
           # Add the server to the known hosts
-          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
-
+          echo "Adding the server to known hosts..."
+          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts 2>&1 || { echo "ssh-keyscan failed"; exit 1; }
           
           # Debug: Print the contents of ~/.ssh/known_hosts after adding the server
           echo "After adding the server to known hosts, contents of ~/.ssh/known_hosts:"
@@ -91,20 +91,21 @@ jobs:
           # ssh ubuntu@$SERVER_IP 'mysqldump -u $DB_USER -p$DB_PASSWORD cmsdb > /var/www/html/admin/db/backup.sql'
           
           # Deploy the PHP app
-          scp -r admin/* ubuntu@$SERVER_IP:/var/www/html/
+          echo "Deploying PHP app..."
+          scp -r admin/* ubuntu@$SERVER_IP:/var/www/html/ 2>&1 || { echo "Failed to deploy PHP app"; exit 1; }          
           
           # Debug: List the contents of /var/www/html on the server after deploying PHP app
           ssh ubuntu@$SERVER_IP 'ls -la /var/www/html/'
           
-          # Deploy the React app
-          scp -r tv/build/* ubuntu@$SERVER_IP:/var/www/html/tv
+          echo "Deploying React app..."
+          scp -r tv/build/* ubuntu@$SERVER_IP:/var/www/html/tv 2>&1 || { echo "Failed to deploy React app"; exit 1; }
           
           # Debug: List the contents of /var/www/html/tv on the server after deploying React app
           ssh ubuntu@$SERVER_IP 'ls -la /var/www/html/tv'
           
-          # Deploy the database files
-          scp -r admin/db/* ubuntu@$SERVER_IP:/var/www/html/admin/db/
-          
+          echo "Deploying database files..."
+          scp -r admin/db/* ubuntu@$SERVER_IP:/var/www/html/admin/db/ 2>&1 || { echo "Failed to deploy database files"; exit 1; }
+
           # Debug: List the contents of /var/www/html/admin/db on the server after deploying database files
           ssh ubuntu@$SERVER_IP 'ls -la /var/www/html/admin/db/'
           
