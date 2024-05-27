@@ -65,7 +65,7 @@ jobs:
           chmod 777 ~/.ssh/id_rsa
 
           # Set ownership of the SSH key to the user who runs the script
-          chown $USER:$USER ~/.ssh/id_rsa
+          sudo chown $USER:$USER ~/.ssh/id_rsa
           
           # Check if known_hosts file exists and print its permissions
           echo "Checking known_hosts file:"
