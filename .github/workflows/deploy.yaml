@@ -49,7 +49,7 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           
           # Set permissions for the SSH key
-          chmod 400 ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
 
           # Ensure the known_hosts file exists
           touch ~/.ssh/known_hosts
@@ -60,31 +60,47 @@ jobs:
           
           # Add the server to the known hosts
           echo "Adding the server to known hosts..."
-          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+          if ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts 2>/dev/null; then
+            echo "Server added to known hosts successfully."
+          else
+            echo "Failed to add server to known hosts."
+            exit 1
+          fi
           
           # Debug: Print the contents of ~/.ssh/known_hosts after adding the server
           echo "After adding the server to known hosts, contents of ~/.ssh/known_hosts:"
           cat ~/.ssh/known_hosts
           
-          # Create a backup of the existing database
-          # Debug: Uncomment the following line to enable database backup
-          # ssh ubuntu@$SERVER_IP 'mysqldump -u $DB_USER -p$DB_PASSWORD cmsdb > /var/www/html/admin/db/backup.sql'
-          
           # Deploy the PHP app
           echo "Deploying PHP app..."
-          scp -r admin/* ubuntu@$SERVER_IP:/var/www/html/ || { echo "Failed to deploy PHP app"; exit 1; }          
+          if scp -r admin/* ubuntu@$SERVER_IP:/var/www/html/; then
+            echo "PHP app deployed successfully."
+          else
+            echo "Failed to deploy PHP app."
+            exit 1
+          fi          
           
           # Debug: List the contents of /var/www/html on the server after deploying PHP app
           ssh ubuntu@$SERVER_IP 'ls -la /var/www/html/'
           
           echo "Deploying React app..."
-          scp -r tv/build/* ubuntu@$SERVER_IP:/var/www/html/tv || { echo "Failed to deploy React app"; exit 1; }
+          if scp -r tv/build/* ubuntu@$SERVER_IP:/var/www/html/tv; then
+            echo "React app deployed successfully."
+          else
+            echo "Failed to deploy React app."
+            exit 1
+          fi
           
           # Debug: List the contents of /var/www/html/tv on the server after deploying React app
           ssh ubuntu@$SERVER_IP 'ls -la /var/www/html/tv'
           
           echo "Deploying database files..."
-          scp -r admin/db/* ubuntu@$SERVER_IP:/var/www/html/admin/db/ || { echo "Failed to deploy database files"; exit 1; }
+          if scp -r admin/db/* ubuntu@$SERVER_IP:/var/www/html/admin/db/; then
+            echo "Database files deployed successfully."
+          else
+            echo "Failed to deploy database files."
+            exit 1
+          fi
 
           # Debug: List the contents of /var/www/html/admin/db on the server after deploying database files
           ssh ubuntu@$SERVER_IP 'ls -la /var/www/html/admin/db/'
