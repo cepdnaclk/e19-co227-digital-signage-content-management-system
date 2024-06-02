@@ -32,12 +32,6 @@ jobs:
           COMPOSER_NO_INTERACTION: 1
           COMPOSER_NO_AUDIT: 1
 
-
-      - name: Install PHP dependencies
-        run: |
-          cd admin
-          composer install
-
       - name: Deploy to server
         env:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
@@ -45,42 +39,28 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           SERVER_IP: ${{ secrets.SERVER_IP }}
         run: |
-          
           # Debug: Print the value of SSH_PRIVATE_KEY
           echo "SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY"
           
           # Ensure the directory ~/.ssh exists
           mkdir -p ~/.ssh
           
-          # Debug: Check the contents of ~/.ssh before saving the SSH key
-          ls -la ~/.ssh
-          
           # Save the SSH key to a file
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           
-          # Debug: Check the contents of ~/.ssh after saving the SSH key
-          ls -la ~/.ssh
-          
           # Set permissions for the SSH key
-          chmod 777 ~/.ssh/id_rsa
-
-          # Set ownership of the SSH key to the user who runs the script
-          sudo chown $USER:$USER ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
 
           # Ensure the known_hosts file exists
           touch ~/.ssh/known_hosts
-
-          # Check if known_hosts file exists and print its permissions
-          echo "Checking known_hosts file:"
-          ls -la ~/.ssh/known_hosts
           
           # Debug: Print the contents of ~/.ssh/id_rsa to verify it's correct
-          echo "Before adding the server to known hosts, contents of ~/.ssh/known_hosts:"
+          echo "Before adding the server to known hosts, contents of ~/.ssh/id_rsa:"
           cat ~/.ssh/id_rsa
           
           # Add the server to the known hosts
           echo "Adding the server to known hosts..."
-          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts 2>&1 || { echo "ssh-keyscan failed"; exit 1; }
+          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
           
           # Debug: Print the contents of ~/.ssh/known_hosts after adding the server
           echo "After adding the server to known hosts, contents of ~/.ssh/known_hosts:"
@@ -92,19 +72,19 @@ jobs:
           
           # Deploy the PHP app
           echo "Deploying PHP app..."
-          scp -r admin/* ubuntu@$SERVER_IP:/var/www/html/ 2>&1 || { echo "Failed to deploy PHP app"; exit 1; }          
+          scp -r admin/* ubuntu@$SERVER_IP:/var/www/html/ || { echo "Failed to deploy PHP app"; exit 1; }          
           
           # Debug: List the contents of /var/www/html on the server after deploying PHP app
           ssh ubuntu@$SERVER_IP 'ls -la /var/www/html/'
           
           echo "Deploying React app..."
-          scp -r tv/build/* ubuntu@$SERVER_IP:/var/www/html/tv 2>&1 || { echo "Failed to deploy React app"; exit 1; }
+          scp -r tv/build/* ubuntu@$SERVER_IP:/var/www/html/tv || { echo "Failed to deploy React app"; exit 1; }
           
           # Debug: List the contents of /var/www/html/tv on the server after deploying React app
           ssh ubuntu@$SERVER_IP 'ls -la /var/www/html/tv'
           
           echo "Deploying database files..."
-          scp -r admin/db/* ubuntu@$SERVER_IP:/var/www/html/admin/db/ 2>&1 || { echo "Failed to deploy database files"; exit 1; }
+          scp -r admin/db/* ubuntu@$SERVER_IP:/var/www/html/admin/db/ || { echo "Failed to deploy database files"; exit 1; }
 
           # Debug: List the contents of /var/www/html/admin/db on the server after deploying database files
           ssh ubuntu@$SERVER_IP 'ls -la /var/www/html/admin/db/'
