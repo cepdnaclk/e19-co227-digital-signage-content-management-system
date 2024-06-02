@@ -60,7 +60,7 @@ jobs:
           
           # Add the server to the known hosts
           echo "Adding the server to known hosts..."
-          if ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts 2>/dev/null; then
+          if sudo ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts 2>/dev/null; then
             echo "Server added to known hosts successfully."
           else
             echo "Failed to add server to known hosts."
